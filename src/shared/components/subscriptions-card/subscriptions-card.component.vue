@@ -1,0 +1,144 @@
+<script xmlns:text-align="http://www.w3.org/1999/XSL/Transform">
+export default {
+  name: "subscriptions-card"
+}
+</script>
+
+<template>
+  <h1 class="text-center">Elige cuanto tiempo quieres publicar tu granja</h1>
+  <h2 class="sub-title">Escoge un plan</h2>
+<div class="cards">
+  <pv-card class="mt-1">
+
+    <template #content>
+
+      <h1 class="title-card">Gestiona y destaca tu granja</h1>
+      <p class="sub-header">con un solo pago de</p>
+      <p class="price">S/250 <span class="mes">/mes</span></p>
+      <button class="choose-plan-btn ">Elegir Plan</button>
+      <ul class="benefits" >
+        <li>Notificaciones y acceso móvil</li>
+        <li>Aviso destacado</li>
+        <li>Visualización detallada de información sobre granjas</li>
+        <li>Asignación de tareas a colaboradores</li>
+        <li>Muchas funciones más</li>
+      </ul>
+
+    </template>
+
+
+  </pv-card>
+  <pv-card class="mt-2">
+
+    <template #content>
+
+      <h1 class="title-card">3 meses</h1>
+      <p class="sub-header">con un solo pago de</p>
+      <p class="price">S/130 </p>
+      <button class="choose-plan-btn ">Elegir Plan</button>
+      <ul class="benefits" >
+        <li>Hasta 15 fotos en Alta Calidad</li>
+        <li>Pago con Plin/Yape o Tarjeta</li>
+        <li>Video de YouTube</li>
+        <li>Envío de prospescto por correo</li>
+      </ul>
+
+    </template>
+
+
+  </pv-card>
+
+
+</div>
+
+</template>
+
+<style>
+.cards{
+  display: flex; /* Utiliza flexbox */
+  justify-content: center; /* Centra horizontalmente el contenido */
+}
+.benefits{
+  text-align: left;
+  margin-left: -20px;
+
+}
+.choose-plan-btn{
+  margin-top: -10px;
+  background-color: #4CAF50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espacio alrededor del texto */
+  text-align: center; /* Centrar texto horizontalmente */
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  border-radius: 5px; /* Bordes redondeados */
+  width: 80%;
+}
+.choose-plan-btn:hover {
+  transform: scale(1.05);
+}
+.text-center {
+
+  font-size: 50px; /* Ajusta el tamaño del texto */
+  margin-top: 180px; /* Ajusta el margen superior para separar el título de las tarjetas */
+  font-weight: bold; /* Ajusta el peso de la fuente a negrita */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin-bottom:0px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
+}
+.sub-title{
+  margin-top: 50px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin-bottom: 0px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
+}
+
+.title-card{
+  color: darkgreen !important;
+  margin-top: -10px;
+  font-weight: bold; /* Ajusta el peso de la fuente a negrita */
+  text-align: left;
+
+
+}
+.mt-2{
+  margin-top: 100px;
+  width: 300px;
+  height: 330px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+
+}
+.mt-1{
+  margin-top: 50px;
+  width: 300px;
+  height: 440px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+}
+.sub-header{
+  color: gray !important;
+  font-size: 20px; /* Ajusta el tamaño del texto */
+  margin-top: -10px;
+
+
+}
+.price {
+  color: black !important; /* Cambia el color del texto a negro */
+  font-size: 35px; /* Ajusta el tamaño del texto */
+  font-weight: bold; /* Ajusta el peso de la fuente a negrita */
+  margin-top: -10px;
+
+}
+.mes{
+  color: gray ;
+  font-size: 15px; /* Ajusta el tamaño del texto */
+  font-weight: normal;
+}
+</style>
+
+
+
