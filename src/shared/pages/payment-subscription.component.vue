@@ -10,7 +10,7 @@ export default {
   <div class="container-general">
 
   <h2>Duración</h2>
-  <p>A más duración, más personas verán el anuncio</p>
+  <p class="text-description">A más duración, más personas verán el anuncio</p>
   <pv-card class="pv-card">
 <template #content>
   <p class="mat-card-title">3 meses</p>
@@ -22,49 +22,29 @@ export default {
 
   </div>
 <payment-card/>
+  <button class="choose-plan-btn ">Elegir Plan</button>
 
 
 
 </template>
 
-
-<!--<div class="payment-container">
-  <mat-card class="payment-card">
-    <mat-card-content>
-      <h2 class="title-details">Detalles de la Tarjeta</h2>
-      <div class="input-group">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Número de Tarjeta" aria-label="Número de Tarjeta">
-        </mat-form-field>
-      </div>
-
-      <div class="input-group">
-        <mat-form-field class="half-width">
-          <input matInput placeholder="MM/AA" aria-label="MM/AA">
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput placeholder="CVV" aria-label="CVV">
-        </mat-form-field>
-      </div>
-
-      <div class="input-group">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Correo Electrónico" aria-label="Correo Electrónico">
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-
-  </mat-card>
-  <div class="qr-code-container">
-    <h2>PAGA MÁS RÁPIDO </h2>
-    <h3 class="description-qr">Escanea este QR con la billetera electrónica de tu banco </h3>
-
-    <img src="assets/qr-logo.png" alt="QR Code">
-  </div>
-</div>-->
-
-
 <style scoped>
+
+.choose-plan-btn{
+  margin-top: -10px;
+  background-color: #4CAF50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espacio alrededor del texto */
+  text-align: center; /* Centrar texto horizontalmente */
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  border-radius: 5px; /* Bordes redondeados */
+  width: 80%;
+}
+.choose-plan-btn:hover {
+  transform: scale(1.05);
+}
 
 .pv-card {
 
@@ -73,60 +53,16 @@ export default {
   border-radius: 10px;
   border: 5px solid #4CAF50;
 
+
 }
  .mat-card-title{
   color: darkgreen !important;
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
   font-size: 20px; /* Ajusta el tamaño del texto */
    margin-top:-10px;
-}
 
-.container {
-  display: flex;
-  justify-content: flex-start; /* Alinea el contenido a la izquierda */
-  align-items: center; /* Centra verticalmente el contenido */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-}
+ }
 
-/* Estilo para el cuadro que contiene el formulario */
-.form-container {
-  background-color: #f0f0f0; /* Color de fondo del cuadro */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 10px; /* Borde redondeado */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
-  width: 300px; /* Ancho del cuadro */
-}
-
-/* Estilo para el título */
-h2 {
-  margin-top: 0; /* Elimina el margen superior por defecto */
-}
-
-/* Estilo para los botones */
-.mat-raised-button {
-  margin-top: 20px; /* Espaciado superior */
-  width: 100%; /* Ancho completo */
-}
-
-/* Estilo para los campos de entrada */
-.mat-form-field {
-  width: 100%; /* Ancho completo */
-}
-/* Estilo para el contenedor del formulario de facturación */
-.billing-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Divide en 4 columnas */
-  grid-template-rows: repeat(4, auto); /* Divide en 2 filas */
-  gap: 10px; /* Espacio entre los elementos */
-  width: 30%;
-}
-
-/* Estilo para los campos de entrada */
-.mat-form-field {
-  width: 100%; /* Ancho completo */
-  grid-column: span 2; /* Ocupa el ancho de 2 columnas */
-}
-/* Estilo para el contenedor general */
 .container-general {
   display: flex;
   justify-content: center; /* Centra horizontalmente el contenido */
@@ -158,7 +94,6 @@ h2 {
 
 .price {
   color: black !important; /* Cambia el color del texto a negro */
-  color: black !important; /* Cambia el color del texto a negro */
   font-size: 35px; /* Ajusta el tamaño del texto */
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
 }
@@ -171,6 +106,10 @@ h2 {
 h2{
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
   font-size: 50px; /* Ajusta el tamaño del texto */
+  margin-top: 15px;
 
+}
+.text-description{
+  margin-top: -15px;
 }
 </style>
