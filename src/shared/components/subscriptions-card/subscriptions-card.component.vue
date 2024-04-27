@@ -1,13 +1,17 @@
 <script xmlns:text-align="http://www.w3.org/1999/XSL/Transform">
+import ImageCard from "../image-card/image-card.component.vue";
+
 export default {
-  name: "subscriptions-card"
+  name: "subscriptions-card",
+  components: {ImageCard}
 }
+
 </script>
 
 <template>
   <h1 class="text-center">Elige cuanto tiempo quieres publicar tu granja</h1>
   <h2 class="sub-title">Escoge un plan</h2>
-<div class="cards">
+<div class="cardsx">
   <pv-card class="mt-1">
 
     <template #content>
@@ -15,7 +19,12 @@ export default {
       <h1 class="title-card">Gestiona y destaca tu granja</h1>
       <p class="sub-header">con un solo pago de</p>
       <p class="price">S/250 <span class="mes">/mes</span></p>
-      <button class="choose-plan-btn ">Elegir Plan</button>
+
+      <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
+
+        <button class="choose-plan-btn " @click="navigate" >Elegir Plan</button>
+
+      </router-link>
       <ul class="benefits" >
         <li>Notificaciones y acceso móvil</li>
         <li>Aviso destacado</li>
@@ -35,7 +44,11 @@ export default {
       <h1 class="title-card">3 meses</h1>
       <p class="sub-header">con un solo pago de</p>
       <p class="price">S/130 </p>
-      <button class="choose-plan-btn ">Elegir Plan</button>
+      <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
+
+        <button class="choose-plan-btn"  @click="navigate">Elegir Plan</button>
+
+      </router-link>
       <ul class="benefits" >
         <li>Hasta 15 fotos en Alta Calidad</li>
         <li>Pago con Plin/Yape o Tarjeta</li>
@@ -50,17 +63,20 @@ export default {
 
 
 </div>
+  <image-card/>
 
 </template>
 
 <style>
-.cards{
+.cardsx{
   display: flex; /* Utiliza flexbox */
   justify-content: center; /* Centra horizontalmente el contenido */
+
 }
 .benefits{
   text-align: left;
-  margin-left: -20px;
+  margin-left: -20px
+;
 
 }
 .choose-plan-btn{
@@ -89,7 +105,6 @@ export default {
 .sub-title{
   margin-top: 50px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
   text-align: center; /* Centra el texto horizontalmente */
-  margin-bottom: 0px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
 }
 
 .title-card{
@@ -101,19 +116,18 @@ export default {
 
 }
 .mt-2{
-  margin-top: 100px;
+  margin-top: 70px;
   width: 300px;
-  height: 330px;
+  height: 380px;
   border-radius: 10px;
   border: 2px solid #4CAF50;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 20px;
 
 }
 .mt-1{
   margin-top: 50px;
   width: 300px;
-  height: 440px;
+  height: 480px;
   border-radius: 10px;
   border: 2px solid #4CAF50;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);

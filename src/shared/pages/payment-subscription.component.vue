@@ -3,27 +3,41 @@ import PaymentCard from "../components/payment-card/payment-card.component.vue";
 
 export default {
   name: "payment-subscription",
-  components: {PaymentCard}
+  components: { PaymentCard},
+
 }
+
 </script>
 <template>
   <div class="container-general">
 
   <h2>Duración</h2>
   <p class="text-description">A más duración, más personas verán el anuncio</p>
-  <pv-card class="pv-card">
+
+    <pv-card  class="pv-card-2"  >
 <template #content>
-  <p class="mat-card-title">3 meses</p>
+  <h1 class="title-card">Gestiona y destaca tu granja</h1>
   <p class="sub-header">con un solo pago de</p>
-  <p class="price">S/130</p>
+  <p class="price">S/250 <span class="mes">/mes</span></p>
 </template>
 
   </pv-card>
 
+    <pv-card class="pv-card-1">
+      <template #content>
+        <p class="mat-card-title">3 meses</p>
+        <p class="sub-header">con un solo pago de</p>
+        <p class="price">S/130</p>
+      </template>
+
+    </pv-card>
   </div>
 <payment-card/>
-  <button class="choose-plan-btn ">Elegir Plan</button>
+  <router-link  v-slot="{navigate, href}" :to="'/subscriptions'" custom>
 
+    <button class="choose-plan-btn " @click="navigate">Elegir Plan</button>
+
+  </router-link>
 
 
 </template>
@@ -46,7 +60,16 @@ export default {
   transform: scale(1.05);
 }
 
-.pv-card {
+.pv-card-1 {
+
+  height:200px;
+  width: 300px;
+  border-radius: 10px;
+  border: 5px solid #4CAF50;
+
+
+}
+.pv-card-2 {
 
   height:150px;
   width: 300px;

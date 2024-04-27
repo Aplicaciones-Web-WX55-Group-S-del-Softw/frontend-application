@@ -2,12 +2,15 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './app.vue'
 
+
 // PrimeVue
 import PrimeVue from "primevue/config";
 
 // PrimeVue CSS
+//import 'primeflex/primeflex.css';
 
 // PrimeIcons
+//import 'primeicons/primeicons.css';
 
 // PrimeVue Theme
 import 'primevue/resources/themes/md-light-indigo/theme.css';
@@ -43,9 +46,11 @@ import Toolbar          from "primevue/toolbar";
 import Toast            from "primevue/toast";
 
 // Router
+import router from "./router/index.js";
+import app from "./app.vue";
 
 createApp(App)
-   // .use(router)
+       .use(router)
     .use(PrimeVue, { ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
