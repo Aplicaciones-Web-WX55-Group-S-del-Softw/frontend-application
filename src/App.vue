@@ -1,9 +1,9 @@
+<!-- App.vue -->
 <script setup>
-import monitoringCard from "./shared/components/monitoring-card/monitoring-card.vue";
 </script>
 
 <template>
-  <monitoring-card />
+  <router-view/>
 </template>
 
 <style scoped>

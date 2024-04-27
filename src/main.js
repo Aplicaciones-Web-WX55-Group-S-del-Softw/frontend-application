@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
 
@@ -37,9 +36,10 @@ import Toolbar          from "primevue/toolbar";
 import Toast            from "primevue/toast";
 
 // Router
+import router from "./router/index.js";
 
 createApp(App)
-    // .use(router)
+    .use(router)
     .use(PrimeVue, { ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
