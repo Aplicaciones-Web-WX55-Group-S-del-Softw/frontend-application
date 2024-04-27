@@ -1,29 +1,44 @@
 <script>
 import PaymentCard from "../components/payment-card/payment-card.component.vue";
+import SubscriptionsCard from "../components/subscriptions-card/subscriptions-card.component.vue";
 
 export default {
   name: "payment-subscription",
-  components: { PaymentCard},
-
+  components: {SubscriptionsCard, PaymentCard},
+  data() {
+    return {
+      showCard250x: false, // Inicialmente mostramos la tarjeta de S/250
+      showCard130y: false  // Inicialmente mostramos la tarjeta de S/130
+    };
+  }, methods: {
+    handlePayment(navigate) {
+        alert('Pago exitoso');
+      navigate();
+    }
+  }
 }
 
+
 </script>
+
+
 <template>
   <div class="container-general">
 
   <h2>Duración</h2>
   <p class="text-description">A más duración, más personas verán el anuncio</p>
 
-    <pv-card  class="pv-card-2"  >
+    <pv-card  class="pv-card-2" >
+
 <template #content>
-  <h1 class="title-card">Gestiona y destaca tu granja</h1>
+  <h1 class="title-card"  >Gestiona y destaca tu granja</h1>
   <p class="sub-header">con un solo pago de</p>
   <p class="price">S/250 <span class="mes">/mes</span></p>
 </template>
 
   </pv-card>
 
-    <pv-card class="pv-card-1">
+    <pv-card class="pv-card-1" v-if="showCard130y">
       <template #content>
         <p class="mat-card-title">3 meses</p>
         <p class="sub-header">con un solo pago de</p>
@@ -35,7 +50,7 @@ export default {
 <payment-card/>
   <router-link  v-slot="{navigate, href}" :to="'/subscriptions'" custom>
 
-    <button class="choose-plan-btn " @click="navigate">Elegir Plan</button>
+    <button class="choose-plan-btn " @click="handlePayment(navigate)">Pagado</button>
 
   </router-link>
 
@@ -71,7 +86,7 @@ export default {
 }
 .pv-card-2 {
 
-  height:150px;
+  height:200px;
   width: 300px;
   border-radius: 10px;
   border: 5px solid #4CAF50;

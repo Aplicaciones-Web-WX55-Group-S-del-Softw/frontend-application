@@ -3,9 +3,20 @@ import ImageCard from "../image-card/image-card.component.vue";
 
 export default {
   name: "subscriptions-card",
-  components: {ImageCard}
-}
+  components: { ImageCard },
+  methods: {
+    showCard250(navigate) {
+      this.$emit('show-card', { btn: 1 }); // Emitir evento para mostrar la tarjeta de S/250
+        navigate(); // Llamar a la función navigate
+    },
+    showCard130(navigate) {
+      this.$emit('show-card', { btn: 2 }); // Emitir evento para mostrar la tarjeta de S/130
+      navigate(); // Llamar a la función navigate
+    },
 
+
+  }
+}
 </script>
 
 <template>
@@ -22,7 +33,7 @@ export default {
 
       <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
 
-        <button class="choose-plan-btn " @click="navigate" >Elegir Plan</button>
+        <button class="choose-plan-btn "  @click="showCard250(navigate)" >Elegir Plan</button>
 
       </router-link>
       <ul class="benefits" >
@@ -46,7 +57,7 @@ export default {
       <p class="price">S/130 </p>
       <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
 
-        <button class="choose-plan-btn"  @click="navigate">Elegir Plan</button>
+        <button class="choose-plan-btn"   @click="showCard130(navigate)">Elegir Plan</button>
 
       </router-link>
       <ul class="benefits" >
