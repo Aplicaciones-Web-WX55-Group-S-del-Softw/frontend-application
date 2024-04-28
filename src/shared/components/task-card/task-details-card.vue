@@ -1,14 +1,11 @@
 <script>
 import { useRoute } from 'vue-router';
+import db from '../../../../server/db.json';
 
 export default {
   data() {
     return {
-      tasks: [
-        { id: "#1", employee: 'Rogrigo Kunimoto', time: '3 horas', date: '29/03/2024', finished: "Pendiente", description: "Dar de comer a todos los pollos del granero 10" },
-        { id: "#2", employee: 'Franco Barrionuevo', time: '2 horas', date: '30/03/2024', finished: "Finalizado", description: "Dar de comer a todos los pollos del granero 8" },
-        { id: "#3", employee: 'Fernando Salgado', time: '4 horas', date: '31/03/2024', finished: "Pendiente", description: "Dar de comer a todos los pollos del granero 3" },
-      ],
+      tasks: db.tasks,
     };
   },
 
@@ -25,14 +22,14 @@ export default {
   <div class="container">
     <div v-if="task">
       <h1>Task {{task.id}}</h1>
-      <div  class="card">
-      <p><span class="bold-text">Empleado:</span> {{ task.employee }}</p>
-      <p><span class="bold-text">Fecha:</span> {{ task.date }}</p>
-      <p><span class="bold-text">Descripción:</span> {{ task.description }}</p>
+      <div class="card">
+        <p><span class="bold-text">Empleado:</span> {{ task.employee }}</p>
+        <p><span class="bold-text">Fecha:</span> {{ task.date }}</p>
+        <p><span class="bold-text">Descripción:</span> {{ task.description }}</p>
+      </div>
     </div>
-    </div>
-    <div v-else>
-      <p>No se encontró la tarea</p>
+    <div v-else class="error-card">
+      <p>⚠️ No se encontró la tarea</p>
     </div>
   </div>
 </template>
@@ -71,5 +68,20 @@ h1{
   display: flex;
   flex-direction: column;
   justify-content: left;
+}
+.error-card {
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.25);
+  padding: 20px;
+  width: 30%;
+  height: 190px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2em;
 }
 </style>

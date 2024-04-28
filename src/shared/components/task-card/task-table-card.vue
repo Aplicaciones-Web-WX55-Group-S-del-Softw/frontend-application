@@ -1,12 +1,9 @@
 <script>
+import db from '../../../../server/db.json';
 export default {
   data() {
     return {
-      tasks: [
-        { id: "#1", employee: 'Rodrigo Kunimoto', time: '3 horas', date: '29/03/2024', finished: "Pendiente" },
-        { id: "#2", employee: 'Franco Barrionuevo', time: '2 horas', date: '30/03/2024', finished: "Finalizado" },
-        { id: "#3", employee: 'Fernando Salgado', time: '4 horas', date: '31/03/2024', finished: "Pendiente" },
-      ],
+      data: db
     };
   },
 };
@@ -14,6 +11,7 @@ export default {
 <template>
   <div class="container">
     <h1>Task</h1>
+    <div class="table-container">
     <h2><router-link to="/new-task">Agregar nueva task</router-link></h2>
     <table>
       <tr>
@@ -22,27 +20,23 @@ export default {
         <th>Tiempo a realizar</th>
         <th>Fecha</th>
         <th>Finalizado</th>
-
       </tr>
-      <tr v-for="task in tasks" :key="task.id">
-
-        <td><router-link :to="`/tasks-details/${task.id.substring(1)}`">{{ task.id }}</router-link></td>
-        <td>{{ task.employee }}</td>
-        <td>{{ task.time }}</td>
-        <td>{{ task.date }}</td>
-        <td>{{ task.finished}}</td>
+      <tr v-for="item in data.tasks" :key="item.id">
+        <td><router-link :to="`/tasks-details/${item.id.substring(1)}`">{{ item.id }}</router-link></td>
+        <td>{{ item.employee }}</td>
+        <td>{{ item.time }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.finished}}</td>
       </tr>
-
       <tr class="empty-row">
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
-
       </tr>
     </table>
-
+  </div>
   </div>
 </template>
 
@@ -63,7 +57,7 @@ h1{
   color:darkgreen;
 }
 h2 {
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: underline;
   position: absolute;
   right: 377px;
@@ -71,6 +65,7 @@ h2 {
   margin:0;
   color:darkgreen !important;
 }
+
 h2 > a {
   color: green !important;
 }
@@ -80,9 +75,11 @@ h2 > a:hover {
 }
 
 table {
-  width: 50%;
+  width: 70%;
   border-collapse: collapse;
   border: 2px solid black;
+  margin-top: 100px;
+
 }
 
 th {
@@ -100,11 +97,15 @@ td {
 
 }
 .empty-row {
-  height: 380px;
+  height: 100px;
 }
 .empty-row td {
   border-bottom: 1px solid #000;
   height: 20px;
 }
-
+.table-container {
+  width: 70%;
+  height: 700px;
+  margin: 200px 60px auto auto;
+}
 </style>
