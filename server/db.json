@@ -1,0 +1,132 @@
+{
+  "tasks": [
+    {
+      "id": "#1",
+      "employee": "Rodrigo Kunimoto",
+      "time": "3 horas",
+      "date": "29/03/2024",
+      "finished": "Pendiente",
+      "description": "Dar de comer a todos los pollos del granero 10"
+    },
+    {
+      "id": "#2",
+      "employee": "Franco Barrionuevo",
+      "time": "2 horas",
+      "date": "30/03/2024",
+      "finished": "Finalizado",
+      "description": "Dar de comer a todos los pollos del granero 8"
+    },
+    {
+      "id": "#3",
+      "employee": "Fernando Salgado",
+      "time": "4 horas",
+      "date": "31/03/2024",
+      "finished": "Pendiente",
+      "description": "Dar de comer a todos los pollos del granero 3"
+    },
+    {
+      "id": "#4",
+      "employee": "Rogrigo Kunimoto",
+      "time": "5 horas",
+      "date": "01/04/2024",
+      "finished": "Pendiente",
+      "description": "Dar de comer a todos los pollos del granero 4"
+    },
+    {
+      "id": "#5",
+      "employee": "Maria Lopez",
+      "time": "6 horas",
+      "date": "02/04/2024",
+      "finished": "Finalizado",
+      "description": "Dar de comer a todos los pollos del granero 5"
+    },
+    {
+      "id": "#6",
+      "employee": "Franco Reto",
+      "time": "6 horas",
+      "date": "02/04/2024",
+      "finished": "Finalizado",
+      "description": "Dar de comer a todos los pollos del granero 5"
+    },
+    {
+      "id": "#7",
+      "employee": "Juan Perez",
+      "time": "1 hora",
+      "date": "01/04/2024",
+      "finished": "Pendiente",
+      "description": "Revisar el inventario de la granja"
+    },
+    {
+      "id": "#8",
+      "employee": "Ana Gomez",
+      "time": "2 horas",
+      "date": "02/04/2024",
+      "finished": "Finalizado",
+      "description": "Limpiar los establos"
+    },
+    {
+      "id": "#9",
+      "employee": "Carlos Rodriguez",
+      "time": "3 horas",
+      "date": "03/04/2024",
+      "finished": "Pendiente",
+      "description": "Reparar la cerca del corral"
+    },
+    {
+      "id": "#10",
+      "employee": "Luisa Martinez",
+      "time": "4 horas",
+      "date": "04/04/2024",
+      "finished": "Finalizado",
+      "description": "Plantar nuevas semillas en el huerto"
+    },
+    {
+      "id": "#11",
+      "employee": "Pedro Jimenez",
+      "time": "5 horas",
+      "date": "05/04/2024",
+      "finished": "Pendiente",
+      "description": "Cosechar las verduras del huerto"
+    },
+    {
+      "id": "#12",
+      "employee": "Sofia Torres",
+      "time": "6 horas",
+      "date": "06/04/2024",
+      "finished": "Finalizado",
+      "description": "Alimentar a los cerdos"
+    },
+    {
+      "id": "#13",
+      "employee": "Ricardo Diaz",
+      "time": "7 horas",
+      "date": "07/04/2024",
+      "finished": "Pendiente",
+      "description": "Ordeñar las vacas"
+    },
+    {
+      "id": "#14",
+      "employee": "Marta Ramirez",
+      "time": "8 horas",
+      "date": "08/04/2024",
+      "finished": "Finalizado",
+      "description": "Cuidar a los pollitos"
+    },
+    {
+      "id": "#15",
+      "employee": "Javier Morales",
+      "time": "9 horas",
+      "date": "09/04/2024",
+      "finished": "Pendiente",
+      "description": "Cuidar a los pollitos"
+    },
+    {
+      "id": "#16",
+      "employee": "Laura Castillo",
+      "time": "10 horas",
+      "date": "10/04/2024",
+      "finished": "Finalizado",
+      "description": "Cuidar a los pollitos"
+    }
+  ]
+}
