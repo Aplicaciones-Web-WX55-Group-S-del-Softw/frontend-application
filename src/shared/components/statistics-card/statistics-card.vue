@@ -136,7 +136,6 @@ export default {
   margin-top: 50px !important;
 }
 
-
 .progress-bar {
 
   width: 80%;

@@ -12,7 +12,9 @@ export default {
 
     <div class="monitoring-card">
       <div class = "task-container">
-      <img class="task-img" src="../../../assets/task.png" alt="Tareas">
+        <router-link to="/task-planning">
+          <img class="task-img" src="../../../assets/task.png" alt="Tareas">
+        </router-link>
       <h2>Tareas</h2>
       </div>
     </div>
