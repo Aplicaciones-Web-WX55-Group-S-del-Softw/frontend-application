@@ -2,23 +2,18 @@
 import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import SuccessModal from './success-modal.vue';
+import db from '../../../../server/db.json'; // Importa db.json
 
 const router = useRouter();
 const selectedEmployee = ref('');
-const employees = ref([
-  'Rodrigo Kunimoto',
-  'Franco Barrionuevo',
-  'Fernando Salgado',
-]);
+const employees = ref([...new Set(db.tasks.map(task => task.employee))]); // Carga los empleados desde db.json
 const selectedDate = ref('');
 const taskTime = ref('');
 const taskDescription = ref('');
 const showModal = ref(false);
 
 const saveTask = () => {
-
   showModal.value = true;
-
   setTimeout(() => {
     router.push('/tasks');
   }, 1500);
