@@ -2,12 +2,10 @@
 import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import SuccessModal from './success-modal.vue';
-import db from '../../../../server/db.json'; // Importa db.json
-
+import db from '../../../../server/db.json';
 const router = useRouter();
 const selectedEmployee = ref('');
-const employees = ref([...new Set(db.tasks.map(task => task.employee))]); // Carga los empleados desde db.json
-const selectedDate = ref('');
+const employees = ref([...new Set(db.tasks.map(task => task.employee))]); const selectedDate = ref('');
 const taskTime = ref('');
 const taskDescription = ref('');
 const showModal = ref(false);
