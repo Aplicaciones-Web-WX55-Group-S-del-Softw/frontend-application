@@ -1,4 +1,4 @@
-<script xmlns:text-align="http://www.w3.org/1999/XSL/Transform">
+<script>
 export default {
   name: "statistics"
 }
@@ -13,11 +13,11 @@ export default {
         <h1 class="title-card">Producción</h1>
         <img src="../../../assets/production.png" alt="Producción">
       </template>
-
-
     </pv-card>
+
     <pv-card class="mt-2">
       <template #content>
+        <router-link to="/finished-tasks" style="text-decoration: none;">
         <h1 class="title-card">Task realizadas en tiempo record</h1>
         <p class="tasks">44 TASK </p>
 
@@ -26,18 +26,18 @@ export default {
             <div class="progress" style="width: 60%;"></div>
             <p class="sub-header">Tasks pendientes: 20</p>
           </div>
+
         </div>
+        </router-link>
       </template>
     </pv-card>
     <pv-card class="mt-3">
-
       <template #content>
-
-        <h1 class="title-card">Estadísticas Financieras</h1>
-        <img src="../../../assets/income.png" alt="Ingresos">
-
+        <router-link to="/financial-statistics" style="text-decoration: none;">
+          <h1 class="title-card">Estadísticas Financieras</h1>
+          <img src="../../../assets/income.png" alt="Ingresos">
+        </router-link>
       </template>
-
     </pv-card>
   </div>
 
@@ -50,7 +50,7 @@ export default {
   grid-template-areas:
     "mt-1 mt-2"
     "mt-3 mt-3";
-  gap: 20px;
+  gap: 40px;
   justify-content: center;
   margin-left: 100px;
 }
@@ -85,7 +85,9 @@ export default {
   border-radius: 10px;
   border: 2px solid #4CAF50;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: 100px;
+  margin-left: 90px;
+  margin-right: 100px;
+  position: relative;
 }
 .mt-1 img {
   width: 280px;
@@ -156,6 +158,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 </style>
 
 
