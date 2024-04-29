@@ -5,20 +5,20 @@
       "employee": "Rodrigo Kunimoto",
       "time": "3 horas",
       "date": "29/03/2024",
-      "finished": "Pendiente",
+      "finished": "Finalizado",
       "description": "Dar de comer a todos los pollos del granero 10"
     },
     {
       "id": "#2",
       "employee": "Franco Barrionuevo",
       "time": "2 horas",
-      "date": "30/03/2024",
-      "finished": "Finalizado",
+      "date": "31/03/2024",
+      "finished": "Pendiente",
       "description": "Dar de comer a todos los pollos del granero 8"
     },
     {
-      "id": "#3",
-      "employee": "Fernando Salgado",
+      "id": " 3",
+      "employee": "Franco Barrionuevo",
       "time": "4 horas",
       "date": "31/03/2024",
       "finished": "Pendiente",
@@ -28,7 +28,7 @@
       "id": "#4",
       "employee": "Rogrigo Kunimoto",
       "time": "5 horas",
-      "date": "01/04/2024",
+      "date": "31/03/2024",
       "finished": "Pendiente",
       "description": "Dar de comer a todos los pollos del granero 4"
     },
@@ -60,8 +60,8 @@
       "id": "#8",
       "employee": "Ana Gomez",
       "time": "2 horas",
-      "date": "02/04/2024",
-      "finished": "Finalizado",
+      "date": "01/04/2024",
+      "finished": "Pendiente",
       "description": "Limpiar los establos"
     },
     {
@@ -127,6 +127,38 @@
       "date": "10/04/2024",
       "finished": "Finalizado",
       "description": "Cuidar a los pollitos"
+    },
+    {
+      "id": "#17",
+      "employee": "Rodrigo Kunimoto",
+      "time": "2 horas",
+      "date": "11/04/2024",
+      "finished": "Pendiente",
+      "description": "Dar de comer a todos los pollos del granero 11"
+    },
+    {
+      "id": "#18",
+      "employee": "Franco Barrionuevo",
+      "time": "3 horas",
+      "date": "12/04/2024",
+      "finished": "Finalizado",
+      "description": "Dar de comer a todos los pollos del granero 12"
+    },
+    {
+      "id": "#19",
+      "employee": "Franco Barrionuevo",
+      "time": "4 horas",
+      "date": "13/04/2024",
+      "finished": "Pendiente",
+      "description": "Dar de comer a todos los pollos del granero 13"
+    },
+    {
+      "id": "#20",
+      "employee": "Rogrigo Kunimoto",
+      "time": "5 horas",
+      "date": "14/04/2024",
+      "finished": "Finalizado",
+      "description": "Dar de comer a todos los pollos del granero 14"
     }
   ]
 }
