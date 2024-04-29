@@ -1,11 +1,12 @@
 <script>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import db from '../../../../server/db.json';
 
 export default {
   data() {
     return {
       tasks: db.tasks,
+      showMessage: false,
     };
   },
 
@@ -15,9 +16,25 @@ export default {
       const taskId = "#" + route.params.id;
       return this.tasks.find(task => task.id === taskId);
     }
+  },
+
+  methods: {
+    finishTask() {
+      if (this.task) {
+        this.task.finished = "Finalizado";
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 200000);
+      }
+    },
+    cancel() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>
+
 <template>
   <div class="container">
     <div v-if="task">
@@ -26,10 +43,19 @@ export default {
         <p><span class="bold-text">Empleado:</span> {{ task.employee }}</p>
         <p><span class="bold-text">Fecha:</span> {{ task.date }}</p>
         <p><span class="bold-text">Descripción:</span> {{ task.description }}</p>
+        <p><span class="bold-text">Estado:</span> {{ task.finished }}</p>
+        <div class="button">
+        <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finalizar Tarea</button>
+          <button @click="cancel" class="cancel-button">Cancelar</button>
+        </div>
       </div>
     </div>
     <div v-else class="error-card">
       <p>⚠️ No se encontró la tarea</p>
+        <button @click="cancel" class="return-button">Regresar</button>
+    </div>
+    <div v-if="showMessage" class="message">
+      <p>La tarea ha sido marcada como finalizada.</p>
     </div>
   </div>
 </template>
@@ -40,7 +66,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 150px;
   top: 300px;
 }
 
@@ -48,9 +74,21 @@ h1{
   font-size: 70px;
   position: relative;
   text-align: center;
-  top: -10px;
+  top: -20px;
+  left: 20px;
   margin:0;
   color:darkgreen;
+}
+.message {
+  position: absolute;
+  top: -50px;
+  left: 620px;
+  background-color: #9fd0a4;
+  border: 2px solid #204f00;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .bold-text {
@@ -63,12 +101,49 @@ h1{
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   padding: 20px;
   width: 120%;
-  height: 190px;
+  height: 230px;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: left;
 }
+
+.finish-button {
+  background-color: #0ee004;
+  border: 2px solid #003f17;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-left: 90px;
+}
+
+.cancel-button {
+  background-color: #ffaca9;
+  border: 2px solid #ff0000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-left: 180px;
+}
+
+.return-button {
+  background-color: #ffaca9;
+  border: 1px solid #ff0000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 50px;
+
+}
+.return-button:hover {
+  background-color: #f82b2b;
+}
+
 .error-card {
   background-color: #ffe6e6;
   border: 1px solid #ff0000;
