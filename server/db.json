@@ -1,0 +1,46 @@
+{
+  "animals": [
+        {
+          "id": 1,
+          "name": "Cerdo",
+          "age": 2,
+          "location": "Establo 1",
+          "health_state": "Saludable"
+        },
+        {
+          "id": 2,
+          "name": "Cerdo",
+          "age": 3,
+          "location": "Establo 2",
+          "health_state": "Enfermo"
+        },
+        {
+          "id": 3,
+          "name": "Vaca",
+          "age": 4,
+          "location": "Pastizal 1",
+          "health_state": "Saludable"
+        },
+        {
+          "id": 4,
+          "name": "Vaca",
+          "age": 5,
+          "location": "Pastizal 2",
+          "health_state": "Saludable"
+        },
+        {
+          "id": 5,
+          "name": "Pollo",
+          "age": 0.5,
+          "location": "Gallinero 1",
+          "health_state": "Saludable"
+        },
+        {
+          "id": 6,
+          "name": "Pollo",
+          "age": 0.8,
+          "location": "Gallinero 2",
+          "health_state": "Enfermo"
+        }
+  ]
+}
