@@ -40,7 +40,7 @@
     <div class="additional-details">
       <p class="details">20   Barns</p>
       <p class="details">20 Corrals</p>
-      <p class="details">Agua Potable</p>
+      <p class="details">Water potable</p>
     </div>
 
 

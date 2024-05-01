@@ -1,3 +1,7 @@
 {
-
+  "read more": "Leer más",
+  "authoring-phrase": {
+    "intro": "Hecho con ",
+    "author": "por el equipo de Desarrollo de {brand}"
+  }
 }

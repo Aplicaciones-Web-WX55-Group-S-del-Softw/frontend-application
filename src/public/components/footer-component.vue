@@ -20,6 +20,9 @@ const Component = defineComponent({
         <br/>
 
         <p>&copy; 2024 FarmLogiTech. All rights reserved.</p>
+        <p>
+          {{ $t('authoring-phrase.author')}}
+        </p>
       </div>
     </div>
 </template>
