@@ -1,46 +1,151 @@
 {
   "animals": [
-        {
-          "id": 1,
-          "name": "Cerdo",
-          "age": 2,
-          "location": "Establo 1",
-          "health_state": "Saludable"
-        },
-        {
-          "id": 2,
-          "name": "Cerdo",
-          "age": 3,
-          "location": "Establo 2",
-          "health_state": "Enfermo"
-        },
-        {
-          "id": 3,
-          "name": "Vaca",
-          "age": 4,
-          "location": "Pastizal 1",
-          "health_state": "Saludable"
-        },
-        {
-          "id": 4,
-          "name": "Vaca",
-          "age": 5,
-          "location": "Pastizal 2",
-          "health_state": "Saludable"
-        },
-        {
-          "id": 5,
-          "name": "Pollo",
-          "age": 0.5,
-          "location": "Gallinero 1",
-          "health_state": "Saludable"
-        },
-        {
-          "id": 6,
-          "name": "Pollo",
-          "age": 0.8,
-          "location": "Gallinero 2",
-          "health_state": "Enfermo"
-        }
+    {
+      "id": 1,
+      "name": "Cerdo",
+      "age": 2,
+      "location": "Establo 1",
+      "health_state": "Saludable",
+      "id_shed": 1
+    },
+    {
+      "id": 2,
+      "name": "Cerdo",
+      "age": 3,
+      "location": "Establo 2",
+      "health_state": "Enfermo",
+      "id_shed": 2
+    },
+    {
+      "id": 3,
+      "name": "Vaca",
+      "age": 4,
+      "location": "Pastizal 1",
+      "health_state": "En Recuperación",
+      "id_shed": 3
+    },
+    {
+      "id": 4,
+      "name": "Vaca",
+      "age": 5,
+      "location": "Pastizal 2",
+      "health_state": "Saludable",
+      "id_shed": 1
+    },
+    {
+      "id": 5,
+      "name": "Pollo",
+      "age": 0.5,
+      "location": "Gallinero 1",
+      "health_state": "Saludable",
+      "id_shed": 2
+    },
+    {
+      "id": 6,
+      "name": "Pollo",
+      "age": 0.8,
+      "location": "Gallinero 2",
+      "health_state": "Enfermo",
+      "id_shed": 3
+    }
+  ],
+  "sheds": [
+    {
+      "id": 1,
+      "type": "Ganadero",
+      "species": "Cerdo"
+    },
+    {
+      "id": 2,
+      "type": "Ganadero",
+      "species": "Vaca"
+    },
+    {
+      "id": 3,
+      "type": "Ganadero",
+      "species": "Pollo"
+    },
+    {
+      "id": 4,
+      "type": "Cultivos",
+      "species": "Trigo"
+    },
+    {
+      "id": 5,
+      "type": "Cultivos",
+      "species": "Arroz"
+    },
+    {
+      "id": 6,
+      "type": "Cultivos",
+      "species": "Papa"
+    }
+  ],
+  "crops": [
+    {
+      "id": 1,
+      "type": "Trigo",
+      "addition_date": "2022-01-01",
+      "id_shed": 1,
+      "numbers": "100"
+    },
+    {
+      "id": 2,
+      "type": "Arroz",
+      "addition_date": "2022-02-01",
+      "id_shed": 2,
+      "numbers": "200"
+    },
+    {
+      "id": 3,
+      "type": "Papa",
+      "addition_date": "2022-03-01",
+      "id_shed": 3,
+      "numbers": "300"
+    }
+  ],
+  "aliments": [
+    {
+      "id": 1,
+      "date": "2022-01-01",
+      "type": "Trigo",
+      "quantity": 100,
+      "id_shed": 1
+    },
+    {
+      "id": 2,
+      "date": "2022-02-01",
+      "type": "Arroz",
+      "quantity": 200,
+      "id_shed": 2
+    },
+    {
+      "id": 3,
+      "date": "2022-03-01",
+      "type": "Papa",
+      "quantity": 300,
+      "id_shed": 3
+    }
+
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "description": "Compra de Trigo",
+      "numbers": 100,
+      "price": 1000
+    },
+    {
+      "id": 2,
+      "description": "Compra de Arroz",
+      "numbers": 200,
+      "price": 2000
+    },
+    {
+      "id": 3,
+      "description": "Compra de Papa",
+      "numbers": 300,
+      "price": 3000
+    }
   ]
 }
