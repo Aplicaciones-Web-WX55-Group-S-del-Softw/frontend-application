@@ -17,7 +17,6 @@ export default {
 </script>
 
 <template>
-<pv-toas>
 <header>
   <pv-toolbar class="bg-primary">
   <template #start>
@@ -25,6 +24,5 @@ export default {
   </pv-toolbar>
 </header>
 
-</pv-toas>
 <router-view></router-view>
 </template>

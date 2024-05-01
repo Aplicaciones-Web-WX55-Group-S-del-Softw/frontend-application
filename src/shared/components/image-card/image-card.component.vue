@@ -7,7 +7,7 @@ export default {
 <template>
 
   <div class ="container">
-    <h1>Puedes pagar con</h1>
+    <h1>You can pay with</h1>
     <div class="center-container">
       <div class="image-cards-container">
 

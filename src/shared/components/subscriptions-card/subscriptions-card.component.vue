@@ -18,64 +18,45 @@ export default {
   }
 }
 </script>
-
 <template>
-  <h1 class="text-center">Elige cuanto tiempo quieres publicar tu granja</h1>
-  <h2 class="sub-title">Escoge un plan</h2>
-<div class="cardsx">
-  <pv-card class="mt-1">
-
-    <template #content>
-
-      <h1 class="title-card">Gestiona y destaca tu granja</h1>
-      <p class="sub-header">con un solo pago de</p>
-      <p class="price">S/250 <span class="mes">/mes</span></p>
-
-      <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
-
-        <button class="choose-plan-btn "  @click="showCard250(navigate)" >Elegir Plan</button>
-
-      </router-link>
-      <ul class="benefits" >
-        <li>Notificaciones y acceso móvil</li>
-        <li>Aviso destacado</li>
-        <li>Visualización detallada de información sobre granjas</li>
-        <li>Asignación de tareas a colaboradores</li>
-        <li>Muchas funciones más</li>
-      </ul>
-
-    </template>
-
-
-  </pv-card>
-  <pv-card class="mt-2">
-
-    <template #content>
-
-      <h1 class="title-card">3 meses</h1>
-      <p class="sub-header">con un solo pago de</p>
-      <p class="price">S/130 </p>
-      <router-link  v-slot="{navigate, href}" :to="'/payment-subscriptions'" custom>
-
-        <button class="choose-plan-btn"   @click="showCard130(navigate)">Elegir Plan</button>
-
-      </router-link>
-      <ul class="benefits" >
-        <li>Hasta 15 fotos en Alta Calidad</li>
-        <li>Pago con Plin/Yape o Tarjeta</li>
-        <li>Video de YouTube</li>
-        <li>Envío de prospescto por correo</li>
-      </ul>
-
-    </template>
-
-
-  </pv-card>
-
-
-</div>
+  <h1 class="text-center">Choose how long you want to advertise your farm</h1>
+  <h2 class="sub-title">Choose a plan</h2>
+  <div class="cardsx">
+    <pv-card class="mt-1">
+      <template #content>
+        <h1 class="title-card">Manage and highlight your farm</h1>
+        <p class="sub-header">with a single payment of</p>
+        <p class="price">$250 <span class="mes">/month</span></p>
+        <router-link v-slot="{ navigate, href }" :to="'/'" custom>
+          <button class="choose-plan-btn" @click="showCard250(navigate)">Choose Plan</button>
+        </router-link>
+        <ul class="benefits">
+          <li>Notifications and mobile access</li>
+          <li>Highlighted notice</li>
+          <li>Detailed farm information display</li>
+          <li>Assignment of tasks to collaborators</li>
+          <li>Many more features</li>
+        </ul>
+      </template>
+    </pv-card>
+    <pv-card class="mt-2">
+      <template #content>
+        <h1 class="title-card">3 months</h1>
+        <p class="sub-header">with a single payment of</p>
+        <p class="price">$130 </p>
+        <router-link v-slot="{ navigate, href }" :to="'/'" custom>
+          <button class="choose-plan-btn" @click="showCard130(navigate)">Choose Plan</button>
+        </router-link>
+        <ul class="benefits">
+          <li>Up to 15 photos in High Quality</li>
+          <li>Payment with Plin/Yape or Card</li>
+          <li>YouTube Video</li>
+          <li>Prospect sent by mail</li>
+        </ul>
+      </template>
+    </pv-card>
+  </div>
   <image-card/>
-
 </template>
 
 <style>
