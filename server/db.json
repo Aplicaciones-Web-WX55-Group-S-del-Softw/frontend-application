@@ -1,0 +1,40 @@
+{
+  "emergencyData": [
+    {
+      "id": 1,
+      "recipient": "John Doe",
+      "date": "2022-01-01",
+      "description": "Cow with a broken leg"
+    },
+    {
+      "id": 2,
+      "recipient": "Jane Doe",
+      "date": "2022-02-01",
+      "description": "Barn fire"
+    },
+    {
+      "id": 3,
+      "recipient": "John Doe",
+      "date": "2022-03-01",
+      "description": "Flood in the chicken coop"
+    },
+    {
+      "id": 4,
+      "recipient": "John Doe",
+      "date": "2022-04-01",
+      "description": "Pig with a fever"
+    },
+    {
+      "id": 5,
+      "recipient": "Jane Doe",
+      "date": "2022-05-01",
+      "description": "Sheep missing"
+    },
+    {
+      "id": 6,
+      "recipient": "John Doe",
+      "date": "2022-06-01",
+      "description": "Tractor breakdown"
+    }
+  ]
+}
