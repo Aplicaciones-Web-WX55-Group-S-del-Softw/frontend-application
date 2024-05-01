@@ -11,7 +11,7 @@ export default {
     <div class="card-row">
       <div class="weather-card">
         <div class="weather-picture">
-          <img src="../../assets/rainy.png" alt="cloudy" style="width: 150px; height: auto;"  />
+          <img src="../../assets/rainy.png" alt="rainy" style="width: 150px; height: auto;"  />
 
         </div>
         <div>
