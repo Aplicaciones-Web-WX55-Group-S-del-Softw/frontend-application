@@ -10,6 +10,34 @@ import 'primevue/resources/primevue.min.css';
 import DialogService        from "primevue/dialogservice";
 import ToastService         from "primevue/toastservice";
 import ConfirmationService  from "primevue/confirmationservice";
+/*
+// PrimeVue components
+import Button           from "primevue/button";
+import Card             from "primevue/card";
+import Column           from "primevue/column";
+import ConfirmDialog    from "primevue/confirmdialog";
+import Checkbox         from "primevue/checkbox";
+import DataTable        from "primevue/datatable";
+import Dialog           from "primevue/dialog";
+import Dropdown         from "primevue/dropdown";
+import FileUpload       from "primevue/fileupload";
+import FloatLabel       from "primevue/floatlabel";
+import IconField        from "primevue/iconfield";
+import InputIcon        from "primevue/inputicon";
+import InputText        from "primevue/inputtext";
+import InputNumber      from "primevue/inputnumber";
+import Menu             from "primevue/menu";
+import Rating           from "primevue/rating";
+import Row              from "primevue/row";
+import Sidebar          from "primevue/sidebar";
+import Tag              from "primevue/tag";
+import Textarea         from "primevue/textarea";
+import Toolbar          from "primevue/toolbar";
+import Toast            from "primevue/toast";
+*/
+// Router
+import router from "./router/index.js";
+
 
 // PrimeVue components
 import Button           from "primevue/button";
@@ -68,3 +96,7 @@ createApp(App)
     .component('pv-toast', Toast)
     .component('pv-toast', Toast)
     .mount('#app')
+app.config.globalProperties.$tasks = ref([]);
+
+
+app.mount('#app');
