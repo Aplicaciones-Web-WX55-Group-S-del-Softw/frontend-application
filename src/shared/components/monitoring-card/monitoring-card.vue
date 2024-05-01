@@ -52,13 +52,10 @@ export default {
       </div>
     </div>
   </div>
-
-
 </template>
 
 
 <style >
-
 .center-container {
   display: flex;
   flex-direction: column;
@@ -125,6 +122,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: 470px;
 }
 
 .emergency-card .inventory-container {
@@ -132,6 +130,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: -440px;
 }
 
 .monitoring-card .statistics-container {
@@ -139,6 +138,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: -460px;
 }
 
 .monitoring-card .task-container {
@@ -146,7 +146,17 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  margin-left:80px;
 }
+.monitoring-card .employee-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: -130px;
+}
+
 
 .emergency-card .emergency-img {
   width: 165px;
@@ -162,6 +172,7 @@ export default {
   max-height: none;
   margin-top: -1px;
   align-items: center;
+
 }
 
 .emergency-card .inventory-img {
@@ -169,6 +180,7 @@ export default {
   height: 90px;
   max-height: none;
   margin-top: 0;
+
 }
 
 .monitoring-card .task-img {
@@ -176,7 +188,7 @@ export default {
   height: 125px;
   max-height: none;
   margin-top: -10px;
-  margin-left: 20px;
+  margin-left: 310px;
 }
 
 .monitoring-card .employee-img {
@@ -203,6 +215,10 @@ export default {
 
 .task-container h2 {
   margin-top: -1px;
+  margin-left:290px;
+}
+.employee-container h2 {
+  margin-left: 15px;
 }
 
 
