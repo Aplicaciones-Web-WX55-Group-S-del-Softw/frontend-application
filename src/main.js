@@ -1,5 +1,5 @@
 import { createApp, ref } from 'vue'
-import App from './App.vue'
+import App from './app.vue'
 import PrimeVue from 'primevue/config'
 
 // PrimeVue Theme
@@ -34,11 +34,11 @@ import Tag              from "primevue/tag";
 import Textarea         from "primevue/textarea";
 import Toolbar          from "primevue/toolbar";
 import Toast            from "primevue/toast";
-import router from "./router/index.js";
+import i18n from "./i18n.js";
 
-const app = createApp(App);
-createApp(App).use(router).mount('#app');
-app.use(router)
+const app = createApp(App)
+
+
     .use(PrimeVue, { ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
@@ -67,7 +67,8 @@ app.use(router)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast);
 
-app.config.globalProperties.$tasks = ref([]);
+//Add i18n Plugin
 
+app.use(i18n);
 
 app.mount('#app');

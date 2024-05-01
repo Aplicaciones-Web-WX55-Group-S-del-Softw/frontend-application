@@ -1,22 +1,22 @@
 <script>
 export default {
-  name: 'toolbar'
+  name: "toolbar-component"
 }
 </script>
 
 <template>
   <header id="header">
     <div class="logo">
-      <a><img class="img" src="assets/img-logo.png" alt="logo"></a>
+      <img class="img" src="../../assets/img-logo.png">
       <p>FarmLogiTech</p>
     </div>
-    <nav id="menu">
+    <nav id="menu" style="margin-top: 10px;">
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Tarifas</a></li>
-        <li><button class="btn-menu"><a href="#">Publica tu anuncio</a></button></li>
-        <li><a href="#">Colaborador</a></li>
-        <li><a href="#">Ingresar</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Rates</a></li>
+        <li class="button-container"><button class="ad-button">Publish your ad</button></li>
+        <li><a href="#">Collaborator</a></li>
+        <li><a href="#">Enter</a></li>
       </ul>
     </nav>
   </header>
@@ -31,63 +31,70 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5px;
-}
-.btn-menu a {
-  color: black !important;
-}
-
-li .btn-menu {
-  margin-top: -10px;
-  background-color: #E9F3AE;
-
+  font-family: Arial, sans-serif;
+  gap: 8px;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  fontsize: bold;
 }
-
 .img {
   width: 90px;
-  margin-right: 10px;
-}
-
-#menu {
-  width: 30%;
-  margin-right: 70px;
-
-}
-
-#menu ul {
-  margin-top: 30px;
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-
-#menu ul li a {
-  display: block;
-  color: white;
-  text-decoration: none;
+  margin-left: 10px;
 }
 
 .logo p {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
+  padding: 10px 10px;
 }
 
-button{
-  background-color: #E9F3AE;
-  color: black;
-  font-weight: bold;
-  padding: 5px 10px;
-  text-align: center;
+#menu {
+  width: 50%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+#menu ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu ul li {
+  margin: 0 15px;
+}
+
+#menu ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+}
+
+.ad-button {
+  min-width: 200px;
+  justify-content: center;
+  background-color: #45BF6C;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  padding: 10px;
+  font-size: 18px;
+  white-space: nowrap;
 
 }
 
+.ad-button:hover {
+  transform: scale(1.05);
+}
 </style>
