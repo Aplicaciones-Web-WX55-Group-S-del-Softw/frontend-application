@@ -1,48 +1,67 @@
 <script>
-import db from '../../../../server/db.json';
+import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+
 export default {
   data() {
     return {
       selectedDate: '',
       selectedEmployee: '',
       tasks: [],
-      employees: [...new Set(db.tasks.map(task => task.employee))],
-      dates: [...new Set(db.tasks.map(task => task.date))],
+      employees: [],
+      dates: [],
       showMessage: false,
+      taskApi: new DashboardApi()
     };
   },
   methods: {
     fetchTasks() {
-      this.tasks = db.tasks.filter(task =>
-          task.date === this.selectedDate &&
-          task.employee === this.selectedEmployee &&
-          task.finished === "Pendiente"
-      );
+      this.taskApi.getTasks().then(response => {
+        this.tasks = response.data.filter(task =>
+            task.date === this.selectedDate &&
+            task.employee === this.selectedEmployee &&
+            task.finished === "Pendiente"
+        );
 
-      if (this.tasks.length === 0) {
-        this.showMessage = true;
-        setTimeout(() => {
-          this.showMessage = false;
-        }, 1500);
-      }
+        if (this.tasks.length === 0) {
+          this.showMessage = true;
+          setTimeout(() => {
+            this.showMessage = false;
+          }, 1500);
+        }
+      }).catch(error => {
+        console.error(error);
+      });
     },
     fetchFinishedTasks() {
-      this.tasks = db.tasks.filter(task =>
-          task.date === this.selectedDate &&
-          task.employee === this.selectedEmployee &&
-          task.finished === "Finalizado"
-      );
+      this.taskApi.getTasks().then(response => {
+        this.tasks = response.data.filter(task =>
+            task.date === this.selectedDate &&
+            task.employee === this.selectedEmployee &&
+            task.finished === "Finalizado"
+        );
 
-      if (this.tasks.length === 0) {
-        this.showMessage = true;
-        setTimeout(() => {
-          this.showMessage = false;
-        }, 1500);
-      }
+        if (this.tasks.length === 0) {
+          this.showMessage = true;
+          setTimeout(() => {
+            this.showMessage = false;
+          }, 1500);
+        }
+      }).catch(error => {
+        console.error(error);
+      });
     },
     closeModal() {
       this.showMessage = false;
     }
+  },
+  created() {
+    this.taskApi.getTasks().then(response => {
+      const tasks = response.data;
+      this.employees = [...new Set(tasks.map(task => task.employee))];
+      this.dates = [...new Set(tasks.map(task => task.date))];
+    }).catch(error => {
+      console.error(error);
+    });
   }
 };
 </script>
