@@ -1,4 +1,4 @@
-<!-- App.vue -->
+<!-- app.vue -->
 <script setup>
 </script>
 

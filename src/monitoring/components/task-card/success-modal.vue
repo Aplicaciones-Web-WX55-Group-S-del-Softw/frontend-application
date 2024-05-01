@@ -9,25 +9,39 @@ export default {
 }
 </script>
 
-
 <template>
+
   <div v-if="show" class="modal">
     <div class="modal-content">
       <span class="close-button" @click="closeModal">&times;</span>
-      <p><span class="checkmark">✔️</span> La tarea ha sido guardada exitosamente.</p>
+      <p><span class="checkmark">✔️</span>The task has been saved successfully.</p>
     </div>
   </div>
 </template>
 
-
 <style scoped>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
 .modal {
   position: relative;
-  z-index:1;
-  left: 480px;
-  top: -100px;
-  width: 40%;
-  height: 100%;
+  z-index: 1;
+  left: 350px;
+  top: -300px;
+  width: 40%; /* Cambiar el ancho */
+  height: 30%; /* Cambiar la altura */
   overflow: auto;
 }
 
@@ -36,9 +50,10 @@ export default {
   border: 2px solid #006400;
   border-radius: 10px;
   margin: 15% auto;
-  padding: 20px;
+  padding: 10px;
   width: 80%;
 }
+
 
 .close-button {
   color: #aaa;

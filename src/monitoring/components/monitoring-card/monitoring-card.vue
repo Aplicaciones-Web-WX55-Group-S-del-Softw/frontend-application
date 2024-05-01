@@ -5,23 +5,25 @@ export default {
 </script>
 
 <template>
+
   <div class ="container">
+    <router-link to="/" class="back-button">go out</router-link>
     <div class="center-container">
+
       <div class="monitoring-cards-container">
         <div class="monitoring-card">
           <div class = "task-container">
-            <router-link to="/task-planning">
+            <router-link to="/tasks">
               <img class="task-img" src="../../../assets/task.png" alt="Tareas">
             </router-link>
-            <h2>Tareas</h2>
-          </div>
+            <h2>Tasks</h2>          </div>
         </div>
         <div class="monitoring-card">
           <div class = "employee-container">
-            <router-link to="/task-planning">
+            <router-link to="/tasks/new">
               <img class="employee-img" src="../../../assets/employee.png" alt="empleados">
             </router-link>
-            <h2>Empleados</h2>
+            <h2>Employees</h2>
           </div>
         </div>
 
@@ -30,15 +32,14 @@ export default {
             <router-link to="/statistics">
               <img class="statistics-img" src="../../../assets/statistics.png" alt="Estadísticas">
             </router-link>
-            <h2>Estadísticas</h2>
-          </div>
+            <h2>Statistics</h2>          </div>
         </div>
       </div>
       <div class="emergency-cards-container">
         <div class="emergency-card">
           <div class="emergency-container">
             <img class="emergency-img" src="../../../assets/emergency.png" alt="Emergencia">
-            <h2>Emergencia</h2>
+            <h2>Emergency</h2>
           </div>
         </div>
 
@@ -46,7 +47,7 @@ export default {
         <div class="emergency-card">
           <div class="inventory-container">
             <img class="inventory-img" src="../../../assets/inventory.png" alt="Inventario">
-            <h2>Inventario</h2>
+            <h2>Inventory</h2>
           </div>
         </div>
       </div>
@@ -58,6 +59,22 @@ export default {
 
 
 <style >
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
+
 
 .center-container {
   display: flex;

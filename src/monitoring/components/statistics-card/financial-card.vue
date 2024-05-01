@@ -10,101 +10,103 @@ const toggleTable = () => {
 </script>
 <template>
   <div>
-    <h1>Estadísticas Financieras</h1>
-    <h2>Resumen</h2>
+    <router-link to="/" class="back-button">go out</router-link>
+
+    <h1>Financial Statistics</h1>
+    <!--<h2 class="tittle-Summary">Summary</h2>-->
     <div class="boxes-container">
-      <h3>Ingresos</h3>
+      <h3>Income</h3>
       <div class="box">
         <h2>S/XXX</h2>
       </div>
-      <h3>Gastos</h3>
+      <h3>Expenses</h3>
       <div class="box">
         <h2>S/XXX</h2>
       </div>
-      <img src="../../../assets/financial-statistics.png" alt="Estadísticas Financieras" class="financial-statistics-image">
+      <img src="../../../assets/financial-statistics.png" alt="Financial Statistics" class="financial-statistics-image">
     </div>
 
     <div class="dropdown-container">
       <div class="dropdown-item">
-        <h4>Finanza</h4>
+        <h4>Finance</h4>
         <select v-model="selectedFinance">
-          <option value="income">Ingresos</option>
-          <option value="expenses">Gastos</option>
+          <option value="income">Income</option>
+          <option value="expenses">Expenses</option>
         </select>
       </div>
 
       <div class="dropdown-item">
-        <h4>Categoria</h4>
+        <h4>Category</h4>
         <select>
           <template v-if="selectedFinance === 'income'">
-            <option value="sales">Ventas</option>
-            <option value="subsidies">Subsidios</option>
-            <option value="others">Otros</option>
+            <option value="sales">Sales</option>
+            <option value="subsidies">Subsidies</option>
+            <option value="others">Others</option>
           </template>
 
           <template v-else-if="selectedFinance === 'expenses'">
-            <option value="supplies">Suministros</option>
-            <option value="labor">Mano de obra</option>
-            <option value="maintenance">Mantenimiento</option>
-            <option value="service">Servicio</option>
-            <option value="others">Otros</option>
+            <option value="supplies">Supplies</option>
+            <option value="labor">Labor</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="service">Service</option>
+            <option value="others">Others</option>
           </template>
         </select>
       </div>
 
       <div class="dropdown-item">
-        <h4>Monto</h4>
-        <input type="text" class="monto-input" placeholder="Ingrese el monto">
+        <h4>Amount</h4>
+        <input type="text" class="monto-input" placeholder="Enter the amount">
       </div>
 
       <div class="dropdown-item">
-        <h4>Periodo</h4>
+        <h4>Period</h4>
         <select>
           <template v-if="selectedFinance === 'income' || selectedFinance === 'expenses'">
-            <option value="month">Mes</option>
-            <option value="quarter">Trimestre</option>
-            <option value="year">Año</option>
+            <option value="month">Month</option>
+            <option value="quarter">Quarter</option>
+            <option value="year">Year</option>
           </template>
         </select>
       </div>
       <div class="dropdown-item">
-        <h4>Fecha</h4>
+        <h4>Date</h4>
         <input type="date">
       </div>
     </div>
 
     <div class="filter-table">
-      <button @click="toggleTable">Filtrar</button>
-      <h2 v-if="showTable && selectedFinance === 'income'" class="table-title">Ingresos</h2>
-      <h2 v-if="showTable && selectedFinance === 'expenses'" class="table-title">Gastos</h2>
+      <button @click="toggleTable">Filter</button>
+      <h2 v-if="showTable && selectedFinance === 'income'" class="table-title">Income</h2>
+      <h2 v-if="showTable && selectedFinance === 'expenses'" class="table-title">Expenses</h2>
 
     </div>
 
     <table v-show="showTable && (selectedFinance === 'income' || selectedFinance === 'expenses')" :class="{ 'hide': !showTable }" class="data-table">
-    <thead>
+      <thead>
       <tr>
         <th>ID</th>
-        <th>Categoria</th>
-        <th>Monto</th>
-        <th>Fecha</th>
-        <th>Periodo</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Period</th>
       </tr>
       </thead>
       <tbody>
 
       <tr>
         <td>1</td>
-        <td>Ventas</td>
+        <td>Sales</td>
         <td>S/1000</td>
         <td>2023-01-01</td>
-        <td>Mes</td>
+        <td>Month</td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Ventas</td>
+        <td>Sales</td>
         <td>S/1000</td>
         <td>2023-01-01</td>
-        <td>Mes</td>
+        <td>Month</td>
       </tr>
       </tbody>
     </table>
@@ -113,6 +115,25 @@ const toggleTable = () => {
 
 
 <style scoped>
+.tittle-Summary{
+  font-size: 70px;
+
+}
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
 
 h1{
   font-size: 70px;
@@ -136,7 +157,7 @@ h2{
   font-size: 20px;
   text-align: left;
   color: darkgreen;
-  margin-left: 130px;
+  margin-left: 10px;
   margin-bottom: -100px;
 }
 .boxes-container {
@@ -147,7 +168,6 @@ h2{
 }
 
 .box{
-  border-radius: 10px;
   border: 2px solid darkgreen;
   padding: 50px;
   margin: 70px 10px 300px -50px;
@@ -170,12 +190,12 @@ img {
 }
 
 .dropdown-container {
-  max-width: 1300px;
+  max-width: 1000px;
   display: flex;
   justify-content: space-between;
   text-align: center;
-  margin-top: -150px;
-  margin-left: 100px;
+  margin-top: -180px;
+  margin-left: 150px;
   background-color: #e5e5e5;
   padding: 20px;
   border-radius: 10px;
@@ -243,11 +263,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 1315px;
+  margin-left: 1000px;
 }
 
 button:hover {
-  background-color: #5d5d5d;}
+  background-color: darkgreen;}
 @keyframes scaleIn {
   from {
     transform: scale(0);

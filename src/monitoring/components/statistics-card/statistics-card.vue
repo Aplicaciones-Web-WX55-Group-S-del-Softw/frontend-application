@@ -5,26 +5,29 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center">Estadísticas</h1>
+  <router-link to="/" class="back-button">go out</router-link>
+
+  <h1 class="text-center">Statistics</h1>
+
   <div class="cards">
     <pv-card class="mt-1">
 
       <template #content>
-        <h1 class="title-card">Producción</h1>
+        <h1 class="title-card">Production</h1>
         <img src="../../../assets/production.png" alt="Producción">
       </template>
     </pv-card>
 
     <pv-card class="mt-2">
       <template #content>
-        <router-link to="/finished-tasks" style="text-decoration: none;">
-        <h1 class="title-card">Task realizadas en tiempo record</h1>
-        <p class="tasks">44 TASK </p>
+        <router-link to="/finished/tasks" style="text-decoration: none;">
+        <h1 class="title-card">Task completed in record time</h1>
+        <p class="tasks">44 TASKS </p>
 
         <div class="progress-container">
           <div class="progress-bar">
             <div class="progress" style="width: 60%;"></div>
-            <p class="sub-header">Tasks pendientes: 20</p>
+            <p class="sub-header">Pending tasks: 20</p>
           </div>
 
         </div>
@@ -33,10 +36,11 @@ export default {
     </pv-card>
     <pv-card class="mt-3">
       <template #content>
-        <router-link to="/financial-statistics" style="text-decoration: none;">
-          <h1 class="title-card">Estadísticas Financieras</h1>
+        <router-link to="/financial/statistics" style="text-decoration: none;">
+          <h1 class="title-card">Financial Statistics</h1>
           <img src="../../../assets/income.png" alt="Ingresos">
         </router-link>
+
       </template>
     </pv-card>
   </div>
@@ -44,7 +48,21 @@ export default {
 </template>
 
 <style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
 
+.back-button:hover {
+  background-color: darkgreen;
+}
 .cards {
   display: grid;
   grid-template-areas:

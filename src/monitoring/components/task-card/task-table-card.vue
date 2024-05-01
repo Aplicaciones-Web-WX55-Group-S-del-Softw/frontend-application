@@ -21,20 +21,22 @@ export default {
 
 
 <template>
+  <router-link to="/" class="back-button">go out</router-link>
+
   <div class="container">
     <h1>Task</h1>
     <div class="table-container">
-      <h2><router-link to="/new-task">Agregar nueva task</router-link></h2>
+      <h2><router-link to="/tasks/new">Add new task</router-link></h2>
       <table>
         <tr>
           <th>ID</th>
           <th>Employee</th>
-          <th>Tiempo a realizar</th>
-          <th>Fecha</th>
-          <th>Finalizado</th>
+          <th>Time to do</th>
+          <th>Date</th>
+          <th>Finished</th>
         </tr>
         <tr v-for="task in tasks" :key="task.id">
-          <td><router-link :to="`/tasks-details/${task.id.substring(1)}`">{{ task.id }}</router-link></td>
+          <td><router-link :to="`/tasks/${task.id.substring(1)}/details`">{{ task.id }}</router-link></td>
           <td>{{ task.employee }}</td>
           <td>{{ task.time }}</td>
           <td>{{ task.date }}</td>
@@ -53,6 +55,21 @@ export default {
 </template>
 
 <style scoped>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
 .container {
   position: relative;
   display: flex;

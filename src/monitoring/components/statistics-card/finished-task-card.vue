@@ -49,30 +49,32 @@ export default {
 
 <template>
   <div>
+    <router-link to="/" class="back-button">go out</router-link>
+
     <h1>Tasks</h1>
 
     <div class="dropdown-container">
       <div class="dropdown-item">
-        <h4>Empleado:</h4>
+        <h4>Employee:</h4>
         <select v-model="selectedEmployee">
           <option v-for="employee in employees" :key="employee">{{ employee }}</option>
         </select>
       </div>
       <div class="dropdown-item">
-        <h4>Desde:</h4>
+        <h4>From:</h4>
         <select v-model="selectedDate">
           <option v-for="date in dates" :key="date">{{ date }}</option>
         </select>
       </div>
     </div>
 
-    <button @click="fetchTasks">Mostrar Tareas Pendientes</button>
-    <button @click="fetchFinishedTasks">Mostrar Tareas Finalizadas</button>
+    <button @click="fetchTasks">Show Pending Tasks</button>
+    <button @click="fetchFinishedTasks">Show Completed Tasks</button>
 
     <div v-if="showMessage" class="modal">
       <div class="modal-content">
         <span class="close-button" @click="closeModal">&times;</span>
-        <p><span class="warning">⚠️</span> No se encontró la tarea</p>
+        <p><span class="warning">⚠️</span> Task not found</p>
       </div>
     </div>
 
@@ -80,15 +82,15 @@ export default {
       <thead>
       <tr>
         <th>ID</th>
-        <th>Empleado</th>
-        <th>Tiempo</th>
-        <th>Fecha</th>
-        <th>Finalizado</th>
+        <th>Employee</th>
+        <th>Time</th>
+        <th>Date</th>
+        <th>Status</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="task in tasks" :key="task.id">
-        <td><router-link :to="`/tasks-details/${task.id.substring(1)}`">{{ task.id }}</router-link></td>
+        <td><router-link :to="`/tasks/${task.id.substring(1)}/details`">{{ task.id }}</router-link></td>
         <td>{{ task.employee }}</td>
         <td>{{ task.time }}</td>
         <td>{{ task.date }}</td>
@@ -101,6 +103,21 @@ export default {
 
 
 <style scoped>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
 h1{
   font-size: 70px;
   text-align: center;
@@ -154,7 +171,7 @@ button {
   cursor: pointer;
   font-size: 16px;
   margin-top: 40px;
-  margin-left: 110px;
+  margin-left: 300px;
 }
 
 button:hover {

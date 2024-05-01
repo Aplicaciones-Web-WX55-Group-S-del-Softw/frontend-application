@@ -47,31 +47,34 @@ export default {
 </script>
 
 <template>
+  <router-link to="/" class="back-button">go out</router-link>
+
   <div class="container">
     <div v-if="tasks">
       <h1>Task {{task.id}}</h1>
       <div class="card">
-        <p><span class="bold-text">Empleado:</span> {{ task.employee }}</p>
-        <p><span class="bold-text">Fecha:</span> {{ task.date }}</p>
-        <p><span class="bold-text">Descripción:</span> {{ task.description }}</p>
-        <p><span class="bold-text">Estado:</span> {{ task.finished }}</p>
+        <p><span class="bold-text">Employee:</span> {{ task.employee }}</p>
+        <p><span class="bold-text">Date:</span> {{ task.date }}</p>
+        <p><span class="bold-text">Description:</span> {{ task.description }}</p>
+        <p><span class="bold-text">Status:</span> {{ task.finished }}</p>
         <div class="button">
-          <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finalizar Tarea</button>
-          <button @click="cancel" class="cancel-button">Cancelar</button>
+          <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
+          <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
         </div>
       </div>
     </div>
     <div v-else class="error-card">
-      <p>⚠️ No se encontró la tarea</p>
-      <button @click="cancel" class="return-button">Regresar</button>
+      <p>⚠️ Task not found</p>
+      <button @click="cancel" class="return-button">Go back</button>
     </div>
     <div v-if="showMessage" class="message">
-      <p>La tarea ha sido marcada como finalizada.</p>
+      <p>The task has been marked as completed.</p>
     </div>
   </div>
 </template>
 
 <style scoped>
+
 .container {
   position: relative;
   display: flex;

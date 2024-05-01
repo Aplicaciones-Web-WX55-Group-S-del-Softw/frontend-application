@@ -48,27 +48,29 @@ const closeModal = () => {
 </script>
 
 <template>
+  <router-link to="/" class="back-button">go out</router-link>
+
   <div class="container">
     <h1>Task</h1>
 
     <div class="label1">Employee:</div>
-    <div class="label2">Fecha:</div>
-    <div class="label3">Tiempo en realizar:</div>
-    <div class="label4">Descripción:</div>
-
+    <div class="label2">Date:</div>
+    <div class="label3">Time to complete:</div>
+    <div class="label4">Description:</div>
     <div class="row">
-      <div class="input-container">
-        <select v-model="selectedEmployee">
+      <div class="input-container" style="margin-left: -10px;">
+        <select v-model="selectedEmployee" class="input-employee">
           <option v-for="employee in employees" :key="employee" :value="employee">
             {{ employee }}
           </option>
         </select>
+
       </div>
+
       <div class="input-container">
         <input type="date" v-model="selectedDate">
       </div>
     </div>
-
     <div class="input-container task-time-container">
       <select v-model="taskTime">
         <option v-for="hour in 24" :key="hour" :value="hour">
@@ -76,43 +78,89 @@ const closeModal = () => {
         </option>
       </select>
     </div>
+<br>
 
     <div class="input-container">
-      <textarea v-model="taskDescription" placeholder="Descripción de la tarea"></textarea>
+      <textarea v-model="taskDescription" placeholder="Task description"></textarea>
+
+
     </div>
 
-
-    <div class="input-container">
-      <button @click="saveTask" class="button-link save-button">Guardar</button>
-      <router-link to="/" class="button-link cancel-button">Cancelar</router-link>
+    <div class="container-button">
+      <button @click="saveTask" class="button-link save-button">Save</button>
+      <router-link to="/tasks" class="button-link cancel-button">Cancel</router-link>
     </div>
-
     <SuccessModal :show="showModal" @close="closeModal" />
+
   </div>
+
 </template>
 
 <style scoped>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
+.container-button{
+  margin-top: 160px;
+}
+
+.save-button, .cancel-button{
+
+  background-color: #E9F3AE;
+  color: black;
+  border: none ;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 16px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+
+}
+.save-button{
+  padding: 0.35% 15px;
+}
+.cancel-button{
+  font-size: 13px;
+  padding: 4px 15px;
+}
+
+
+
 
 h1{
   font-size: 70px;
   position: relative;
-  text-align: center;
   top: -30px;
+  left:-50px;
   margin:0;
   color:darkgreen;
 }
 
 .container {
+  margin-top:100px;
+  margin-bottom: 50px; /* Agregar espacio en la parte inferior */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 170px;
-}
+  margin-left: 80px; /* Ajuste del margen izquierdo */
 
+}
 .row {
   display: flex;
-  justify-content: space-between;
   width: 30%;
+  margin-left:-80px
 }
 
 .input-container {
@@ -123,7 +171,6 @@ h1{
   margin: 20px 0;
   padding: 5px;
   display: flex;
-
 }
 select{
   border: 2px solid #000;
@@ -149,25 +196,8 @@ textarea {
   border-radius: 5px;
 }
 
-.save-button, .cancel-button{
 
-  background-color: #E9F3AE;
-  color: black;
-  border: none ;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-right: 16px;
-  margin-top: 130px;
-  transition: background-color 0.3s ease;
-  position: absolute;
-}
-.save-button{
-  padding: 0.35% 15px;
-}
-.cancel-button{
-  font-size: 13px;
-  padding: 6px 15px;
-}
+
 .save-button:hover {
   background-color: #006400;
   color: white;
@@ -184,6 +214,8 @@ textarea {
 
 .cancel-button {
   left: 630px;
+
+
 }
 
 
@@ -201,7 +233,7 @@ textarea {
   font-size: 15px;
   color: black;
   margin-top: 90px;
-  margin-left: 110px;
+  margin-left: -9px;
 }
 
 .label3{

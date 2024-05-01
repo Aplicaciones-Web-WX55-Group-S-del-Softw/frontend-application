@@ -1,5 +1,5 @@
 import { createApp, ref } from 'vue'
-import App from './App.vue'
+import App from './app.vue'
 import PrimeVue from 'primevue/config'
 
 // PrimeVue Theme
