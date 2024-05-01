@@ -70,7 +70,7 @@ export default {
     </div>
     <div v-if="showMessage" class="message">
       <p>The task has been marked as completed.</p>
-    </div>
+    </div>g
   </div>
 
 </template>
