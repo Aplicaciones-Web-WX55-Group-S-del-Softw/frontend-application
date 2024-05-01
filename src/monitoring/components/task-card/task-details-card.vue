@@ -57,10 +57,11 @@ export default {
         <p><span class="bold-text">Date:</span> {{ task.date }}</p>
         <p><span class="bold-text">Description:</span> {{ task.description }}</p>
         <p><span class="bold-text">Status:</span> {{ task.finished }}</p>
-        <div class="button">
-          <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
-          <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
-        </div>
+
+      </div>
+      <div class="button">
+        <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
+        <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
     </div>
     <div v-else class="error-card">
@@ -71,6 +72,7 @@ export default {
       <p>The task has been marked as completed.</p>
     </div>
   </div>
+
 </template>
 
 <style scoped>
@@ -94,9 +96,7 @@ h1{
   color:darkgreen;
 }
 .message {
-  position: absolute;
   top: -50px;
-  left: 620px;
   background-color: #9fd0a4;
   border: 2px solid #204f00;
   padding: 20px;
