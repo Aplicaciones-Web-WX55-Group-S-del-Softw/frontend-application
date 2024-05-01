@@ -31,22 +31,22 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Inventario de cultivos</h1>
+          <h1 class="title-color">Crop Inventory</h1>
         </template>
       </DetailIdebar>
 
 
       <div class="background-color">
-        <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
         <div class="table-wrapper">
           <table>
             <thead>
             <tr>
               <th>ID</th>
-              <th>Galpón</th>
-              <th>Tipo</th>
-              <th>Fecha de sembria</th>
-              <th>Cantidad</th>
+              <th>Shed</th>
+              <th>Type</th>
+              <th>Planting Date</th>
+              <th>Quantity</th>
             </tr>
             </thead>
             <tbody>
@@ -94,9 +94,9 @@ export default {
 }
 
 .table-wrapper {
-  width: 340px; /* Establece el ancho de la tabla */
-  height: 800px; /* Establece la altura de la tabla */
-  overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+  width: 340px;
+  height: 800px;
+  overflow: auto;
   transform: translate(160px, 120px);
 }
 

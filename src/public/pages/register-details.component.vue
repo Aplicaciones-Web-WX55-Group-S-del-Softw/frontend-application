@@ -13,14 +13,14 @@ export default {
   <div class="flex-container">
     <DetailIdebar>
       <template v-slot:title>
-        <h1 class="title-color">Agregar Galpón</h1>
+        <h1 class="title-color">Add Shed</h1>
       </template>
     </DetailIdebar>
     <div class="background-color">
-      <h1 class="small-title">Crear Galpón</h1>
+      <h1 class="small-title">Create Shed</h1>
     </div>
-    <SearchBar smallText="Tipo de galpon" :options="['Animales', 'Cultivos']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
-    <SearchBar smallText="Tipo" :options="['Pollo', 'Cerdo', 'Vaca']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
+    <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
+    <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
   </div>
   <router-link to = "/detailed-monitoring">
     <SaveButton/>

@@ -44,7 +44,7 @@ export default {
       this.showOptions = true;
     },
     closeOptions() {
-      // Retrasar el cierre de opciones para permitir hacer clic en las opciones
+
       setTimeout(() => {
         this.showOptions = false;
       }, 200);
@@ -52,8 +52,8 @@ export default {
     selectOption(option) {
       this.searchTerm = option;
       this.showOptions = false;
-      // Aquí puedes emitir un evento o realizar cualquier acción con la opción seleccionada
-      console.log('Opción seleccionada:', option);
+
+      console.log('Selected option:', option);
     }
   }
 };

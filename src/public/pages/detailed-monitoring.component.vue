@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <h2>Monitoreo Detallado</h2>
+    <h2>Detailed Monitoring</h2>
   </div>
   <div class ="container">
     <div class="center-container">
@@ -17,7 +17,7 @@ export default {
             <router-link to="/emergency">
               <img class="emergency-img" src="../assets/emergency.png" alt="Emergency">
             </router-link>
-            <h3>Emergencia</h3>
+            <h3>Emergency</h3>
           </div>
         </div>
 
@@ -26,7 +26,7 @@ export default {
             <router-link to="/register-details">
               <img class="farm" src="../assets/farm.png" alt="farm">
             </router-link>
-            <h3> Registrar_Detalles</h3>
+            <h3> Register Details</h3>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default {
             <router-link to="/climate">
               <img class="cloud-img" src="../assets/cloud.png" alt="cloud">
             </router-link>
-            <h3>Clima</h3>
+            <h3>Climate</h3>
           </div>
         </div>
       </div>
@@ -54,25 +54,25 @@ export default {
   margin-bottom: 60px;
 }
 
- .wrapper {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 10px;
-   color: black;
- }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+  color: black;
+}
 
 h2 {
   font-weight: bold;
   font-size: 50px;
-  position: fixed; /* Fija el elemento */
-  top: 0; /* Lo coloca en la parte superior */
-  width: 100%; /* Para que ocupe toda la anchura */
-  text-align: center; /* Alinea el texto al centro */
-  padding: 10px 0; /* Espaciado vertical y horizontal */
-  margin: 0; /* Elimina el margen */
-  color: black; /* Color del texto */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  color: black;
 }
 
 .monitoring-cards-container {

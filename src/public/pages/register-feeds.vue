@@ -6,7 +6,7 @@ import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.compo
 import SaveButton from "../components/SaveButton.vue";
 
 export default {
-  name: "add-animals",
+  name: "register-aliments",
   components: {SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
   data() {
     return {
@@ -29,14 +29,14 @@ export default {
   <div class="flex-container">
     <DetailIdebar>
       <template v-slot:title>
-        <h1 class="title-color" >Registro de Alimentación</h1>
+        <h1 class="title-color" >Feeding Register</h1>
       </template>
     </DetailIdebar>
     <div class="background-color">
-      <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="100px" searchBarRight="250px"></SearchBar>
-      <SearchBarNOOPTIONSComponent smallText="Cantidad de Alimento" searchBarTop="400px" searchBarRight="250px"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Fecha" searchBarTop="250px" searchBarRight="400px"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Tipo de Alimento" searchBarTop="250px" searchBarRight="100px"></SearchBarNOOPTIONSComponent>
+      <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="100px" searchBarRight="250px"></SearchBar>
+      <SearchBarNOOPTIONSComponent smallText="Amount of Feed" searchBarTop="400px" searchBarRight="250px"></SearchBarNOOPTIONSComponent>
+      <SearchBarNOOPTIONSComponent smallText="Date" searchBarTop="250px" searchBarRight="400px"></SearchBarNOOPTIONSComponent>
+      <SearchBarNOOPTIONSComponent smallText="Type of Feed" searchBarTop="250px" searchBarRight="100px"></SearchBarNOOPTIONSComponent>
     </div>
     <router-link to = "/register-details">
       <SaveButton/>

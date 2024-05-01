@@ -1,8 +1,5 @@
 <script>
-
-export default {
-
-};
+export default {};
 </script>
 
 <template>
@@ -15,33 +12,33 @@ export default {
 
         <div class="description">
           <div class="actions-container rectangle-background">
-            <h3 class="header-style">Galpón</h3>
+            <h3 class="header-style">Shed</h3>
             <router-link to="/addshed" class="link-style">
-              <h4>Agregar Galpón</h4>
+              <h4>Add Shed</h4>
             </router-link>
             <router-link to="/listshed" class="link-style">
-              <h4>Listar Galpones</h4>
+              <h4>List Sheds</h4>
             </router-link>
-            <h3 class="header-style">Animales</h3>
+            <h3 class="header-style">Animals</h3>
             <router-link to="/addanimal" class="link-style">
-              <h4>Agregar Animales</h4>
+              <h4>Add Animals</h4>
             </router-link>
             <router-link to="/listanimals" class="link-style">
-              <h4>Inventario de Animales</h4>
+              <h4>Animal Inventory</h4>
             </router-link>
             <router-link to="/registerfeeds" class="link-style">
-              <h4>Registro de Alimentación</h4>
+              <h4>Feeding Registry</h4>
             </router-link>
-            <h3 class="header-style">Cultivos</h3>
+            <h3 class="header-style">Crops</h3>
             <router-link to="/registercrops" class="link-style">
-              <h4>Registro de Cultivos</h4>
+              <h4>Crop Registry</h4>
             </router-link>
             <router-link to="/listcrops" class="link-style">
-              <h4>Inventario de Cultivos</h4>
+              <h4>Crop Inventory</h4>
             </router-link>
-            <h3 class="header-style">Finanzas</h3>
+            <h3 class="header-style">Finances</h3>
             <router-link to="/registerexpenses" class="link-style">
-              <h4>Registro de Egresos</h4>
+              <h4>Expense Registry</h4>
             </router-link>
           </div>
         </div>
@@ -72,13 +69,13 @@ export default {
 h2 {
   font-weight: bold;
   font-size: 50px;
-  position: fixed; /* Fija el elemento */
-  top: 0; /* Lo coloca en la parte superior */
-  width: 100%; /* Para que ocupe toda la anchura */
-  text-align: center; /* Alinea el texto al centro */
-  padding: 10px 0; /* Espaciado vertical y horizontal */
-  margin: 0; /* Elimina el margen */
-  color: black; /* Color del texto */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  color: black;
 }
 
 .monitoring-cards-container {
@@ -96,8 +93,8 @@ h2 {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
 }
+
 .monitoring-card router-link {
   text-decoration: none;
 }

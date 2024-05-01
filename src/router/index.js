@@ -6,7 +6,7 @@ import addanimalsComponent from "../public/pages/addanimals.component.vue";
 import registercrops from "../public/pages/registercrops.vue";
 import ListshedComponent from "../public/pages/listshed.component.vue";
 import listcropsComponent from "../public/pages/listcrops.component.vue";
-import RegisterAliments from "../public/pages/register-aliments.vue";
+import RegisterAliments from "../public/pages/register-feeds.vue";
 import ListanimalsComponent from "../public/pages/listanimals.component.vue";
 import registerExpensesComponent from "../public/pages/register-expenses.component.vue";
 

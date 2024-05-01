@@ -31,36 +31,36 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Registro de egresos</h1>
+          <h1 class="title-color">Expense Register</h1>
         </template>
       </DetailIdebar>
       <div class="background-color">
-        <h1 class="table-title">Añadir Egresos</h1>
+        <h1 class="table-title">Add Expenses</h1>
         <div class="table-wrapper">
-      <table>
+          <table>
 
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Descripcion</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="expense in expenses" :key="expense.id">
-          <td>{{ expense.id }}</td>
-          <td>{{ expense.description }}</td>
-          <td>{{ expense.numbers }}</td>
-          <td>{{ expense.price }}</td>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="expense in expenses" :key="expense.id">
+              <td>{{ expense.id }}</td>
+              <td>{{ expense.description }}</td>
+              <td>{{ expense.numbers }}</td>
+              <td>{{ expense.price }}</td>
 
-        </tr>
+            </tr>
 
-        </tbody>
+            </tbody>
 
-      </table>
-          </div>
+          </table>
         </div>
+      </div>
 
     </div>
     <router-link to = "/register-details">
@@ -77,9 +77,9 @@ export default {
   align-items: center;
 }
 .table-wrapper {
-  width: 340px; /* Establece el ancho de la tabla */
-  height: 800px; /* Establece la altura de la tabla */
-  overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+  width: 340px;
+  height: 800px;
+  overflow: auto;
   transform: translate(160px, -200px);
 }
 .background-color {

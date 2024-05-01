@@ -31,7 +31,7 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Lista de galpones</h1>
+          <h1 class="title-color">Shed List</h1>
         </template>
       </DetailIdebar>
 
@@ -41,8 +41,8 @@ export default {
             <thead>
             <tr>
               <th>ID</th>
-              <th>Tipo</th>
-              <th>Especie</th>
+              <th>Type</th>
+              <th>Species</th>
             </tr>
             </thead>
             <tbody>

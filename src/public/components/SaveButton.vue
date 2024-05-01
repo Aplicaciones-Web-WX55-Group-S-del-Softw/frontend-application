@@ -1,5 +1,5 @@
 <template>
-  <button>Guardar</button>
+  <button>Save</button>
 </template>
 
 <script>

@@ -2,103 +2,103 @@
   "animals": [
     {
       "id": 1,
-      "name": "Cerdo",
+      "name": "Pig",
       "age": 2,
-      "location": "Establo 1",
-      "health_state": "Saludable",
+      "location": "Stable 1",
+      "health_state": "Healthy",
       "id_shed": 1
     },
     {
       "id": 2,
-      "name": "Cerdo",
+      "name": "Pig",
       "age": 3,
-      "location": "Establo 2",
-      "health_state": "Enfermo",
+      "location": "Stable 2",
+      "health_state": "Sick",
       "id_shed": 2
     },
     {
       "id": 3,
-      "name": "Vaca",
+      "name": "Cow",
       "age": 4,
-      "location": "Pastizal 1",
-      "health_state": "En Recuperación",
+      "location": "Pasture 1",
+      "health_state": "Recovering",
       "id_shed": 3
     },
     {
       "id": 4,
-      "name": "Vaca",
+      "name": "Cow",
       "age": 5,
-      "location": "Pastizal 2",
-      "health_state": "Saludable",
+      "location": "Pasture 2",
+      "health_state": "Healthy",
       "id_shed": 1
     },
     {
       "id": 5,
-      "name": "Pollo",
+      "name": "Chicken",
       "age": 0.5,
-      "location": "Gallinero 1",
-      "health_state": "Saludable",
+      "location": "Chicken Coop 1",
+      "health_state": "Healthy",
       "id_shed": 2
     },
     {
       "id": 6,
-      "name": "Pollo",
+      "name": "Chicken",
       "age": 0.8,
-      "location": "Gallinero 2",
-      "health_state": "Enfermo",
+      "location": "Chicken Coop 2",
+      "health_state": "Sick",
       "id_shed": 3
     }
   ],
   "sheds": [
     {
       "id": 1,
-      "type": "Ganadero",
-      "species": "Cerdo"
+      "type": "Livestock",
+      "species": "Pig"
     },
     {
       "id": 2,
-      "type": "Ganadero",
-      "species": "Vaca"
+      "type": "Livestock",
+      "species": "Cow"
     },
     {
       "id": 3,
-      "type": "Ganadero",
-      "species": "Pollo"
+      "type": "Livestock",
+      "species": "Chicken"
     },
     {
       "id": 4,
-      "type": "Cultivos",
-      "species": "Trigo"
+      "type": "Crops",
+      "species": "Wheat"
     },
     {
       "id": 5,
-      "type": "Cultivos",
-      "species": "Arroz"
+      "type": "Crops",
+      "species": "Rice"
     },
     {
       "id": 6,
-      "type": "Cultivos",
-      "species": "Papa"
+      "type": "Crops",
+      "species": "Potato"
     }
   ],
   "crops": [
     {
       "id": 1,
-      "type": "Trigo",
+      "type": "Wheat",
       "addition_date": "2022-01-01",
       "id_shed": 1,
       "numbers": "100"
     },
     {
       "id": 2,
-      "type": "Arroz",
+      "type": "Rice",
       "addition_date": "2022-02-01",
       "id_shed": 2,
       "numbers": "200"
     },
     {
       "id": 3,
-      "type": "Papa",
+      "type": "Potato",
       "addition_date": "2022-03-01",
       "id_shed": 3,
       "numbers": "300"
@@ -108,21 +108,21 @@
     {
       "id": 1,
       "date": "2022-01-01",
-      "type": "Trigo",
+      "type": "Wheat",
       "quantity": 100,
       "id_shed": 1
     },
     {
       "id": 2,
       "date": "2022-02-01",
-      "type": "Arroz",
+      "type": "Rice",
       "quantity": 200,
       "id_shed": 2
     },
     {
       "id": 3,
       "date": "2022-03-01",
-      "type": "Papa",
+      "type": "Potato",
       "quantity": 300,
       "id_shed": 3
     }
@@ -131,19 +131,19 @@
   "expenses": [
     {
       "id": 1,
-      "description": "Compra de Trigo",
+      "description": "Purchase of Wheat",
       "numbers": 100,
       "price": 1000
     },
     {
       "id": 2,
-      "description": "Compra de Arroz",
+      "description": "Purchase of Rice",
       "numbers": 200,
       "price": 2000
     },
     {
       "id": 3,
-      "description": "Compra de Papa",
+      "description": "Purchase of Potato",
       "numbers": 300,
       "price": 3000
     }
