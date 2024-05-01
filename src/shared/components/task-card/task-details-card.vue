@@ -1,11 +1,15 @@
 <script>
 import { useRoute, useRouter } from 'vue-router';
-import db from '../../../../server/db.json';
+
+import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+
+
 
 export default {
   data() {
     return {
-      tasks: db.tasks,
+      tasks: null,
+      taskApi: new DashboardApi(),
       showMessage: false,
     };
   },
@@ -14,10 +18,17 @@ export default {
     task() {
       const route = useRoute();
       const taskId = "#" + route.params.id;
-      return this.tasks.find(task => task.id === taskId);
+      return this.tasks ? this.tasks.find(task => task.id === taskId) : null;
     }
   },
-
+  created() {
+    this.taskApi.getTasks().then(response => {
+      this.tasks = response.data;
+      console.log( this.tasks)
+    }).catch(error => {
+      console.error(error);
+    });
+  },
   methods: {
     finishTask() {
       if (this.task) {
@@ -25,7 +36,7 @@ export default {
         this.showMessage = true;
         setTimeout(() => {
           this.showMessage = false;
-        }, 200000);
+        }, 2000);
       }
     },
     cancel() {
@@ -37,7 +48,7 @@ export default {
 
 <template>
   <div class="container">
-    <div v-if="task">
+    <div v-if="tasks">
       <h1>Task {{task.id}}</h1>
       <div class="card">
         <p><span class="bold-text">Empleado:</span> {{ task.employee }}</p>
@@ -45,14 +56,14 @@ export default {
         <p><span class="bold-text">Descripción:</span> {{ task.description }}</p>
         <p><span class="bold-text">Estado:</span> {{ task.finished }}</p>
         <div class="button">
-        <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finalizar Tarea</button>
+          <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finalizar Tarea</button>
           <button @click="cancel" class="cancel-button">Cancelar</button>
         </div>
       </div>
     </div>
     <div v-else class="error-card">
       <p>⚠️ No se encontró la tarea</p>
-        <button @click="cancel" class="return-button">Regresar</button>
+      <button @click="cancel" class="return-button">Regresar</button>
     </div>
     <div v-if="showMessage" class="message">
       <p>La tarea ha sido marcada como finalizada.</p>

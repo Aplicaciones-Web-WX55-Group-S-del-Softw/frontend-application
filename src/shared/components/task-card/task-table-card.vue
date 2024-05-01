@@ -1,42 +1,54 @@
 <script>
-import db from '../../../../server/db.json';
+import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+
 export default {
   data() {
     return {
-      data: db
+      tasks: [],
+      taskApi: new DashboardApi()
     };
   },
+  created() {
+    this.taskApi.getTasks().then(response => {
+      this.tasks = response.data;
+      console.log(this.tasks)
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 };
 </script>
+
+
 <template>
   <div class="container">
     <h1>Task</h1>
     <div class="table-container">
-    <h2><router-link to="/new-task">Agregar nueva task</router-link></h2>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Employee</th>
-        <th>Tiempo a realizar</th>
-        <th>Fecha</th>
-        <th>Finalizado</th>
-      </tr>
-      <tr v-for="item in data.tasks" :key="item.id">
-        <td><router-link :to="`/tasks-details/${item.id.substring(1)}`">{{ item.id }}</router-link></td>
-        <td>{{ item.employee }}</td>
-        <td>{{ item.time }}</td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.finished}}</td>
-      </tr>
-      <tr class="empty-row">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-  </div>
+      <h2><router-link to="/new-task">Agregar nueva task</router-link></h2>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Employee</th>
+          <th>Tiempo a realizar</th>
+          <th>Fecha</th>
+          <th>Finalizado</th>
+        </tr>
+        <tr v-for="task in tasks" :key="task.id">
+          <td><router-link :to="`/tasks-details/${task.id.substring(1)}`">{{ task.id }}</router-link></td>
+          <td>{{ task.employee }}</td>
+          <td>{{ task.time }}</td>
+          <td>{{ task.date }}</td>
+          <td>{{ task.finished}}</td>
+        </tr>
+        <tr class="empty-row">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -109,3 +121,12 @@ td {
   margin: 200px 60px auto auto;
 }
 </style>
+
+
+
+
+
+
+
+
+

@@ -1,26 +1,52 @@
 <script setup>
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import SuccessModal from './success-modal.vue';
-import db from '../../../../server/db.json';
+import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+
 const router = useRouter();
 const selectedEmployee = ref('');
-const employees = ref([...new Set(db.tasks.map(task => task.employee))]); const selectedDate = ref('');
+const taskApi = new DashboardApi();
+let tasks = [];
+const employees = ref([]);
+taskApi.getTasks().then(response => {
+  console.log(response);
+  tasks = response.data;
+  employees.value = [...new Set(tasks.map(task => task.employee))];
+}).catch(error => {
+  console.error(error);
+});
+const selectedDate = ref('');
 const taskTime = ref('');
 const taskDescription = ref('');
 const showModal = ref(false);
 
 const saveTask = () => {
-  showModal.value = true;
-  setTimeout(() => {
-    router.push('/tasks');
-  }, 1500);
+  const newTask = {
+    employee: selectedEmployee.value,
+    date: selectedDate.value,
+    time: taskTime.value,
+    description: taskDescription.value,
+    finished: 'Pendiente'
+  };
+
+  taskApi.createTask(newTask)
+      .then(() => {
+        showModal.value = true;
+        setTimeout(() => {
+          router.push('/tasks');
+        }, 1500);
+      })
+      .catch(error => {
+        console.error(error);
+      });
 };
 
 const closeModal = () => {
   showModal.value = false;
 };
 </script>
+
 <template>
   <div class="container">
     <h1>Task</h1>
