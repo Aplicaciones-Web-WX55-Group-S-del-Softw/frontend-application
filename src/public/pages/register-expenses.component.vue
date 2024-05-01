@@ -31,12 +31,12 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1>Registro de egresos</h1>
+          <h1 class="title-color">Registro de egresos</h1>
         </template>
       </DetailIdebar>
-      <h2>Registros financieros</h2>
-      <h3>Egresos</h3>
-      <p>Añadir egresos</p>
+      <div class="background-color">
+        <h1 class="table-title">Añadir Egresos</h1>
+        <div class="table-wrapper">
       <table>
 
         <thead>
@@ -59,6 +59,8 @@ export default {
         </tbody>
 
       </table>
+          </div>
+        </div>
 
     </div>
     <router-link to = "/register-details">
@@ -74,6 +76,20 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.table-wrapper {
+  width: 340px; /* Establece el ancho de la tabla */
+  height: 800px; /* Establece la altura de la tabla */
+  overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+  transform: translate(160px, -200px);
+}
+.background-color {
+  background-color: #F2F0F0;
+  padding: 20px;
+  margin: -340px;
+  transform: translate(90px, 520px);
+  width: 700px;
+  height: 700px;
+}
 
 .table-container {
   width: 100%;
@@ -82,10 +98,11 @@ export default {
 }
 
 table {
-  margin-top: 200px;
+  margin-top: 250px;
   margin-right:-268px;
   border-collapse: collapse;
   width: 20%;
+  background-color: #fff;
 }
 
 th, td {
@@ -103,12 +120,13 @@ th {
   text-align: left;
   color: black;
 }
-.background-color {
-  background-color: #F2F0F0;
-  height: 700px;
-  width: 700px;
-  box-sizing: border-box;
-  margin: -340px;
-  transform: translate(90px, 105px);
+
+.title-color {
+  color: #44604D;
+}
+
+.table-title{
+  color: #44604D;
+  font-size: 1.6em;
 }
 </style>

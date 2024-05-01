@@ -165,4 +165,8 @@ h2 {
   margin-top: 12px;
 }
 
+.title-color {
+  color: #44604D;
+}
+
 </style>

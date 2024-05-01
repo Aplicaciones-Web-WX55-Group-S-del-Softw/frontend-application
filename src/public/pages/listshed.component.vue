@@ -31,56 +31,74 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1>Lista de galpones</h1>
+          <h1 class="title-color">Lista de galpones</h1>
         </template>
       </DetailIdebar>
 
-      <table>
-
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Type</th>
-          <th>Species</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="shed in sheds" :key="shed.id">
-          <td>{{ shed.id }}</td>
-          <td>{{ shed.type }}</td>
-          <td>{{ shed.species }}</td>
-        </tr>
-
-        </tbody>
-
-      </table>
+      <div class="background-color">
+        <div class="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo</th>
+              <th>Especie</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="shed in sheds">
+              <td>{{ shed.id }}</td>
+              <td>{{ shed.type }}</td>
+              <td>{{ shed.species }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
     </div>
     <router-link to = "/register-details">
       <SaveButton/>
     </router-link>
   </div>
-
 </template>
 
 <style scoped>
 .flex-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+}
+
+.background-color {
+  background-color: #F2F0F0;
+  padding: 20px;
+  margin: -340px;
+  transform: translate(90px, 520px);
+  width: 700px;
+  height: 700px;
 }
 
 .table-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 0 20px;
+}
+
+.table-wrapper {
+  width: 340px;
+  height: 800px;
+  overflow: auto;
+  transform: translate(160px, 120px);
+
 }
 
 table {
-  margin-top: 200px;
-  margin-right:-268px;
   border-collapse: collapse;
-  width: 20%;
+  width: 100%;
+  background-color: #fff;
 }
 
 th, td {
@@ -92,18 +110,14 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   color: black;
 }
-.background-color {
-  background-color: #F2F0F0;
-  height: 700px;
-  width: 700px;
-  box-sizing: border-box;
-  margin: -340px;
-  transform: translate(90px, 105px);
+.title-color {
+  color: #44604D;
 }
 </style>

@@ -53,12 +53,4 @@ export default {
   margin-top: 50px;
   margin-left: 250px;
 }
-.background-color {
-  background-color: #F2F0F0;
-  height: 700px;
-  width: 700px;
-  box-sizing: border-box;
-  margin: -340px;
-  transform: translate(90px, 105px);
-}
 </style>

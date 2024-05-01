@@ -11,31 +11,22 @@ export default {
 </script>
 
 <template>
-
   <div class="flex-container">
-
     <DetailIdebar>
       <template v-slot:title>
-        <h1>Agregar Animal</h1>
-
+        <h1 class="title-color">Agregar Animal</h1>
       </template>
-
     </DetailIdebar>
     <div class="background-color">
+      <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="100px" searchBarRight="250px"></SearchBar>
+      <SearchBar smallText="Estado de salud" :options="['Saludable', 'Enfermo', 'Recuperación']" searchBarTop="400px" searchBarRight="250px"></SearchBar>
+      <SearchBarNOOPTIONSComponent smallText="Ubicacion" searchBarTop="250px" searchBarRight="400px"></SearchBarNOOPTIONSComponent>
+      <SearchBarNOOPTIONSComponent smallText="Edad" searchBarTop="250px" searchBarRight="100px"></SearchBarNOOPTIONSComponent>
     </div>
-    <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="250px" searchBarRight="450px"></SearchBar>
-    <SearchBar smallText="Estado de salud" :options="['Saludable', 'Enfermo', 'Recuperación']" searchBarTop="550px" searchBarRight="450px"></SearchBar>
-
-    <SearchBarNOOPTIONSComponent smallText="Ubicacion" searchBarTop="400px" searchBarRight="600px"></SearchBarNOOPTIONSComponent>
-    <SearchBarNOOPTIONSComponent smallText="Edad" searchBarTop="400px" searchBarRight="300px"></SearchBarNOOPTIONSComponent>
-
     <router-link to = "/register-details">
       <SaveButton/>
     </router-link>
-
   </div>
-
-
 </template>
 
 <style scoped>
@@ -44,12 +35,17 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .background-color {
   background-color: #F2F0F0;
-  height: 700px;
-  width: 700px;
-  box-sizing: border-box;
+  padding: 20px;
   margin: -340px;
   transform: translate(90px, 105px);
+  width: 700px;
+  height: 700px;
+}
+
+.title-color {
+  color: #44604D;
 }
 </style>

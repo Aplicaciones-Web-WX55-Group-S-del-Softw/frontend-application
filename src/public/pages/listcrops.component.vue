@@ -31,62 +31,79 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1>Inventario de cultivos</h1>
+          <h1 class="title-color">Inventario de cultivos</h1>
         </template>
       </DetailIdebar>
-      <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="100px" searchBarRight="550px"></SearchBar>
 
-      <table>
 
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Galpón</th>
-          <th>Tipo</th>
-          <th>Fecha de sembria</th>
-          <th>Cantidad</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="crop in crops" :key="crop.id">
-          <td>{{ crop.id }}</td>
-          <td>{{ crop.id_shed }}</td>
-          <td>{{ crop.type }}</td>
-          <td>{{ crop.addition_date }}</td>
-          <td>{{ crop.numbers }}</td>
-
-        </tr>
-
-        </tbody>
-
-      </table>
+      <div class="background-color">
+        <SearchBar smallText="Galpón" :options="['Galpón 1', 'Galpón 2', 'Galpón 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Galpón</th>
+              <th>Tipo</th>
+              <th>Fecha de sembria</th>
+              <th>Cantidad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="crop in crops" :key="crop.id">
+              <td>{{ crop.id }}</td>
+              <td>{{ crop.id_shed }}</td>
+              <td>{{ crop.type }}</td>
+              <td>{{ crop.addition_date }}</td>
+              <td>{{ crop.numbers }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
     </div>
     <router-link to = "/register-details">
       <SaveButton/>
     </router-link>
   </div>
-
 </template>
 
 <style scoped>
 .flex-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+}
+
+.background-color {
+  background-color: #F2F0F0;
+  padding: 20px;
+  margin: -340px;
+  transform: translate(90px, 520px);
+  width: 700px;
+  height: 700px;
 }
 
 .table-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 0 20px;
+}
+
+.table-wrapper {
+  width: 340px; /* Establece el ancho de la tabla */
+  height: 800px; /* Establece la altura de la tabla */
+  overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+  transform: translate(160px, 120px);
 }
 
 table {
-  margin-top: 200px;
-  margin-right:-268px;
   border-collapse: collapse;
-  width: 20%;
+  width: 100%;
+  background-color: #fff;
 }
 
 th, td {
@@ -104,12 +121,7 @@ th {
   text-align: left;
   color: black;
 }
-.background-color {
-  background-color: #F2F0F0;
-  height: 700px;
-  width: 700px;
-  box-sizing: border-box;
-  margin: -340px;
-  transform: translate(90px, 105px);
+.title-color {
+  color: #44604D;
 }
 </style>

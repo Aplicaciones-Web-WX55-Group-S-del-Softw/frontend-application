@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from "vue-router";
 import detailedMonitoringComponent from "../public/pages/detailed-monitoring.component.vue";
-import emergencyComponent from "../public/pages/emergency.component..vue";
 import registerDetailsComponent from "../public/pages/register-details.component.vue";
 import climateComponent from "../public/pages/climate.component.vue";
 import addanimalsComponent from "../public/pages/addanimals.component.vue";
@@ -18,7 +17,6 @@ const router = createRouter({
     routes:[
         {path:'/', redirect:'/detailed-monitoring'},
         {path:'/detailed-monitoring', component:detailedMonitoringComponent, meta: {title: 'DetailedMonitoring'}},
-        {path:'/emergency', component:emergencyComponent, meta: {title: 'Emergency'}},
         {path:'/register-details', component:registerDetailsComponent, meta: {title: 'RegisterDetails'}},
         {path:'/climate', component:climateComponent, meta: {title: 'Climate'}},
         {path:'/addshed', component:registerDetailsComponent, meta: {title: 'Agregar Galpón'}},
@@ -28,7 +26,7 @@ const router = createRouter({
         {path:'/listcrops', component:listcropsComponent, meta: {title: 'List Crops'}},
         {path:'/registerfeeds', component:RegisterAliments, meta: {title: 'Register Aliments'}},
         {path:'/listanimals', component:ListanimalsComponent, meta: {title: 'List Animals'}},
-        {path:'/register-expenses', component:registerExpensesComponent, meta: {title: 'Register Expenses'}},
+        {path:'/registerexpenses', component:registerExpensesComponent, meta: {title: 'Register Expenses'}},
 
 
     ]

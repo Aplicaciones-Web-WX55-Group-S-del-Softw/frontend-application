@@ -40,7 +40,7 @@ export default {
               <h4>Inventario de Cultivos</h4>
             </router-link>
             <h3 class="header-style">Finanzas</h3>
-            <router-link to="/register-expenses" class="link-style">
+            <router-link to="/registerexpenses" class="link-style">
               <h4>Registro de Egresos</h4>
             </router-link>
           </div>
@@ -54,9 +54,9 @@ export default {
 .center-container {
   display: flex;
   justify-content: center;
-  margin-top: 260px;
+  margin-top: 180px;
   margin-bottom: 60px;
-  margin-left: -700px
+  margin-left: -440px;
 }
 
 .wrapper {
