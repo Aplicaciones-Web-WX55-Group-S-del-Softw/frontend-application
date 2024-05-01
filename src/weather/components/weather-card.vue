@@ -1,111 +1,76 @@
 <script>
-import WeatherCard from "./weather-card.vue";
+import {WeatherApi} from "../services/weather-api.js";
+
 
 export default {
-  name: "weather-card"
-}
-</script>
-<template>
-  <div class="card-wrapper">
-    <h1>WEATHER</h1>
-    <div class="card-row">
-      <div class="weather-card">
-        <div class="weather-picture">
-          <img src="../../assets/rainy.png" alt="rainy" style="width: 150px; height: auto;"  />
+  name: "weather-card",
+  data() {
+    return {
+      weathers: [],
+      weatherApi: new WeatherApi(),
+      weatherImages: {
+        'rainy.png': '../../assets/rainy.png',
+        'cloudy.png': '../../assets/cloudy.png',
+        'mcloudy.png': '../../assets/mcloudy.png',
+        'clear.png': '../../assets/clear.png'
+      }
+    };
+  },
+  methods: {
 
-        </div>
-        <div>
-          <p style="margin-left: 8px">33º</p>
-          <p>Sunday</p>
-          <p style="font-size: 12px;">2024-04-01</p>
-        </div>
-
-      </div>
-      <div class="weather-card">
-        <div class="weather-picture">
-          <img src="../../assets/cloudy.png" alt="cloudy" style="width: 150px; height: auto; margin-left: 20px"  />
-
-        </div>
-
-        <div>
-          <p style="margin-left: 8px">28º</p>
-          <p>Monday</p>
-          <p style="font-size: 12px;">2024-04-02</p>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="card-row"> <div class="weather-card">
-      <div class="weather-picture">
-        <img src="../../assets/mcloudy.png" alt="mcloudy" style="width: 150px; height: auto; margin-right:20px "  />
-
-      </div>
-      <div>
-        <p style="margin-left: 8px">31º</p>
-        <p>Tuesday</p>
-        <p style="font-size: 12px;">2024-04-03</p>
-      </div>
-
-    </div>
-      <div class="weather-card">
-        <div class="weather-picture">
-          <img src="../../assets/clear.png" alt="clear" style="width: 150px; height: auto; margin-right: 12px"  />
-
-        </div>
-        <div>
-          <p style="margin-left: 8px">14º</p>
-          <p>Wednesday</p>
-          <p style="font-size: 12px;">2024-04-02</p>
-        </div>
-
-      </div>
-
-    </div>
+    shuffleWeathers() {
+      for (let i = this.weathers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tempDegree = this.weathers[i].degree;
+        const tempImage = this.weathers[i].image;
+        this.weathers[i].degree = this.weathers[j].degree;
+        this.weathers[i].image = this.weathers[j].image;
+        this.weathers[j].degree = tempDegree;
+        this.weathers[j].image = tempImage;
+      }
+    }
+  },
+  created() {
+    this.weatherApi.getWeathers().then(response => {
+      this.weathers = response.data;
+      this.shuffleWeathers(); // Mezcla los datos de forma aleatoria
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+};
+</script><template>
+  <h1>WEATHER</h1>
+  <div class="weather-cards">
+    <div v-for="weather in weathers" :key="weather.id" class="weather-card">
+      <h3>{{ weather.day }}</h3>
+      <p>{{ weather.date }}</p>
+      <p>{{ weather.degree }}°</p>
+      <img v-if="weather.image === 'rainy.png'" src="../../assets/rainy.png" alt="rainy" style="width: 150px; height: auto;">
+      <img v-if="weather.image === 'cloudy.png'" src="../../assets/cloudy.png" alt="rainy" style="width: 150px; height: auto;">
+      <img v-if="weather.image === 'mcloudy.png'" src="../../assets/mcloudy.png" alt="rainy" style="width: 150px; height: auto;">
+      <img v-if="weather.image === 'clear.png'" src="../../assets/clear.png" alt="rainy" style="width: 150px; height: auto;">      </div>
   </div>
 </template>
 
 <style scoped>
+.weather-cards {
+  display: flex;
+  justify-content: center;
+}
+
+.weather-card {
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  width: 180px;
+  text-align: center;
+  color: black;
+}
 h1{
   color:darkgreen;
   font-size: 100px;
 
-}
-p{
-color:black;
-  font-size: 30px;
-}
-.card-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.card-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.weather-card {width: 400px;
-  height: 300px;
-  margin: 10px;
-  background-color: #d6d6d6;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center; /* Alinea elementos verticalmente */
-}
-
-.weather-picture {
-  margin-left: 15%; /* Espacio entre la imagen y el texto */
-}
-
-.weather-card p {
-  margin: 0px;
-  text-align: center; /* Alinear texto a la izquierda */
 }
 </style>
