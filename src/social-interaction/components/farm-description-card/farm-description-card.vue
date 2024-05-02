@@ -1,66 +1,57 @@
 <script>
-export default {
-  name: "FarmCard",
-  methods: {
-    redirectToDescription() {
-      this.$router.push('/farm/description');
-    }
-  }
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+
+export default { name: "farm-description-card",
+  components: {ToolbarComponent},
 }
-
-
 </script>
 
+
 <template>
-  <div class="searchSection" >
-    <input type="text" placeholder="Producto">
-    <input type="text" placeholder="Ubicación">
-    <button class="searchButton">Buscar</button>
-  </div>
+<div>
 
-  <div class="additionalCard">
-    <h2>Granjas destacadas: </h2>
-  </div>
+  <div class="cardF">
 
-  <div class="farmContainer"@click="redirectToDescription">
-
-    <pv-card class="farmImage"  >
+    <pv-card class="mt-2">
       <template #content>
-        <img class="farmImg" src="../../../assets/img-granja1.jpg" alt="Granja">
+        <img class="img-farm1" src="../../../assets/img-granja1.jpg" alt="Farm">
       </template>
     </pv-card>
 
-    <pv-card class="farmDetails">
+    <pv-card class="mt-3">
       <template #content>
-        <h1 class="farmTitle">Granja Tsuneo</h1>
-        <div class="locationContainer">
-          <!--<img src="/../assets/location.png" alt="Ubicación" class="locationIcon">-->
+        <h1 class="cardF-title2">Farm Tsuneo</h1>
+        <div class="location-container">
+          <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
 
-          <p class="additionalInfo">Asia, Lima</p>
+          <p class="additional">Asia, Lima</p>
         </div>
-        <p class="details">Pollos</p>
+        <p class="details">Chicken</p>
         <p class="details">50 ha</p>
-        <p class="details">$293,000.000</p>
+        <p class="details">$/293,000.000</p>
       </template>
     </pv-card>
 
-    <div class="additionalDetails">
-      <p class="details">20 Establos</p>
-      <p class="details">20 Corrales</p>
-      <p class="details">Agua potable</p>
+    <div class="additional-details">
+      <p class="details">20   Barns</p>
+      <p class="details">20 Corrals</p>
+      <p class="details">Water potable</p>
     </div>
 
   </div>
+</div>
+
 
 </template>
 
 <style >
 
-.additionalCard {
+
+.card-aditional {
   margin-left: 200px;
 }
 
-.searchSection {
+.section-search{
   margin-top: 80px;
   display: flex;
   padding: 40px;
@@ -88,7 +79,7 @@ h1{
 }
 
 
-.searchButton {
+.choose-plan-btn{
   background-color: #45BF6C;
   border: none;
   color: white;
@@ -100,17 +91,17 @@ h1{
   width: 8%;
   margin-top: 30px;
 }
-.searchButton:hover {
+.choose-plan-btn:hover {
   transform: scale(1.05);
 }
 
-.searchSection {
+.section-search {
   display: flex;
   align-items: center;
 
 }
 
-.searchSection input[type="text"] {
+.section-search input[type="text"] {
   padding: 10px;
   border: 2px solid #276749;
   border-radius: 8px;
@@ -118,7 +109,7 @@ h1{
   font-size: 16px;
 }
 
-.searchSection button {
+.section-search button {
   padding: 10px 1px;
   border: none;
   border-radius: 8px;
@@ -129,37 +120,35 @@ h1{
   margin-top: -5px; /* Ajusta este valor según sea necesario */
 }
 
-.searchSection button:hover {
+.section-search button:hover {
   background-color: #1d4d34;
 }
 
-.searchSection button:focus {
+.section-search button:focus {
   outline: none;
 }
-
-.farmContainer {
-  margin-top: 450px;
+.cardF {
+  margin-top: 0px;
   display: flex;
-  justify-content: flex-start;
-  margin-left: 55%;
+margin-left:30%;
 }
 
 
 
-.farmTitle {
+.cardF-title2 {
   color: #44604D;
   margin-top: -25px;
   margin-left: -10px;
   font-size: 26px;
-  margin-bottom: 3px;
+  margin-bottom:3px
 }
 
-.locationContainer {
+.location-container {
   display: flex;
   align-items: center;
 }
 
-.locationIcon {
+.location-icon {
   width: 45.92px;
   height: 30.04px;
   margin-right: -30px;
@@ -184,16 +173,16 @@ h1{
   transform: translateY(-10px);
 }
 
-.additionalDetails {
+.additional-details {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: -40px;
   transform: translateX(-300px);
-  padding: 10px;
+  padding:10px
 }
 
-.additionalDetails::before {
+.additional-details::before {
   content: "";
   position: absolute;
   top: 0;
@@ -202,7 +191,7 @@ h1{
   border-top: 1px solid rgba(0, 0, 0, 0.42);
 }
 
-.farmImg {
+.img-farm1 {
   width: 291px;
   height: 210px;
   object-fit: cover;
@@ -213,21 +202,21 @@ h1{
 
 }
 
-.farmImage {
+.mt-2{
   margin-top: -400px;
   width: 295px;
   height: 280px;
   margin-left: -200px;
 }
 
-.farmDetails p {
+.mt-3 p {
   text-align: left;
   font-size: 14px;
   margin-top: 10px;
-  margin-left: -10px;
+  margin-left:-10px
 }
 
-.farmDetails {
+.mt-3 {
   margin-top: -195px;
   width: 295px;
   height: 195px;

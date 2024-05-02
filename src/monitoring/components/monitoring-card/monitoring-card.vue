@@ -12,7 +12,7 @@ export default {
   <toolbar-component></toolbar-component>
 
   <div class ="monitoring_containerX">
-    <router-link to="/home" class="monitoring_back-button">BACK</router-link>
+    <router-link to="/home" class="back-button">BACK</router-link>
     <div class="monitoring_center-container">
 
       <div class="monitoring_monitoring-cards-container">
@@ -45,7 +45,10 @@ export default {
       <div class="monitoring_emergency-cards-container">
         <div class="monitoring_emergency-card">
           <div class="monitoring_emergency-container">
+            <router-link to="/emergency/new">
+
             <img class="monitoring_emergency-img" src="../../../assets/emergency.png" alt="Emergencia">
+           </router-link>
             <h2>Emergency</h2>
           </div>
         </div>
@@ -53,7 +56,10 @@ export default {
 
         <div class="monitoring_emergency-card">
           <div class="monitoring_inventory-container">
+            <router-link to="/shed/new">
+
             <img class="monitoring_inventory-img" src="../../../assets/inventory.png" alt="Inventario">
+            </router-link>
             <h2>Inventory</h2>
           </div>
         </div>

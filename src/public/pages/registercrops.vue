@@ -29,6 +29,7 @@ export default {
 
 <template>
   <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
 
@@ -38,8 +39,8 @@ export default {
         </template>
       </DetailIdebar>
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="80px" searchBarRight="275px"></SearchBar>
-        <router-link to = "/register-details">
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="150px" searchBarRight="275px"></SearchBar>
+        <router-link to = "/home">
           <SaveButton/>
         </router-link>
         <h1 class="title-color">CROP REGISTRATION</h1>

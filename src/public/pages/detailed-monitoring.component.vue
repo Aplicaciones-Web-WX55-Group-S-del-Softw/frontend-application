@@ -9,6 +9,7 @@ export default {
 </script>
 <template>
   <toolbar-component></toolbar-component>
+
   <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class ="container">
@@ -36,7 +37,11 @@ export default {
       <div class="emergency-cards-container">
         <div class="emergency-card">
           <div class="emergency-container">
+            <router-link to="/emergency/new">
+
             <img class="emergency-img" src="../../assets/emergency.png" alt="Emergencia">
+            </router-link>
+
             <h2>Emergency</h2>
           </div>
         </div>

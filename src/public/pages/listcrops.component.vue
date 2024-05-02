@@ -29,6 +29,7 @@ export default {
 
 <template>
   <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
 
@@ -40,7 +41,7 @@ export default {
 
 
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="80px" searchBarRight="275px"></SearchBar>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="150px" searchBarRight="275px"></SearchBar>
         <h1 class="title-color">CROP INVENTORY</h1>
         <div class="table-wrapper">
           <table>
@@ -64,7 +65,7 @@ export default {
             </tbody>
           </table>
         </div>
-        <router-link to = "/register-details">
+        <router-link to = "/home">
           <SaveButton/>
         </router-link>
       </div>

@@ -29,6 +29,7 @@ export default {
 
 <template>
   <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
 
@@ -59,7 +60,7 @@ export default {
             </tbody>
           </table>
         </div>
-        <router-link to = "/register-details">
+        <router-link to = "/home">
           <SaveButton/>
         </router-link>
       </div>

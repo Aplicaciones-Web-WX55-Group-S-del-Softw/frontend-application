@@ -13,6 +13,7 @@ export default {
 
 <template>
   <toolbar-component/>
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
     <DetailIdebar>
@@ -21,12 +22,14 @@ export default {
     <div class="background-color">
 
       <h1 class="small-title">Create Shed</h1>
-      <SaveButton/>
+      <router-link to = "/home">
+        <SaveButton/>
+      </router-link>
 
     </div>
     <div class="inputs-create">
-      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="450px" searchBarRight="550px"></SearchBar>
-      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="450px" searchBarRight="350px"></SearchBar>
+      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="450px" searchBarRight="300px"></SearchBar>
+      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="450px" searchBarRight="500px"></SearchBar>
     </div>
 
   </div>
@@ -50,6 +53,9 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left:-150px;
+
+
 }
 
 .background-color {
@@ -63,6 +69,7 @@ h1{
 
 .small-title {
   color: #44604D;
+  margin-left:-50px;
   font-size: 1.6em;
   margin-top: 30px;
 }

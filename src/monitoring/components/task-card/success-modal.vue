@@ -30,20 +30,23 @@ export default {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s;
-
 }
 
 .back-button:hover {
   background-color: darkgreen;
 }
+
 .modal {
-  position: relative;
+  position: fixed;
   z-index: 1;
-  left: 350px;
-  top: -300px;
-  width: 40%; /* Cambiar el ancho */
-  height: 30%; /* Cambiar la altura */
-  overflow: auto;
+  left: 950px;
+  top: 300px;
+  width: 40%;
+  height: 30%;
+  overflow:hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {

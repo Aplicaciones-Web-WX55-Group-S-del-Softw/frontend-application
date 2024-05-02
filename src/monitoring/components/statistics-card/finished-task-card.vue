@@ -122,6 +122,8 @@ export default {
       </tbody>
     </table>
   </div>
+  <br>
+  <br>
   <footer-component></footer-component>
 
 </template>

@@ -30,6 +30,8 @@ export default {
 
 <template>
   <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
+
 
   <div class="flex-container">
 
@@ -64,9 +66,9 @@ export default {
           </table>
 
         </div>
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="110px" searchBarRight="270px"></SearchBar>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="140px" searchBarRight="270px"></SearchBar>
 
-        <router-link to = "/register-details">
+        <router-link to = "/home">
           <SaveButton/>
         </router-link>
 
