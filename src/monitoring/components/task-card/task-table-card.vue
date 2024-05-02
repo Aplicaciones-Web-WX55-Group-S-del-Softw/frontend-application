@@ -1,5 +1,6 @@
 <script>
-import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+
+import {DashboardApi} from "../../../shared/service/dashboardapi.js";
 
 export default {
   data() {

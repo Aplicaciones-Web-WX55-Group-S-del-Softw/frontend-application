@@ -1,164 +1,313 @@
 {
+  "animals": [
+    {
+      "id": 1,
+      "name": "Pig",
+      "age": 2,
+      "location": "Stable 1",
+      "health_state": "Healthy",
+      "id_shed": 1
+    },
+    {
+      "id": 2,
+      "name": "Pig",
+      "age": 3,
+      "location": "Stable 2",
+      "health_state": "Sick",
+      "id_shed": 2
+    },
+    {
+      "id": 3,
+      "name": "Cow",
+      "age": 4,
+      "location": "Pasture 1",
+      "health_state": "Recovering",
+      "id_shed": 3
+    },
+    {
+      "id": 4,
+      "name": "Cow",
+      "age": 5,
+      "location": "Pasture 2",
+      "health_state": "Healthy",
+      "id_shed": 1
+    },
+    {
+      "id": 5,
+      "name": "Chicken",
+      "age": 0.5,
+      "location": "Chicken Coop 1",
+      "health_state": "Healthy",
+      "id_shed": 2
+    },
+    {
+      "id": 6,
+      "name": "Chicken",
+      "age": 0.8,
+      "location": "Chicken Coop 2",
+      "health_state": "Sick",
+      "id_shed": 3
+    }
+  ],
+  "sheds": [
+    {
+      "id": 1,
+      "type": "Livestock",
+      "species": "Pig"
+    },
+    {
+      "id": 2,
+      "type": "Livestock",
+      "species": "Cow"
+    },
+    {
+      "id": 3,
+      "type": "Livestock",
+      "species": "Chicken"
+    },
+    {
+      "id": 4,
+      "type": "Crops",
+      "species": "Wheat"
+    },
+    {
+      "id": 5,
+      "type": "Crops",
+      "species": "Rice"
+    },
+    {
+      "id": 6,
+      "type": "Crops",
+      "species": "Potato"
+    }
+  ],
+  "crops": [
+    {
+      "id": 1,
+      "type": "Wheat",
+      "addition_date": "2022-01-01",
+      "id_shed": 1,
+      "numbers": "100"
+    },
+    {
+      "id": 2,
+      "type": "Rice",
+      "addition_date": "2022-02-01",
+      "id_shed": 2,
+      "numbers": "200"
+    },
+    {
+      "id": 3,
+      "type": "Potato",
+      "addition_date": "2022-03-01",
+      "id_shed": 3,
+      "numbers": "300"
+    }
+  ],
+  "aliments": [
+    {
+      "id": 1,
+      "date": "2022-01-01",
+      "type": "Wheat",
+      "quantity": 100,
+      "id_shed": 1
+    },
+    {
+      "id": 2,
+      "date": "2022-02-01",
+      "type": "Rice",
+      "quantity": 200,
+      "id_shed": 2
+    },
+    {
+      "id": 3,
+      "date": "2022-03-01",
+      "type": "Potato",
+      "quantity": 300,
+      "id_shed": 3
+    }
+
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "description": "Purchase of Wheat",
+      "numbers": 100,
+      "price": 1000
+    },
+    {
+      "id": 2,
+      "description": "Purchase of Rice",
+      "numbers": 200,
+      "price": 2000
+    },
+    {
+      "id": 3,
+      "description": "Purchase of Potato",
+      "numbers": 300,
+      "price": 3000
+    }
+  ],
   "tasks": [
     {
       "id": "#1",
       "employee": "Rodrigo Kunimoto",
-      "time": "3 horas",
+      "time": "3 hours",
       "date": "29/03/2024",
-      "finished": "Finalizado",
-      "description": "Dar de comer a todos los pollos del granero 10"
+      "finished": "Finished",
+      "description": "Feed all the chickens in barn 10"
     },
     {
       "id": "#2",
       "employee": "Franco Barrionuevo",
-      "time": "2 horas",
+      "time": "2 hours",
       "date": "31/03/2024",
-      "finished": "Pendiente",
-      "description": "Dar de comer a todos los pollos del granero 8"
+      "finished": "Pending",
+      "description": "Feed all the chickens in barn 8"
     },
     {
       "id": " 3",
       "employee": "Franco Barrionuevo",
-      "time": "4 horas",
+      "time": "4 hours",
       "date": "31/03/2024",
-      "finished": "Pendiente",
-      "description": "Dar de comer a todos los pollos del granero 3"
+      "finished": "Pending",
+      "description": "Feed all the chickens in barn 3"
     },
     {
       "id": "#4",
       "employee": "Rogrigo Kunimoto",
-      "time": "5 horas",
+      "time": "5 hours",
       "date": "31/03/2024",
-      "finished": "Pendiente",
-      "description": "Dar de comer a todos los pollos del granero 4"
+      "finished": "Pending",
+      "description": "Feed all the chickens in barn 4"
     },
     {
       "id": "#5",
       "employee": "Maria Lopez",
-      "time": "6 horas",
+      "time": "6 hours",
       "date": "02/04/2024",
-      "finished": "Finalizado",
-      "description": "Dar de comer a todos los pollos del granero 5"
+      "finished": "Finished",
+      "description": "Feed all the chickens in barn 5"
     },
     {
       "id": "#6",
       "employee": "Franco Reto",
-      "time": "6 horas",
+      "time": "6 hours",
       "date": "02/04/2024",
-      "finished": "Finalizado",
-      "description": "Dar de comer a todos los pollos del granero 5"
+      "finished": "Finished",
+      "description": "Feed all the chickens in barn 5"
     },
     {
       "id": "#7",
       "employee": "Juan Perez",
-      "time": "1 hora",
+      "time": "1 hour",
       "date": "01/04/2024",
-      "finished": "Pendiente",
-      "description": "Revisar el inventario de la granja"
+      "finished": "Pending",
+      "description": "Review the farm inventory"
     },
     {
       "id": "#8",
       "employee": "Ana Gomez",
-      "time": "2 horas",
+      "time": "2 hours",
       "date": "01/04/2024",
-      "finished": "Pendiente",
-      "description": "Limpiar los establos"
+      "finished": "Pending",
+      "description": "Clean the barns"
     },
     {
       "id": "#9",
       "employee": "Carlos Rodriguez",
-      "time": "3 horas",
+      "time": "3 hours",
       "date": "03/04/2024",
-      "finished": "Pendiente",
-      "description": "Reparar la cerca del corral"
+      "finished": "Pending",
+      "description": "Repair the corral fence"
     },
     {
       "id": "#10",
       "employee": "Luisa Martinez",
-      "time": "4 horas",
+      "time": "4 hours",
       "date": "04/04/2024",
-      "finished": "Finalizado",
-      "description": "Plantar nuevas semillas en el huerto"
+      "finished": "Finished",
+      "description": "Plant new seeds in the garden"
     },
     {
       "id": "#11",
       "employee": "Pedro Jimenez",
-      "time": "5 horas",
+      "time": "5 hours",
       "date": "05/04/2024",
-      "finished": "Pendiente",
-      "description": "Cosechar las verduras del huerto"
+      "finished": "Pending",
+      "description": "Harvest vegetables from the garden"
     },
     {
       "id": "#12",
       "employee": "Sofia Torres",
-      "time": "6 horas",
+      "time": "6 hours",
       "date": "06/04/2024",
-      "finished": "Finalizado",
-      "description": "Alimentar a los cerdos"
+      "finished": "Finished",
+      "description": "Feed the pigs"
     },
     {
       "id": "#13",
       "employee": "Ricardo Diaz",
-      "time": "7 horas",
+      "time": "7 hours",
       "date": "07/04/2024",
-      "finished": "Pendiente",
-      "description": "Ordeñar las vacas"
+      "finished": "Pending",
+      "description": "Milk the cows"
     },
     {
       "id": "#14",
       "employee": "Marta Ramirez",
-      "time": "8 horas",
+      "time": "8 hours",
       "date": "08/04/2024",
-      "finished": "Finalizado",
-      "description": "Cuidar a los pollitos"
+      "finished": "Finished",
+      "description": "Take care of the chicks"
     },
     {
       "id": "#15",
       "employee": "Javier Morales",
-      "time": "9 horas",
+      "time": "9 hours",
       "date": "09/04/2024",
-      "finished": "Pendiente",
-      "description": "Cuidar a los pollitos"
+      "finished": "Pending",
+      "description": "Take care of the chicks"
     },
     {
       "id": "#16",
       "employee": "Laura Castillo",
-      "time": "10 horas",
+      "time": "10 hours",
       "date": "10/04/2024",
-      "finished": "Finalizado",
-      "description": "Cuidar a los pollitos"
+      "finished": "Finished",
+      "description": "Take care of the chicks"
     },
     {
       "id": "#17",
       "employee": "Rodrigo Kunimoto",
-      "time": "2 horas",
+      "time": "2 hours",
       "date": "11/04/2024",
-      "finished": "Pendiente",
-      "description": "Dar de comer a todos los pollos del granero 11"
+      "finished": "Pending",
+      "description": "Feed all the chickens in barn 11"
     },
     {
       "id": "#18",
       "employee": "Franco Barrionuevo",
-      "time": "3 horas",
+      "time": "3 hours",
       "date": "12/04/2024",
-      "finished": "Finalizado",
-      "description": "Dar de comer a todos los pollos del granero 12"
+      "finished": "Finished",
+      "description": "Feed all the chickens in barn 12"
     },
     {
       "id": "#19",
       "employee": "Franco Barrionuevo",
-      "time": "4 horas",
+      "time": "4 hours",
       "date": "13/04/2024",
-      "finished": "Pendiente",
-      "description": "Dar de comer a todos los pollos del granero 13"
+      "finished": "Pending",
+      "description": "Feed all the chickens in barn 13"
     },
     {
       "id": "#20",
       "employee": "Rogrigo Kunimoto",
-      "time": "5 horas",
+      "time": "5 hours",
       "date": "14/04/2024",
-      "finished": "Finalizado",
-      "description": "Dar de comer a todos los pollos del granero 14"
+      "finished": "Finished",
+      "description": "Feed all the chickens in barn 14"
     }
   ]
 }

@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import SuccessModal from './success-modal.vue';
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+import SuccessModal from "./success-modal.vue";
 
 const router = useRouter();
 const selectedEmployee = ref('');
