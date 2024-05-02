@@ -31,12 +31,15 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Crop Registration</h1>
         </template>
       </DetailIdebar>
-
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="80px" searchBarRight="275px"></SearchBar>
+        <router-link to = "/register-details">
+          <SaveButton/>
+        </router-link>
+        <h1 class="title-color">CROP REGISTRATION</h1>
+
         <div class="table-wrapper">
           <table>
             <thead>
@@ -60,20 +63,19 @@ export default {
           </table>
         </div>
       </div>
-
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+
   </div>
 </template>
 
 <style scoped>
+
 .flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  margin-left:20%;
 }
 
 .background-color {
@@ -82,7 +84,9 @@ export default {
   margin: -340px;
   transform: translate(90px, 520px);
   width: 700px;
-  height: 700px;
+  height: 480px;
+
+
 }
 
 .table-container {
@@ -93,10 +97,11 @@ export default {
 }
 
 .table-wrapper {
-  width: 340px;
+  width: 600px;
   height: 800px;
-  overflow: auto;
+  margin-left:-130px;
   transform: translate(160px, 120px);
+
 }
 
 table {
@@ -104,6 +109,14 @@ table {
   width: 100%;
   background-color: #fff;
 }
+
+
+
+
+
+
+
+
 
 th, td {
   border: 1px solid #ddd;
@@ -122,5 +135,7 @@ th {
 }
 .title-color {
   color: #44604D;
+  margin-left:25%;
+
 }
 </style>

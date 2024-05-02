@@ -31,11 +31,12 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Shed List</h1>
         </template>
       </DetailIdebar>
 
       <div class="background-color">
+        <h1 class="title-color">SHED LIST</h1>
+
         <div class="table-wrapper">
           <table>
             <thead>
@@ -54,12 +55,13 @@ export default {
             </tbody>
           </table>
         </div>
+        <router-link to = "/register-details">
+          <SaveButton/>
+        </router-link>
       </div>
 
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+
   </div>
 </template>
 
@@ -69,6 +71,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  margin-left:15%;
 }
 
 .background-color {
@@ -77,7 +80,7 @@ export default {
   margin: -340px;
   transform: translate(90px, 520px);
   width: 700px;
-  height: 700px;
+  height: 460px;
 }
 
 .table-container {
@@ -119,5 +122,7 @@ th {
 }
 .title-color {
   color: #44604D;
+  margin-left:40%;
+  margin-bottom:-100px;
 }
 </style>

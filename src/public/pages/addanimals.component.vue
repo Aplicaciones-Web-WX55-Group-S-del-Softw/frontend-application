@@ -14,38 +14,50 @@ export default {
   <div class="flex-container">
     <DetailIdebar>
       <template v-slot:title>
-        <h1 class="title-color">Add Animal</h1>
       </template>
     </DetailIdebar>
+
     <div class="background-color">
-      <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="100px" searchBarRight="250px"></SearchBar>
-      <SearchBar smallText="Health Status" :options="['Healthy', 'Sick', 'Recovering']" searchBarTop="400px" searchBarRight="250px"></SearchBar>
-      <SearchBarNOOPTIONSComponent smallText="Location" searchBarTop="250px" searchBarRight="400px"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Age" searchBarTop="250px" searchBarRight="100px"></SearchBarNOOPTIONSComponent>
+      <h1 class="title-color">ADD ANIMAL</h1>
+
+      <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="100px" searchBarRight="250px" class="highlight-border"></SearchBar>
+      <SearchBar smallText="Health Status" :options="['Healthy', 'Sick', 'Recovering']" searchBarTop="400px" searchBarRight="250px" class="highlight-border"></SearchBar>
+      <SearchBarNOOPTIONSComponent smallText="Location" searchBarTop="250px" searchBarRight="400px" class="highlight-border"></SearchBarNOOPTIONSComponent>
+      <SearchBarNOOPTIONSComponent smallText="Age" searchBarTop="250px" searchBarRight="100px" class="highlight-border"></SearchBarNOOPTIONSComponent>
+      <SaveButton/>
     </div>
     <router-link to = "/register-details">
-      <SaveButton/>
     </router-link>
   </div>
 </template>
 
 <style scoped>
+
+.highlight-border input {
+  border: 2px solid #44604D;
+  border-radius: 5px;
+  padding: 5px;
+}
 .flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left:15%
 }
 
 .background-color {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 105px);
+  transform: translate(90px, 60px);
   width: 700px;
-  height: 700px;
+  height: 470px;
+
 }
 
 .title-color {
   color: #44604D;
+  margin-left:35%;
+  margin-bottom:-100px;
 }
 </style>

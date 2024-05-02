@@ -3,8 +3,6 @@ import { useRoute, useRouter } from 'vue-router';
 
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
 
-
-
 export default {
   data() {
     return {

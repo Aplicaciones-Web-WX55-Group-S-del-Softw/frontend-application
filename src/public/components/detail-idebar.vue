@@ -13,33 +13,35 @@ export default {};
         <div class="description">
           <div class="actions-container rectangle-background">
             <h3 class="header-style">Shed</h3>
-            <router-link to="/addshed" class="link-style">
+            <router-link to="/shed/new" class="link-style">
               <h4>Add Shed</h4>
             </router-link>
-            <router-link to="/listshed" class="link-style">
+            <router-link to="/list/sheds" class="link-style">
               <h4>List Sheds</h4>
             </router-link>
             <h3 class="header-style">Animals</h3>
-            <router-link to="/addanimal" class="link-style">
+            <router-link to="/animal/new" class="link-style">
               <h4>Add Animals</h4>
             </router-link>
-            <router-link to="/listanimals" class="link-style">
+            <router-link to="/list/animals" class="link-style">
               <h4>Animal Inventory</h4>
             </router-link>
-            <router-link to="/registerfeeds" class="link-style">
+           <!-- <router-link to="/registerfeeds" class="link-style">
               <h4>Feeding Registry</h4>
-            </router-link>
+            </router-link>-->
             <h3 class="header-style">Crops</h3>
-            <router-link to="/registercrops" class="link-style">
+            <router-link to="/register/crops" class="link-style">
               <h4>Crop Registry</h4>
             </router-link>
-            <router-link to="/listcrops" class="link-style">
+            <router-link to="/list/crops" class="link-style">
               <h4>Crop Inventory</h4>
             </router-link>
+            <!--
             <h3 class="header-style">Finances</h3>
             <router-link to="/registerexpenses" class="link-style">
               <h4>Expense Registry</h4>
             </router-link>
+            -->
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+<!--
 <script>
 import DetailIdebar from "../components/detail-idebar.vue";
 import axios from 'axios';
@@ -62,4 +63,4 @@ export default {
 .title-color {
   color: #44604D;
 }
-</style>
+</style>-->

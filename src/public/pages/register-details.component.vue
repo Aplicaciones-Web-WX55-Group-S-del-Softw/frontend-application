@@ -10,24 +10,36 @@ export default {
 </script>
 
 <template>
+
   <div class="flex-container">
     <DetailIdebar>
-      <template v-slot:title>
-        <h1 class="title-color">Add Shed</h1>
-      </template>
     </DetailIdebar>
+
     <div class="background-color">
+
       <h1 class="small-title">Create Shed</h1>
+      <SaveButton/>
+
     </div>
-    <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
-    <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
+    <div class="inputs-create">
+      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
+      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
+    </div>
+
   </div>
+
   <router-link to = "/detailed-monitoring">
-    <SaveButton/>
   </router-link>
 </template>
 
 <style scoped>
+h1{
+  color: #44604D;
+  text-align: center;
+}
+.inputs-create{
+  margin-right:-200px;
+}
 .flex-container {
   display: flex;
   justify-content: center;
@@ -36,21 +48,20 @@ export default {
 
 .background-color {
   background-color: #F2F0F0;
-  height: 700px;
+  height: 460px;
   width: 700px;
-  box-sizing: border-box;
   margin: -340px;
-  transform: translate(90px, 105px);
+  transform: translate(90px, 60px);
 }
 
 .title-color {
   color: #44604D;
+
 }
 
 .small-title {
   color: #44604D;
   font-size: 1.6em;
   margin-top: 50px;
-  margin-left: 250px;
 }
 </style>

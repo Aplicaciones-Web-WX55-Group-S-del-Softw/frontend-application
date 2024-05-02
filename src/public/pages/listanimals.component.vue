@@ -17,6 +17,7 @@ export default {
     axios.get('server/db.json')
         .then(response => {
           this.animals = response.data.animals;
+          console.log(this.animals)
         })
         .catch(error => {
           console.log(error);
@@ -31,13 +32,14 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Animal Inventory</h1>
         </template>
       </DetailIdebar>
 
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
+        <h1 class="title-color">ANIMAL INVENTORY</h1>
+
         <div class="table-wrapper">
+
           <table>
             <thead>
             <tr>
@@ -56,17 +58,26 @@ export default {
             </tr>
             </tbody>
           </table>
+
         </div>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="110px" searchBarRight="270px"></SearchBar>
+
+        <router-link to = "/register-details">
+          <SaveButton/>
+        </router-link>
+
       </div>
 
+
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+
   </div>
 </template>
 
 <style scoped>
+SearchBar{
+  margin:50px;
+}
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -80,7 +91,7 @@ export default {
   margin: -340px;
   transform: translate(90px, 520px);
   width: 700px;
-  height: 700px;
+  height: 480px;
 }
 
 .table-container {
@@ -88,6 +99,8 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 20px;
+  margin-left:20%;
+
 }
 
 .table-wrapper {
@@ -121,5 +134,7 @@ th {
 
 .title-color {
   color: #44604D;
+  margin-left:30%;
+  margin-bottom:10px;
 }
 </style>

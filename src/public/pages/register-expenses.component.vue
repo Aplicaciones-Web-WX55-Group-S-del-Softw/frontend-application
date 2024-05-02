@@ -1,4 +1,4 @@
-<script>
+<!--<script>
 import axios from 'axios';
 import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
@@ -60,12 +60,13 @@ export default {
 
           </table>
         </div>
+        <router-link to = "/register-details">
+          <SaveButton/>
+        </router-link>
       </div>
 
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+
   </div>
 
 </template>
@@ -130,3 +131,4 @@ th {
   font-size: 1.6em;
 }
 </style>
+->

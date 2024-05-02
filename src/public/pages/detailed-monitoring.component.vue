@@ -8,6 +8,7 @@ export default {
   <div class="wrapper">
     <h2>Detailed Monitoring</h2>
   </div>
+
   <div class ="container">
     <div class="center-container">
       <div class="monitoring-cards-container">
@@ -15,7 +16,7 @@ export default {
         <div class="monitoring-card">
           <div class="emergency-container">
             <router-link to="/emergency">
-              <img class="emergency-img" src="../assets/emergency.png" alt="Emergency">
+              <img class="emergency-img" src="../../assets/emergency.png" alt="Emergency">
             </router-link>
             <h3>Emergency</h3>
           </div>
@@ -24,7 +25,7 @@ export default {
         <div class="monitoring-card">
           <div class="details-container">
             <router-link to="/register-details">
-              <img class="farm" src="../assets/farm.png" alt="farm">
+              <img class="farm" src="../../assets/inventory.png" alt="farm">
             </router-link>
             <h3> Register Details</h3>
           </div>
@@ -39,6 +40,8 @@ export default {
             <h3>Climate</h3>
           </div>
         </div>
+
+
       </div>
     </div>
   </div>
@@ -47,7 +50,8 @@ export default {
 </template>
 
 
-<style >.center-container {
+<style >
+.center-container {
   display: flex;
   justify-content: center;
   margin-top: 270px;

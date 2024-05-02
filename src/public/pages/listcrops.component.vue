@@ -31,13 +31,13 @@ export default {
     <div class="table-container">
       <DetailIdebar>
         <template v-slot:title>
-          <h1 class="title-color">Crop Inventory</h1>
         </template>
       </DetailIdebar>
 
 
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="50px" searchBarRight="275px"></SearchBar>
+        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="80px" searchBarRight="275px"></SearchBar>
+        <h1 class="title-color">CROP INVENTORY</h1>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -60,12 +60,13 @@ export default {
             </tbody>
           </table>
         </div>
+        <router-link to = "/register-details">
+          <SaveButton/>
+        </router-link>
       </div>
 
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+
   </div>
 </template>
 
@@ -75,15 +76,19 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  margin-left:20%;
+
+
 }
 
 .background-color {
+
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
   transform: translate(90px, 520px);
   width: 700px;
-  height: 700px;
+  height: 480px;
 }
 
 .table-container {
@@ -123,5 +128,7 @@ th {
 }
 .title-color {
   color: #44604D;
+  margin-left:25%;
+
 }
 </style>
