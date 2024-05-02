@@ -25,8 +25,8 @@ export default {
 
     </div>
     <div class="inputs-create">
-      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
-      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
+      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="450px" searchBarRight="550px"></SearchBar>
+      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="450px" searchBarRight="350px"></SearchBar>
     </div>
 
   </div>
@@ -43,7 +43,8 @@ h1{
   text-align: center;
 }
 .inputs-create{
-  margin-right:-200px;
+  margin-right:-450px;
+
 }
 .flex-container {
   display: flex;
@@ -59,14 +60,10 @@ h1{
   transform: translate(90px, 60px);
 }
 
-.title-color {
-  color: #44604D;
-
-}
 
 .small-title {
   color: #44604D;
   font-size: 1.6em;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 </style>

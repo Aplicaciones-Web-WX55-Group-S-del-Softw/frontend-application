@@ -20,9 +20,9 @@ const router = createRouter({
         {path:'/home',component:HomeComponent},
         {path:'/monitoring',component:MonitoringCard},
         {path:'/tasks',component:TaskTableCard},
-       {path:'/statistics', component:statisticsCard},
-        {path:'/shed/new', component:registerDetailsComponent, meta: {title: 'Agregar Galpón'}},
-        {path:'/animal/new', component:addanimalsComponent, meta: {title: 'Agregar Animal'}},
+        {path:'/statistics', component:statisticsCard},
+        {path:'/shed/new', component:registerDetailsComponent, meta: {title: 'Add Shed'}},
+        {path:'/animal/new', component:addanimalsComponent, meta: {title: 'Add Animal'}},
         {path:'/register/crops', component:registercrops, meta: {title: 'RegisterCrops'}},
         {path:'/list/animals', component:ListanimalsComponent, meta: {title: 'List Animals'}},
         {path:'/list/crops', component:listcropsComponent, meta: {title: 'List Crops'}},
@@ -31,30 +31,7 @@ const router = createRouter({
         {path:'/financial/statistics',component:FinancialCard},
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
 
-
-        /*
-
-                {path:'/register-details', component:registerDetailsComponent, meta: {title: 'RegisterDetails'}},
-        {path:'/detailed-monitoring', component:detailedMonitoringComponent, meta: {title: 'DetailedMonitoring'}},
-
-  routes: [
-    { path: "/farm-card", component: FarmCard, meta: { title: "Farm Card" } }
-  ]
-        {path:'/climate', component:climateComponent, meta: {title: 'Climate'}},
-  {path:'/registerexpenses', component:registerExpensesComponent, meta: {title: 'Register Expenses'}},
-      {path:'/listcrops', component:listcropsComponent, meta: {title: 'List Crops'}},
-
-
-         */
-
-    //  {path:'/registerfeeds', component:RegisterAliments, meta: {title: 'Register Aliments'}},
-
-
-
-
-
-
     ]
-    });
+});
 
 export default router;

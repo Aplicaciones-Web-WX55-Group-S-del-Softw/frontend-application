@@ -25,7 +25,7 @@ export default {
       <h1 class="title-color">ADD ANIMAL</h1>
 
       <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="100px" searchBarRight="250px" class="highlight-border"></SearchBar>
-      <SearchBar smallText="Health Status" :options="['Healthy', 'Sick', 'Recovering']" searchBarTop="400px" searchBarRight="250px" class="highlight-border"></SearchBar>
+      <SearchBar smallText="Health Status" :options="['Healthy', 'Sick', 'Recovering']" searchBarTop="200px" searchBarRight="250px" class="highlight-border"></SearchBar>
       <SearchBarNOOPTIONSComponent smallText="Location" searchBarTop="250px" searchBarRight="400px" class="highlight-border"></SearchBarNOOPTIONSComponent>
       <SearchBarNOOPTIONSComponent smallText="Age" searchBarTop="250px" searchBarRight="100px" class="highlight-border"></SearchBarNOOPTIONSComponent>
       <SaveButton/>
