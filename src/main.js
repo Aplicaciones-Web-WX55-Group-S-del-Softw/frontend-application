@@ -34,7 +34,9 @@ import Tag              from "primevue/tag";
 import Textarea         from "primevue/textarea";
 import Toolbar          from "primevue/toolbar";
 import Toast            from "primevue/toast";
-import i18n from "./i18n.js";
+
+// Router
+import router from "./router/index.js";
 
 const app = createApp(App)
 
@@ -66,9 +68,12 @@ const app = createApp(App)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast);
+app.config.globalProperties.$tasks = ref([]);
 
 //Add i18n Plugin
 
 app.use(i18n);
+
+
 
 app.mount('#app');

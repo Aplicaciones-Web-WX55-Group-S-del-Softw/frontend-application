@@ -1,4 +1,6 @@
-<script>
+<!-- app.vue -->
+<script setup>
+
 import {defineComponent} from "vue";
 
 import FooterComponent from "./public/components/footer-component.vue";
@@ -11,6 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
+<router-view/>
 <toolbar-component></toolbar-component>
   <farm-card></farm-card>
   <footer-component></footer-component>
