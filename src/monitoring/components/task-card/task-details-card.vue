@@ -2,11 +2,10 @@
 import { useRoute, useRouter } from 'vue-router';
 
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
-import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+
+
 
 export default {
-  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       tasks: null,
@@ -33,7 +32,7 @@ export default {
   methods: {
     finishTask() {
       if (this.task) {
-        this.task.finished = "Finalizado";
+        this.task.finished = "Finished";
         this.showMessage = true;
         setTimeout(() => {
           this.showMessage = false;
@@ -48,8 +47,8 @@ export default {
 </script>
 
 <template>
-  <toolbar-component/>
   <router-link to="/home" class="back-button">BACK</router-link>
+
   <div class="container">
     <div v-if="tasks">
       <h1>Task {{task.id}}</h1>
@@ -64,10 +63,6 @@ export default {
         <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
         <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
-      <br>
-      <br>
-      <br>
-
     </div>
     <div v-else class="error-card">
       <p>⚠️ Task not found</p>
@@ -76,7 +71,6 @@ export default {
     <div v-if="showMessage" class="message">
       <p>The task has been marked as completed.</p>
     </div>
-
   </div>
 
 </template>

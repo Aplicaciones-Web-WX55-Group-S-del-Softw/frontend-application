@@ -42,7 +42,7 @@ export default {
 .logo {
   display: flex;
   align-items: center;
-  fontsize: bold;
+  font-weight: bold; /* En lugar de "fontsize", debe ser "font-weight" */
 }
 .img {
   width: 90px;

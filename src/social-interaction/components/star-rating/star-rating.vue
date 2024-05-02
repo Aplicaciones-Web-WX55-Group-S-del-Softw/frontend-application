@@ -35,15 +35,15 @@ export default { name: "star-rating",
     updateRatingText() {
       let ratingValue = `${this.rating.toFixed(2)}/5.00`;
       if (this.rating === 5) {
-        this.ratingLabel = 'Excelente';
+        this.ratingLabel = 'Excellent';
       } else if (this.rating >= 4) {
-        this.ratingLabel = 'Muy Bueno';
+        this.ratingLabel = 'Very Good';
       } else if (this.rating >= 3) {
-        this.ratingLabel = 'Bueno';
+        this.ratingLabel = 'Good';
       } else if (this.rating >= 2) {
-        this.ratingLabel = 'Regular';
+        this.ratingLabel = 'Fair';
       } else {
-        this.ratingLabel = 'Malo';
+        this.ratingLabel = 'Bad';
       }
       this.ratingValue = ratingValue;
     },
@@ -57,7 +57,7 @@ export default { name: "star-rating",
 <template>
   <div class="container">
     <section class="half-page">
-      <strong class="label-valoration">Valoraciones del cliente</strong>
+      <strong class="label-valoration">Customer reviews</strong>
       <div class="star-rating-container">
         <span v-for="starIndex in 5" :key="starIndex" class="star" @click="setRating(starIndex)" :class="{ 'active': starIndex <= rating, 'selected': starIndex <= ratings[userRatingIndex] }">★</span>
       </div>
@@ -67,7 +67,7 @@ export default { name: "star-rating",
       </div>
       <div class="star-count-container">
         <div v-for="star in stars" :key="star" class="star-row">
-          <div class="star-text">{{ star }} estrellas</div>
+          <div class="star-text">{{ star }} stars</div>
           <div class="bar" :style="{ width: getStarCount(star) * 3 + '%', backgroundColor: '#FEC200' }"></div>
           <div class="star-count">{{ getStarCount(star) }}</div>
         </div>

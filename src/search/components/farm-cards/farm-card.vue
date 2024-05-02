@@ -13,13 +13,13 @@ export default {
 
 <template>
   <div class="searchSection" >
-    <input type="text" placeholder="Producto">
-    <input type="text" placeholder="Ubicación">
-    <button class="searchButton">Buscar</button>
+    <input type="text" placeholder="Product">
+    <input type="text" placeholder="Location">
+    <button class="searchButton">Search</button>
   </div>
 
   <div class="additionalCard">
-    <h2>Granjas destacadas: </h2>
+    <h2>Featured farms: </h2>
   </div>
 
   <div class="farmContainer"@click="redirectToDescription">
@@ -32,22 +32,22 @@ export default {
 
     <pv-card class="farmDetails">
       <template #content>
-        <h1 class="farmTitle">Granja Tsuneo</h1>
+        <h1 class="farmTitle">Farm Tsuneo</h1>
         <div class="locationContainer">
           <!--<img src="/../assets/location.png" alt="Ubicación" class="locationIcon">-->
 
           <p class="additionalInfo">Asia, Lima</p>
         </div>
-        <p class="details">Pollos</p>
+        <p class="details">Chickens</p>
         <p class="details">50 ha</p>
-        <p class="details">$293,000.000</p>
+        <p class="details">$293,000,000</p>
       </template>
     </pv-card>
 
     <div class="additionalDetails">
-      <p class="details">20 Establos</p>
-      <p class="details">20 Corrales</p>
-      <p class="details">Agua potable</p>
+      <p class="details">20 Stables</p>
+      <p class="details">20 Pens</p>
+      <p class="details">Drinking water</p>
     </div>
 
   </div>

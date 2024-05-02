@@ -1,10 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import SuccessModal from './success-modal.vue';
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
-import SuccessModal from "./success-modal.vue";
-import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
 
 const router = useRouter();
 const selectedEmployee = ref('');
@@ -29,7 +27,7 @@ const saveTask = () => {
     date: selectedDate.value,
     time: taskTime.value,
     description: taskDescription.value,
-    finished: 'Pendiente'
+    finished: 'Pending'
   };
 
   taskApi.createTask(newTask)
@@ -50,8 +48,8 @@ const closeModal = () => {
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
   <router-link to="/home" class="back-button">BACK</router-link>
+
   <div class="container">
     <h1>Task</h1>
 
@@ -80,7 +78,7 @@ const closeModal = () => {
         </option>
       </select>
     </div>
-<br>
+    <br>
 
     <div class="input-container">
       <textarea v-model="taskDescription" placeholder="Task description"></textarea>
@@ -92,10 +90,10 @@ const closeModal = () => {
       <button @click="saveTask" class="button-link save-button">Save</button>
       <router-link to="/tasks" class="button-link cancel-button">Cancel</router-link>
     </div>
-    <SuccessModal :show="showModal" @close="closeModal" />
+    <SuccessModal :show="showModal" @close="closeModal"/>
 
   </div>
-<footer-component></footer-component>
+
 </template>
 
 <style scoped>
@@ -114,15 +112,16 @@ const closeModal = () => {
 .back-button:hover {
   background-color: darkgreen;
 }
-.container-button{
+
+.container-button {
   margin-top: 160px;
 }
 
-.save-button, .cancel-button{
+.save-button, .cancel-button {
 
   background-color: #E9F3AE;
   color: black;
-  border: none ;
+  border: none;
   text-decoration: none;
   border-radius: 5px;
   margin-right: 16px;
@@ -130,28 +129,28 @@ const closeModal = () => {
   position: absolute;
 
 }
-.save-button{
+
+.save-button {
   padding: 0.35% 15px;
 }
-.cancel-button{
+
+.cancel-button {
   font-size: 13px;
   padding: 4px 15px;
 }
 
 
-
-
-h1{
+h1 {
   font-size: 70px;
   position: relative;
   top: -30px;
-  left:-50px;
-  margin:0;
-  color:darkgreen;
+  left: -50px;
+  margin: 0;
+  color: darkgreen;
 }
 
 .container {
-  margin-top:100px;
+  margin-top: 100px;
   margin-bottom: 50px; /* Agregar espacio en la parte inferior */
   display: flex;
   flex-direction: column;
@@ -159,10 +158,11 @@ h1{
   margin-left: 80px; /* Ajuste del margen izquierdo */
 
 }
+
 .row {
   display: flex;
   width: 30%;
-  margin-left:-80px
+  margin-left: -80px
 }
 
 .input-container {
@@ -174,10 +174,12 @@ h1{
   padding: 5px;
   display: flex;
 }
-select{
+
+select {
   border: 2px solid #000;
   border-radius: 5px;
 }
+
 .task-time-container {
   margin-right: 257px;
 }
@@ -197,7 +199,6 @@ textarea {
   border: 2px solid #000;
   border-radius: 5px;
 }
-
 
 
 .save-button:hover {
@@ -221,33 +222,32 @@ textarea {
 }
 
 
-
-.label1{
-  position:absolute;
+.label1 {
+  position: absolute;
   font-size: 15px;
   color: black;
   margin-top: 90px;
   margin-left: -370px;
 }
 
-.label2{
-  position:absolute;
+.label2 {
+  position: absolute;
   font-size: 15px;
   color: black;
   margin-top: 90px;
   margin-left: -9px;
 }
 
-.label3{
-  position:absolute;
+.label3 {
+  position: absolute;
   font-size: 15px;
   color: black;
   margin-top: 170px;
   margin-left: -320px;
 }
 
-.label4{
-  position:absolute;
+.label4 {
+  position: absolute;
   font-size: 15px;
   margin-top: 250px;
   margin-left: -360px;

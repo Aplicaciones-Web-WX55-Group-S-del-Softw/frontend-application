@@ -14,50 +14,49 @@ export default { name: 'contact-card',
   },
   methods: {
     onSubmit() {
-      alert('Contacto enviado');
+      alert('Contact sent');
     }
   }
 }
 </script>
-
 <template>
   <div class="div-contact">
     <div class="cardC rectangle">
       <div class="cardC">
         <div class="cardC-header">
-          <div class="cardC-title">¡Contáctanos hoy mismo y juntos hagamos crecer tu proyecto <span class="agricola">agrícola</span>!</div>
+          <div class="cardC-title">Contact us today and together let's make your <span class="agricola">agricultural</span> project grow!</div>
           <button class="whatsapp-button">
-            <a href="https://wa.me/+51914823480?text=Hola,%20me%20gustaría%20hacer%20una%20consulta." target="_blank">
+            <a href="https://wa.me/+51914823480?text=Hello,%20me%20would like to%20make%20a%20consultation." target="_blank">
               <img class="whatsapp-image" src="../../../assets/whatsapp.png" alt="WhatsApp" />
             </a>
           </button>
         </div>
         <div class="cardC-content">
           <form @submit.prevent="onSubmit" class="form-container">
-            <p class="small-text">o enviar un mensaje</p>
+            <p class="small-text">or send a message</p>
             <div class="input-row">
               <div class="input-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" v-model="form.nombre">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" v-model="form.name">
               </div>
               <div class="input-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" v-model="form.apellido">
+                <label for="last name">Last name</label>
+                <input type="text" id="lastname" name="lastname" v-model="form.lastname">
               </div>
             </div>
             <div class="input-group wide-input">
-              <label for="correo">Correo</label>
-              <input type="text" id="correo" name="correo" v-model="form.correo">
+              <label for="mail">Mail</label>
+              <input type="text" id="email" name="email" v-model="form.email">
             </div>
             <div class="input-group wide-input">
-              <label for="telefono">Telefono</label>
-              <input type="text" id="telefono" name="telefono" v-model="form.telefono">
+              <label for="telephone">Telephone</label>
+              <input type="text" id="telephone" name="telephone" v-model="form.telephone">
             </div>
             <div class="input-group wide-input">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" v-model="form.mensaje"></textarea>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" v-model="form.message"></textarea>
             </div>
-            <button type="submit" class="submit-button">Enviar</button>
+            <button type="submit" class="submit-button">Send</button>
           </form>
         </div>
       </div>
@@ -65,7 +64,6 @@ export default { name: 'contact-card',
   </div>
 
 </template>
-
 <style>
 .div-contact{
   margin-bottom: 60%;

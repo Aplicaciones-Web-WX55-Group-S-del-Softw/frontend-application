@@ -50,6 +50,8 @@ export default {
       </template>
     </pv-card>
   </div>
+  <br>
+  <br>
   <footer-component></footer-component>
 
 </template>

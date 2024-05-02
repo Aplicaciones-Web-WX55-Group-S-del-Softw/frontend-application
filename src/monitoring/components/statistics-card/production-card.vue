@@ -1,190 +1,182 @@
 <script>
-import { ProductionApi } from "../../services/production-api/production-api.js";
-
 export default {
-  data() {
-    return {
-      productions: [],
-      productionApi: new ProductionApi(),
-
-    };
-  },
-  created() {
-    this.productionApi.getProductions().then(response => {
-      this.productions = response.data;
-    }).catch(error => {
-      console.error(error);
-    });
-  }
-
-};
+  name: "statistics"
+}
 </script>
 
 <template>
-  <div>
-    <router-link to="/" class="back-button">go out</router-link>
-    <h1>SALES</h1>
-    <div class="card">
-      <img src="../../../assets/production-statistics.png" alt="Production">
-    </div>
+  <router-link to="/" class="back-button">Back</router-link>
+
+  <h1 class="text-center">Statistics</h1>
+
+  <div class="cards">
+    <pv-card class="mt-1">
+
+      <template #content>
+        <router-link to="/production/statistics" style="text-decoration: none;">
+          <h1 class="title-card">Production</h1>
+          <img src="../../../assets/production.png" alt="Production">
+        </router-link>
+      </template>
+    </pv-card>
+
+    <pv-card class="mt-2">
+      <template #content>
+        <router-link to="/finished/tasks" style="text-decoration: none;">
+          <h1 class="title-card">Task completed in record time</h1>
+          <p class="tasks">44 TASKS </p>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress" style="width: 60%;"></div>
+              <p class="sub-header">Pending tasks: 20</p>
+            </div>
+
+          </div>
+        </router-link>
+      </template>
+    </pv-card>
+    <pv-card class="mt-3">
+      <template #content>
+        <router-link to="/financial/statistics" style="text-decoration: none;">
+          <h1 class="title-card">Financial Statistics</h1>
+          <img src="../../../assets/income.png" alt="Income">
+        </router-link>
+
+      </template>
+    </pv-card>
   </div>
-  <h2>Sales Details</h2>
-  <div class="dropdown-container">
-    <div class="dropdown-item">
-      <h4>Product</h4>
-      <select v-model="selectedProduct">
-        <option value="milk">Milk</option>
-        <option value="meat">Meat</option>
-        <option value="butter">Butter</option>
 
-      </select>
-    </div>
-
-    <div class="dropdown-item">
-      <h4>Species</h4>
-      <select v-model="selectedSpecies">
-        <option value="chicken">Chicken</option>
-        <option value="cow">Cow</option>
-        <option value="sheep">Sheep</option>
-        <option value="pig">Pig</option>
-      </select>
-    </div>
-
-    <div class="dropdown-item">
-      <h4>Shed</h4>
-      <select v-model="selectedShed">
-        <option v-for="shed in 5" :key="shed" :value="shed">
-          {{ shed }}
-        </option>
-      </select>
-    </div>
-
-    <div class="dropdown-item">
-      <h4>Date</h4>
-      <input type="date" v-model="selectedDate">
-    </div>
-  </div>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Shed</th>
-      <th>Species</th>
-      <th>Date</th>
-      <th>Percentage</th>
-      <th>Amount</th>
-    </tr>
-    <tr v-for="production in productions" :key="production.id">
-      <td>{{ production.id }}</td>
-      <td>Shed {{ production.shed }}</td>
-      <td>{{ production.species }}</td>
-      <td>{{ production.date }}</td>
-      <td>{{ production.percentage }}</td>
-      <td>{{ production.amount}}</td>
-    </tr>
-    <tr class="empty-row">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
 </template>
 
-<style scoped>
-.card {
+<style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: darkgreen;
+}
+.cards {
+  display: grid;
+  grid-template-areas:
+    "mt-1 mt-2"
+    "mt-3 mt-3";
+  gap: 40px;
+  justify-content: center;
+  margin-left: 100px;
+}
+
+.mt-1 {
+  grid-area: mt-1;
+  margin-top: 50px;
+  width: 350px;
+  height: 300px;
   border-radius: 10px;
-  border: 2px solid gray;
+  border: 2px solid #4CAF50;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: -100px;
+}
+
+.mt-2 {
+  grid-area: mt-2;
+  margin-top: 50px;
+  width: 350px;
+  height: 300px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+}
+
+.mt-3 {
+  grid-area: mt-3;
+  margin-top: 50px;
+  width: 350px;
+  height: 300px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 90px;
+  margin-right: 100px;
+  position: relative;
+}
+.mt-1 img {
+  width: 280px;
+  height: 200px;
+}
+
+.mt-3 img {
+  width: 280px;
+  height: 220px;
+}
+
+.mt-2 p {
+  text-align:center;
+  margin-top: 10px;
+}
+
+.text-center {
+  color: darkgreen !important;
+  font-size: 50px;
+  margin-top: 180px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+
+.title-card {
+  color: darkgreen !important;
+  margin-top: -11px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+
+}
+
+.sub-header {
+  color: gray !important;
+  font-size: 20px;
+  margin-top: -10px;
+
+
+}
+
+.tasks {
+  color: black !important;
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 50px !important;
+}
+
+.progress-bar {
+
+  width: 80%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+}
+.progress-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  margin-left: 160px;
-  margin-top:50px;
-}
-h1{
-  font-size: 70px;
-  position: relative;
-  text-align: center;
-  top: 10px;
-  margin:0;
-  color:darkgreen;
-}
-h2{
-  font-size: 40px;
-  position: relative;
-  text-align: left;
-  top: 100px;
-  margin-left:160px;
-  color:darkgreen;
-}
-.card img {
-  width: 80%;
-  height: auto;
-  margin-left:150px;
-}
-.dropdown-container {
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  margin-top: 180px;
-  margin-left: 160px;
-  background-color: #e5e5e5;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  border: 2px solid black;
-}
-
-.dropdown-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dropdown-item h4 {
-  margin-bottom: 20px;
-}
-
-.dropdown-item select {
-  border: 2px solid #000;
-  border-radius: 5px;
-  width: 150px;
-}
-.dropdown-item input[type="date"] {
-  width: 150px;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-table {
-  width: 80%;
-  border-collapse: collapse;
-  border: 2px solid black;
-  margin-top: 100px;
-  margin-left:160px;
-}
-
-th {
-  border: 2px solid black;
-  padding: 8px;
-  text-align: center;
-}
-
-td {
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  padding-bottom: 20px;
-  text-align: center;
-  height: 10px;
-}
-.empty-row {
-  height: 100px;
-}
-.empty-row td {
-  border-bottom: 1px solid #000;
-  height: 20px;
 }
 
 </style>
