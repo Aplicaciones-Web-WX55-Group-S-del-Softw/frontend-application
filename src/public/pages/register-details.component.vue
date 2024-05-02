@@ -2,14 +2,17 @@
 import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "register-details",
-  components: {SaveButton, DetailIdebar, SearchBar}
+  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar}
 }
 </script>
 
 <template>
+  <toolbar-component/>
 
   <div class="flex-container">
     <DetailIdebar>
@@ -22,14 +25,16 @@ export default {
 
     </div>
     <div class="inputs-create">
-      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="350px" searchBarRight="550px"></SearchBar>
-      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="350px" searchBarRight="350px"></SearchBar>
+      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="450px" searchBarRight="550px"></SearchBar>
+      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="450px" searchBarRight="350px"></SearchBar>
     </div>
 
   </div>
 
   <router-link to = "/detailed-monitoring">
   </router-link>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>
@@ -38,7 +43,8 @@ h1{
   text-align: center;
 }
 .inputs-create{
-  margin-right:-200px;
+  margin-right:-450px;
+
 }
 .flex-container {
   display: flex;
@@ -54,14 +60,10 @@ h1{
   transform: translate(90px, 60px);
 }
 
-.title-color {
-  color: #44604D;
-
-}
 
 .small-title {
   color: #44604D;
   font-size: 1.6em;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 </style>

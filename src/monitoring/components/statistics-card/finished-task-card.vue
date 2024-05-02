@@ -1,7 +1,10 @@
 <script>
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 export default {
+  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       selectedDate: '',
@@ -68,8 +71,9 @@ export default {
 
 <template>
   <div>
-    <router-link to="/" class="back-button">go out</router-link>
+    <toolbar-component></toolbar-component>
 
+    <router-link to="/home" class="back-button">BACK</router-link>
     <h1>Tasks</h1>
 
     <div class="dropdown-container">
@@ -118,6 +122,8 @@ export default {
       </tbody>
     </table>
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 

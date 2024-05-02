@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 const selectedFinance = ref('');
 const showTable = ref(false);
@@ -9,9 +11,10 @@ const toggleTable = () => {
 };
 </script>
 <template>
-  <div>
-    <router-link to="/" class="back-button">go out</router-link>
+  <toolbar-component></toolbar-component>
 
+  <div>
+    <router-link to="/home" class="back-button">BACK</router-link>
     <h1>Financial Statistics</h1>
     <!--<h2 class="tittle-Summary">Summary</h2>-->
     <div class="boxes-container">
@@ -111,6 +114,8 @@ const toggleTable = () => {
       </tbody>
     </table>
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 

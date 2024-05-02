@@ -4,10 +4,12 @@ import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "list-animal",
-  components: {SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
+  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
   data() {
     return {
       animals: []
@@ -27,6 +29,8 @@ export default {
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
+
   <div class="flex-container">
 
     <div class="table-container">
@@ -72,6 +76,8 @@ export default {
     </div>
 
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>

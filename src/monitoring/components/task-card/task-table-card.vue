@@ -1,8 +1,11 @@
 <script>
 
 import {DashboardApi} from "../../../shared/service/dashboardapi.js";
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 export default {
+  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       tasks: [],
@@ -16,13 +19,18 @@ export default {
     }).catch(error => {
       console.error(error);
     });
+  },
+  cancel() {
+    this.$router.go(-1);
   }
 };
 </script>
 
 
 <template>
-  <router-link to="/" class="back-button">go out</router-link>
+  <toolbar-component></toolbar-component>
+
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="container">
     <h1>Task</h1>
@@ -53,6 +61,8 @@ export default {
       </table>
     </div>
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>

@@ -1,16 +1,21 @@
 <script>
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
+
 export default {
-  name: "statistics"
+  name: "statistics",
+  components: {FooterComponent, ToolbarComponent}
 }
 </script>
 
 <template>
-  <router-link to="/" class="back-button">go out</router-link>
+  <toolbar-component></toolbar-component>
 
+  <router-link to="/home" class="back-button">BACK</router-link>
   <h1 class="text-center">Statistics</h1>
 
   <div class="cards">
-    <pv-card class="mt-1">
+    <pv-card class="mt-1x">
 
       <template #content>
         <h1 class="title-card">Production</h1>
@@ -18,7 +23,7 @@ export default {
       </template>
     </pv-card>
 
-    <pv-card class="mt-2">
+    <pv-card class="mt-2x">
       <template #content>
         <router-link to="/finished/tasks" style="text-decoration: none;">
         <h1 class="title-card">Task completed in record time</h1>
@@ -34,7 +39,7 @@ export default {
         </router-link>
       </template>
     </pv-card>
-    <pv-card class="mt-3">
+    <pv-card class="mt-3x">
       <template #content>
         <router-link to="/financial/statistics" style="text-decoration: none;">
           <h1 class="title-card">Financial Statistics</h1>
@@ -44,6 +49,7 @@ export default {
       </template>
     </pv-card>
   </div>
+  <footer-component></footer-component>
 
 </template>
 
@@ -66,15 +72,16 @@ export default {
 .cards {
   display: grid;
   grid-template-areas:
-    "mt-1 mt-2"
-    "mt-3 mt-3";
+    "mt-1x mt-2x"
+    "mt-3x mt-3x";
   gap: 40px;
   justify-content: center;
   margin-left: 100px;
 }
 
-.mt-1 {
-  grid-area: mt-1;
+.mt-1x
+{
+  grid-area: mt-1x;
   margin-top: 50px;
   width: 350px;
   height: 300px;
@@ -84,8 +91,8 @@ export default {
   margin-left: -100px;
 }
 
-.mt-2 {
-  grid-area: mt-2;
+.mt-2x {
+  grid-area: mt-2x;
   margin-top: 50px;
   width: 350px;
   height: 300px;
@@ -95,8 +102,8 @@ export default {
   margin-left: 20px;
 }
 
-.mt-3 {
-  grid-area: mt-3;
+.mt-3x {
+  grid-area: mt-3x;
   margin-top: 50px;
   width: 350px;
   height: 300px;
@@ -107,17 +114,17 @@ export default {
   margin-right: 100px;
   position: relative;
 }
-.mt-1 img {
+.mt-1x img {
   width: 280px;
   height: 200px;
 }
 
-.mt-3 img {
+.mt-3x img {
   width: 280px;
   height: 220px;
 }
 
-.mt-2 p {
+.mt-2x p {
   text-align:center;
   margin-top: 10px;
 }
