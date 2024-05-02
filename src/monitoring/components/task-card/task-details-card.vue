@@ -64,6 +64,10 @@ export default {
         <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
         <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
+      <br>
+      <br>
+      <br>
+
     </div>
     <div v-else class="error-card">
       <p>⚠️ Task not found</p>
@@ -72,8 +76,9 @@ export default {
     <div v-if="showMessage" class="message">
       <p>The task has been marked as completed.</p>
     </div>
+
   </div>
-<footer-component/>
+
 </template>
 
 <style scoped>

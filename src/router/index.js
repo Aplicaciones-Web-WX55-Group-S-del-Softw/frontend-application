@@ -13,6 +13,8 @@ import statisticsCard from "../monitoring/components/statistics-card/statistics-
 import finishedTaskCard from "../monitoring/components/statistics-card/finished-task-card.vue";
 import FinancialCard from "../monitoring/components/statistics-card/financial-card.vue";
 import detailedMonitoringComponent from "../public/pages/detailed-monitoring.component.vue";
+import taskTableCard from "../monitoring/components/task-card/task-table-card.vue";
+import taskDetailsCard from "../monitoring/components/task-card/task-details-card.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -30,6 +32,7 @@ const router = createRouter({
         {path:'/finished/tasks',component:finishedTaskCard},
         {path:'/financial/statistics',component:FinancialCard},
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
+        {path:'/tasks/:id/details',component:taskDetailsCard},
 
     ]
 });

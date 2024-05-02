@@ -2,9 +2,10 @@
 
 import {DashboardApi} from "../../../shared/service/dashboardapi.js";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 export default {
-  components: {ToolbarComponent},
+  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       tasks: [],
