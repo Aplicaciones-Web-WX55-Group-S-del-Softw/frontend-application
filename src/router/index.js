@@ -19,6 +19,7 @@ import weatherCard from "../weather/components/weather-card.vue";
 import contactPage from "../social-interaction/pages/contact-page.vue";
 import listshedComponent from "../public/pages/listshed.component.vue";
 import emergencyComponent from "../monitoring/components/emergency-card/emergency.component.vue";
+import ProductionCard from "../monitoring/components/statistics-card/production-card.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -42,7 +43,7 @@ const router = createRouter({
         {path:'/farm/description',component:contactPage},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
-
+        { path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
 
 
 

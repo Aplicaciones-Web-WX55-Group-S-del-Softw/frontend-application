@@ -18,11 +18,12 @@ export default {
     <pv-card class="mt-1x">
 
       <template #content>
-        <h1 class="title-card">Production</h1>
-        <img src="../../../assets/production.png" alt="Producción">
+        <router-link to="/production/statistics" style="text-decoration: none;">
+          <h1 class="title-card">Production</h1>
+          <img src="../../../assets/production.png" alt="Producción">
+        </router-link>
       </template>
     </pv-card>
-
     <pv-card class="mt-2x">
       <template #content>
         <router-link to="/finished/tasks" style="text-decoration: none;">
