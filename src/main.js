@@ -37,10 +37,11 @@ import Toast            from "primevue/toast";
 
 // Router
 import router from "./router/index.js";
+import i18n from "./i18n.js";
 
 const app = createApp(App)
-
-
+createApp(App).use(router).mount('#app');
+app.use(router)
     .use(PrimeVue, { ripple: true})
     .use(ConfirmationService)
     .use(DialogService)

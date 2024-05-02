@@ -1,7 +1,7 @@
 <script>
-  export default {
-    name: "farm-card"
-  }
+export default {
+  name: "farm-card"
+}
 
 </script>
 
@@ -28,8 +28,9 @@
       <template #content>
         <h1 class="cardF-title2">Farm Tsuneo</h1>
         <div class="location-container">
-          <img src="../../../assets/location.png" alt="Location" class="location-icon">
-          <p class="location">Asia, Lima</p>
+          <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
+
+          <p class="additional">Asia, Lima</p>
         </div>
         <p class="details">Chicken</p>
         <p class="details">50 ha</p>
@@ -43,9 +44,7 @@
       <p class="details">Water potable</p>
     </div>
 
-
   </div>
-
 
 </template>
 
@@ -56,12 +55,12 @@
   margin-left: 200px;
 }
 
-
 .section-search{
+  margin-top: 80px;
   display: flex;
   padding: 40px;
   justify-content: center;
-  gap: 120px;
+  gap: 80px;
 }
 
 
@@ -115,13 +114,14 @@ h1{
 }
 
 .section-search button {
-  padding: 10px 20px;
+  padding: 10px 1px;
   border: none;
   border-radius: 8px;
   background-color: #45BF6C;
   color: white;
   font-size: 16px;
   cursor: pointer;
+  margin-top: -5px; /* Ajusta este valor según sea necesario */
 }
 
 .section-search button:hover {
@@ -136,6 +136,7 @@ h1{
   margin-top: 450px;
   display: flex;
   justify-content: center;
+  margin-left:34%;
 }
 
 
@@ -145,6 +146,7 @@ h1{
   margin-top: -25px;
   margin-left: -10px;
   font-size: 26px;
+  margin-bottom:3px
 }
 
 .location-container {
@@ -178,12 +180,11 @@ h1{
 }
 
 .additional-details {
-  position: relative;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin-top: -40px;
-  transform: translateX(-305px);
+  transform: translateX(-300px);
   padding:10px
 }
 
@@ -197,18 +198,20 @@ h1{
 }
 
 .img-farm1 {
-  width: 295px;
-  height: 200px;
+  width: 291px;
+  height: 210px;
   object-fit: cover;
   object-position: top;
-  margin-top: -55px;
+  margin-top: -32px;
   margin-left: -15px;
+  border-radius: 10px; /* Ajusta el valor según el grado de curvatura que desees */
+
 }
 
 .mt-2{
-  margin-top: -370px;
+  margin-top: -400px;
   width: 295px;
-  height: 240px;
+  height: 280px;
   margin-left: -200px;
 }
 
@@ -216,14 +219,14 @@ h1{
   text-align: left;
   font-size: 14px;
   margin-top: 10px;
+  margin-left:-10px
 }
 
 .mt-3 {
   margin-top: -195px;
   width: 295px;
   height: 195px;
-  border: 1px solid gray;
+  border: 0px solid gray; /* Elimina el borde */
   margin-left: -294px;
 }
-
 </style>

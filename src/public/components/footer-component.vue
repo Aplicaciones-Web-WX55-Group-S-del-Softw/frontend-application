@@ -8,7 +8,9 @@ const Component = defineComponent({
 </script>
 
 <template>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <div class="footer">
       <div class="text">
         <p>Follow us on our social networks:</p>
@@ -17,7 +19,6 @@ const Component = defineComponent({
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-        <br/>
 
         <p>&copy; 2024 FarmLogiTech. All rights reserved.</p>
         <p>
@@ -29,15 +30,23 @@ const Component = defineComponent({
 
 <style scoped>
 
+
+
+
+
+
+
+
 .footer {
   background-color: #276749;
-  padding-top: 10px;
-  padding-bottom: 2rem;
+  padding: 10px 10px; /* Elimina el relleno vertical y deja el relleno horizontal en 0 */
   text-align: center;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  margin-top: 60px;
-}
 
+}
 .text {
   color: white;
   font-size: 15px;

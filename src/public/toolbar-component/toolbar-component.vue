@@ -7,16 +7,16 @@ export default {
 <template>
   <header id="header">
     <div class="logo">
-      <img class="img" src="../../assets/img-logo.png">
+      <img class="img" src="../../assets/img-logo.png" alt="">
       <p>FarmLogiTech</p>
     </div>
     <nav id="menu" style="margin-top: 10px;">
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="#">Rates</a></li>
         <li class="button-container"><button class="ad-button">Publish your ad</button></li>
         <li><a href="#">Collaborator</a></li>
-        <li><a href="#">Enter</a></li>
+        <li><a href="/monitoring">Enter</a></li>
       </ul>
     </nav>
   </header>
@@ -24,6 +24,8 @@ export default {
 
 <style>
 #header {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100px;
   background-color: #276749;
@@ -33,8 +35,9 @@ export default {
   align-items: center;
   font-family: Arial, sans-serif;
   gap: 8px;
+  margin: 0;
+  padding: 0;
 }
-
 .logo {
   display: flex;
   align-items: center;
@@ -52,10 +55,9 @@ export default {
 }
 
 #menu {
-  width: 50%;
+  width: 40%;
   font-size: 15px;
-  display: flex;
-  align-items: center;
+
 }
 
 #menu ul {
@@ -67,18 +69,16 @@ export default {
   align-items: center;
 }
 
-#menu ul li {
-  margin: 0 15px;
-}
+
 
 #menu ul li a {
   color: white;
   text-decoration: none;
-  padding: 20px;
+  padding: 10px;
 }
 
 .ad-button {
-  min-width: 200px;
+  min-width: 150px;
   justify-content: center;
   background-color: #45BF6C;
   color: white;
@@ -88,7 +88,7 @@ export default {
   box-sizing: border-box;
   display: flex;
   position: relative;
-  padding: 10px;
+  padding: 5px;
   font-size: 18px;
   white-space: nowrap;
 
