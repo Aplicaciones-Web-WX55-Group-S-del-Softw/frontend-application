@@ -2,14 +2,17 @@
 import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "register-details",
-  components: {SaveButton, DetailIdebar, SearchBar}
+  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar}
 }
 </script>
 
 <template>
+  <toolbar-component/>
 
   <div class="flex-container">
     <DetailIdebar>
@@ -30,6 +33,8 @@ export default {
 
   <router-link to = "/detailed-monitoring">
   </router-link>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>

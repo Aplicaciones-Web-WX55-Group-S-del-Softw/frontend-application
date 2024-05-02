@@ -3,14 +3,18 @@ import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "add-animals",
-  components: {SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent}
+  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent}
 }
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
+
   <div class="flex-container">
     <DetailIdebar>
       <template v-slot:title>
@@ -29,6 +33,8 @@ export default {
     <router-link to = "/register-details">
     </router-link>
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>

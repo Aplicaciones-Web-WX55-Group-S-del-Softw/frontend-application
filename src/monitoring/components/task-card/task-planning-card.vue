@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
 import SuccessModal from "./success-modal.vue";
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 const router = useRouter();
 const selectedEmployee = ref('');
@@ -48,8 +50,8 @@ const closeModal = () => {
 </script>
 
 <template>
-  <router-link to="/" class="back-button">go out</router-link>
-
+  <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
   <div class="container">
     <h1>Task</h1>
 
@@ -93,7 +95,7 @@ const closeModal = () => {
     <SuccessModal :show="showModal" @close="closeModal" />
 
   </div>
-
+<footer-component></footer-component>
 </template>
 
 <style scoped>

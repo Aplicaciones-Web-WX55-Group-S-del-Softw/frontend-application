@@ -4,10 +4,12 @@ import DetailIdebar from "../components/detail-idebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
+import FooterComponent from "../components/footer-component.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 
 export default {
   name: "list-crop",
-  components: {SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
+  components: {ToolbarComponent, FooterComponent, SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
   data() {
     return {
       crops: []
@@ -26,6 +28,8 @@ export default {
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
+
   <div class="flex-container">
 
     <div class="table-container">
@@ -68,6 +72,8 @@ export default {
     </div>
 
   </div>
+  <footer-component></footer-component>
+
 </template>
 
 <style scoped>

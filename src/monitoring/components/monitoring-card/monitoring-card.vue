@@ -1,52 +1,59 @@
 <script>
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
+
 export default {
-  name: "monitoring-card"
+  name: "monitoring-card",
+  components: {FooterComponent, ToolbarComponent}
 }
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
 
-  <div class ="container">
-    <router-link to="/" class="back-button">go out</router-link>
-    <div class="center-container">
+  <div class ="monitoring_containerX">
+    <router-link to="/home" class="monitoring_back-button">BACK</router-link>
+    <div class="monitoring_center-container">
 
-      <div class="monitoring-cards-container">
-        <div class="monitoring-card">
-          <div class = "task-container">
+      <div class="monitoring_monitoring-cards-container">
+        <div class="monitoring_monitoring-card">
+          <div class = "monitoring_task-container">
             <router-link to="/tasks">
-              <img class="task-img" src="../../../assets/task.png" alt="Tareas">
+              <img class="monitoring_task-img" src="../../../assets/task.png" alt="Tareas">
             </router-link>
-            <h2>Tasks</h2>          </div>
+            <h2>Tasks</h2>
+          </div>
         </div>
-        <div class="monitoring-card">
-          <div class = "employee-container">
+        <div class="monitoring_monitoring-card">
+          <div class = "monitoring_employee-container">
             <router-link to="/tasks/new">
-              <img class="employee-img" src="../../../assets/employee.png" alt="empleados">
+              <img class="monitoring_employee-img" src="../../../assets/employee.png" alt="empleados">
             </router-link>
             <h2>Employees</h2>
           </div>
         </div>
 
-        <div class="monitoring-card">
-          <div class="statistics-container">
+        <div class="monitoring_monitoring-card">
+          <div class="monitoring_statistics-container">
             <router-link to="/statistics">
-              <img class="statistics-img" src="../../../assets/statistics.png" alt="Estadísticas">
+              <img class="monitoring_statistics-img" src="../../../assets/statistics.png" alt="Estadísticas">
             </router-link>
-            <h2>Statistics</h2>          </div>
+            <h2>Statistics</h2>
+          </div>
         </div>
       </div>
-      <div class="emergency-cards-container">
-        <div class="emergency-card">
-          <div class="emergency-container">
-            <img class="emergency-img" src="../../../assets/emergency.png" alt="Emergencia">
+      <div class="monitoring_emergency-cards-container">
+        <div class="monitoring_emergency-card">
+          <div class="monitoring_emergency-container">
+            <img class="monitoring_emergency-img" src="../../../assets/emergency.png" alt="Emergencia">
             <h2>Emergency</h2>
           </div>
         </div>
 
 
-        <div class="emergency-card">
-          <div class="inventory-container">
-            <img class="inventory-img" src="../../../assets/inventory.png" alt="Inventario">
+        <div class="monitoring_emergency-card">
+          <div class="monitoring_inventory-container">
+            <img class="monitoring_inventory-img" src="../../../assets/inventory.png" alt="Inventario">
             <h2>Inventory</h2>
           </div>
         </div>
@@ -54,12 +61,12 @@ export default {
     </div>
   </div>
 
-
+  <footer-component></footer-component>
 </template>
 
 
 <style >
-.back-button {
+.monitoring_back-button {
   display: inline-block;
   padding: 10px 20px;
   background-color: darkgreen;
@@ -71,12 +78,12 @@ export default {
   transition: background-color 0.3s;
 }
 
-.back-button:hover {
+.monitoring_back-button:hover {
   background-color: darkgreen;
 }
 
 
-.center-container {
+.monitoring_center-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,14 +91,14 @@ export default {
   margin-bottom: 60px;
 }
 
-.monitoring-cards-container {
+.monitoring_monitoring-cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
   justify-items: center;
 
 }
-.emergency-cards-container {
+.monitoring_emergency-cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 50px;
@@ -99,7 +106,7 @@ export default {
   margin-top: 100px;
 
 }
-.monitoring-card {
+.monitoring_monitoring-card {
   height: 100px;
   margin: 10px;
   padding: 5px;
@@ -109,16 +116,16 @@ export default {
   align-items: center;
 
 }
-.monitoring-card router-link {
+.monitoring_monitoring-card router-link {
   text-decoration: none;
 }
 
-.monitoring-card img:hover {
+.monitoring_monitoring-card img:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
 
-.emergency-card {
+.monitoring_emergency-card {
   height: 100px;
   margin: 10px;
   padding: 5px;
@@ -128,44 +135,44 @@ export default {
   align-items: center;
 
 }
-.emergency-card router-link {
+.monitoring_emergency-card router-link {
   text-decoration: none;
 }
 
-.emergency-card img:hover {
+.monitoring_emergency-card img:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
 
-.emergency-card .emergency-container  {
+.monitoring_emergency-card .monitoring_emergency-container  {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.emergency-card .inventory-container {
+.monitoring_emergency-card .monitoring_inventory-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.monitoring-card .statistics-container {
+.monitoring_monitoring-card .monitoring_statistics-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.monitoring-card .task-container {
+.monitoring_monitoring-card .monitoring_task-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.emergency-card .emergency-img {
+.monitoring_emergency-card .monitoring_emergency-img {
   width: 165px;
   height: 170px;
   max-height: none;
@@ -173,7 +180,7 @@ export default {
 
 }
 
-.monitoring-card .statistics-img{
+.monitoring_monitoring-card .monitoring_statistics-img{
   width: 175px;
   height: 130px;
   max-height: none;
@@ -181,14 +188,14 @@ export default {
   align-items: center;
 }
 
-.emergency-card .inventory-img {
+.monitoring_emergency-card .monitoring_inventory-img {
   width: 100px;
   height: 90px;
   max-height: none;
   margin-top: 0;
 }
 
-.monitoring-card .task-img {
+.monitoring_monitoring-card .monitoring_task-img {
   width: 135px;
   height: 125px;
   max-height: none;
@@ -196,7 +203,7 @@ export default {
   margin-left: 20px;
 }
 
-.monitoring-card .employee-img {
+.monitoring_monitoring-card .monitoring_employee-img {
   width: 100px;
   height: 100px;
   max-height: none;
@@ -204,24 +211,22 @@ export default {
   margin-left: 10px;
 }
 
-.statistics-container h2 {
+.monitoring_statistics-container h2 {
   text-align: center;
   margin-top: -5px;
 
 }
 
-.emergency-container h2 {
+.monitoring_emergency-container h2 {
   margin-top: -20px;
 }
 
-.inventory-container h2 {
+.monitoring_inventory-container h2 {
   margin-top: 20px;
 }
 
-.task-container h2 {
+.monitoring_task-container h2 {
   margin-top: -1px;
 }
-
-
 
 </style>

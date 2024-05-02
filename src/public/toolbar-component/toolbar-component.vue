@@ -15,7 +15,7 @@ export default {
         <li><a href="/home">Home</a></li>
         <li><a href="#">Rates</a></li>
         <li class="button-container"><button class="ad-button">Publish your ad</button></li>
-        <li><a href="#">Collaborator</a></li>
+        <li><a href="/detail/monitoring">Collaborator</a></li>
         <li><a href="/monitoring">Enter</a></li>
       </ul>
     </nav>
@@ -24,6 +24,8 @@ export default {
 
 <style>
 #header {
+    margin-bottom: 10px;
+
   top: 0;
   left: 0;
   width: 100%;
@@ -35,7 +37,6 @@ export default {
   align-items: center;
   font-family: Arial, sans-serif;
   gap: 8px;
-  margin: 0;
   padding: 0;
 }
 .logo {

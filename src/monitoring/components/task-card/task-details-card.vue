@@ -2,8 +2,11 @@
 import { useRoute, useRouter } from 'vue-router';
 
 import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 
 export default {
+  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       tasks: null,
@@ -45,8 +48,8 @@ export default {
 </script>
 
 <template>
-  <router-link to="/" class="back-button">go out</router-link>
-
+  <toolbar-component/>
+  <router-link to="/home" class="back-button">BACK</router-link>
   <div class="container">
     <div v-if="tasks">
       <h1>Task {{task.id}}</h1>
@@ -70,7 +73,7 @@ export default {
       <p>The task has been marked as completed.</p>
     </div>
   </div>
-
+<footer-component/>
 </template>
 
 <style scoped>
