@@ -111,7 +111,7 @@ h2 {
 }
 
 .header-style {
-  color: #44604D;
+  color:darkgreen !important;
   font-size: 1.5em;
 }
 

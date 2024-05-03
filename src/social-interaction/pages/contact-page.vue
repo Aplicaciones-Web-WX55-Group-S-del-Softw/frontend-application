@@ -17,13 +17,14 @@ export default {
 
 <template>
   <toolbar-component></toolbar-component>
+  <router-link to="/home" class="back-button">BACK</router-link>
 
   <description-card/>
 <farm-description-card></farm-description-card>
   <star-rating/>
   <contact-card/>
   <br>
-  <footer-component></footer-component>/
+  <footer-component></footer-component>
 
 </template>
 

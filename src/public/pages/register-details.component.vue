@@ -21,16 +21,30 @@ export default {
 
     <div class="background-color">
 
-      <h1 class="small-title">Create Shed</h1>
+      <h1 class="small-title">CREATE SHED</h1>
+      <div style="text-align: center;">
+        <div style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+          <label for="shed-type" style="display: block; margin-bottom: 5px;">Shed Type:</label>
+          <select id="shed-type" name="shed-type" style="width: 100%; margin-bottom: 10px;">
+            <option value="Animals">Animals</option>
+            <option value="Crops">Crops</option>
+          </select><br>
+
+          <label for="type" style="display: block; margin-bottom: 5px;">Type:</label>
+          <select id="type" name="type" style="width: 100%; margin-bottom: 10px;">
+            <option value="Chicken">Chicken</option>
+            <option value="Pig">Pig</option>
+            <option value="Cow">Cow</option>
+          </select><br>
+        </div>
+      </div>
+
       <router-link to = "/home">
         <SaveButton/>
       </router-link>
 
     </div>
-    <div class="inputs-create">
-      <SearchBar smallText="Shed Type" :options="['Animals', 'Crops']" searchBarTop="450px" searchBarRight="300px"></SearchBar>
-      <SearchBar smallText="Type" :options="['Chicken', 'Pig', 'Cow']" searchBarTop="450px" searchBarRight="500px"></SearchBar>
-    </div>
+
 
   </div>
 
@@ -53,7 +67,7 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left:-150px;
+  margin-left:250px;
 
 
 }
@@ -63,14 +77,13 @@ h1{
   height: 460px;
   width: 700px;
   margin: -340px;
-  transform: translate(90px, 60px);
+  transform: translate(90px, 40px);
 }
 
 
 .small-title {
-  color: #44604D;
-  margin-left:-50px;
-  font-size: 1.6em;
+  color:darkgreen !important;
+  margin-left:-15px;
   margin-top: 30px;
 }
 </style>

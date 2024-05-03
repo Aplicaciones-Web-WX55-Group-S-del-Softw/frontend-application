@@ -16,7 +16,7 @@ export default {
     }
   },
   created() {
-    axios.get('server/db.json')
+    axios.get('../server/db.json')
         .then(response => {
           this.sheds = response.data.sheds;
         })
@@ -41,25 +41,23 @@ export default {
 
       <div class="background-color">
         <h1 class="title-color">SHED LIST</h1>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Species</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="shed in sheds">
+            <td>{{ shed.id }}</td>
+            <td>{{ shed.type }}</td>
+            <td>{{ shed.species }}</td>
+          </tr>
+          </tbody>
+        </table>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Type</th>
-              <th>Species</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="shed in sheds">
-              <td>{{ shed.id }}</td>
-              <td>{{ shed.type }}</td>
-              <td>{{ shed.species }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
         <router-link to = "/home">
           <SaveButton/>
         </router-link>
@@ -85,7 +83,7 @@ export default {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 520px);
+  transform: translate(90px, 490px);
   width: 700px;
   height: 460px;
 }
@@ -109,6 +107,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
+  margin-top:20%
 }
 
 th, td {
@@ -128,8 +127,8 @@ th {
   color: black;
 }
 .title-color {
-  color: #44604D;
-  margin-left:40%;
+  color:darkgreen !important;
+  margin-left:37%;
   margin-bottom:-100px;
 }
 </style>

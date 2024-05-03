@@ -33,7 +33,7 @@ export default {
   methods: {
     finishTask() {
       if (this.task) {
-        this.task.finished = "Finalizado";
+        this.task.finished = "Finished";
         this.showMessage = true;
         setTimeout(() => {
           this.showMessage = false;
@@ -61,7 +61,7 @@ export default {
 
       </div>
       <div class="button">
-        <button v-if="task.finished === 'Pendiente'" @click="finishTask" class="finish-button">Finish homework</button>
+        <button v-if="task.finished === 'Pending'" @click="finishTask" class="finish-button">Finish homework</button>
         <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
       <br>
@@ -73,12 +73,12 @@ export default {
       <p>⚠️ Task not found</p>
       <button @click="cancel" class="return-button">Go back</button>
     </div>
-    <div v-if="showMessage" class="message">
-      <p>The task has been marked as completed.</p>
-    </div>
+
 
   </div>
-
+  <div v-if="showMessage" class="message">
+    <p>The task has been marked as completed.</p>
+  </div>
 </template>
 
 <style scoped>
@@ -147,7 +147,7 @@ h1{
   cursor: pointer;
   font-size: 16px;
   margin-top: 50px;
-  margin-left: 180px;
+  margin-left: 150px;
 }
 
 .return-button {
@@ -172,6 +172,8 @@ h1{
   width: 30%;
   height: 190px;
   margin-top: 100px;
+  margin-bottom: 400px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

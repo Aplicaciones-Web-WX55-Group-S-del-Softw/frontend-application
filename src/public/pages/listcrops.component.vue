@@ -16,7 +16,7 @@ export default {
     }
   },
   created() {
-    axios.get('server/db.json')
+    axios.get('../server/db.json')
         .then(response => {
           this.crops = response.data.crops;
         })
@@ -41,33 +41,32 @@ export default {
 
 
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="150px" searchBarRight="275px"></SearchBar>
         <h1 class="title-color">CROP INVENTORY</h1>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Shed</th>
-              <th>Type</th>
-              <th>Planting Date</th>
-              <th>Quantity</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="crop in crops" :key="crop.id">
-              <td>{{ crop.id }}</td>
-              <td>{{ crop.id_shed }}</td>
-              <td>{{ crop.type }}</td>
-              <td>{{ crop.addition_date }}</td>
-              <td>{{ crop.numbers }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Shed</th>
+            <th>Type</th>
+            <th>Planting Date</th>
+            <th>Quantity</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="crop in crops" :key="crop.id">
+            <td>{{ crop.id }}</td>
+            <td>{{ crop.id_shed }}</td>
+            <td>{{ crop.type }}</td>
+            <td>{{ crop.addition_date }}</td>
+            <td>{{ crop.numbers }}</td>
+          </tr>
+          </tbody>
+        </table>
+
         <router-link to = "/home">
           <SaveButton/>
         </router-link>
+
       </div>
 
     </div>
@@ -93,7 +92,7 @@ export default {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 520px);
+  transform: translate(90px, 490px);
   width: 700px;
   height: 480px;
 }
@@ -109,7 +108,7 @@ export default {
   width: 340px;
   height: 800px;
   overflow: auto;
-  transform: translate(160px, 120px);
+  transform: translate(160px, 50px);
 }
 
 table {
@@ -134,8 +133,8 @@ th {
   color: black;
 }
 .title-color {
-  color: #44604D;
-  margin-left:25%;
+  color:darkgreen !important;
+  margin-left:30%;
 
 }
 </style>

@@ -22,7 +22,7 @@ export default {
         this.tasks = response.data.filter(task =>
             task.date === this.selectedDate &&
             task.employee === this.selectedEmployee &&
-            task.finished === "Pendiente"
+            task.finished === "Pending"
         );
 
         if (this.tasks.length === 0) {
@@ -40,7 +40,7 @@ export default {
         this.tasks = response.data.filter(task =>
             task.date === this.selectedDate &&
             task.employee === this.selectedEmployee &&
-            task.finished === "Finalizado"
+            task.finished === "Finished"
         );
 
         if (this.tasks.length === 0) {
@@ -77,6 +77,7 @@ export default {
     <h1>Tasks</h1>
 
     <div class="dropdown-container">
+
       <div class="dropdown-item">
         <h4>Employee:</h4>
         <select v-model="selectedEmployee">
@@ -93,13 +94,13 @@ export default {
 
     <button @click="fetchTasks">Show Pending Tasks</button>
     <button @click="fetchFinishedTasks">Show Completed Tasks</button>
-
     <div v-if="showMessage" class="modal">
       <div class="modal-content">
         <span class="close-button" @click="closeModal">&times;</span>
         <p><span class="warning">⚠️</span> Task not found</p>
       </div>
     </div>
+
 
     <table v-if="tasks.length > 0">
       <thead>
@@ -122,6 +123,11 @@ export default {
       </tbody>
     </table>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
   <br>
   <footer-component></footer-component>
@@ -148,11 +154,11 @@ export default {
 h1{
   font-size: 70px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 40px;
   color: darkgreen;
 }
 .dropdown-container {
-  max-width: 1300px;
+  max-width: 1500px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -217,10 +223,11 @@ button:hover {
 }
 
 .modal-content {
+  margin-bottom:-50px;
+
   background-color: #ee9090;
   border: 2px solid #640000;
   border-radius: 10px;
-  margin: 15% auto;
   padding: 20px;
   width: 80%;
 }

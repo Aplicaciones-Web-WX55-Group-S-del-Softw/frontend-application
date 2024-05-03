@@ -8,38 +8,38 @@ export default { name: "farm-description-card",
 
 
 <template>
-<div>
+  <div>
 
-  <div class="cardF">
+    <div class="cardF">
 
-    <pv-card class="mt-2">
-      <template #content>
-        <img class="img-farm1" src="../../../assets/img-granja1.jpg" alt="Farm">
-      </template>
-    </pv-card>
+      <pv-card class="mt-2">
+        <template #content>
+          <img class="img-farm1" src="../../../assets/img-granja1.jpg" alt="Farm">
+        </template>
+      </pv-card>
 
-    <pv-card class="mt-3">
-      <template #content>
-        <h1 class="cardF-title2">Farm Tsuneo</h1>
-        <div class="location-container">
-          <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
+      <pv-card class="mt-3">
+        <template #content>
+          <h1 class="cardF-title2">Farm Tsuneo</h1>
+          <div class="location-container">
+            <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
 
-          <p class="additional">Asia, Lima</p>
-        </div>
-        <p class="details">Chicken</p>
-        <p class="details">50 ha</p>
-        <p class="details">$/293,000.000</p>
-      </template>
-    </pv-card>
+            <p class="additional">Asia, Lima</p>
+          </div>
+          <p class="details">Chicken</p>
+          <p class="details">50 ha</p>
+          <p class="details">$/293,000.000</p>
+        </template>
+      </pv-card>
 
-    <div class="additional-details">
-      <p class="details">20   Barns</p>
-      <p class="details">20 Corrals</p>
-      <p class="details">Water potable</p>
+      <div class="additional-details">
+        <p class="details">20   Barns</p>
+        <p class="details">20 Corrals</p>
+        <p class="details">Water potable</p>
+      </div>
+
     </div>
-
   </div>
-</div>
 
 
 </template>
@@ -130,7 +130,7 @@ h1{
 .cardF {
   margin-top: 0px;
   display: flex;
-margin-left:30%;
+  margin-left:30%;
 }
 
 

@@ -16,7 +16,7 @@ export default {
     }
   },
   created() {
-    axios.get('server/db.json')
+    axios.get('../server/db.json')
         .then(response => {
           this.crops = response.data.crops;
         })
@@ -39,33 +39,26 @@ export default {
         </template>
       </DetailIdebar>
       <div class="background-color">
-        <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="150px" searchBarRight="275px"></SearchBar>
         <router-link to = "/home">
           <SaveButton/>
         </router-link>
-        <h1 class="title-color">CROP REGISTRATION</h1>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Shed</th>
-              <th>Type</th>
-              <th>Planting Date</th>
-              <th>Quantity</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="crop in crops" :key="crop.id">
-              <td>{{ crop.id }}</td>
-              <td>{{ crop.id_shed }}</td>
-              <td>{{ crop.type }}</td>
-              <td>{{ crop.addition_date }}</td>
-              <td>{{ crop.numbers }}</td>
-            </tr>
-            </tbody>
-          </table>
+        <h1 class="title-color">CROP REGISTRATION</h1>
+        <!-- Inputs -->
+        <div style="text-align: center;">
+          <div style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+            <label for="shed" style="display: block; margin-bottom: 5px;">Shed:</label>
+            <input type="text" id="shed" name="shed" style="width: 100%; margin-bottom: 10px;"><br>
+
+            <label for="type" style="display: block; margin-bottom: 5px;">Type:</label>
+            <input type="text" id="type" name="type" style="width: 100%; margin-bottom: 10px;"><br>
+
+            <label for="planting-date" style="display: block; margin-bottom: 5px;">Planting Date:</label>
+            <input type="date" id="planting-date" name="planting-date" style="width: 100%; margin-bottom: 10px;"><br>
+
+            <label for="quantity" style="display: block; margin-bottom: 5px;">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" style="width: 100%; margin-bottom: 10px;"><br>
+          </div>
         </div>
       </div>
     </div>
@@ -89,7 +82,7 @@ export default {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 520px);
+  transform: translate(90px, 490px);
   width: 700px;
   height: 480px;
 
@@ -141,7 +134,7 @@ th {
   color: black;
 }
 .title-color {
-  color: #44604D;
+  color:darkgreen !important;
   margin-left:25%;
 
 }

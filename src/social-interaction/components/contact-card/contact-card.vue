@@ -14,50 +14,49 @@ export default { name: 'contact-card',
   },
   methods: {
     onSubmit() {
-      alert('Contacto enviado');
+      alert('Contact sent');
     }
   }
 }
 </script>
-
 <template>
   <div class="div-contact">
     <div class="cardC rectangle">
       <div class="cardC">
         <div class="cardC-header">
-          <div class="cardC-title">¡Contáctanos hoy mismo y juntos hagamos crecer tu proyecto <span class="agricola">agrícola</span>!</div>
+          <div class="cardC-title">Contact us today and together let's make your <span class="agricola">agricultural</span> project grow!</div>
           <button class="whatsapp-button">
-            <a href="https://wa.me/+51914823480?text=Hola,%20me%20gustaría%20hacer%20una%20consulta." target="_blank">
+            <a href="https://wa.me/+51914823480?text=Hello,%20me%20would like to%20make%20a%20consultation." target="_blank">
               <img class="whatsapp-image" src="../../../assets/whatsapp.png" alt="WhatsApp" />
             </a>
           </button>
         </div>
         <div class="cardC-content">
           <form @submit.prevent="onSubmit" class="form-container">
-            <p class="small-text">o enviar un mensaje</p>
+            <p class="small-text">or send a message</p>
             <div class="input-row">
               <div class="input-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" v-model="form.nombre">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" v-model="form.name">
               </div>
               <div class="input-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" v-model="form.apellido">
+                <label for="last name">Last name</label>
+                <input type="text" id="lastname" name="lastname" v-model="form.lastname">
               </div>
             </div>
             <div class="input-group wide-input">
-              <label for="correo">Correo</label>
-              <input type="text" id="correo" name="correo" v-model="form.correo">
+              <label for="mail">Mail</label>
+              <input type="text" id="email" name="email" v-model="form.email">
             </div>
             <div class="input-group wide-input">
-              <label for="telefono">Telefono</label>
-              <input type="text" id="telefono" name="telefono" v-model="form.telefono">
+              <label for="telephone">Telephone</label>
+              <input type="text" id="telephone" name="telephone" v-model="form.telephone">
             </div>
             <div class="input-group wide-input">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" v-model="form.mensaje"></textarea>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" v-model="form.message"></textarea>
             </div>
-            <button type="submit" class="submit-button">Enviar</button>
+            <button type="submit" class="submit-button">Send</button>
           </form>
         </div>
       </div>
@@ -65,7 +64,6 @@ export default { name: 'contact-card',
   </div>
 
 </template>
-
 <style>
 .div-contact{
   margin-bottom: 60%;
@@ -75,7 +73,7 @@ export default { name: 'contact-card',
   height: 620px;
   background-color: #EFEFEF;
   position: absolute;
-  top: 205%;
+  top: 220%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -83,12 +81,13 @@ export default { name: 'contact-card',
 .cardC-title {
   font-size: 1.6em;
   font-weight: bold;
-  margin-left: 30px;
   margin-top: 20px;
+  text-align: center; /* Centra el texto horizontalmente */
+
 }
 
 .agricola {
-  color: #44604D;
+  color: #278f4a;
 }
 
 .input-row {
@@ -170,20 +169,17 @@ export default { name: 'contact-card',
   height: 43px; /* Ajusta este valor para cambiar la altura de la imagen */
   margin-left: 30px; /* Ajusta este valor para mover la imagen más a la derecha */
   margin-top: 20px; /* Ajusta este valor para mover la imagen más abajo */
+  border-radius: 5px; /* Establece el radio del borde para que sea redondeado */
+
 }
 
 .whatsapp-button {
   background: none;
   border: none;
-  padding: 0;
   cursor: pointer;
+  margin-left:40px;
 }
 
-@keyframes shrink {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.9); }
-  100% { transform: scale(1); }
-}
 
 .whatsapp-button:active {
   animation: shrink 0.2s; /* Aplica la animación */
@@ -192,7 +188,7 @@ export default { name: 'contact-card',
 .small-text {
   font-size: 0.8em; /* Ajusta este valor para cambiar el tamaño de la letra */
   margin-top: -45px; /* Ajusta este valor para mover el texto más arriba */
-  margin-left: 69px; /* Ajusta este valor para mover el texto más a la derecha */
+  margin-left: 90px; /* Ajusta este valor para mover el texto más a la derecha */
 }
 
 </style>

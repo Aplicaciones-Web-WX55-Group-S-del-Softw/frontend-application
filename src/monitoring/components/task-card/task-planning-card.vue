@@ -29,7 +29,7 @@ const saveTask = () => {
     date: selectedDate.value,
     time: taskTime.value,
     description: taskDescription.value,
-    finished: 'Pendiente'
+    finished: 'Pending'
   };
 
   taskApi.createTask(newTask)

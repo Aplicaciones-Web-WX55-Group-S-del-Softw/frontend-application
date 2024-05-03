@@ -8,14 +8,14 @@ export default { name: "description-card",}
     <pv-card class="mt-1">
       <template #content>
         <ul>
-          <li><strong>Ubicación:</strong> Situada en Asia.</li>
-          <li><strong>Tipo de Granja:</strong> Avícola.</li>
-          <li><strong>Superficie Total:</strong> 50 hectáreas.</li>
-          <li><strong>Animales:</strong> Pollo</li>
-          <li><strong>Infraestructura:</strong> graneros, corrales, sistema de riego, y vivienda para los trabajadores.</li>
-          <li><strong>Servicios:</strong> Acceso a agua potable y electricidad.</li>
-          <li><strong>Estado:</strong> Bien mantenido, con todas las instalaciones en funcionamiento.</li>
-          <li><strong>Certificaciones:</strong> ISO 22000, BPA, HACCP</li>
+          <li><strong>Location:</strong> Located in Asia.</li>
+          <li><strong>Farm Type:</strong> Poultry.</li>
+          <li><strong>Total Area:</strong> 50 hectares.</li>
+          <li><strong>Animals:</strong> Chicken.</li>
+          <li><strong>Infrastructure:</strong> Barns, corrals, irrigation system, and housing for workers.</li>
+          <li><strong>Services:</strong> Access to potable water and electricity.</li>
+          <li><strong>Condition:</strong> Well-maintained, with all facilities operational.</li>
+          <li><strong>Certifications:</strong> ISO 22000, GMP, HACCP.</li>
         </ul>
       </template>
     </pv-card>

@@ -104,7 +104,7 @@ h1{
   text-align: center;
   top: -10px;
   margin:0;
-  color:#44604D;
+  color:darkgreen;
 }
 
 h2 {
@@ -112,7 +112,7 @@ h2 {
   position: relative;
   text-align: center;
   top: 580px;
-  color:#44604D;
+  color:darkgreen;
   margin: 0 0 0 -410px;
 }
 
@@ -136,10 +136,9 @@ h2 {
 .input-container {
   width: 100%;
   max-width: 200px;
-  height: 40px;
+  height: 50px;
   font-size: 16px;
   margin: 20px 0;
-  padding: 5px;
   display: flex;
 }
 
@@ -196,7 +195,7 @@ textarea {
   padding: 0.35%  15px;
 }
 .save-button:hover {
-  background-color: #006400;
+  background-color: darkgreen;
   color: white;
 }
 
@@ -288,7 +287,7 @@ input[type="date"] {
 }
 
 .history-table thead tr {
-  background-color: #44604D;
+  background-color: darkgreen;
   color: #ffffff;
   text-align: left;
 }
@@ -307,6 +306,6 @@ input[type="date"] {
 }
 
 .history-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid #278f4a;
 }
 </style>

@@ -22,5 +22,6 @@ export default {
 <style scoped>
 h1{
   margin-bottom:400px;
+  color:darkgreen;
 }
 </style>

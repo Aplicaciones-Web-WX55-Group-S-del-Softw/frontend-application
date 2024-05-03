@@ -35,7 +35,7 @@ export default {
   <div class="container">
     <h1>Task</h1>
     <div class="table-container">
-      <h2><router-link to="/tasks/new">Add new task</router-link></h2>
+      <h2 class="addnew"><router-link to="/tasks/new">ADD NEW TASK</router-link></h2>
       <table>
         <tr>
           <th>ID</th>
@@ -66,6 +66,7 @@ export default {
 </template>
 
 <style scoped>
+
 .back-button {
   display: inline-block;
   padding: 10px 20px;
@@ -100,14 +101,16 @@ h2 {
   font-size: 20px;
   text-decoration: underline;
   position: absolute;
-  right: 377px;
+  right: 330px;
   top: 260px;
+
   margin:0;
   color:darkgreen !important;
 }
 
 h2 > a {
   color: green !important;
+
 }
 
 h2 > a:hover {

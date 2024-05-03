@@ -26,11 +26,24 @@ export default {
 
     <div class="background-color">
       <h1 class="title-color">ADD ANIMAL</h1>
+      <div class="inputs-add">
+      <div style="text-align: center;">
+        <div style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+          <label for="age" style="display: block; margin-bottom: 5px;">Age:</label>
+          <input type="number" id="age" name="age" style="width: 100%; margin-bottom: 10px;"><br>
 
-      <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="150px" searchBarRight="250px" class="highlight-border"></SearchBar>
-      <SearchBar smallText="Health Status" :options="['Healthy', 'Sick', 'Recovering']" searchBarTop="200px" searchBarRight="250px" class="highlight-border"></SearchBar>
-      <SearchBarNOOPTIONSComponent smallText="Location" searchBarTop="250px" searchBarRight="400px" class="highlight-border"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Age" searchBarTop="250px" searchBarRight="100px" class="highlight-border"></SearchBarNOOPTIONSComponent>
+          <label for="location" style="display: block; margin-bottom: 5px;">Location:</label>
+          <input type="text" id="location" name="location" style="width: 100%; margin-bottom: 10px;"><br>
+
+          <label for="health-status" style="display: block; margin-bottom: 5px;">Health Status:</label>
+          <select id="health-status" name="health-status" style="width: 100%; margin-bottom: 10px;">
+            <option value="Excellent">Recovering</option>
+            <option value="Good">Healthy</option>
+            <option value="Fair">Sick</option>
+          </select><br>
+        </div>
+      </div>
+      </div>
       <router-link to = "/home">
         <SaveButton/>
       </router-link>
@@ -42,7 +55,9 @@ export default {
 </template>
 
 <style scoped>
-
+.inputs-add{
+margin-top:20%;
+}
 .highlight-border input {
   border: 2px solid #44604D;
   border-radius: 5px;
@@ -59,14 +74,14 @@ export default {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 60px);
+  transform: translate(90px, 50px);
   width: 700px;
   height: 470px;
 
 }
 
 .title-color {
-  color: #44604D;
+  color:darkgreen !important;
   margin-left:35%;
   margin-bottom:-100px;
 }

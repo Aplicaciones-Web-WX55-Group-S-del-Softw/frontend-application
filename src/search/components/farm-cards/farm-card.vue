@@ -12,19 +12,19 @@ export default {
 </script>
 
 <template>
-  <div class="searchSection" >
-    <input type="text" placeholder="Producto">
-    <input type="text" placeholder="Ubicación">
-    <button class="searchButton">Buscar</button>
+  <div class="searchSection">
+    <input type="text" placeholder="Product">
+    <input type="text" placeholder="Location">
+    <button class="searchButton">Search</button>
   </div>
 
   <div class="additionalCard">
-    <h2>Granjas destacadas: </h2>
+    <h2>Featured farms: </h2>
   </div>
 
-  <div class="farmContainer"@click="redirectToDescription">
+  <div class="farmContainer" @click="redirectToDescription">
 
-    <pv-card class="farmImage"  >
+    <pv-card class="farmImage">
       <template #content>
         <img class="farmImg" src="../../../assets/img-granja1.jpg" alt="Granja">
       </template>
@@ -32,29 +32,29 @@ export default {
 
     <pv-card class="farmDetails">
       <template #content>
-        <h1 class="farmTitle">Granja Tsuneo</h1>
+        <h1 class="farmTitle">Farm Tsuneo</h1>
         <div class="locationContainer">
           <!--<img src="/../assets/location.png" alt="Ubicación" class="locationIcon">-->
 
           <p class="additionalInfo">Asia, Lima</p>
         </div>
-        <p class="details">Pollos</p>
+        <p class="details">Chickens</p>
         <p class="details">50 ha</p>
-        <p class="details">$293,000.000</p>
+        <p class="details">$293,000,000</p>
       </template>
     </pv-card>
 
     <div class="additionalDetails">
-      <p class="details">20 Establos</p>
-      <p class="details">20 Corrales</p>
-      <p class="details">Agua potable</p>
+      <p class="details">20 Stables</p>
+      <p class="details">20 Pens</p>
+      <p class="details">Drinking water</p>
     </div>
 
   </div>
 
 </template>
 
-<style >
+<style>
 
 .additionalCard {
   margin-left: 200px;
@@ -65,11 +65,11 @@ export default {
   display: flex;
   padding: 40px;
   justify-content: center;
-  gap: 80px;
+  gap: 30px;
 }
 
 
-.location{
+.location {
   font-size: 15px;
   color: gray;
 
@@ -83,7 +83,7 @@ hr {
   margin: 20px 0;
 }
 
-h1{
+h1 {
   color: #276749;
 }
 
@@ -100,6 +100,7 @@ h1{
   width: 8%;
   margin-top: 30px;
 }
+
 .searchButton:hover {
   transform: scale(1.05);
 }
@@ -145,9 +146,8 @@ h1{
 }
 
 
-
 .farmTitle {
-  color: #44604D;
+  color: darkgreen;
   margin-top: -25px;
   margin-left: -10px;
   font-size: 26px;
@@ -187,7 +187,7 @@ h1{
 .additionalDetails {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: -40px;
   transform: translateX(-300px);
   padding: 10px;

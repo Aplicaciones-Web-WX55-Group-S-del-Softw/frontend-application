@@ -144,7 +144,7 @@ h1{
   font-size: 70px;
   position: relative;
   text-align: center;
-  top: 200px;
+  top: 100px;
   margin:0;
   color:darkgreen;
 }
@@ -166,7 +166,7 @@ h2{
   margin-bottom: -100px;
 }
 .boxes-container {
-  margin-top: 300px;
+  margin-top: 200px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
