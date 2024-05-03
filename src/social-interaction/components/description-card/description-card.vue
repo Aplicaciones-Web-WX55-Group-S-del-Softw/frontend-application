@@ -4,7 +4,7 @@ export default { name: "description-card",}
 
 <template>
   <div class="cardD">
-    <h1 class="cardD-title">Descripción</h1>
+    <h1 class="cardD-title">Description</h1>
     <pv-card class="mt-1">
       <template #content>
         <ul>

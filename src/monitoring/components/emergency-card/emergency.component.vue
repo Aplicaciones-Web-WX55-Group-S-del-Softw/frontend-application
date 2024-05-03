@@ -68,7 +68,7 @@ export default {
       <textarea v-model="taskDescription" placeholder="Emergency description"></textarea>
     </div>
 
-    <div class="input-container">
+    <div class="button-container">
       <button to="/home" class="button-link save-button">Save</button>
       <router-link to="/home" class="button-link cancel-button">Cancel</router-link>
     </div>
@@ -91,7 +91,6 @@ export default {
       </tr>
       </tbody>
     </table>
-
   </div>
   <footer-component></footer-component>
 </template>
@@ -113,7 +112,7 @@ h2 {
   text-align: center;
   top: 580px;
   color:darkgreen;
-  margin: 0 0 0 -410px;
+  margin: 0 0 0 -450px;
 }
 
 .container {
@@ -145,9 +144,6 @@ h2 {
 select{
   border: 2px solid #000;
   border-radius: 5px;
-}
-.task-time-container {
-  margin-right: 257px;
 }
 
 input[type="date"], input[type="time"], select {
@@ -205,11 +201,11 @@ textarea {
 }
 
 .save-button {
-  left: 490px;
+  left: 570px;
 }
 
 .cancel-button {
-  left: 570px;
+  left: 670px;
 }
 
 input, select, textarea, input[type="date"] {
@@ -225,26 +221,24 @@ input[type="date"] {
   font-size: 15px;
   color: black;
   margin-top: 90px;
+
   font-weight: bold;
 }
 
 .label1x{
-  margin-left: -245px;
+  margin-left: -315px;
   margin-top: 90px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .label2x{
-  margin-left: 120px;
+  margin-left: 155px;
   margin-top: 90px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-.label1:hover, .label2:hover {
-  color: #009879;
-}
 
 .input-container select, .input-container input[type="date"] {
   border: none;
@@ -277,9 +271,9 @@ input[type="date"] {
 
 
 .history-table {
-  position: absolute;
-  margin-left: 15px;
-  bottom: -725px;
+  position: relative;
+  margin-left: -10px;
+  top: 385px;
   width: 550px;
   overflow-y: auto;
   border-collapse: collapse;
@@ -308,4 +302,6 @@ input[type="date"] {
 .history-table tbody tr:last-of-type {
   border-bottom: 2px solid #278f4a;
 }
+
+
 </style>

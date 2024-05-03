@@ -61,7 +61,7 @@ export default {
 
       </div>
       <div class="button">
-        <button v-if="task.finished === 'Pending'" @click="finishTask" class="finish-button">Finish homework</button>
+        <button v-if="task.finished === 'Pending'" @click="finishTask" class="finish-button">Finish task</button>
         <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
       <br>
@@ -102,7 +102,9 @@ h1{
   color:darkgreen;
 }
 .message {
+  margin-left:600px;
   top: -50px;
+  width:25%;
   background-color: #9fd0a4;
   border: 2px solid #204f00;
   padding: 20px;

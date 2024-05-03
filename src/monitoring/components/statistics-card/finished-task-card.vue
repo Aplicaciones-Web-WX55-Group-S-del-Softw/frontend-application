@@ -158,7 +158,7 @@ h1{
   color: darkgreen;
 }
 .dropdown-container {
-  max-width: 1500px;
+  max-width: 1100px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -204,7 +204,7 @@ button {
   cursor: pointer;
   font-size: 16px;
   margin-top: 40px;
-  margin-left: 300px;
+  margin-left: 380px;
 }
 
 button:hover {
@@ -215,16 +215,15 @@ button:hover {
 .modal {
   position: absolute;
   z-index:1;
-  left: 480px;
-  top: 500px;
+  left: 530px;
+  top: 600px;
   width: 40%;
   height: 100%;
   overflow: auto;
 }
 
 .modal-content {
-  margin-bottom:-50px;
-
+  margin-bottom:-30px;
   background-color: #ee9090;
   border: 2px solid #640000;
   border-radius: 10px;
@@ -270,7 +269,6 @@ td {
   padding-bottom: 20px;
   text-align: center;
   height: 10px;
-
 }
 
 

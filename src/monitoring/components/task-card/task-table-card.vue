@@ -101,7 +101,7 @@ h2 {
   font-size: 20px;
   text-decoration: underline;
   position: absolute;
-  right: 330px;
+  right: 380px;
   top: 260px;
 
   margin:0;

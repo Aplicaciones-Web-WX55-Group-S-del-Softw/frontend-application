@@ -200,7 +200,7 @@ img {
   justify-content: space-between;
   text-align: center;
   margin-top: -180px;
-  margin-left: 150px;
+  margin-left: 250px;
   background-color: #e5e5e5;
   padding: 20px;
   border-radius: 10px;
@@ -268,7 +268,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 1000px;
+  margin-left: 1173px;
 }
 
 button:hover {

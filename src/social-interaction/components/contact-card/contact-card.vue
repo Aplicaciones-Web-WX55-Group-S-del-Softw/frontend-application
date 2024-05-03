@@ -66,7 +66,7 @@ export default { name: 'contact-card',
 </template>
 <style>
 .div-contact{
-  margin-bottom: 60%;
+  margin-bottom: 80%;
 }
 .rectangle {
   width: 360px;

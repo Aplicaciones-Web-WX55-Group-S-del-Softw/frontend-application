@@ -103,11 +103,13 @@ export default { name: "star-rating",
 .star-rating-container {
   margin-top: 68px;
   margin-left: 320px;
+
 }
 
 .star-count-container {
   margin-top: -140px;
-  margin-left: 670px;
+  margin-left: 850px;
+
 }
 
 .star-text {

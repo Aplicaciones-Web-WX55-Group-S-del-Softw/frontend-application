@@ -1,7 +1,9 @@
 <script>
 import { ProductionApi } from "../../services/production-api/production-api.js";
-
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/components/footer-component.vue";
 export default {
+  components: {FooterComponent, ToolbarComponent},
   data() {
     return {
       productions: [],
@@ -21,8 +23,9 @@ export default {
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
   <div>
-    <router-link to="/" class="back-button">go out</router-link>
+    <router-link to="/" class="back-button">Back</router-link>
     <h1>SALES</h1>
     <div class="card">
       <img src="../../../assets/production-statistics.png" alt="Production">
@@ -82,13 +85,15 @@ export default {
       <td>{{ production.amount}}</td>
     </tr>
     <tr class="empty-row">
-      <td></td>
+
       <td></td>
       <td></td>
       <td></td>
       <td></td>
     </tr>
   </table>
+  <td></td>
+  <footer-component></footer-component>
 </template>
 
 <style scoped>
@@ -186,5 +191,7 @@ td {
   border-bottom: 1px solid #000;
   height: 20px;
 }
-
+footer-component{
+  margin-top:300px;
+}
 </style>

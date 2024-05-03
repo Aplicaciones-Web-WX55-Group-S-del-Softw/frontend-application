@@ -69,7 +69,7 @@ const closeModal = () => {
 
       </div>
 
-      <div class="input-container">
+      <div class="input-container ">
         <input type="date" v-model="selectedDate">
       </div>
     </div>
@@ -82,7 +82,7 @@ const closeModal = () => {
     </div>
 <br>
 
-    <div class="input-container">
+    <div class="input-container description-container">
       <textarea v-model="taskDescription" placeholder="Task description"></textarea>
 
 
@@ -140,7 +140,6 @@ const closeModal = () => {
 
 
 
-
 h1{
   font-size: 70px;
   position: relative;
@@ -152,11 +151,11 @@ h1{
 
 .container {
   margin-top:100px;
-  margin-bottom: 50px; /* Agregar espacio en la parte inferior */
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 80px; /* Ajuste del margen izquierdo */
+  margin-left: 80px;
 
 }
 .row {
@@ -179,9 +178,13 @@ select{
   border-radius: 5px;
 }
 .task-time-container {
-  margin-right: 257px;
+  margin-right: 328px;
 }
 
+.description-container{
+  margin-top: 10px;
+  margin-right:72px;
+}
 input[type="date"], input[type="time"], select {
   width: 100%;
   height: 100%;
@@ -190,15 +193,13 @@ input[type="date"], input[type="time"], select {
 }
 
 textarea {
-  width: 400px;
+  width: 700px;
   height: 200px;
   resize: none;
   margin-left: -127px;
   border: 2px solid #000;
   border-radius: 5px;
 }
-
-
 
 .save-button:hover {
   background-color: #006400;
@@ -216,8 +217,6 @@ textarea {
 
 .cancel-button {
   left: 630px;
-
-
 }
 
 
@@ -227,7 +226,7 @@ textarea {
   font-size: 15px;
   color: black;
   margin-top: 90px;
-  margin-left: -370px;
+  margin-left: -449px;
 }
 
 .label2{
@@ -235,7 +234,7 @@ textarea {
   font-size: 15px;
   color: black;
   margin-top: 90px;
-  margin-left: -9px;
+  margin-left: -80px;
 }
 
 .label3{
@@ -243,14 +242,14 @@ textarea {
   font-size: 15px;
   color: black;
   margin-top: 170px;
-  margin-left: -320px;
+  margin-left: -397px;
 }
 
 .label4{
   position:absolute;
   font-size: 15px;
   margin-top: 250px;
-  margin-left: -360px;
+  margin-left: -435px;
   color: black;
 }
 </style>
