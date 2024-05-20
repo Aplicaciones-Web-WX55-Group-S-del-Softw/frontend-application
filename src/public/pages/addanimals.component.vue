@@ -13,22 +13,16 @@ export default {
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
+  <toolbar-component class="toolbar"></toolbar-component>
   <router-link to="/home" class="back-button">BACK</router-link>
 
+  <section class="flex-container">
+    <DetailIdebar class="detail-idebar"></DetailIdebar>
 
-
-  <div class="flex-container">
-    <DetailIdebar>
-      <template v-slot:title>
-      </template>
-    </DetailIdebar>
-
-    <div class="background-color">
+    <article class="background-color">
       <h1 class="title-color">ADD ANIMAL</h1>
-      <div class="inputs-add">
-      <div style="text-align: center;">
-        <div style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+      <form class="inputs-add" style="text-align: center;">
+        <fieldset style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
           <label for="age" style="display: block; margin-bottom: 5px;">Age:</label>
           <input type="number" id="age" name="age" style="width: 100%; margin-bottom: 10px;"><br>
 
@@ -41,28 +35,28 @@ export default {
             <option value="Good">Healthy</option>
             <option value="Fair">Sick</option>
           </select><br>
-        </div>
-      </div>
-      </div>
+        </fieldset>
+      </form>
       <router-link to = "/home">
         <SaveButton/>
       </router-link>
-    </div>
+    </article>
 
-  </div>
-  <footer-component></footer-component>
-
+  </section>
+  <footer-component class="footer"></footer-component>
 </template>
 
 <style scoped>
 .inputs-add{
-margin-top:20%;
+  margin-top:20%;
 }
+
 .highlight-border input {
   border: 2px solid #44604D;
   border-radius: 5px;
   padding: 5px;
 }
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -77,12 +71,32 @@ margin-top:20%;
   transform: translate(90px, 50px);
   width: 700px;
   height: 470px;
-
 }
 
 .title-color {
   color:darkgreen !important;
   margin-left:35%;
   margin-bottom:-100px;
+  font-size: 2em;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .background-color {
+    margin: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: auto;
+  }
+
+  .title-color {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 </style>
