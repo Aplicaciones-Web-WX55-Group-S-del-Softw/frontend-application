@@ -81,6 +81,7 @@ export default {
 </template>
 
 <style scoped>
+
 SearchBar{
   margin:50px;
 }
@@ -142,5 +143,44 @@ th {
   color:darkgreen !important;
   margin-left:28%;
   margin-bottom:10px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.monitoring-cards-container, .emergency-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  gap: 5vw;
+  justify-items: center;
+}
+
+.monitoring-card, .emergency-card {
+  height: 10vw;
+  margin: 1vw;
+  padding: 0.5vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .center-container {
+    margin: 0;
+  }
+
+  .monitoring-cards-container, .emergency-cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
+    gap: 2vw;
+  }
+
+  .emergency-card .emergency-container, .emergency-card .inventory-container, .monitoring-card .weather-container, .monitoring-card .task-container {
+    margin-left: 0;
+  }
 }
 </style>

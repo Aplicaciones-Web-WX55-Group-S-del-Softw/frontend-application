@@ -39,7 +39,7 @@ export default {
           <div class="emergency-container">
             <router-link to="/emergency/new">
 
-            <img class="emergency-img" src="../../assets/emergency.png" alt="Emergencia">
+              <img class="emergency-img" src="../../assets/emergency.png" alt="Emergencia">
             </router-link>
 
             <h2>Emergency</h2>
@@ -221,6 +221,34 @@ export default {
   margin-left: 20px;
 }
 
+@media screen and (max-width: 1200px) {
+  .center-container {
+    margin-left: 0;
+  }
 
+  .monitoring-cards-container, .emergency-cards-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .emergency-card .emergency-container, .emergency-card .inventory-container, .monitoring-card .weather-container, .monitoring-card .task-container {
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .center-container {
+      margin-left: 0;
+    }
+
+    .monitoring-cards-container, .emergency-cards-container {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+
+    .emergency-card .emergency-container, .emergency-card .inventory-container, .monitoring-card .weather-container, .monitoring-card .task-container {
+      margin-left: 0;
+    }
+  }
+}
 
 </style>

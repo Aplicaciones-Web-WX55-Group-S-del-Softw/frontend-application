@@ -80,10 +80,9 @@ export default {
   font-size: 2em;
 }
 
-/* Responsive styles */
 @media screen and (max-width: 768px) {
   .flex-container {
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 0;
   }
 
@@ -97,6 +96,17 @@ export default {
   .title-color {
     margin-left: 0;
     text-align: center;
+    display: inline-block;
+  }
+
+  .back-button {
+    position: relative;
+    z-index: 9999;
+  }
+
+  .inputs-add {
+    margin-top: 10%;
   }
 }
+
 </style>
