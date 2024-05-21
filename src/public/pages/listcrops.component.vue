@@ -77,18 +77,19 @@ export default {
 </template>
 
 <style scoped>
+
+
+SearchBar{
+  margin:50px;
+}
 .flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-left:20%;
-
-
 }
 
 .background-color {
-
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
@@ -102,18 +103,20 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 20px;
+  margin-left:20%;
+
 }
 
 .table-wrapper {
   width: 340px;
-  height: 800px;
   overflow: auto;
-  transform: translate(160px, 50px);
+  transform: translate(160px, 120px);
 }
 
 table {
   border-collapse: collapse;
   width: 100%;
+
   background-color: #fff;
 }
 
@@ -132,9 +135,67 @@ th {
   text-align: left;
   color: black;
 }
+
 .title-color {
   color:darkgreen !important;
-  margin-left:30%;
+  margin-left:28%;
+  margin-bottom:10px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.monitoring-cards-container, .emergency-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  gap: 5vw;
+  justify-items: center;
+}
+
+.monitoring-card, .emergency-card {
+  height: 10vw;
+  margin: 1vw;
+  padding: 0.5vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+    margin-left: 0;
+  }
+
+  .background-color {
+    margin: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: auto;
+  }
+
+  .title-color {
+    margin-left: 0;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .back-button {
+    position: relative;
+    z-index: 9999;
+    left: 160px;
+  }
+
+  .table-container {
+    margin-top: 10%;
+  }
 
 }
+
 </style>

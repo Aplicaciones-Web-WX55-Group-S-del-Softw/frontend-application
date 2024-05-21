@@ -102,11 +102,13 @@ export default {
   .back-button {
     position: relative;
     z-index: 9999;
+    left: 136px;
   }
 
   .inputs-add {
     margin-top: 10%;
   }
+
 }
 
 </style>

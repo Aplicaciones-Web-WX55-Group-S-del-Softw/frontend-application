@@ -169,18 +169,38 @@ th {
   align-items: center;
 }
 
-@media screen and (max-width: 1200px) {
-  .center-container {
-    margin: 0;
-  }
 
-  .monitoring-cards-container, .emergency-cards-container {
-    grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
-    gap: 2vw;
-  }
-
-  .emergency-card .emergency-container, .emergency-card .inventory-container, .monitoring-card .weather-container, .monitoring-card .task-container {
+@media screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: row;
     margin-left: 0;
   }
+
+  .background-color {
+    margin: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: auto;
+  }
+
+  .title-color {
+    margin-left: 0;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .back-button {
+    position: relative;
+    z-index: 9999;
+    left: 160px;
+  }
+
+  .table-container {
+    margin-top: 10%;
+  }
 }
+
+
+
+
 </style>

@@ -86,4 +86,33 @@ h1{
   margin-left:-15px;
   margin-top: 30px;
 }
+@media screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+    margin-left: 0;
+  }
+
+  .background-color {
+    margin: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: auto;
+  }
+
+  .title-color {
+    margin-left: 0;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .back-button {
+    position: relative;
+    z-index: 9999;
+    left: 160px;
+  }
+
+  .inputs-add {
+    margin-top: 10%;
+  }
+}
 </style>

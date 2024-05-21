@@ -39,9 +39,7 @@ export default {
         </template>
       </DetailIdebar>
       <div class="background-color">
-        <router-link to = "/home">
-          <SaveButton/>
-        </router-link>
+
 
         <h1 class="title-color">CROP REGISTRATION</h1>
         <!-- Inputs -->
@@ -59,7 +57,11 @@ export default {
             <label for="quantity" style="display: block; margin-bottom: 5px;">Quantity:</label>
             <input type="number" id="quantity" name="quantity" style="width: 100%; margin-bottom: 10px;"><br>
           </div>
+
         </div>
+        <router-link to = "/home">
+          <SaveButton/>
+        </router-link>
       </div>
     </div>
 
@@ -77,6 +79,8 @@ export default {
   flex-direction: row;
   margin-left:20%;
 }
+
+
 
 .background-color {
   background-color: #F2F0F0;
@@ -110,14 +114,6 @@ table {
   background-color: #fff;
 }
 
-
-
-
-
-
-
-
-
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
@@ -137,5 +133,34 @@ th {
   color:darkgreen !important;
   margin-left:25%;
 
+}
+@media screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+    margin-left: 0;
+  }
+
+  .background-color {
+    margin: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: auto;
+  }
+
+  .title-color {
+    margin-left: 0;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .back-button {
+    position: relative;
+    z-index: 9999;
+    left: 160px;
+  }
+
+  .inputs-add {
+    margin-top: 10%;
+  }
 }
 </style>
