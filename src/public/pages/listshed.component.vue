@@ -32,12 +32,11 @@ export default {
   <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
-
+    <DetailIdebar class="detail-idebar"></DetailIdebar>
     <div class="table-container">
-      <DetailIdebar>
+
         <template v-slot:title>
         </template>
-      </DetailIdebar>
 
       <div class="background-color">
         <h1 class="title-color">SHED LIST</h1>
@@ -71,12 +70,12 @@ export default {
 </template>
 
 <style scoped>
+
 .flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-left:15%;
 }
 
 .background-color {
@@ -85,7 +84,7 @@ export default {
   margin: -340px;
   transform: translate(90px, 490px);
   width: 700px;
-  height: 460px;
+  height: 475px;
 }
 
 .table-container {
@@ -102,7 +101,6 @@ export default {
   transform: translate(160px, 120px);
 
 }
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -131,6 +129,32 @@ th {
   margin-left:37%;
   margin-bottom:-100px;
 }
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.monitoring-cards-container, .emergency-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  gap: 5vw;
+  justify-items: center;
+}
+
+.monitoring-card, .emergency-card {
+  height: 10vw;
+  margin: 1vw;
+  padding: 0.5vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 @media screen and (max-width: 768px) {
   .flex-container {
     flex-direction: row;
@@ -153,11 +177,15 @@ th {
   .back-button {
     position: relative;
     z-index: 9999;
-    left: 180px;
+    left: 160px;
   }
 
   .table-container {
     margin-top: 10%;
   }
 }
+
+
+
+
 </style>

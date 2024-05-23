@@ -31,13 +31,12 @@ export default {
   <toolbar-component></toolbar-component>
   <router-link to="/home" class="back-button">BACK</router-link>
 
-  <div class="flex-container">
-
+  <section class="flex-container">
+    <DetailIdebar class=" detail-idebar"></DetailIdebar>
     <div class="table-container">
-      <DetailIdebar>
+
         <template v-slot:title>
         </template>
-      </DetailIdebar>
 
 
       <div class="background-color">
@@ -71,17 +70,13 @@ export default {
 
     </div>
 
-  </div>
+  </section>
   <footer-component></footer-component>
 
 </template>
 
 <style scoped>
 
-
-SearchBar{
-  margin:50px;
-}
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -95,7 +90,7 @@ SearchBar{
   margin: -340px;
   transform: translate(90px, 490px);
   width: 700px;
-  height: 480px;
+  height: 475px;
 }
 
 .table-container {
@@ -103,21 +98,20 @@ SearchBar{
   display: flex;
   justify-content: center;
   margin: 0 20px;
-  margin-left:20%;
-
 }
 
 .table-wrapper {
   width: 340px;
+  height: 800px;
   overflow: auto;
   transform: translate(160px, 120px);
-}
 
+}
 table {
   border-collapse: collapse;
   width: 100%;
-
   background-color: #fff;
+  margin-top:20%
 }
 
 th, td {
@@ -129,17 +123,18 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   color: black;
 }
-
 .title-color {
   color:darkgreen !important;
-  margin-left:28%;
-  margin-bottom:10px;
+  margin-left:30%;
+  margin-bottom:-100px;
+  font-size: 2em;
 }
 
 .center-container {
@@ -195,7 +190,9 @@ th {
   .table-container {
     margin-top: 10%;
   }
-
 }
+
+
+
 
 </style>

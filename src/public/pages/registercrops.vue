@@ -77,7 +77,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-left:20%;
 }
 
 
@@ -88,7 +87,7 @@ export default {
   margin: -340px;
   transform: translate(90px, 490px);
   width: 700px;
-  height: 480px;
+  height: 475px;
 
 
 }

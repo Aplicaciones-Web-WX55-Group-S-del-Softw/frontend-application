@@ -17,69 +17,100 @@ export default {
   <router-link to="/home" class="back-button">BACK</router-link>
 
   <section class="flex-container">
-    <DetailIdebar class="detail-idebar"></DetailIdebar>
+    <div class="table-container">
+      <DetailIdebar class="detail-idebar"></DetailIdebar>
 
-    <article class="background-color">
-      <h1 class="title-color">ADD ANIMAL</h1>
-      <form class="inputs-add" style="text-align: center;">
-        <fieldset style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
-          <label for="age" style="display: block; margin-bottom: 5px;">Age:</label>
-          <input type="number" id="age" name="age" style="width: 100%; margin-bottom: 10px;"><br>
+      <article class="background-color">
+        <h1 class="title-color">ADD ANIMAL</h1>
+        <form class="inputs-add" style="text-align: center;">
+          <fieldset style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+            <label for="age" style="display: block; margin-bottom: 5px;">Age:</label>
+            <input type="number" id="age" name="age" style="width: 100%; margin-bottom: 10px;"><br>
 
-          <label for="location" style="display: block; margin-bottom: 5px;">Location:</label>
-          <input type="text" id="location" name="location" style="width: 100%; margin-bottom: 10px;"><br>
+            <label for="location" style="display: block; margin-bottom: 5px;">Location:</label>
+            <input type="text" id="location" name="location" style="width: 100%; margin-bottom: 10px;"><br>
 
-          <label for="health-status" style="display: block; margin-bottom: 5px;">Health Status:</label>
-          <select id="health-status" name="health-status" style="width: 100%; margin-bottom: 10px;">
-            <option value="Excellent">Recovering</option>
-            <option value="Good">Healthy</option>
-            <option value="Fair">Sick</option>
-          </select><br>
-        </fieldset>
-      </form>
-      <router-link to = "/home">
-        <SaveButton/>
-      </router-link>
-    </article>
-
+            <label for="health-status" style="display: block; margin-bottom: 5px;">Health Status:</label>
+            <select id="health-status" name="health-status" style="width: 100%; margin-bottom: 10px;">
+              <option value="Excellent">Recovering</option>
+              <option value="Good">Healthy</option>
+              <option value="Fair">Sick</option>
+            </select><br>
+          </fieldset>
+        </form>
+        <router-link to = "/home">
+          <SaveButton/>
+        </router-link>
+      </article>
+    </div>
   </section>
   <footer-component class="footer"></footer-component>
 </template>
 
 <style scoped>
-.inputs-add{
-  margin-top:20%;
-}
-
-.highlight-border input {
-  border: 2px solid #44604D;
-  border-radius: 5px;
-  padding: 5px;
-}
 
 .flex-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-left:15%
+  flex-direction: row;
 }
+
+
 
 .background-color {
   background-color: #F2F0F0;
   padding: 20px;
   margin: -340px;
-  transform: translate(90px, 50px);
+  transform: translate(90px, 490px);
   width: 700px;
-  height: 470px;
+  height: 475px;
+
+
 }
 
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.table-wrapper {
+  width: 600px;
+  height: 800px;
+  margin-left:-130px;
+  transform: translate(160px, 120px);
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+}
 .title-color {
   color:darkgreen !important;
   margin-left:35%;
-  margin-bottom:-100px;
-  font-size: 2em;
-}
+  font-size:2em;
 
+}
 @media screen and (max-width: 768px) {
   .flex-container {
     flex-direction: row;
@@ -102,13 +133,11 @@ export default {
   .back-button {
     position: relative;
     z-index: 9999;
-    left: 136px;
+    left: 160px;
   }
 
   .inputs-add {
     margin-top: 10%;
   }
-
 }
-
 </style>

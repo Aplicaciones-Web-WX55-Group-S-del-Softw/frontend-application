@@ -59,13 +59,7 @@ export default {};
 }
 
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: -550px;
-  margin-right:-200px;
-  color: black;
+
 }
 
 /* Responsive styles */
