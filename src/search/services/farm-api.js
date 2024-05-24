@@ -10,4 +10,8 @@ export class FarmApi {
         return http.get(`${this.Url}`);
     }
 
+    getFarmById(id) {
+        return axios.get(`${this.url}/farm-${id}`);
+    }
+
 }
