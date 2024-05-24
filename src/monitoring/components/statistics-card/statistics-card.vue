@@ -12,8 +12,9 @@ export default {
   <toolbar-component></toolbar-component>
 
   <router-link to="/home" class="back-button">BACK</router-link>
+  <div class="statistics-title">
   <h1 class="text-center">Statistics</h1>
-
+  </div>
   <div class="cards">
     <pv-card class="mt-1x">
 
@@ -185,6 +186,25 @@ export default {
   align-items: center;
 }
 
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-areas:
+      "mt-1x"
+      "mt-2x"
+      "mt-3x";
+    gap: 40px;
+    justify-content: center;
+    margin-left: 210px;
+  }
+  .mt-1x, .mt-2x, .mt-3x {
+    margin-left: 0;
+  }
+  .statistics-title{
+    font-size: 25px;
+    margin-left:100px;
+  }
+}
 </style>
 
 

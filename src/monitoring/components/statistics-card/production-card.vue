@@ -90,9 +90,10 @@ export default {
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </table>
-  <td></td>
+
   <footer-component></footer-component>
 </template>
 
@@ -136,7 +137,7 @@ h2{
   text-align: center;
   margin-top: 180px;
   margin-left: 160px;
-  background-color: #e5e5e5;
+  background-color: #b07c7c;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -194,4 +195,52 @@ td {
 footer-component{
   margin-top:300px;
 }
+
+@media (max-width: 800px) {
+
+  h1{
+    font-size: 70px;
+    position: relative;
+    text-align: center;
+    top: 130px;
+    left: 50px;
+    margin:0;
+    color:darkgreen;
+  }
+  h2{
+    font-size: 40px;
+    position: relative;
+    text-align: left;
+    top: 100px;
+    left: 130px;
+    margin:0;
+    color:darkgreen;
+  }
+  .card{
+    border:none;
+    margin-left: 50px;
+    margin-top: 210px;
+  }
+  .card img {
+    width: 120%;
+    height: 80%;
+    margin-left:100px;
+  }
+  .dropdown-container {
+    margin-left:70px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .dropdown-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+    margin-left: 9%;
+
+  }
+}
+
+
 </style>

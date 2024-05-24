@@ -112,6 +112,20 @@ export default {
   margin-top: 100px;
 
 }
+
+@media (max-width: 600px) {
+  .monitoring_monitoring-cards-container {
+    grid-template-columns: 1fr;
+    margin-left: 70px;
+  }
+
+  .monitoring_emergency-cards-container {
+    grid-template-columns: 1fr;
+    margin-left: 70px;
+  }
+}
+
+
 .monitoring_monitoring-card {
   height: 100px;
   margin: 10px;

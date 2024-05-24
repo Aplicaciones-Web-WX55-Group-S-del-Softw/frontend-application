@@ -15,8 +15,9 @@ const toggleTable = () => {
 
   <div>
     <router-link to="/home" class="back-button">BACK</router-link>
+    <div class="financial-title">
     <h1>Financial Statistics</h1>
-    <!--<h2 class="tittle-Summary">Summary</h2>-->
+    </div>
     <div class="boxes-container">
       <h3>Income</h3>
       <div class="box">
@@ -120,10 +121,7 @@ const toggleTable = () => {
 
 
 <style scoped>
-.tittle-Summary{
-  font-size: 70px;
 
-}
 .back-button {
   display: inline-block;
   padding: 10px 20px;
@@ -201,7 +199,7 @@ img {
   text-align: center;
   margin-top: -180px;
   margin-left: 250px;
-  background-color: #e5e5e5;
+  background-color: #d77e7e;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -261,7 +259,7 @@ table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 button {
-  background-color: #9d9d9d;
+  background-color: #d77e7e;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -286,6 +284,65 @@ button:hover {
   animation: scaleIn 1s forwards;
   margin-top: 200px;
 }
+
+@media (max-width: 600px) {
+  .box {
+    width: 100%;
+    height:10%;
+    padding: 30px;
+    margin-top: 100px;
+  }
+  .box h2{
+    font-size: 15px;
+    margin-left: 10px;
+    margin-bottom: 240px;
+  }
+  .financial-title h1{
+  left:30px;
+  margin-top:100px;
+  font-size: 30px;
+  }
+  .boxes-container {
+  margin-top:500px;
+    width:80%;
+    margin-left: 80px;
+  }
+  h1 {
+    left:30px;
+    margin-top:400px;
+    font-size: 24px;
+  }
+
+  img {
+    position: absolute;
+    left:90px;
+    top:400px;
+    width: 80%;
+    height: auto;
+  }
+
+  .dropdown-container {
+    width:80%;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-bottom:50px;
+  }
+
+  .dropdown-item {
+    margin: 20px 0;
+  }
+
+  button {
+    margin-left: 470px;
+  }
+
+  table {
+    width: 70%;
+    margin-left: 120px;
+  }
+}
+
+
 
 </style>
 

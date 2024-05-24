@@ -1,7 +1,17 @@
 <script>
 export default {
-  name: "toolbar-component"
-}
+  name: "toolbar-component",
+  data() {
+    return {
+      menuOpen: false
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    }
+  }
+};
 </script>
 
 <template>
@@ -10,7 +20,12 @@ export default {
       <img class="img" src="../../assets/img-logo.png" alt="">
       <p>FarmLogiTech</p>
     </div>
-    <nav id="menu" style="margin-top: 10px;">
+    <button class="hamburger" @click="toggleMenu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <nav id="menu" :class="{ open: menuOpen }">
       <ul>
         <li><a href="/home">Home</a></li>
         <li><a href="#">Rates</a></li>
@@ -23,12 +38,117 @@ export default {
 </template>
 
 <style>
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+
+}
+
+.hamburger-line {
+  width: 1.5rem;
+  height: 0.25rem;
+  background: white;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+#header, #menu {
+  width: 100%;
+}
+
+#menu ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+#menu ul li {
+  margin: 10px 0;
+}
+#menu ul li a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+#menu {
+  width: 40%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 101px) and (max-width: 882px) {
+  .hamburger {
+    display: flex;
+  }
+  #menu ul {
+    flex-direction: column;
+
+  }
+  #header {
+    width: 120%;
+  }
+  #menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    background-color: #276749;
+  }
+
+  #menu.open {
+    display: flex;
+    width: 112.5%;
+  }
+}
+@media (min-width: 853px) and (max-width: 900px)
+{
+  #menu {
+    width: 50%;
+  }
+  #header {
+    width: 100%;
+  }
+}
+@media (min-width: 901px) and (max-width: 1000px)
+
+{
+  #menu {
+    width: 40%;
+  }
+  #header {
+    width: 120%;
+  }
+}
+@media (min-width: 1001px)
+{
+  #menu {
+    width: 50%;
+  }
+  #header {
+    width: 100%;
+  }
+}
 #header {
-    margin-bottom: 10px;
 
   top: 0;
   left: 0;
-  width: 100%;
+
   height: 100px;
   background-color: #276749;
   color: white;
@@ -39,11 +159,13 @@ export default {
   gap: 8px;
   padding: 0;
 }
+
 .logo {
   display: flex;
   align-items: center;
-  fontsize: bold;
+
 }
+
 .img {
   width: 90px;
   margin-left: 10px;
@@ -53,29 +175,6 @@ export default {
   font-size: 35px;
   font-weight: bold;
   padding: 10px 10px;
-}
-
-#menu {
-  width: 40%;
-  font-size: 15px;
-
-}
-
-#menu ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-
-
-#menu ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 10px;
 }
 
 .ad-button {
@@ -92,7 +191,6 @@ export default {
   padding: 5px;
   font-size: 18px;
   white-space: nowrap;
-
 }
 
 .ad-button:hover {

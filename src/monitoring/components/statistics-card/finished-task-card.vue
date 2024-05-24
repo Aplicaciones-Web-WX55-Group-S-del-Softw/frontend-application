@@ -163,7 +163,7 @@ h1{
   justify-content: center;
   text-align: center;
   margin: 40px auto;
-  background-color: #e5e5e5;
+  background-color: #47ad6c;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -196,7 +196,7 @@ h1{
 
 
 button {
-  background-color: #9d9d9d;
+  background-color: #8ebd8c;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -245,10 +245,6 @@ button:hover {
   cursor: pointer;
 }
 
-
-
-
-
 table {
   width: 70%;
   border-collapse: collapse;
@@ -275,4 +271,102 @@ td {
 table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+@media (max-width: 600px) {
+
+
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #8ebd8c;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 170px;
+    justify-content: center;
+    text-align: center;
+  }
+
+
+  .dropdown-container {
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-left: 80px ;
+    background-color: #47ad6c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border: 1px solid black;
+    flex-wrap: wrap;
+    align-items: center;
+
+  }
+
+  .dropdown-item {
+    margin: 0 50px;
+  }
+
+  .dropdown-item h4 {
+    margin-right:70px;
+  }
+
+  .modal {
+    left: 115px;
+    top: 670px;
+    width: 80%;
+  }
+
+  table {
+    width: 100%;
+    margin-left: 40px;
+  }
+}
+
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+
+  h1 {
+    font-size: 60px;
+    margin-top: 30px;
+  }
+
+  .dropdown-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .dropdown-item {
+    margin: 0 75px;
+  }
+
+  .dropdown-item h4 {
+    margin-right:105px;
+  }
+
+  button {
+    margin-left: 145px;
+  }
+
+  .modal {
+    left: 160px;
+    top: 670px;
+    width: 80%;
+  }
+
+  table {
+    width: 80%;
+    margin-left: 110px;
+  }
+}
+
+
 </style>

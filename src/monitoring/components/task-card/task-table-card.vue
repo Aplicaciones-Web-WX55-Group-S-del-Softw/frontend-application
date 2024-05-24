@@ -34,8 +34,9 @@ export default {
 
   <div class="container">
     <h1>Task</h1>
+    <h2 class="addnew"><router-link to="/tasks/new">ADD NEW TASK</router-link></h2>
     <div class="table-container">
-      <h2 class="addnew"><router-link to="/tasks/new">ADD NEW TASK</router-link></h2>
+
       <table>
         <tr>
           <th>ID</th>
@@ -91,7 +92,7 @@ export default {
 }
 h1{
   font-size: 70px;
-  position: absolute;
+  position: relative;
   text-align: center;
   top: 130px;
   margin:0;
@@ -100,7 +101,7 @@ h1{
 h2 {
   font-size: 20px;
   text-decoration: underline;
-  position: absolute;
+  position: relative;
   right: 380px;
   top: 260px;
 
@@ -118,7 +119,7 @@ h2 > a:hover {
 }
 
 table {
-  width: 70%;
+
   border-collapse: collapse;
   border: 2px solid black;
   margin-top: 100px;
@@ -150,6 +151,223 @@ td {
   width: 70%;
   height: 700px;
   margin: 200px 60px auto auto;
+}
+
+@media (max-width: 320px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 70px;
+    left: 130px;
+    top: 150px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 240px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 130px 0 0 25px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 321px) and (max-width: 500px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  h1 {
+    font-size: 70px;
+    left: 200px;
+    top: 190px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 300px;
+    top: 275px;
+  }
+
+  .table-container {
+    width: 30%;
+    height:10%;
+    margin-left:100px;
+  }
+
+
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 70px;
+    left: 260px;
+    top: 70px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 345px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 60%;
+    margin: 130px 0 0 150px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 819px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 130px;
+    left: 280px;
+    top: 70px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 630px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 130px 0 0 25px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 900px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 130px;
+    left: 300px;
+    top: 30px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 665px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 130px 0 0 25px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+@media (min-width: 901px) and (max-width: 1000px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 130px;
+    left: 490px;
+    top: 70px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 730px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 130px 0 0 25px;
+  }
+
+  table {
+    width: 70%;
+    margin-left:240px;
+  }
+}
+@media  (min-width: 1001px) {
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 130px;
+    left: 690px;
+    top: 70px;
+    text-align: center;
+    margin:0;
+    color:darkgreen;
+  }
+
+  h2 {
+    left: 1130px;
+    top: 225px;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 130px 0 0 25px;
+  }
+
+  table {
+    width: 70%;
+    margin-left:240px;
+  }
 }
 </style>
 

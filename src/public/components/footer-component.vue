@@ -30,13 +30,6 @@ const Component = defineComponent({
 
 <style scoped>
 
-
-
-
-
-
-
-
 .footer {
   background-color: #276749;
   padding: 10px 10px; /* Elimina el relleno vertical y deja el relleno horizontal en 0 */
@@ -44,9 +37,66 @@ const Component = defineComponent({
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
+
 
 }
+@media (min-width: 101px) and (max-width: 380px) {
+
+  .footer {
+    margin-bottom: -100px;
+    width: 110%;
+  }
+}
+@media (min-width: 381px) and  (max-width: 500px) {
+
+  .footer {
+    margin-bottom: -100px;
+    width: 120%;
+  }
+}
+@media (min-width: 501px) and  (max-width: 768px) {
+
+  .footer {
+    margin-top: 90px;
+    width: 120%;
+  }
+}
+
+@media (min-width: 769px) and  (max-width: 819px) {
+
+  .footer {
+    margin-top: 245px;
+    width: 120%;
+  }
+}
+
+@media (min-width: 820px) and  (max-width: 900px) {
+
+  .footer {
+    margin-top: 245px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+
+  .footer {
+    margin-top: 245px;
+    width: 120%;
+  }
+}
+
+@media (min-width: 1001px)  {
+
+  .footer {
+    margin-top: 245px;
+    width: 100%;
+  }
+}
+
+
+
+
 .text {
   color: white;
   font-size: 15px;
