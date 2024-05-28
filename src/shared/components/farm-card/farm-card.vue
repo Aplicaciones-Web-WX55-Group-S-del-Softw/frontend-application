@@ -4,8 +4,6 @@ export default { name: "farm-card",}
 
 <template>
   <div class="cardF">
-    <h1 class="cardF-title">Acerca de la granja</h1>
-
     <pv-card class="mt-2">
       <template #content>
         <img class="img-farm1" src="../../../assets/img-farm1.png" alt="Farm">
@@ -14,21 +12,21 @@ export default { name: "farm-card",}
 
     <pv-card class="mt-3">
       <template #content>
-        <h1 class="cardF-title2">Granja Tsuneo</h1>
+        <h1 class="cardF-title">Tsuneo Farm</h1>
         <div class="location-container">
           <img src="../../../assets/location.png" alt="Location" class="location-icon">
           <p class="location">Asia, Lima</p>
         </div>
-        <p class="details">Pollos</p>
+        <p class="details">Chickens</p>
         <p class="details">50 ha</p>
         <p class="details">s/293,000.000</p>
       </template>
     </pv-card>
 
     <div class="additional-details">
-      <p class="details">20 Graneros</p>
-      <p class="details">20 Corrales</p>
-      <p class="details">Agua Potable</p>
+      <p class="details">20 Barns</p>
+      <p class="details">20 Pens</p>
+      <p class="details">Potable Water</p>
     </div>
   </div>
 </template>
@@ -36,19 +34,11 @@ export default { name: "farm-card",}
 <style>
 
 .cardF{
-  position: relative;
   display: flex;
   justify-content: center;
 }
 
 .cardF-title {
-  position: absolute;
-  margin-top: -435px;
-  margin-left: -505px;
-  font-size: 25px;
-}
-
-.cardF-title2 {
   color: #44604D;
   margin-top: -25px;
   margin-left: -10px;
