@@ -6,6 +6,36 @@ import axios  from 'axios';
 export default {
   name: "emergency",
 
+  setup() {
+    const router = useRouter();
+    const selectedEmployee = ref('');
+    const selectedDate = ref('');
+    const taskDescription = ref('');
+    const showModal = ref(false);
+    const employees = ref([]);
+
+    const saveTask = () => {
+      showModal.value = true;
+      setTimeout(() => {
+        router.push('/detail-monitoring');
+      }, 1500);
+    };
+
+    const closeModal = () => {
+      showModal.value = false;
+    };
+
+    return {
+      selectedEmployee,
+      selectedDate,
+      taskDescription,
+      showModal,
+      saveTask,
+      closeModal,
+      employees // Return employees so it can be accessed in the template
+    }
+  },
+
   data() {
     return {
       EmergencyData: []
@@ -15,30 +45,13 @@ export default {
     axios.get('server/db.json')
         .then(response => {
           this.EmergencyData = response.data.emergencyData;
+          this.employees = response.data.employees;
         })
         .catch(error => {
           console.log(error);
         });
   }
 }
-
-const router = useRouter();
-const selectedEmployee = ref('');
-const selectedDate = ref('');
-const taskDescription = ref('');
-const showModal = ref(false);
-
-const saveTask = () => {
-  showModal.value = true;
-  setTimeout(() => {
-    router.push('/detail-monitoring');
-  }, 1500);
-};
-
-const closeModal = () => {
-  showModal.value = false;
-};
-
 </script>
 
 <template>
@@ -111,7 +124,7 @@ h2 {
   font-size: 35px;
   position: relative;
   text-align: center;
-  top: 580px;
+  top: 522px;
   color:#44604D;
   margin: 0 0 0 -410px;
 }
@@ -120,15 +133,13 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 170px;
+  margin-top: 8.5%;
 }
 
 
 .row {
   display: flex;
-  justify-content: space-between;
-  width: 30%;
-  margin-left: -15px;
+  margin-top: -40px;
 }
 
 .input-container {
@@ -141,19 +152,17 @@ h2 {
   display: flex;
 }
 
-select{
+select {
   border: 2px solid #000;
   border-radius: 5px;
-}
-.task-time-container {
-  margin-right: 257px;
+  margin-right: 50px;
+  width: 250px;
 }
 
-input[type="date"], input[type="time"], select {
-  width: 100%;
-  height: 100%;
+input[type="date"], input[type="time"] {
   border: 2px solid #000;
   border-radius: 5px;
+  margin-left: 35px;
 }
 
 textarea {
@@ -169,27 +178,24 @@ textarea {
 
 
 .save-button, .cancel-button{
-
   background-color: #E9F3AE;
   color: black;
   border: none ;
   text-decoration: none;
   border-radius: 5px;
-  margin-right: 16px;
-  margin-top: 130px;
-  margin-left: -87px;
   transition: background-color 0.3s ease;
   position: absolute;
 }
 
-.save-button, .cancel-button {
-  margin-top: 210px;
-}
-
 .save-button{
+  margin-top: 210px;
+  margin-left: -170px;
   padding: 0.35% 15px;
 }
+
 .cancel-button{
+  margin-top: 210px;
+  margin-left: -98px;
   font-size: 13px;
   padding: 0.35%  15px;
 }
@@ -203,40 +209,27 @@ textarea {
   color: white;
 }
 
-.save-button {
-  left: 490px;
-}
-
-.cancel-button {
-  left: 570px;
-}
-
 input, select, textarea, input[type="date"] {
   border: 1px solid #000000;
-}
-
-input[type="date"] {
-  margin-left: 40px;
 }
 
 .label1, .label2, .label4 {
   position:absolute;
   font-size: 15px;
   color: black;
-  margin-top: 90px;
   font-weight: bold;
 }
 
 .label1{
   margin-left: -245px;
-  margin-top: 114px;
+  margin-top: 70px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .label2{
   margin-left: 120px;
-  margin-top: 114px;
+  margin-top: 70px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -278,7 +271,7 @@ input[type="date"] {
 .history-table {
   position: absolute;
   margin-left: 15px;
-  bottom: -560px;
+  transform:translateY(39.5em);
   width: 550px;
   overflow-y: auto;
   border-collapse: collapse;
