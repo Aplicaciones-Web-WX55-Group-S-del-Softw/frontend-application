@@ -122,7 +122,7 @@ export default {
 
 .content-container {
   flex: 1;
-  max-width: 700px;
+  max-width: 740px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -190,6 +190,8 @@ th {
   margin: 20px auto;
   text-align: center;
 }
+
+
 
 @media screen and (max-width: 768px) {
   .main-container {

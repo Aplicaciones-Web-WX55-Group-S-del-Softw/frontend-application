@@ -123,7 +123,7 @@ export default {
 
 .table-container {
   flex: 1;
-  max-width: 700px;
+  max-width: 740px;
   display: flex;
   justify-content: center;
 }

@@ -102,6 +102,7 @@ export default {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
 }
 
 .header-style {
@@ -119,7 +120,7 @@ export default {
 
 .table-container {
   flex: 1;
-  max-width: 700px;
+  max-width: 740px;
   display: flex;
   justify-content: center;
 }

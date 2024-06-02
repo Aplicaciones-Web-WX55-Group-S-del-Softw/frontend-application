@@ -1,6 +1,6 @@
 <!--<script>
 import axios from 'axios';
-import DetailIdebar from "../components/detail-idebar.vue";
+import DetailIdebar from "../components/detail-sidebar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
