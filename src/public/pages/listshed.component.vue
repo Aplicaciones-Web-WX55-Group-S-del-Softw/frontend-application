@@ -1,15 +1,12 @@
 <script>
 import axios from 'axios';
-import DetailIdebar from "../components/detail-idebar.vue";
-import SearchBar from "../components/SearchBar.vue";
-import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "list-shed",
-  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
+  components: {FooterComponent, ToolbarComponent, SaveButton},
   data() {
     return {
       sheds: []
@@ -28,84 +25,117 @@ export default {
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
+  <div>
+    <toolbar-component></toolbar-component>
+    <router-link to="/home" class="back-button">BACK</router-link>
 
-  <div class="flex-container">
-    <DetailIdebar class="detail-idebar"></DetailIdebar>
-    <div class="table-container">
-
-        <template v-slot:title>
-        </template>
-
-      <div class="background-color">
-        <h1 class="title-color">SHED LIST</h1>
-        <table>
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Species</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="shed in sheds">
-            <td>{{ shed.id }}</td>
-            <td>{{ shed.type }}</td>
-            <td>{{ shed.species }}</td>
-          </tr>
-          </tbody>
-        </table>
-
-        <router-link to = "/home">
-          <SaveButton/>
+    <div class="main-container">
+      <div class="sidebar">
+        <h3 class="header-style">Shed</h3>
+        <router-link to="/shed/new" class="link-style">
+          <h4>Add Sheds</h4>
         </router-link>
+        <router-link to="/list/sheds" class="link-style">
+          <h4>List Sheds</h4>
+        </router-link>
+        <h3 class="header-style">Animals</h3>
+        <router-link to="/animal/new" class="link-style">
+          <h4>Add Animals</h4>
+        </router-link>
+        <router-link to="/list/animals" class="link-style">
+          <h4>Animal Inventory</h4>
+        </router-link>
+        <router-link to="/registerfeeds" class="link-style">
+          <h4>Feeding Registry</h4>
+        </router-link>
+        <h3 class="header-style">Crops</h3>
+        <router-link to="/register/crops" class="link-style">
+          <h4>Crop Registry</h4>
+        </router-link>
+        <router-link to="/list/crops" class="link-style">
+          <h4>Crop Inventory</h4>
+        </router-link>
+
       </div>
+      <div class="table-container">
+        <div class="background-color">
+          <h1 class="title-color">SHED LIST</h1>
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Species</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="shed in sheds" :key="shed.id">
+              <td>{{ shed.id }}</td>
+              <td>{{ shed.type }}</td>
+              <td>{{ shed.species }}</td>
+            </tr>
+            </tbody>
+          </table>
 
+          <router-link to="/home">
+            <SaveButton/>
+          </router-link>
+        </div>
+      </div>
     </div>
-
+    <footer-component></footer-component>
   </div>
-  <footer-component></footer-component>
-
 </template>
 
 <style scoped>
-
-.flex-container {
+.main-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
 }
 
-.background-color {
-  background-color: #F2F0F0;
+.sidebar {
+  flex: 0 0 200px;
+  background-color: #FFFFFF; /* Cambiado a blanco */
   padding: 20px;
-  margin: -340px;
-  transform: translate(90px, 490px);
-  width: 700px;
-  height: 475px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-style {
+  color: darkgreen !important;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.link-style {
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .table-container {
-  width: 100%;
+  flex: 1;
+  max-width: 700px;
   display: flex;
   justify-content: center;
-  margin: 0 20px;
 }
 
-.table-wrapper {
-  width: 340px;
-  height: 800px;
-  overflow: auto;
-  transform: translate(160px, 120px);
-
+.background-color {
+  background-color: #FFFFFF; /* Cambiado a blanco */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
+
 table {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
-  margin-top:20%
 }
 
 th, td {
@@ -117,75 +147,47 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   color: black;
 }
+
 .title-color {
-  color:darkgreen !important;
-  margin-left:37%;
-  margin-bottom:-100px;
+  color: darkgreen !important;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.center-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
+.back-button {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
 }
-
-.monitoring-cards-container, .emergency-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
-  gap: 5vw;
-  justify-items: center;
-}
-
-.monitoring-card, .emergency-card {
-  height: 10vw;
-  margin: 1vw;
-  padding: 0.5vw;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
 
 @media screen and (max-width: 768px) {
-  .flex-container {
-    flex-direction: row;
-    margin-left: 0;
+  .main-container {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .background-color {
-    margin: 0;
-    transform: translate(0, 0);
+  .sidebar {
     width: 100%;
-    height: auto;
-  }
-
-  .title-color {
-    margin-left: 0;
-    text-align: center;
-    display: inline-block;
-  }
-
-  .back-button {
-    position: relative;
-    z-index: 9999;
-    left: 160px;
+    margin-bottom: 20px;
   }
 
   .table-container {
-    margin-top: 10%;
+    width: 100%;
+  }
+
+  .background-color {
+    width: 100%;
+  }
+
+  .title-color {
+    text-align: center;
+    margin-bottom: 10px;
   }
 }
-
-
-
-
 </style>

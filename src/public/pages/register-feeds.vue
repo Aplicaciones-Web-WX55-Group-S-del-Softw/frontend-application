@@ -1,14 +1,12 @@
-<!--
 <script>
-import DetailIdebar from "../components/detail-idebar.vue";
 import axios from 'axios';
-import SearchBar from "../components/SearchBar.vue";
-import SearchBarNOOPTIONSComponent from "../components/SearchBar-NOOPTIONS.component.vue";
 import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "register-aliments",
-  components: {SaveButton, DetailIdebar, SearchBar, SearchBarNOOPTIONSComponent},
+  components: { FooterComponent, ToolbarComponent, SaveButton },
   data() {
     return {
       aliments: []
@@ -27,40 +25,224 @@ export default {
 </script>
 
 <template>
-  <div class="flex-container">
-    <DetailIdebar>
-      <template v-slot:title>
-        <h1 class="title-color" >Feeding Register</h1>
-      </template>
-    </DetailIdebar>
-    <div class="background-color">
-      <SearchBar smallText="Shed" :options="['Shed 1', 'Shed 2', 'Shed 3']" searchBarTop="100px" searchBarRight="250px"></SearchBar>
-      <SearchBarNOOPTIONSComponent smallText="Amount of Feed" searchBarTop="400px" searchBarRight="250px"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Date" searchBarTop="250px" searchBarRight="400px"></SearchBarNOOPTIONSComponent>
-      <SearchBarNOOPTIONSComponent smallText="Type of Feed" searchBarTop="250px" searchBarRight="100px"></SearchBarNOOPTIONSComponent>
+  <div>
+    <toolbar-component></toolbar-component>
+    <router-link to="/home" class="back-button">BACK</router-link>
+
+    <div class="main-container">
+      <div class="sidebar">
+        <h3 class="header-style">Shed</h3>
+        <router-link to="/shed/new" class="link-style">
+          <h4>Add Sheds</h4>
+        </router-link>
+        <router-link to="/list/sheds" class="link-style">
+          <h4>List Sheds</h4>
+        </router-link>
+        <h3 class="header-style">Animals</h3>
+        <router-link to="/animal/new" class="link-style">
+          <h4>Add Animals</h4>
+        </router-link>
+        <router-link to="/list/animals" class="link-style">
+          <h4>Animal Inventory</h4>
+        </router-link>
+        <router-link to="/registerfeeds" class="link-style">
+          <h4>Feeding Registry</h4>
+        </router-link>
+        <h3 class="header-style">Crops</h3>
+        <router-link to="/register/crops" class="link-style">
+          <h4>Crop Registry</h4>
+        </router-link>
+        <router-link to="/list/crops" class="link-style">
+          <h4>Crop Inventory</h4>
+        </router-link>
+
+      </div>
+      <div class="form-container">
+        <div class="background-color">
+          <h1 class="title-color">Registro de alimentación</h1>
+          <div class="inputs-container">
+            <label for="shed">Galpón:</label>
+            <input type="text" id="shed" name="shed"><br>
+
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" name="date"><br>
+
+            <label for="feed-type">Tipo de Alimento:</label>
+            <input type="text" id="feed-type" name="feed-type"><br>
+
+            <label for="feed-amount">Cantidad de Alimento:</label>
+            <input type="number" id="feed-amount" name="feed-amount"><br>
+          </div>
+          <router-link to="/home">
+            <SaveButton/>
+          </router-link>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Galpón</th>
+              <th>Fecha</th>
+              <th>Tipo de Alimento</th>
+              <th>Cantidad de Alimento</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="aliment in aliments" :key="aliment.id">
+              <td>{{ aliment.id }}</td>
+              <td>{{ aliment.shed }}</td>
+              <td>{{ aliment.date }}</td>
+              <td>{{ aliment.feed_type }}</td>
+              <td>{{ aliment.feed_amount }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <router-link to = "/register-details">
-      <SaveButton/>
-    </router-link>
+    <footer-component></footer-component>
   </div>
 </template>
 
 <style scoped>
-.flex-container {
+.main-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  flex: 0 0 200px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+}
+
+.header-style {
+  color: darkgreen !important;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.link-style {
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.form-container {
+  flex: 1;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .background-color {
-  background-color: #F2F0F0;
+  background-color: #FFFFFF;
   padding: 20px;
-  margin: -340px;
-  transform: translate(90px, 105px);
-  width: 700px;
-  height: 700px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
+
+.inputs-container {
+  text-align: left;
+  margin: auto;
+  width: 80%;
+}
+
+.inputs-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputs-container input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%; /* Ajuste para centrar la tabla */
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+}
+
 .title-color {
-  color: #44604D;
+  color: darkgreen !important;
+  text-align: center;
+  margin-bottom: 20px;
 }
-</style>-->
+
+.back-button {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .background-color {
+    width: 100%;
+  }
+
+  .title-color {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  table {
+    width: 100%; /* Ajuste para pantallas pequeñas */
+  }
+}
+</style>

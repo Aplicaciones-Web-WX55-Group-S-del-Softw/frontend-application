@@ -1,149 +1,172 @@
 <script>
-import DetailIdebar from "../components/detail-idebar.vue";
-import SearchBar from "../components/SearchBar.vue";
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 import FooterComponent from "../components/footer-component.vue";
 
 export default {
   name: "register-details",
-  components: {FooterComponent, ToolbarComponent, SaveButton, DetailIdebar, SearchBar}
+  components: {FooterComponent, ToolbarComponent, SaveButton}
 }
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
+  <div>
+    <toolbar-component></toolbar-component>
+    <router-link to="/home" class="back-button">BACK</router-link>
 
-  <div class="flex-container">
-
-    <div class="table-container">
-      <DetailIdebar>
-        <template v-slot:title>
-        </template>
-      </DetailIdebar>
-      <div class="background-color">
-
-
-        <h1 class="title-color">CROP REGISTRATION</h1>
-        <!-- Inputs -->
-        <div style="text-align: center;">
-          <div style="display: inline-block; text-align: left; width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
-            <label for="shed" style="display: block; margin-bottom: 5px;">Shed:</label>
-            <input type="text" id="shed" name="shed" style="width: 100%; margin-bottom: 10px;"><br>
-
-            <label for="type" style="display: block; margin-bottom: 5px;">Type:</label>
-            <input type="text" id="type" name="type" style="width: 100%; margin-bottom: 10px;"><br>
-
-            <label for="planting-date" style="display: block; margin-bottom: 5px;">Planting Date:</label>
-            <input type="date" id="planting-date" name="planting-date" style="width: 100%; margin-bottom: 10px;"><br>
-
-            <label for="quantity" style="display: block; margin-bottom: 5px;">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" style="width: 100%; margin-bottom: 10px;"><br>
-          </div>
-
-        </div>
-        <router-link to = "/home">
-          <SaveButton/>
+    <div class="main-container">
+      <div class="sidebar">
+        <h3 class="header-style">Shed</h3>
+        <router-link to="/shed/new" class="link-style">
+          <h4>Add Sheds</h4>
         </router-link>
+        <router-link to="/list/sheds" class="link-style">
+          <h4>List Sheds</h4>
+        </router-link>
+        <h3 class="header-style">Animals</h3>
+        <router-link to="/animal/new" class="link-style">
+          <h4>Add Animals</h4>
+        </router-link>
+        <router-link to="/list/animals" class="link-style">
+          <h4>Animal Inventory</h4>
+        </router-link>
+        <router-link to="/registerfeeds" class="link-style">
+          <h4>Feeding Registry</h4>
+        </router-link>
+        <h3 class="header-style">Crops</h3>
+        <router-link to="/register/crops" class="link-style">
+          <h4>Crop Registry</h4>
+        </router-link>
+        <router-link to="/list/crops" class="link-style">
+          <h4>Crop Inventory</h4>
+        </router-link>
+
+      </div>
+      <div class="form-container">
+        <div class="background-color">
+          <h1 class="title-color">CROP REGISTRATION</h1>
+          <div class="inputs-container">
+            <label for="shed">Shed:</label>
+            <input type="text" id="shed" name="shed"><br>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type"><br>
+
+            <label for="planting-date">Planting Date:</label>
+            <input type="date" id="planting-date" name="planting-date"><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity"><br>
+          </div>
+          <router-link to="/home">
+            <SaveButton/>
+          </router-link>
+        </div>
       </div>
     </div>
-
+    <footer-component></footer-component>
   </div>
-  <footer-component></footer-component>
-
 </template>
 
 <style scoped>
-
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-}
-
-
-
-.background-color {
-  background-color: #F2F0F0;
-  padding: 20px;
-  margin: -340px;
-  transform: translate(90px, 490px);
-  width: 700px;
-  height: 475px;
-
-
-}
-
-.table-container {
-  width: 100%;
+.main-container {
   display: flex;
   justify-content: center;
-  margin: 0 20px;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
 }
 
-.table-wrapper {
-  width: 600px;
-  height: 800px;
-  margin-left:-130px;
-  transform: translate(160px, 120px);
-
+.sidebar {
+  flex: 0 0 200px;
+  background-color: #FFFFFF; /* Cambiado a blanco */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  background-color: #fff;
+.header-style {
+  color: darkgreen !important;
+  font-size: 1.5em;
+  margin-bottom: 10px;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
+.link-style {
   color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
 }
-.title-color {
-  color:darkgreen !important;
-  margin-left:25%;
 
+.form-container {
+  flex: 1;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
 }
+
+.background-color {
+  background-color: #FFFFFF; /* Cambiado a blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.inputs-container {
+  text-align: left;
+  margin: auto;
+  width: 80%;
+}
+
+.inputs-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputs-container input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.title-color {
+  color: darkgreen !important;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
-  .flex-container {
-    flex-direction: row;
-    margin-left: 0;
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    width: 100%;
   }
 
   .background-color {
-    margin: 0;
-    transform: translate(0, 0);
     width: 100%;
-    height: auto;
   }
 
   .title-color {
-    margin-left: 0;
     text-align: center;
-    display: inline-block;
-  }
-
-  .back-button {
-    position: relative;
-    z-index: 9999;
-    left: 160px;
-  }
-
-  .inputs-add {
-    margin-top: 10%;
+    margin-bottom: 10px;
   }
 }
 </style>
