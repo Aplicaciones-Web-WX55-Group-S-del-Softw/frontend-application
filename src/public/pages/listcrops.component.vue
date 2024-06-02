@@ -28,15 +28,14 @@ export default {
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
+  <toolbar-component class="toolbar"></toolbar-component>
   <router-link to="/home" class="back-button">BACK</router-link>
 
   <section class="flex-container">
-    <DetailIdebar class=" detail-idebar"></DetailIdebar>
-    <div class="table-container">
 
-        <template v-slot:title>
-        </template>
+    <div class="table-container">
+      <DetailIdebar class="detail-idebar"></DetailIdebar>
+
 
 
       <div class="background-color">

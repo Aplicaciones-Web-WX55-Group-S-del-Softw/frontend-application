@@ -34,11 +34,10 @@ export default {
 
 
   <div class="flex-container">
-    <DetailIdebar class="detail-idebar"></DetailIdebar>
-    <div class="table-container">
 
-        <template v-slot:title>
-        </template>
+    <div class="table-container">
+      <DetailIdebar class="detail-idebar"></DetailIdebar>
+
 
 
       <div class="background-color">

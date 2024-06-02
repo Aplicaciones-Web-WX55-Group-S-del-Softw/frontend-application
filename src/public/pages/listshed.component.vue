@@ -32,11 +32,9 @@ export default {
   <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class="flex-container">
-    <DetailIdebar class="detail-idebar"></DetailIdebar>
-    <div class="table-container">
 
-        <template v-slot:title>
-        </template>
+    <div class="table-container">
+      <DetailIdebar class="detail-idebar"></DetailIdebar>
 
       <div class="background-color">
         <h1 class="title-color">SHED LIST</h1>
@@ -184,7 +182,6 @@ th {
     margin-top: 10%;
   }
 }
-
 
 
 
