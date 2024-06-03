@@ -1,27 +1,49 @@
 <script>
-export default { name: "description-card",}
-</script>
+import FarmCard from "../../../search/components/farm-cards/farm-card.vue";
+import {FarmApi} from "../../../search/services/farm-api.js";
 
-<template>
-  <div class="cardD">
-    <h1 class="cardD-title">Description</h1>
-    <pv-card class="mt-1">
-      <template #content>
-        <ul>
-          <li><strong>Location:</strong> Located in Asia.</li>
-          <li><strong>Farm Type:</strong> Poultry.</li>
-          <li><strong>Total Area:</strong> 50 hectares.</li>
-          <li><strong>Animals:</strong> Chicken.</li>
-          <li><strong>Infrastructure:</strong> Barns, corrals, irrigation system, and housing for workers.</li>
-          <li><strong>Services:</strong> Access to potable water and electricity.</li>
-          <li><strong>Condition:</strong> Well-maintained, with all facilities operational.</li>
-          <li><strong>Certifications:</strong> ISO 22000, GMP, HACCP.</li>
-        </ul>
-      </template>
-    </pv-card>
+export default {
+  name: "description-card",
+  data() {
+    return {
+      farm: {}
+    };
+  },
+  created() {
+    const farmId = this.$route.params.id; // Obtiene el ID de la granja de la ruta actual
+    this.fetchFarmDetails(farmId);
+  },
+  methods: {
+    fetchFarmDetails(farmId) {
+      new FarmApi().getFarmById(farmId).then(response => {
+        this.farm = response.data;
+      }).catch(error => {
+        console.error("Error fetching farm details: ", error);
+      });
+    }
+  }
+}
+</script><template>
+  <div class="farmContainer">
+    <div class="farmCard">
+      <div class="farmImage">
+        <img class="farmImg" :src="farm['farm-img']" alt="Granja">
+      </div>
+      <div class="farmDetails">
+        <h1 class="farmTitle">{{ farm['farm-name'] }}</h1>
+        <div class="locationContainer">
+          <p class="additionalInfo">{{ farm.location }}</p>
+          <p class="additionalInfo">{{ farm['type-farm'] }}</p>
+          <p class="additionalInfo">{{ farm['farm-hectares'] }}</p>
+          <p class="additionalInfo">{{ farm['farm-price'] }}</p>
+        </div>
+      </div>
+      <div class="additionalDetails">
+        <p class="details">{{ farm['farm-information'] }}</p>
+      </div>
+    </div>
   </div>
 </template>
-
 <style>
 
 .cardD{

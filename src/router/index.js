@@ -41,7 +41,7 @@ const router = createRouter({
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
         {path:'/tasks/:id/details',component:taskDetailsCard},
         {path:'/weather',component:weatherCard},
-        {path:'/farm/description',component:contactPage},
+        {path:'/farm/description/:id',component:contactPage},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
         {path:'/registerfeeds',component:RegisterFeeds},
