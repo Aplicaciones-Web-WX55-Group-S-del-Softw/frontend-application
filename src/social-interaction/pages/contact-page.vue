@@ -19,8 +19,8 @@ export default {
   <toolbar-component></toolbar-component>
   <router-link to="/home" class="back-button">BACK</router-link>
 
-  <description-card/>
-<farm-description-card></farm-description-card>
+  <!--<description-card/>
+<farm-description-card></farm-description-card>-->
     <star-rating/>
     <contact-card/>
 

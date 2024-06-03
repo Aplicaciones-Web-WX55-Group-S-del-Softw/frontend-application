@@ -68,6 +68,7 @@ export default {
 
 <style>
 .div-contact {
+  margin-top:50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,13 +77,14 @@ export default {
 
 .rectangle {
   width: 360px;
-  background-color: #EFEFEF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  border: 2px solid #4CAF50; /* Añade un borde de 2px de color verde */
+  border-radius: 10px; /* Opcional: para redondear las esquinas del borde */
 }
-
 .cardC-title {
   font-size: 1.6em;
   font-weight: bold;

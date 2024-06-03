@@ -12,7 +12,6 @@ export default {
 <template>
   <toolbar-component></toolbar-component>
   <farm-card></farm-card>
-  <h1 style="margin-left:200px">VIDEO:</h1>
 
 
 
