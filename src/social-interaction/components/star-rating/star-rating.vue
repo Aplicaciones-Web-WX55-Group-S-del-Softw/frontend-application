@@ -1,36 +1,35 @@
 <script>
-export default { name: "star-rating",
+export default {
+  name: "star-rating",
   data() {
     return {
-      ratings: [4.98, 5, 4.7, 5, 4.8], // Inicializa las calificaciones
-      rating: 0, // Inicializa la calificación actual
-      ratingText: '', // Inicializa el texto de la calificación
-      userHasRated: false, // Inicializa el estado de calificación del usuario
-      userRatingIndex: null, // Inicializa el índice de la calificación del usuario
-      stars: [5, 4, 3, 2, 1], // Inicializa las estrellas
+      ratings: [4.98, 5, 4.7, 5, 4.8],
+      rating: 0,
+      ratingText: '',
+      userHasRated: false,
+      userRatingIndex: null,
+      stars: [5, 4, 3, 2, 1],
     };
   },
   created() {
-    this.calculateAverage(); // Calcula el promedio inicial
+    this.calculateAverage();
   },
   methods: {
     setRating(starIndex) {
       if (!this.userHasRated) {
-        // Si el usuario no ha calificado antes, agrega la nueva calificación a la lista
         this.ratings.push(starIndex);
         this.userRatingIndex = this.ratings.length - 1;
         this.userHasRated = true;
       } else {
-        // Si el usuario ya ha calificado, actualiza su calificación
         this.ratings[this.userRatingIndex] = starIndex;
       }
-      this.calculateAverage(); // Calcula el nuevo promedio
+      this.calculateAverage();
     },
     calculateAverage() {
       let sum = this.ratings.reduce((a, b) => a + b, 0);
       let avg = sum / this.ratings.length;
       this.rating = avg;
-      this.updateRatingText(); // Actualiza el texto de la calificación
+      this.updateRatingText();
     },
     updateRatingText() {
       let ratingValue = `${this.rating.toFixed(2)}/5.00`;
@@ -41,7 +40,7 @@ export default { name: "star-rating",
       } else if (this.rating >= 3) {
         this.ratingLabel = 'Good';
       } else if (this.rating >= 2) {
-        this.ratingLabel = 'Fair';
+        this.ratingLabel = 'Regular';
       } else {
         this.ratingLabel = 'Bad';
       }
@@ -55,9 +54,9 @@ export default { name: "star-rating",
 </script>
 
 <template>
-  <div class="container">
-    <section class="half-page">
-      <strong class="label-valoration">Customer reviews</strong>
+  <div class="rating-container">
+    <div class="left-section">
+      <div class="title">Customer ratings</div>
       <div class="star-rating-container">
         <span v-for="starIndex in 5" :key="starIndex" class="star" @click="setRating(starIndex)"
               :class="{ 'active': starIndex <= rating, 'selected': starIndex <= ratings[userRatingIndex] }">★</span>
@@ -66,33 +65,51 @@ export default { name: "star-rating",
         <div class="rating-label">{{ ratingLabel }}</div>
         <div class="rating-value">{{ ratingValue }}</div>
       </div>
+    </div>
+    <div class="right-section">
       <div class="star-count-container">
         <div v-for="star in stars" :key="star" class="star-row">
-          <div class="star-text">{{ star }} stars</div>
-          <div class="bar" :style="{ width: getStarCount(star) * 3 + '%', backgroundColor: '#FEC200' }"></div>
+          <div class="star-text">{{ star }} star<span v-if="star > 1">s</span></div>
+          <div class="progress-bar">
+            <div class="progress-fill" :style="{ width: getStarCount(star) / ratings.length * 100 + '%' }"></div>
+          </div>
           <div class="star-count">{{ getStarCount(star) }}</div>
         </div>
       </div>
-
-      <!--  <div class="bottom-line"></div>-->
-    </section>
+    </div>
   </div>
-  <br>
 </template>
 
-
 <style>
-.label-valoration {
-  position: relative;
-  top: 70px;
-  font-size: 1.3em;
-  margin-left: 320px;
+.rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0;
+}
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.star-rating-container {
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 .star {
   cursor: pointer;
   color: grey;
-  font-size: 2.5em;
+  font-size: 2em;
   transition: color 0.3s ease;
 }
 
@@ -100,60 +117,54 @@ export default { name: "star-rating",
   color: #FEC200;
 }
 
-.star-rating-container {
-  margin-top: 68px;
-  margin-left: 320px;
-
+.rating-text {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }
 
 .star-count-container {
-  margin-top: -140px;
-  margin-left: 850px;
-
-}
-
-.star-text {
-  font-size: 1.16em;
-}
-
-.rating-text {
-  position: relative;
-  top: 10px;
-  font-size: 1.2em;
-  margin-left: 350px;
-}
-
-.rating-value {
-  margin-left: 5px;
+  width: 100%;
+  margin-left: 2em; /* Espacio adicional entre las secciones */
 }
 
 .star-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 0.5em;
+  margin-top: 0.4em;
 }
 
 .star-text {
   flex-shrink: 0;
+  width: 100px;
 }
 
-.bar {
+.progress-bar {
+  width: 185px;
   height: 20px;
-  margin: 5px 0;
+  background-color: #e0e0e0;
   border-radius: 5px;
+  overflow: hidden;
 }
 
-.bottom-line {
-  width: 850px;
-  height: 1px;
-  background-color: gray;
-  position: absolute;
-  bottom: -360px;
-  left: 270px;
+.progress-fill {
+  height: 100%;
+  background-color: #FEC200;
+  transition: width 0.3s ease;
 }
 
-.container {
-  margin-top: -30px;
+.star-count {
+  margin-left: 0.5em;
+}
 
+@media (max-width: 1000px) {
+  .rating-container {
+    flex-direction: column;
+  }
+  .star-count-container {
+    margin-left: 0; /* Restablecer el margen para pantallas más pequeñas */
+  }
 }
 </style>

@@ -21,9 +21,10 @@ export default {
 
   <description-card/>
 <farm-description-card></farm-description-card>
-  <star-rating/>
-  <contact-card/>
-  <br>
+    <star-rating/>
+    <contact-card/>
+
+
   <footer-component></footer-component>
 
 </template>
