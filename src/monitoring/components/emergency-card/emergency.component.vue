@@ -1,52 +1,66 @@
 <script>
 import { ref } from 'vue';
-import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
-import {EmergencyApi} from "./emergency-api.js";
-import SuccessModal from "../task-card/success-modal.vue";
-import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import { useRouter } from 'vue-router';
+import axios  from 'axios';
 
 export default {
   name: "emergency",
-  components: {FooterComponent, ToolbarComponent, SuccessModal},
+
+  setup() {
+    const router = useRouter();
+    const selectedEmployee = ref('');
+    const selectedDate = ref('');
+    const taskDescription = ref('');
+    const showModal = ref(false);
+    const employees = ref([]);
+
+    const saveTask = () => {
+      showModal.value = true;
+      setTimeout(() => {
+        router.push('/detail-monitoring');
+      }, 1500);
+    };
+
+    const closeModal = () => {
+      showModal.value = false;
+    };
+
+    return {
+      selectedEmployee,
+      selectedDate,
+      taskDescription,
+      showModal,
+      saveTask,
+      closeModal,
+      employees // Return employees so it can be accessed in the template
+    }
+  },
 
   data() {
     return {
-      emergencys: [],
-      emergencyApi: new EmergencyApi(),
-      employees:[],
-      employeesApi: new DashboardApi(),
-    };
+      EmergencyData: []
+    }
   },
   created() {
-    this.emergencyApi.getData().then(response => {
-      this.emergencys = response.data;
-      console.log(this.emergencys)
-    }).catch(error => {
-      console.error(error);
-    });
-
-    this.employeesApi.getTasks().then(response => {
-      this.employees = [...new Set(response.data.map(task => task.employee))];
-    }).catch(error => {
-      console.error(error);
-    });
+    axios.get('server/db.json')
+        .then(response => {
+          this.EmergencyData = response.data.emergencyData;
+          this.employees = response.data.employees;
+        })
+        .catch(error => {
+          console.log(error);
+        });
   }
 }
 </script>
 
 <template>
-
-  <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
-
   <div class="container">
-
     <h1>Emergency</h1>
     <h2>History</h2>
 
-    <div class="label1x">Choose the recipient:</div>
-    <div class="label2x">Date:</div>
+    <div class="label1">Choose the recipient:</div>
+    <div class="label2">Date:</div>
     <div class="label4"></div>
 
     <div class="row">
@@ -68,9 +82,9 @@ export default {
       <textarea v-model="taskDescription" placeholder="Emergency description"></textarea>
     </div>
 
-    <div class="button-container">
-      <button to="/home" class="button-link save-button">Save</button>
-      <router-link to="/home" class="button-link cancel-button">Cancel</router-link>
+    <div class="input-container">
+      <button @click="saveTask" class="button-link save-button">Save</button>
+      <router-link to="/" class="button-link cancel-button">Cancel</router-link>
     </div>
 
     <SuccessModal :show="showModal" @close="closeModal" />
@@ -84,15 +98,15 @@ export default {
       </tr>
       </thead>
       <tbody>
-      <tr v-for="emergency in emergencys" :key="emergency.id">
+      <tr v-for="emergency in EmergencyData" :key="emergency.id">
         <td>{{ emergency.recipient }}</td>
         <td>{{ emergency.date }}</td>
         <td>{{ emergency.description }}</td>
       </tr>
       </tbody>
     </table>
+
   </div>
-  <footer-component></footer-component>
 </template>
 
 <style scoped>
@@ -103,54 +117,52 @@ h1{
   text-align: center;
   top: -10px;
   margin:0;
-  color:darkgreen;
+  color:#44604D;
 }
 
 h2 {
   font-size: 35px;
   position: relative;
   text-align: center;
-  top: 580px;
-  color:darkgreen;
-  margin: 0 0 0 -450px;
+  top: 522px;
+  color:#44604D;
+  margin: 0 0 0 -410px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 170px;
-  margin-bottom: 60%;
-
+  margin-top: 8.5%;
 }
 
 
 .row {
   display: flex;
-  justify-content: space-between;
-  width: 30%;
-  margin-left: -15px;
+  margin-top: -40px;
 }
 
 .input-container {
   width: 100%;
   max-width: 200px;
-  height: 50px;
+  height: 40px;
   font-size: 16px;
   margin: 20px 0;
+  padding: 5px;
   display: flex;
 }
 
-select{
+select {
   border: 2px solid #000;
   border-radius: 5px;
+  margin-right: 50px;
+  width: 250px;
 }
 
-input[type="date"], input[type="time"], select {
-  width: 100%;
-  height: 100%;
+input[type="date"], input[type="time"] {
   border: 2px solid #000;
   border-radius: 5px;
+  margin-left: 35px;
 }
 
 textarea {
@@ -166,32 +178,29 @@ textarea {
 
 
 .save-button, .cancel-button{
-
   background-color: #E9F3AE;
   color: black;
   border: none ;
   text-decoration: none;
   border-radius: 5px;
-  margin-right: 16px;
-  margin-top: 130px;
-  margin-left: -87px;
   transition: background-color 0.3s ease;
   position: absolute;
 }
 
-.save-button, .cancel-button {
-  margin-top: 210px;
-}
-
 .save-button{
+  margin-top: 210px;
+  margin-left: -170px;
   padding: 0.35% 15px;
 }
+
 .cancel-button{
+  margin-top: 210px;
+  margin-left: -98px;
   font-size: 13px;
   padding: 0.35%  15px;
 }
 .save-button:hover {
-  background-color: darkgreen;
+  background-color: #006400;
   color: white;
 }
 
@@ -200,45 +209,34 @@ textarea {
   color: white;
 }
 
-.save-button {
-  left: 570px;
-}
-
-.cancel-button {
-  left: 670px;
-}
-
 input, select, textarea, input[type="date"] {
   border: 1px solid #000000;
 }
 
-input[type="date"] {
-  margin-left: 40px;
-}
-
-.label1x, .label2x, .label4 {
+.label1, .label2, .label4 {
   position:absolute;
   font-size: 15px;
   color: black;
-  margin-top: 90px;
-
   font-weight: bold;
 }
 
-.label1x{
-  margin-left: -315px;
-  margin-top: 90px;
+.label1{
+  margin-left: -245px;
+  margin-top: 70px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-.label2x{
-  margin-left: 155px;
-  margin-top: 90px;
+.label2{
+  margin-left: 120px;
+  margin-top: 70px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
+.label1:hover, .label2:hover {
+  color: #009879;
+}
 
 .input-container select, .input-container input[type="date"] {
   border: none;
@@ -271,9 +269,9 @@ input[type="date"] {
 
 
 .history-table {
-  position: relative;
-  margin-left: -10px;
-  top: 385px;
+  position: absolute;
+  margin-left: 15px;
+  transform:translateY(39.5em);
   width: 550px;
   overflow-y: auto;
   border-collapse: collapse;
@@ -281,7 +279,7 @@ input[type="date"] {
 }
 
 .history-table thead tr {
-  background-color: darkgreen;
+  background-color: #44604D;
   color: #ffffff;
   text-align: left;
 }
@@ -300,8 +298,6 @@ input[type="date"] {
 }
 
 .history-table tbody tr:last-of-type {
-  border-bottom: 2px solid #278f4a;
+  border-bottom: 2px solid #009879;
 }
-
-
 </style>
