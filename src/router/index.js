@@ -21,6 +21,8 @@ import listshedComponent from "../public/pages/listshed.component.vue";
 import emergencyComponent from "../monitoring/components/emergency-card/emergency.component.vue";
 import ProductionCard from "../monitoring/components/statistics-card/production-card.vue";
 import RegisterFeeds from "../public/pages/register-feeds.vue";
+import ListEmployee from "../public/pages/ListEmployee.component.vue";
+import AddEmployee  from "../public/pages/AddEmployee.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -44,8 +46,10 @@ const router = createRouter({
         {path:'/farm/description/:id',component:contactPage},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
+        {path:'/listemployee', component: ListEmployee},
         {path:'/registerfeeds',component:RegisterFeeds},
         { path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
+        {path:'/employee/new', component: AddEmployee},
 
 
 
