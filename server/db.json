@@ -126,7 +126,6 @@
       "quantity": 300,
       "id_shed": 3
     }
-
   ],
   "expenses": [
     {
@@ -346,6 +345,151 @@
       "recipient": "John Doe",
       "date": "2022-06-01",
       "description": "Tractor breakdown"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Rodrigo",
+      "lastname": "Kunimoto",
+      "dni": "10101012",
+      "gender": "Male",
+      "address": "123 Main St",
+      "username": "rodrigo123",
+      "password": "password123",
+      "labor": "Feed the chickens"
+    },
+    {
+      "id": 2,
+      "name": "Franco",
+      "lastname": "Barrionuevo",
+      "dni": "10202010",
+      "gender": "Male",
+      "address": "456 Elm St",
+      "username": "franco456",
+      "password": "password456",
+      "labor": "Feed the chickens"
+    },
+    {
+      "id": 3,
+      "name": "Maria",
+      "lastname": "Lopez",
+      "dni": "10151510",
+      "gender": "Female",
+      "address": "789 Oak St",
+      "username": "maria789",
+      "password": "password789",
+      "labor": "Review the farm inventory"
+    },
+    {
+      "id": 4,
+      "name": "Ana",
+      "lastname": "Gomez",
+      "dni": "10109999",
+      "gender": "Female",
+      "address": "101 Pine St",
+      "username": "ana101",
+      "password": "password101",
+      "labor": "Clean the barns"
+    },
+    {
+      "id": 5,
+      "name": "Carlos",
+      "lastname": "Rodriguez",
+      "dni": "10109870",
+      "gender": "Male",
+      "address": "202 Cedar St",
+      "username": "carlos202",
+      "password": "password202",
+      "labor": "Maintain the corrals"
+    },
+    {
+      "id": 6,
+      "name": "Pedro",
+      "lastname": "Jimenez",
+      "dni": "70101910",
+      "gender": "Male",
+      "address": "303 Maple St",
+      "username": "pedro303",
+      "password": "password303",
+      "labor": "Harvest the vegetables"
+    },
+    {
+      "id": 7,
+      "name": "Sofia",
+      "lastname": "Torres",
+      "dni": "10101900",
+      "gender": "Female",
+      "address": "404 Pine St",
+      "username": "sofia404",
+      "password": "password404",
+      "labor": "Feed the pigs"
+    },
+    {
+      "id": 8,
+      "name": "Ricardo",
+      "lastname": "Diaz",
+      "dni": "11151010",
+      "gender": "Male",
+      "address": "505 Oak St",
+      "username": "ricardo505",
+      "password": "password505",
+      "labor": "Milk the cows"
+    },
+    {
+      "id": 9,
+      "name": "Fernando",
+      "lastname": "Salgado",
+      "dni": "12341010",
+      "gender": "Male",
+      "address": "606 Elm St",
+      "username": "fernando606",
+      "password": "password606",
+      "labor": "Clean the stalls"
+    },
+    {
+      "id": 10,
+      "name": "Giacomo",
+      "lastname": "Zoppi",
+      "dni": "10101010",
+      "gender": "Male",
+      "address": "707 Maple St",
+      "username": "giacomo707",
+      "password": "password707",
+      "labor": "Recollect the potatoes"
+    },
+    {
+      "id": 11,
+      "name": "Franco",
+      "lastname": "Maku",
+      "dni": "10909010",
+      "gender": "Male",
+      "address": "808 Cedar St",
+      "username": "franco808",
+      "password": "password808",
+      "labor": "Harvest the wheat"
+    },
+    {
+      "id": 12,
+      "name": "Julio",
+      "lastname": "Cesar",
+      "dni": "10908010",
+      "gender": "Male",
+      "address": "909 Oak St",
+      "username": "julio909",
+      "password": "password909",
+      "labor": "Harvest the rice"
+    },
+    {
+      "name": "Marco",
+      "lastname": "Antonio",
+      "gender": "Male",
+      "address": "Av. Farmland",
+      "dni": "10101099",
+      "username": "MC1",
+      "password": "777",
+      "labor": "Feed the Cows",
+      "id": 13
     }
   ]
 }

@@ -1,79 +1,116 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import ToolbarComponent from '../toolbar-component/toolbar-component.vue';
+import FooterComponent from '../components/footer-component.vue';
+import axios from 'axios';
 
+const router = useRouter();
+const employeeData = ref({
+  name: '',
+  lastname: '',
+  gender: '',
+  address: '',
+  dni: '',
+  username: '',
+  password: '',
+  labor: ''
+});
 
-const saveTask = () => {
-  const newTask = {
-    employee: selectedEmployee.value,
-    date: selectedDate.value,
-    time: taskTime.value,
-    description: taskDescription.value,
-    finished: 'Pending'
-  };
+const errors = ref([]);
 
-  taskApi.createTask(newTask)
-      .then(() => {
-        showModal.value = true;
-        setTimeout(() => {
-          router.push('/tasks');
-        }, 1500);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+const validateData = () => {
+  errors.value = [];
+  if (!employeeData.value.name) errors.value.push('Name is required.');
+  if (!employeeData.value.lastname) errors.value.push('Lastname is required.');
+  if (!employeeData.value.gender) errors.value.push('Gender is required.');
+  if (!employeeData.value.address) errors.value.push('Address is required.');
+  if (!employeeData.value.dni) errors.value.push('DNI is required.');
+  if (!employeeData.value.username) errors.value.push('Username is required.');
+  if (!employeeData.value.password) errors.value.push('Password is required.');
+  if (!employeeData.value.labor) errors.value.push('Labor is required.');
+  return errors.value.length === 0;
 };
 
-const closeModal = () => {
-  showModal.value = false;
+const saveEmployee = () => {
+  if (validateData()) {
+    axios.post('http://localhost:3000/employees', employeeData.value)
+        .then(() => {
+          console.log('Employee saved successfully.');
+          router.push('/listemployee');
+        })
+        .catch(error => {
+          console.error('Error saving employee:', error);
+        });
+  }
 };
 </script>
 
 <template>
   <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
+  <router-link to="/employees" class="back-button">BACK</router-link>
   <div class="container">
-    <h1>Task</h1>
+    <h1>Add New Employee</h1>
 
-    <div class="label1">Employee:</div>
-    <div class="label2">Date:</div>
-    <div class="label3">Time to complete:</div>
-    <div class="label4">Description:</div>
-    <div class="row">
-      <div class="input-container" style="margin-left: -10px;">
-        <select v-model="selectedEmployee" class="input-employee">
-          <option v-for="employee in employees" :key="employee" :value="employee">
-            {{ employee }}
-          </option>
-        </select>
-
+    <div class="form-container">
+      <div v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
       </div>
 
-      <div class="input-container ">
-        <input type="date" v-model="selectedDate">
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeName">Name:</label>
+          <input v-model="employeeData.name" type="text" id="employeeName" placeholder="Name">
+        </div>
+
+        <div class="input-container">
+          <label for="employeeLastname">Lastname:</label>
+          <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeGender">Gender:</label>
+          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender">
+        </div>
+
+        <div class="input-container">
+          <label for="employeeDNI">DNI:</label>
+          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI">
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="employeeAddress">Address:</label>
+        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address">
+      </div>
+
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeUsername">Username:</label>
+          <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
+        </div>
+
+        <div class="input-container">
+          <label for="employeePassword">Password:</label>
+          <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="input-container labor-container">
+        <label for="employeeLabor">Labor:</label>
+        <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
+      </div>
+
+      <div class="button-container">
+        <button @click="saveEmployee" class="save-button">Save</button>
+        <router-link to="/listemployee" class="cancel-button">Cancel</router-link>
       </div>
     </div>
-    <div class="input-container task-time-container">
-      <select v-model="taskTime">
-        <option v-for="hour in 24" :key="hour" :value="hour">
-          {{ hour }}
-        </option>
-      </select>
-    </div>
-    <br>
-
-    <div class="input-container description-container">
-      <textarea v-model="taskDescription" placeholder="Task description"></textarea>
-
-
-    </div>
-
-    <div class="container-button">
-      <button @click="saveTask" class="button-link save-button">Save</button>
-      <router-link to="/tasks" class="button-link cancel-button">Cancel</router-link>
-    </div>
-    <SuccessModal :show="showModal" @close="closeModal" />
-
   </div>
   <footer-component></footer-component>
 </template>
@@ -92,93 +129,91 @@ const closeModal = () => {
 }
 
 .back-button:hover {
-  background-color: darkgreen;
-}
-.container-button{
-  margin-top: 160px;
-}
-
-.save-button, .cancel-button{
-
-  background-color: #E9F3AE;
-  color: black;
-  border: none ;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-right: 16px;
-  transition: background-color 0.3s ease;
-  position: absolute;
-
-}
-.save-button{
-  padding: 0.35% 15px;
-}
-.cancel-button{
-  font-size: 13px;
-  padding: 4px 15px;
-}
-
-
-
-h1{
-  font-size: 70px;
-  position: relative;
-  top: -30px;
-  left:-50px;
-  margin:0;
-  color:darkgreen;
+  background-color: #006400;
 }
 
 .container {
-  margin-top:100px;
+  margin-top: 100px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 80px;
-
 }
+
+h1 {
+  font-size: 40px;
+  color: darkgreen;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .row {
   display: flex;
-  width: 30%;
-  margin-left:-80px
+  justify-content: space-between;
+  width: 100%;
 }
 
 .input-container {
-  width: 100%;
-  max-width: 200px;
-  height: 40px;
-  font-size: 16px;
-  margin: 20px 0;
-  padding: 5px;
+  width: 48%;
+  margin: 10px 0;
   display: flex;
-}
-select{
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-.task-time-container {
-  margin-right: 328px;
+  flex-direction: column;
 }
 
-.description-container{
-  margin-top: 10px;
-  margin-right:72px;
+.input-container label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
 }
-input[type="date"], input[type="time"], select {
+
+.input-container input, .input-container textarea {
+  padding: 10px;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-container input:focus, .input-container textarea:focus {
+  border-color: #2e7d32;
+}
+
+.labor-container {
   width: 100%;
-  height: 100%;
-  border: 2px solid #000;
-  border-radius: 5px;
 }
 
-textarea {
-  width: 700px;
-  height: 200px;
+.labor-container textarea {
+  width: 100%;
+  height: 150px;
   resize: none;
-  margin-left: -127px;
-  border: 2px solid #000;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button, .cancel-button {
+  padding: 10px 20px;
+  background-color: #E9F3AE;
+  color: black;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .save-button:hover {
@@ -189,47 +224,5 @@ textarea {
 .cancel-button:hover {
   background-color: #FF0000;
   color: white;
-}
-
-.save-button {
-  left: 547px;
-}
-
-.cancel-button {
-  left: 630px;
-}
-
-
-
-.label1{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 90px;
-  margin-left: -449px;
-}
-
-.label2{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 90px;
-  margin-left: -80px;
-}
-
-.label3{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 170px;
-  margin-left: -397px;
-}
-
-.label4{
-  position:absolute;
-  font-size: 15px;
-  margin-top: 250px;
-  margin-left: -435px;
-  color: black;
 }
 </style>
