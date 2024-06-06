@@ -26,4 +26,11 @@ export default {
 .save-button:hover {
   background-color: #45a049; /* Cambio de color al pasar el ratón */
 }
+
+@media screen and (max-width: 768px) {
+  .save-button {
+    position: static;
+    margin: 10px auto;
+  }
+}
 </style>

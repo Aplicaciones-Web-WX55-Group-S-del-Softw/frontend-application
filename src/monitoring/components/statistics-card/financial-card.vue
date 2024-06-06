@@ -1,348 +1,279 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
 import FooterComponent from "../../../public/components/footer-component.vue";
 
-const selectedFinance = ref('');
-const showTable = ref(false);
+const selectedType = ref('Income');
+const selectedCategory = ref('');
+const description = ref('');
+const amount = ref('');
+const date = ref('');
+const period = ref('');
+const transactions = ref([]);
 
-const toggleTable = () => {
-  showTable.value = !showTable.value;
+const addTransaction = () => {
+  transactions.value.unshift({
+    id: transactions.value.length + 1,
+    type: selectedType.value,
+    category: selectedCategory.value,
+    description: description.value,
+    amount: amount.value,
+    date: date.value,
+    period: period.value
+  });
+
+  if (transactions.value.length > 13) {
+    transactions.value.pop();
+  }
+
+  selectedType.value = 'Income';
+  selectedCategory.value = '';
+  description.value = '';
+  amount.value = '';
+  date.value = '';
+  period.value = '';
 };
+
+const categories = computed(() => {
+  return selectedType.value === 'Income' ? ['Sales', 'Subsidies', 'Other Income'] : ['Supplies', 'Labor', 'Maintenance', 'Services', 'Other Expenses'];
+});
+
+const filterType = ref('All');
+const filterCategory = ref('');
+const filterDate = ref('');
+
+const filterCategories = computed(() => {
+  return filterType.value === 'Income' ? ['Sales', 'Subsidies', 'Other Income'] : filterType.value === 'Expense' ? ['Supplies', 'Labor', 'Maintenance', 'Services', 'Other Expenses'] : [];
+});
+
+const filteredTransactions = computed(() => {
+  return transactions.value.filter(transaction => {
+    return (filterType.value === 'All' || transaction.type === filterType.value) &&
+        (!filterCategory.value || transaction.category === filterCategory.value) &&
+        (!filterDate.value || transaction.date === filterDate.value);
+  });
+});
 </script>
 <template>
   <toolbar-component></toolbar-component>
-
-  <div>
-    <router-link to="/home" class="back-button">BACK</router-link>
-    <div class="financial-title">
-    <h1>Financial Statistics</h1>
-    </div>
-    <div class="boxes-container">
-      <h3>Income</h3>
-      <div class="box">
-        <h2>S/XXX</h2>
-      </div>
-      <h3>Expenses</h3>
-      <div class="box">
-        <h2>S/XXX</h2>
-      </div>
-      <img src="../../../assets/financial-statistics.png" alt="Financial Statistics" class="financial-statistics-image">
-    </div>
-
-    <div class="dropdown-container">
-      <div class="dropdown-item">
-        <h4>Finance</h4>
-        <select v-model="selectedFinance">
-          <option value="income">Income</option>
-          <option value="expenses">Expenses</option>
+  <div class="container">
+    <div class="form-container">
+      <h1>ADD INCOME OR EXPENSE</h1>
+      <div class="form-item">
+        <label for="type">Type</label>
+        <select v-model="selectedType">
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
         </select>
       </div>
-
-      <div class="dropdown-item">
-        <h4>Category</h4>
-        <select>
-          <template v-if="selectedFinance === 'income'">
-            <option value="sales">Sales</option>
-            <option value="subsidies">Subsidies</option>
-            <option value="others">Others</option>
-          </template>
-
-          <template v-else-if="selectedFinance === 'expenses'">
-            <option value="supplies">Supplies</option>
-            <option value="labor">Labor</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="service">Service</option>
-            <option value="others">Others</option>
-          </template>
+      <div class="form-item">
+        <label for="category">Category</label>
+        <select v-model="selectedCategory">
+          <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
         </select>
       </div>
-
-      <div class="dropdown-item">
-        <h4>Amount</h4>
-        <input type="text" class="monto-input" placeholder="Enter the amount">
+      <div class="form-item">
+        <label for="description">Description</label>
+        <input type="text" v-model="description" />
       </div>
-
-      <div class="dropdown-item">
-        <h4>Period</h4>
-        <select>
-          <template v-if="selectedFinance === 'income' || selectedFinance === 'expenses'">
-            <option value="month">Month</option>
-            <option value="quarter">Quarter</option>
-            <option value="year">Year</option>
-          </template>
-        </select>
+      <div class="form-item">
+        <label for="amount">Amount</label>
+        <input type="number" v-model="amount" />
       </div>
-      <div class="dropdown-item">
-        <h4>Date</h4>
-        <input type="date">
+      <div class="form-item">
+        <label for="date">Date</label>
+        <input type="date" v-model="date" />
       </div>
+      <div class="form-item">
+        <label for="period">Period</label>
+        <input type="text" v-model="period" />
+      </div>
+      <button @click="addTransaction">Add</button>
     </div>
 
-    <div class="filter-table">
-      <button @click="toggleTable">Filter</button>
-      <h2 v-if="showTable && selectedFinance === 'income'" class="table-title">Income</h2>
-      <h2 v-if="showTable && selectedFinance === 'expenses'" class="table-title">Expenses</h2>
-
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Period</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="transaction in transactions.slice(0, 13)" :key="transaction.id">
+          <td>{{ transaction.type }}</td>
+          <td>{{ transaction.category }}</td>
+          <td>{{ transaction.description }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.date }}</td>
+          <td>{{ transaction.period }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <table v-show="showTable && (selectedFinance === 'income' || selectedFinance === 'expenses')" :class="{ 'hide': !showTable }" class="data-table">
+  <div class="filter-container">
+    <h1>FILTER</h1>
+    <div class="filter-item">
+      <label for="type">Type</label>
+      <select v-model="filterType">
+        <option value="All">All</option>
+        <option value="Income">Income</option>
+        <option value="Expense">Expense</option>
+      </select>
+    </div>
+    <div class="filter-item" v-if="filterType !== 'All'">
+      <label for="category">Category</label>
+      <select v-model="filterCategory">
+        <option value="">All</option>
+        <option v-for="category in filterCategories" :key="category" :value="category">{{ category }}</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <label for="date">Date</label>
+      <input type="date" v-model="filterDate" />
+    </div>
+    <button @click="resetFilters">Search</button>
+  </div>
+
+  <div class="table-containerx">
+    <table>
       <thead>
       <tr>
-        <th>ID</th>
+        <th>Type</th>
         <th>Category</th>
+        <th>Description</th>
         <th>Amount</th>
         <th>Date</th>
         <th>Period</th>
       </tr>
       </thead>
       <tbody>
-
-      <tr>
-        <td>1</td>
-        <td>Sales</td>
-        <td>S/1000</td>
-        <td>2023-01-01</td>
-        <td>Month</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Sales</td>
-        <td>S/1000</td>
-        <td>2023-01-01</td>
-        <td>Month</td>
+      <tr v-for="transaction in filteredTransactions" :key="transaction.id">
+        <td>{{ transaction.type }}</td>
+        <td>{{ transaction.category }}</td>
+        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.period }}</td>
       </tr>
       </tbody>
     </table>
   </div>
-  <footer-component></footer-component>
-
 </template>
-
-
 <style scoped>
-
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: darkgreen;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.back-button:hover {
-  background-color: darkgreen;
-}
-
-h1{
-  font-size: 70px;
-  position: relative;
-  text-align: center;
-  top: 100px;
-  margin:0;
-  color:darkgreen;
-}
-
-h2{
-  position: relative;
-  top: 250px;
-  margin:0;
-  font-size: 50px;
-  text-align: left;
-  color:darkgreen;
-  right: -40px;
-}
-.box h2 {
-  font-size: 20px;
-  text-align: left;
-  color: darkgreen;
-  margin-left: 10px;
-  margin-bottom: -100px;
-}
-.boxes-container {
-  margin-top: 200px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.box{
-  border: 2px solid darkgreen;
-  padding: 50px;
-  margin: 70px 10px 300px -50px;
-  width: 20%;
-  height: 350px;
-}
-
-h3{
-  font-size: 25px;
-  text-align: left;
-  color:darkgreen;
-  position: relative;
-  right: -45px;
-}
-
-img {
-  width: 60%;
-  height: 450px;
-  margin-left: -10px;
-}
-
-.dropdown-container {
-  max-width: 1000px;
+.container {
   display: flex;
   justify-content: space-between;
-  text-align: center;
-  margin-top: -180px;
-  margin-left: 250px;
-  background-color: #d77e7e;
+  flex-wrap: wrap;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  border: 1px solid black;
+  margin-top: 10%;
 }
 
-.dropdown-item {
+.filter-container {
+  width: 50%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Centra el contenedor en la página */
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  gap: 20px; /* Ajusta este valor para cambiar el espacio entre los elementos */
+}
+.table-containerx{
+  align-items: center;
+  width: 45%;
+  margin: 20px auto; /* Centra el contenedor en la página */
+
+}
+.form-container, .table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
 }
 
-.dropdown-item h4 {
+.form-container {
+  width: 45%;
+}
+
+.table-container {
+  width: 50%;
+
+}
+
+h1 {
+  color: darkgreen;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.dropdown-item select {
-  border: 2px solid #000;
-  border-radius: 5px;
-  width: 150px;
-}
-.dropdown-item input[type="date"] {
-  width: 150px;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-.dropdown-item .monto-input {
-  width: 150px;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-div {
-  margin-bottom: 10vh;
+.form-item, .filter-item {
+  margin-bottom: 15px;
+  width: 100%;
 }
 
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+
+.table-container {
+  height: auto;
+  overflow-x: auto;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 200px;
 }
 
-table th, table td {
-  border: 1px solid #000;
+th, td {
   padding: 10px;
+  border: 1px solid #ddd;
   text-align: left;
 }
-.table-title{
-  margin-top: -230px;
-  text-align: center;
-  color: darkgreen;
+
+th {
+  background-color: #f4f4f4;
 }
 
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-button {
-  background-color: #d77e7e;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 1173px;
-}
-
-button:hover {
-  background-color: darkgreen;}
-@keyframes scaleIn {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-.data-table {
-  animation: scaleIn 1s forwards;
-  margin-top: 200px;
-}
-
-@media (max-width: 600px) {
-  .box {
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .form-container, .table-container, .filter-container {
     width: 100%;
-    height:10%;
-    padding: 30px;
-    margin-top: 100px;
-  }
-  .box h2{
-    font-size: 15px;
-    margin-left: 10px;
-    margin-bottom: 240px;
-  }
-  .financial-title h1{
-  left:30px;
-  margin-top:100px;
-  font-size: 30px;
-  }
-  .boxes-container {
-  margin-top:500px;
-    width:80%;
-    margin-left: 80px;
-  }
-  h1 {
-    left:30px;
-    margin-top:400px;
-    font-size: 24px;
-  }
-
-  img {
-    position: absolute;
-    left:90px;
-    top:400px;
-    width: 80%;
-    height: auto;
-  }
-
-  .dropdown-container {
-    width:80%;
-    flex-direction: column;
-    margin-left: 100px;
-    margin-bottom:50px;
-  }
-
-  .dropdown-item {
-    margin: 20px 0;
-  }
-
-  button {
-    margin-left: 470px;
-  }
-
-  table {
-    width: 70%;
-    margin-left: 120px;
   }
 }
-
-
-
 </style>
 

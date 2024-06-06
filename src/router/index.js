@@ -20,6 +20,7 @@ import contactPage from "../social-interaction/pages/contact-page.vue";
 import listshedComponent from "../public/pages/listshed.component.vue";
 import emergencyComponent from "../monitoring/components/emergency-card/emergency.component.vue";
 import ProductionCard from "../monitoring/components/statistics-card/production-card.vue";
+import RegisterFeeds from "../public/pages/register-feeds.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -40,9 +41,10 @@ const router = createRouter({
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
         {path:'/tasks/:id/details',component:taskDetailsCard},
         {path:'/weather',component:weatherCard},
-        {path:'/farm/description',component:contactPage},
+        {path:'/farm/description/:id',component:contactPage},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
+        {path:'/registerfeeds',component:RegisterFeeds},
         { path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
 
 

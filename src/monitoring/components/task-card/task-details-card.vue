@@ -60,7 +60,7 @@ export default {
         <p><span class="bold-text">Status:</span> {{ task.finished }}</p>
 
       </div>
-      <div class="button">
+      <div class="button-task">
         <button v-if="task.finished === 'Pending'" @click="finishTask" class="finish-button">Finish task</button>
         <button @click.native="$router.go(-1)" class="cancel-button">Go back</button>
       </div>
@@ -92,6 +92,11 @@ export default {
   top: 300px;
 }
 
+.button-task {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 h1{
   font-size: 70px;
   position: relative;
@@ -122,9 +127,9 @@ h1{
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   padding: 20px;
-  width: 120%;
+  width: 100%;
   height: 230px;
-  margin-top: 100px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -140,7 +145,6 @@ h1{
   margin-top: 50px;
   margin-left: 90px;
 }
-
 .cancel-button {
   background-color: #ffaca9;
   border: 2px solid #ff0000;
@@ -149,7 +153,9 @@ h1{
   cursor: pointer;
   font-size: 16px;
   margin-top: 50px;
-  margin-left: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .return-button {
@@ -158,7 +164,7 @@ h1{
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 50px;
   margin-top: 50px;
 
 }
@@ -171,7 +177,6 @@ h1{
   border: 1px solid #ff0000;
   box-shadow: 0 2px 8px rgba(255, 0, 0, 0.25);
   padding: 20px;
-  width: 30%;
   height: 190px;
   margin-top: 100px;
   margin-bottom: 400px;

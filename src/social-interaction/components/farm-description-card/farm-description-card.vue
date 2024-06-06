@@ -8,6 +8,7 @@ export default { name: "farm-description-card",
 
 
 <template>
+  <!--
   <div>
 
     <div class="cardF">
@@ -22,7 +23,6 @@ export default { name: "farm-description-card",
         <template #content>
           <h1 class="cardF-title2">Farm Tsuneo</h1>
           <div class="location-container">
-            <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
 
             <p class="additional">Asia, Lima</p>
           </div>
@@ -39,8 +39,7 @@ export default { name: "farm-description-card",
       </div>
 
     </div>
-  </div>
-
+  </div> -->
 
 </template>
 
