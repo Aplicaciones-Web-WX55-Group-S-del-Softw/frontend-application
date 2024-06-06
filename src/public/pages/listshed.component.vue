@@ -55,7 +55,6 @@ export default {
         <router-link to="/list/crops" class="link-style">
           <h4>Crop Inventory</h4>
         </router-link>
-
       </div>
       <div class="table-container">
         <div class="background-color">
@@ -94,11 +93,12 @@ export default {
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  flex-wrap: wrap;
 }
 
 .sidebar {
   flex: 0 0 200px;
-  background-color: #FFFFFF; /* Cambiado a blanco */
+  background-color: #FFFFFF;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -106,7 +106,7 @@ export default {
 }
 
 .header-style {
-  color: darkgreen !important;
+  color: darkgreen;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -126,7 +126,7 @@ export default {
 }
 
 .background-color {
-  background-color: #FFFFFF; /* Cambiado a blanco */
+  background-color: #FFFFFF;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -156,7 +156,7 @@ th {
 }
 
 .title-color {
-  color: darkgreen !important;
+  color: darkgreen;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -165,6 +165,26 @@ th {
   display: block;
   margin: 20px auto;
   text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  .background-color {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -184,6 +204,14 @@ th {
 
   .background-color {
     width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
   }
 
   .title-color {
