@@ -15,7 +15,8 @@ import FinancialCard from "../monitoring/components/statistics-card/financial-ca
 import detailedMonitoringComponent from "../public/pages/detailed-monitoring.component.vue";
 import taskTableCard from "../monitoring/components/task-card/task-table-card.vue";
 import taskDetailsCard from "../monitoring/components/task-card/task-details-card.vue";
-
+import SubscriptionsCardComponent from "../register/components/subscription/subscriptions-card.component.vue";
+import PaymentSubscription from "../register/pages/payment-subscription/payment-subscription.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes:[
@@ -33,7 +34,8 @@ const router = createRouter({
         {path:'/financial/statistics',component:FinancialCard},
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
         {path:'/tasks/:id/details',component:taskDetailsCard},
-
+        {path:'/subscriptions',component:SubscriptionsCardComponent},
+        {path:'/payment/subscription',component:PaymentSubscription},
     ]
 });
 
