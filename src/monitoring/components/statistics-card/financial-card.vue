@@ -22,10 +22,6 @@ const addTransaction = () => {
     period: period.value
   });
 
-  if (transactions.value.length > 13) {
-    transactions.value.pop();
-  }
-
   selectedType.value = 'Income';
   selectedCategory.value = '';
   description.value = '';
@@ -54,6 +50,7 @@ const filteredTransactions = computed(() => {
   });
 });
 </script>
+
 <template>
   <toolbar-component></toolbar-component>
   <div class="container">
@@ -116,9 +113,9 @@ const filteredTransactions = computed(() => {
       </table>
     </div>
   </div>
+  <h1>FILTER</h1>
 
   <div class="filter-container">
-    <h1>FILTER</h1>
     <div class="filter-item">
       <label for="type">Type</label>
       <select v-model="filterType">
@@ -142,31 +139,40 @@ const filteredTransactions = computed(() => {
   </div>
 
   <div class="table-containerx">
-    <table>
-      <thead>
-      <tr>
-        <th>Type</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Amount</th>
-        <th>Date</th>
-        <th>Period</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="transaction in filteredTransactions" :key="transaction.id">
-        <td>{{ transaction.type }}</td>
-        <td>{{ transaction.category }}</td>
-        <td>{{ transaction.description }}</td>
-        <td>{{ transaction.amount }}</td>
-        <td>{{ transaction.date }}</td>
-        <td>{{ transaction.period }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Period</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="transaction in filteredTransactions" :key="transaction.id">
+          <td>{{ transaction.type }}</td>
+          <td>{{ transaction.category }}</td>
+          <td>{{ transaction.description }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.date }}</td>
+          <td>{{ transaction.period }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="space">
+     <footer-component></footer-component>
   </div>
 </template>
+
 <style scoped>
+.space{
+  margin-top: 20%;
+}
 .container {
   display: flex;
   justify-content: space-between;
@@ -176,7 +182,7 @@ const filteredTransactions = computed(() => {
 }
 
 .filter-container {
-  width: 50%;
+  width: 45%;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -187,19 +193,35 @@ const filteredTransactions = computed(() => {
   align-items: center;
   gap: 20px; /* Ajusta este valor para cambiar el espacio entre los elementos */
 }
-.table-containerx{
-  align-items: center;
-  width: 45%;
-  margin: 20px auto; /* Centra el contenedor en la página */
 
+
+
+.table-wrapper {
+  width: 100%;
+  max-height: 300px; /* Ajusta este valor según sea necesario */
+  overflow-y: auto; /* Asegura que aparezca la barra de desplazamiento vertical */
 }
+
+.table-containerx {
+  margin-buttom:50%;
+  width: 45%;
+  margin: auto; /* Centra el contenedor en la página */
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .table-containerx {
+    width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
+    margin: auto; /* Asegura que permanezca centrado */
+  }
+}
+
 .form-container, .table-container {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-
 }
 
 .form-container {
@@ -208,7 +230,6 @@ const filteredTransactions = computed(() => {
 
 .table-container {
   width: 50%;
-
 }
 
 h1 {
@@ -251,7 +272,7 @@ button:hover {
 
 .table-container {
   height: auto;
-  overflow-x: auto;
+  overflow-x: auto; /* Asegura que aparezca la barra de desplazamiento horizontal */
 }
 
 table {
@@ -276,4 +297,3 @@ th {
   }
 }
 </style>
-
