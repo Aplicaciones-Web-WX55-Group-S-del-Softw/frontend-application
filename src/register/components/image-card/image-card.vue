@@ -1,0 +1,67 @@
+<script>
+export default {
+  name: "image-card"
+}
+</script>
+
+<template>
+
+  <div class ="container">
+    <h1>You can pay with</h1>
+      <div class="image-cards-container">
+
+        <div class="image-card">
+          <img src="../../../assets/logo-yape.png" alt="Yape">
+
+        </div>
+        <div class="image-card">
+          <img src="../../../assets/logo-plin.png" alt="Plin">
+        </div>
+
+        <div class="image-card">
+          <img src="../../../assets/logo-mastercard.png" alt="Mastercard">
+        </div>
+
+        <div class="image-card">
+          <img src="../../../assets/logo-visa.png" alt="Visa">
+        </div>
+
+      </div>
+    </div>
+</template>
+
+<style >
+
+.image-cards-container {
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+}
+
+.image-card {
+  height: 80px; /* Altura de cada tarjeta de imagen */
+  margin: 60px; /* Espaciado entre las tarjetas */
+  padding: 5px; /* Espaciado interno de la tarjeta */
+}
+
+.image-card img {
+  max-width: 100%; /* Ajusta el tamaño máximo de la imagen al 100% de la tarjeta */
+  max-height: 100%; /* Ajusta el tamaño máximo de la imagen al 100% de la tarjeta */
+}
+/* Agrega un efecto de escala al pasar el cursor sobre las imágenes */
+.image-card img:hover {
+  transform: scale(1.1); /* Aumenta el tamaño de la imagen al 110% */
+  transition: transform 0.3s ease; /* Agrega una transición suave al efecto */
+}
+h1{
+  font-size: 30px; /* Ajusta el tamaño del texto */
+  margin-top: 60px; /* Ajusta el margen superior para separar el título de las tarjetas */
+  font-weight: normal; /* Ajusta el peso de la fuente a negrita */
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+</style>
+
+
+
+
+
