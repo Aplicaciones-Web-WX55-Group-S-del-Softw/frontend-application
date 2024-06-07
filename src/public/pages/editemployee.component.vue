@@ -15,30 +15,30 @@
       <div class="row">
         <div class="input-container">
           <label for="employeeName">Name:</label>
-          <input v-model="employeeData.name" type="text" id="employeeName" placeholder="Name">
+          <input v-model="employeeData.name" type="text" id="employeeName" placeholder="Name" readonly class="readonly-input">
         </div>
 
         <div class="input-container">
           <label for="employeeLastname">Lastname:</label>
-          <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname">
+          <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname" readonly class="readonly-input">
         </div>
       </div>
 
       <div class="row">
         <div class="input-container">
           <label for="employeeGender">Gender:</label>
-          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender">
+          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender" readonly class="readonly-input">
         </div>
 
         <div class="input-container">
           <label for="employeeDNI">DNI:</label>
-          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI">
+          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI" readonly class="readonly-input">
         </div>
       </div>
 
       <div class="input-container">
         <label for="employeeAddress">Address:</label>
-        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address">
+        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address" readonly class="readonly-input">
       </div>
 
       <div class="row">
@@ -218,6 +218,9 @@ h1 {
   border-color: #2e7d32;
 }
 
+.readonly-input {
+  background-color: #d3d3d3;
+}
 .labor-container {
   width: 100%;
 }
