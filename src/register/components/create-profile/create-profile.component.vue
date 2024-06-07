@@ -1,5 +1,4 @@
 <script setup>
-import '@fortawesome/fontawesome-free/css/all.css'
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import profileService from '../../../register/services/profile/profile.js';

@@ -1,7 +1,6 @@
 import { createApp, ref } from 'vue'
 import App from './app.vue'
 import PrimeVue from 'primevue/config'
-import 'vuetify/dist/vuetify.min.css'
 
 // PrimeVue Theme
 import 'primevue/resources/themes/md-light-indigo/theme.css';
