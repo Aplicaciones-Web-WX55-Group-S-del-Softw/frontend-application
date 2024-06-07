@@ -28,34 +28,20 @@ export default {
   <div>
     <toolbar-component></toolbar-component>
     <router-link to="/home" class="back-button">BACK</router-link>
-
     <div class="main-container">
       <div class="sidebar">
         <h3 class="header-style">Shed</h3>
-        <router-link to="/shed/new" class="link-style">
-          <h4>Add Sheds</h4>
-        </router-link>
-        <router-link to="/list/sheds" class="link-style">
-          <h4>List Sheds</h4>
-        </router-link>
-        <h3 class="header-style">Animals</h3>
-        <router-link to="/animal/new" class="link-style">
-          <h4>Add Animals</h4>
-        </router-link>
-        <router-link to="/list/animals" class="link-style">
-          <h4>Animal Inventory</h4>
-        </router-link>
-        <router-link to="/registerfeeds" class="link-style">
-          <h4>Feeding Registry</h4>
-        </router-link>
-        <h3 class="header-style">Crops</h3>
-        <router-link to="/register/crops" class="link-style">
-          <h4>Crop Registry</h4>
-        </router-link>
-        <router-link to="/list/crops" class="link-style">
-          <h4>Crop Inventory</h4>
-        </router-link>
+        <router-link to="/shed/new" class="link-style"><h4>Add Sheds</h4></router-link>
+        <router-link to="/list/sheds" class="link-style"><h4>List Sheds</h4></router-link>
 
+        <h3 class="header-style">Animals</h3>
+        <router-link to="/animal/new" class="link-style"><h4>Add Animals</h4></router-link>
+        <router-link to="/list/animals" class="link-style"><h4>Animal Inventory</h4></router-link>
+        <router-link to="/registerfeeds" class="link-style"><h4>Feeding Registry</h4></router-link>
+
+        <h3 class="header-style">Crops</h3>
+        <router-link to="/register/crops" class="link-style"><h4>Crop Registry</h4></router-link>
+        <router-link to="/list/crops" class="link-style"><h4>Crop Inventory</h4></router-link>
       </div>
       <div class="form-container">
         <div class="background-color">
@@ -72,32 +58,33 @@ export default {
 
             <label for="feed-amount">Cantidad de Alimento:</label>
             <input type="number" id="feed-amount" name="feed-amount"><br>
+
           </div>
-          <router-link to="/home">
-            <SaveButton/>
+          <div class="table-container">
+            <table>
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Galpón</th>
+                <th>Fecha</th>
+                <th>Tipo de Alimento</th>
+                <th>Cantidad de Alimento</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="aliment in aliments" :key="aliment.id">
+                <td>{{ aliment.id }}</td>
+                <td>{{ aliment.shed }}</td>
+                <td>{{ aliment.date }}</td>
+                <td>{{ aliment.feed_type }}</td>
+                <td>{{ aliment.feed_amount }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <router-link to="/home" class="save-button-link">
+            <button class="button">Save</button>
           </router-link>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Galpón</th>
-              <th>Fecha</th>
-              <th>Tipo de Alimento</th>
-              <th>Cantidad de Alimento</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="aliment in aliments" :key="aliment.id">
-              <td>{{ aliment.id }}</td>
-              <td>{{ aliment.shed }}</td>
-              <td>{{ aliment.date }}</td>
-              <td>{{ aliment.feed_type }}</td>
-              <td>{{ aliment.feed_amount }}</td>
-            </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
@@ -112,6 +99,7 @@ export default {
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  flex-wrap: nowrap;
 }
 
 .sidebar {
@@ -124,7 +112,7 @@ export default {
 }
 
 .header-style {
-  color: darkgreen !important;
+  color: darkgreen;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -140,14 +128,13 @@ export default {
   flex: 1;
   max-width: 700px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
 }
 
 .background-color {
   background-color: #FFFFFF;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
@@ -164,7 +151,8 @@ export default {
   font-weight: bold;
 }
 
-.inputs-container input {
+.inputs-container input,
+.inputs-container select {
   width: 100%;
   margin-bottom: 10px;
   padding: 8px;
@@ -172,17 +160,29 @@ export default {
   border-radius: 5px;
 }
 
+.title-color {
+  color: darkgreen;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
 .table-container {
+  flex: 1;
+  max-width: 700px;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 table {
   border-collapse: collapse;
-  width: 80%; /* Ajuste para centrar la tabla */
+  width: 100%;
   background-color: #fff;
-  margin-top: 20px;
 }
 
 th, td {
@@ -201,48 +201,55 @@ th {
   color: black;
 }
 
-.title-color {
-  color: darkgreen !important;
-  text-align: center;
-  margin-bottom: 20px;
+.button {
+  background-color: darkgreen;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.back-button {
-  display: block;
-  margin: 20px auto;
-  text-align: center;
+.save-button-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar {
+    flex: 0 0 150px;
+    margin-bottom: 0;
+  }
+
+  .form-container,
+  .table-container {
+    flex: 1;
+    max-width: 600px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .main-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .sidebar {
-    width: 100%;
-    margin-bottom: 20px;
+    flex: 0 0 120px;
+    margin-bottom: 0;
   }
 
-  .form-container {
-    width: 100%;
-  }
-
-  .background-color {
-    width: 100%;
-  }
-
-  .title-color {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
+  .form-container,
   .table-container {
-    width: 100%;
-  }
-
-  table {
-    width: 100%; /* Ajuste para pantallas pequeñas */
+    flex: 1;
+    max-width: 500px;
   }
 }
 </style>

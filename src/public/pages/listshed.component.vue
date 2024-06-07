@@ -28,34 +28,20 @@ export default {
   <div>
     <toolbar-component></toolbar-component>
     <router-link to="/home" class="back-button">BACK</router-link>
-
     <div class="main-container">
       <div class="sidebar">
         <h3 class="header-style">Shed</h3>
-        <router-link to="/shed/new" class="link-style">
-          <h4>Add Sheds</h4>
-        </router-link>
-        <router-link to="/list/sheds" class="link-style">
-          <h4>List Sheds</h4>
-        </router-link>
-        <h3 class="header-style">Animals</h3>
-        <router-link to="/animal/new" class="link-style">
-          <h4>Add Animals</h4>
-        </router-link>
-        <router-link to="/list/animals" class="link-style">
-          <h4>Animal Inventory</h4>
-        </router-link>
-        <router-link to="/registerfeeds" class="link-style">
-          <h4>Feeding Registry</h4>
-        </router-link>
-        <h3 class="header-style">Crops</h3>
-        <router-link to="/register/crops" class="link-style">
-          <h4>Crop Registry</h4>
-        </router-link>
-        <router-link to="/list/crops" class="link-style">
-          <h4>Crop Inventory</h4>
-        </router-link>
+        <router-link to="/shed/new" class="link-style"><h4>Add Sheds</h4></router-link>
+        <router-link to="/list/sheds" class="link-style"><h4>List Sheds</h4></router-link>
 
+        <h3 class="header-style">Animals</h3>
+        <router-link to="/animal/new" class="link-style"><h4>Add Animals</h4></router-link>
+        <router-link to="/list/animals" class="link-style"><h4>Animal Inventory</h4></router-link>
+        <router-link to="/registerfeeds" class="link-style"><h4>Feeding Registry</h4></router-link>
+
+        <h3 class="header-style">Crops</h3>
+        <router-link to="/register/crops" class="link-style"><h4>Crop Registry</h4></router-link>
+        <router-link to="/list/crops" class="link-style"><h4>Crop Inventory</h4></router-link>
       </div>
       <div class="table-container">
         <div class="background-color">
@@ -77,8 +63,8 @@ export default {
             </tbody>
           </table>
 
-          <router-link to="/home">
-            <SaveButton/>
+          <router-link to="/home" class="save-button-link">
+            <button class="button">Save</button>
           </router-link>
         </div>
       </div>
@@ -94,11 +80,12 @@ export default {
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  flex-wrap: nowrap;
 }
 
 .sidebar {
   flex: 0 0 200px;
-  background-color: #FFFFFF; /* Cambiado a blanco */
+  background-color: #FFFFFF;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -106,7 +93,7 @@ export default {
 }
 
 .header-style {
-  color: darkgreen !important;
+  color: darkgreen;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -126,9 +113,9 @@ export default {
 }
 
 .background-color {
-  background-color: #FFFFFF; /* Cambiado a blanco */
+  background-color: #FFFFFF;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
@@ -156,7 +143,7 @@ th {
 }
 
 .title-color {
-  color: darkgreen !important;
+  color: darkgreen;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -166,29 +153,53 @@ th {
   margin: 20px auto;
   text-align: center;
 }
+.button {
+  background-color: darkgreen;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-@media screen and (max-width: 768px) {
+.save-button-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1024px) {
   .main-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .sidebar {
-    width: 100%;
-    margin-bottom: 20px;
+    flex: 0 0 150px;
+    margin-bottom: 0;
   }
 
   .table-container {
-    width: 100%;
+    flex: 1;
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
-  .background-color {
-    width: 100%;
+  .sidebar {
+    flex: 0 0 120px;
+    margin-bottom: 0;
   }
 
-  .title-color {
-    text-align: center;
-    margin-bottom: 10px;
+  .table-container {
+    flex: 1;
+    max-width: 500px;
   }
 }
 </style>

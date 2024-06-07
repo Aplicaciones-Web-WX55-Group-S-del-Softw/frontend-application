@@ -12,49 +12,43 @@ export default {
   <toolbar-component></toolbar-component>
 
   <router-link to="/home" class="back-button">BACK</router-link>
-  <h1 class="text-center">Statistics</h1>
-
+  <div class="statistics-title">
+    <h1 class="text-center">Statistics</h1>
+  </div>
   <div class="cards">
-    <pv-card class="mt-1x">
-
-      <template #content>
-        <router-link to="/production/statistics" style="text-decoration: none;">
-          <h1 class="title-card">Production</h1>
-          <img src="../../../assets/production.png" alt="Producción">
-        </router-link>
-      </template>
-    </pv-card>
-    <pv-card class="mt-2x">
+    <pv-card class="card">
       <template #content>
         <router-link to="/finished/tasks" style="text-decoration: none;">
-        <h1 class="title-card">Task completed in record time</h1>
-        <p class="tasks">44 TASKS </p>
-
-        <div class="progress-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 60%;"></div>
-            <p class="sub-header">Pending tasks: 20</p>
+          <h1 class="title-card">Task completed in record time</h1>
+          <p class="tasks">44 TASKS </p>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress" style="width: 60%;"></div>
+              <p class="sub-header">Pending tasks: 20</p>
+            </div>
           </div>
-
-        </div>
         </router-link>
       </template>
     </pv-card>
-    <pv-card class="mt-3x">
+    <pv-card class="card">
       <template #content>
         <router-link to="/financial/statistics" style="text-decoration: none;">
           <h1 class="title-card">Financial Statistics</h1>
           <img src="../../../assets/income.png" alt="Ingresos">
         </router-link>
-
       </template>
     </pv-card>
   </div>
-  <footer-component></footer-component>
+  <div class="space">
+    <footer-component></footer-component>
 
+  </div>
 </template>
 
-<style scoped>
+<style>
+.space{
+  margin-top: 20%;
+}
 .back-button {
   display: inline-block;
   padding: 10px 20px;
@@ -70,102 +64,73 @@ export default {
 .back-button:hover {
   background-color: darkgreen;
 }
+
 .cards {
-  display: grid;
-  grid-template-areas:
-    "mt-1x mt-2x"
-    "mt-3x mt-3x";
+  display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
-  margin-left: 100px;
+  align-items: center;
+  margin-top: 10%;
+  max-width: 1200px; /* Ajustar el ancho máximo del contenedor de las tarjetas */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.mt-1x
-{
-  grid-area: mt-1x;
-  margin-top: 50px;
-  width: 350px;
-  height: 300px;
+.card {
+  flex: 1 1 calc(50% - 40px); /* Hacer que las tarjetas ocupen aproximadamente el 50% del ancho del contenedor, menos el espacio del gap */
+  max-width: 500px; /* Ancho máximo para las tarjetas */
+  height: 350px; /* Aumentar la altura de las tarjetas */
   border-radius: 10px;
   border: 2px solid #4CAF50;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: -100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.mt-2x {
-  grid-area: mt-2x;
-  margin-top: 50px;
-  width: 350px;
-  height: 300px;
-  border-radius: 10px;
-  border: 2px solid #4CAF50;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: 20px;
+.card img {
+  width: 320px; /* Aumentar el ancho de la imagen */
+  height: 240px; /* Aumentar la altura de la imagen */
 }
 
-.mt-3x {
-  grid-area: mt-3x;
-  margin-top: 50px;
-  width: 350px;
-  height: 300px;
-  border-radius: 10px;
-  border: 2px solid #4CAF50;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: 90px;
-  margin-right: 100px;
-  position: relative;
-}
-.mt-1x img {
-  width: 280px;
-  height: 200px;
-}
-
-.mt-3x img {
-  width: 280px;
-  height: 220px;
-}
-
-.mt-2x p {
-  text-align:center;
+.card p {
+  text-align: center;
   margin-top: 10px;
 }
 
 .text-center {
-  color: darkgreen !important;
-  font-size: 50px;
-  margin-top: 180px;
+  color: darkgreen;
+  font-size: 80px;
+  margin-top: 100px; /* Incrementado para más espacio superior */
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 50px; /* Incrementado para más espacio inferior */
 }
 
-
 .title-card {
-  color: darkgreen !important;
+  color: darkgreen;
   margin-top: -11px;
   font-weight: bold;
   text-align: center;
   font-size: 20px;
-
 }
 
 .sub-header {
-  color: gray !important;
+  color: gray;
   font-size: 20px;
   margin-top: -10px;
-
-
 }
 
 .tasks {
-  color: black !important;
+  color: black;
   font-size: 35px;
   font-weight: bold;
-  margin-top: 50px !important;
+  margin-top: 50px;
 }
 
 .progress-bar {
-
   width: 80%;
   height: 20px;
   background-color: #ddd;
@@ -179,12 +144,33 @@ export default {
   border-radius: 10px;
   border: 2px solid #4CAF50;
 }
+
 .progress-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .text-center {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    margin-top: 20px;
+    max-width: 90%; /* Ajuste el ancho máximo para pantallas pequeñas */
+    flex: 1 1 auto;
+  }
+
+  .card img {
+    width: 100%; /* Ajuste el ancho de la imagen para pantallas pequeñas */
+    height: auto; /* Ajuste la altura de la imagen para pantallas pequeñas */
+  }
+}
 </style>
-
-
