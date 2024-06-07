@@ -1,10 +1,13 @@
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios  from 'axios';
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import { EmergencyApi } from './emergency-api.js';
 
 export default {
   name: "emergency",
+  components: {ToolbarComponent},
 
   setup() {
     const router = useRouter();
@@ -13,17 +16,39 @@ export default {
     const taskDescription = ref('');
     const showModal = ref(false);
     const employees = ref([]);
+    const EmergencyData = ref([]);
 
     const saveTask = () => {
       showModal.value = true;
-      setTimeout(() => {
-        router.push('/detail-monitoring');
-      }, 1500);
+
+
+      // Add a new emergency object to EmergencyData
+      EmergencyData.value.push({
+        id: Date.now(), // Use the current timestamp as a unique id
+        recipient: selectedEmployee.value,
+        date: selectedDate.value,
+        description: taskDescription.value
+      });
+
+      // Clear the form
+      selectedEmployee.value = '';
+      selectedDate.value = '';
+      taskDescription.value = '';
     };
 
     const closeModal = () => {
       showModal.value = false;
     };
+
+    onMounted(async () => {
+      const api = new EmergencyApi();
+      const response = await api.getData();
+      EmergencyData.value = response.data;
+
+      const uniqueEmployees = new Set(EmergencyData.value.map(emergency => emergency.recipient));
+
+      employees.value = Array.from(uniqueEmployees);
+    });
 
     return {
       selectedEmployee,
@@ -32,29 +57,15 @@ export default {
       showModal,
       saveTask,
       closeModal,
-      employees // Return employees so it can be accessed in the template
+      employees,
+      EmergencyData
     }
   },
-
-  data() {
-    return {
-      EmergencyData: []
-    }
-  },
-  created() {
-    axios.get('server/db.json')
-        .then(response => {
-          this.EmergencyData = response.data.emergencyData;
-          this.employees = response.data.employees;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-  }
 }
 </script>
 
 <template>
+  <toolbar-component></toolbar-component>
   <div class="container">
     <h1>Emergency</h1>
     <h2>History</h2>
@@ -64,28 +75,32 @@ export default {
     <div class="label4"></div>
 
     <div class="row">
-      <div class="input-container">
+      <div class="input-container-employee">
         <select v-model="selectedEmployee">
           <option v-for="employee in employees" :key="employee" :value="employee">
             {{ employee }}
           </option>
         </select>
       </div>
-      <div class="input-container">
+      <div class="input-container-date">
         <input type="date" v-model="selectedDate">
       </div>
     </div>
 
     <div class="label-description">Description:</div>
 
-    <div class="input-container">
+    <div class="input-container-task-description">
       <textarea v-model="taskDescription" placeholder="Emergency description"></textarea>
     </div>
 
-    <div class="input-container">
+    <div class="input-container-save-emergency">
       <button @click="saveTask" class="button-link save-button">Save</button>
+    </div>
+
+    <div class="input-container-cancel-emergency">
       <router-link to="/" class="button-link cancel-button">Cancel</router-link>
     </div>
+
 
     <SuccessModal :show="showModal" @close="closeModal" />
 
@@ -110,39 +125,37 @@ export default {
 </template>
 
 <style scoped>
-
-h1{
-  font-size: 40px;
-  position: relative;
-  text-align: center;
-  top: -10px;
-  margin:0;
-  color:#44604D;
-}
-
-h2 {
-  font-size: 35px;
-  position: relative;
-  text-align: center;
-  top: 522px;
-  color:#44604D;
-  margin: 0 0 0 -410px;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8.5%;
+  margin-top: 155px;
 }
 
+h1, h2 {
+  position: relative;
+  text-align: center;
+  color:#44604D;
+  margin: 0;
+}
+
+h1 {
+  font-size: 40px;
+  top: -10px;
+}
+
+h2 {
+  font-size: 35px;
+  top: 522px;
+  margin-left: -410px;
+}
 
 .row {
   display: flex;
   margin-top: -40px;
 }
 
-.input-container {
+.input-container-employee, .input-container-date, .input-container-task-description {
   width: 100%;
   max-width: 200px;
   height: 40px;
@@ -152,20 +165,18 @@ h2 {
   display: flex;
 }
 
-select {
+.input-container-employee select, .input-container-date input[type="date"] {
   border: 2px solid #000;
   border-radius: 5px;
-  margin-right: 50px;
-  width: 250px;
+  transform: translateY(20px);
 }
 
-input[type="date"], input[type="time"] {
-  border: 2px solid #000;
-  border-radius: 5px;
-  margin-left: 35px;
+.input-container-employee select{
+  width: 145px;
+  transform: translate(-60px, 20px);
 }
 
-textarea {
+.input-container-task-description textarea {
   min-width: 550px;
   max-width: 100%;
   height: 300px;
@@ -176,29 +187,28 @@ textarea {
   border-radius: 5px;
 }
 
-
-.save-button, .cancel-button{
+.save-button, .cancel-button {
   background-color: #E9F3AE;
   color: black;
-  border: none ;
+  border: none;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
   position: absolute;
-}
-
-.save-button{
-  margin-top: 210px;
-  margin-left: -170px;
-  padding: 0.35% 15px;
-}
-
-.cancel-button{
-  margin-top: 210px;
-  margin-left: -98px;
+  padding: 7px 15px;
   font-size: 13px;
-  padding: 0.35%  15px;
 }
+
+.save-button {
+  margin-top: 230px;
+  margin-left: -270px;
+}
+
+.cancel-button {
+  margin-top: 230px;
+  margin-left: -197px;
+}
+
 .save-button:hover {
   background-color: #006400;
   color: white;
@@ -209,48 +219,26 @@ textarea {
   color: white;
 }
 
-input, select, textarea, input[type="date"] {
-  border: 1px solid #000000;
-}
-
-.label1, .label2, .label4 {
+.label1, .label2 {
   position:absolute;
   font-size: 15px;
   color: black;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.label1{
+.label1 {
   margin-left: -245px;
   margin-top: 70px;
-  font-weight: bold;
-  transition: color 0.3s ease;
 }
 
-.label2{
-  margin-left: 120px;
+.label2 {
+  margin-left: 80px;
   margin-top: 70px;
-  font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 .label1:hover, .label2:hover {
   color: #009879;
-}
-
-.input-container select, .input-container input[type="date"] {
-  border: none;
-  outline: none;
-  background-color: #f3f3f3;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
-  transition: box-shadow 0.3s ease;
-}
-
-.input-container select:focus, .input-container input[type="date"]:focus {
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .label-description {
@@ -261,12 +249,6 @@ input, select, textarea, input[type="date"] {
   margin-bottom: 10px;
   margin-left: -460px;
 }
-
-.label4{
-  margin-top: 250px;
-  margin-left: -360px;
-}
-
 
 .history-table {
   position: absolute;
@@ -284,8 +266,7 @@ input, select, textarea, input[type="date"] {
   text-align: left;
 }
 
-.history-table th,
-.history-table td {
+.history-table th, .history-table td {
   padding: 12px 15px;
 }
 
