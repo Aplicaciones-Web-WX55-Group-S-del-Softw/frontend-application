@@ -30,7 +30,7 @@ export default {
     </div>
 </template>
 
-<style >
+<style scoped>
 
 .image-cards-container {
   display: flex;
