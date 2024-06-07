@@ -26,7 +26,7 @@ export default {
         </div>
         <div class="monitoring_monitoring-card">
           <div class = "monitoring_employee-container">
-            <router-link to="/tasks/new">
+            <router-link to="/listemployee">
               <img class="monitoring_employee-img" src="../../../assets/employee.png" alt="empleados">
             </router-link>
             <h2>Employees</h2>

@@ -122,7 +122,7 @@ export default {
 
 .content-container {
   flex: 1;
-  max-width: 740px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   gap: 20px;
