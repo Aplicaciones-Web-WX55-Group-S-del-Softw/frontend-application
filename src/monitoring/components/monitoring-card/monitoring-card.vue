@@ -65,7 +65,7 @@ export default {
 </template>
 
 
-<style >
+<style scoped>
 .monitoring_back-button {
   display: inline-block;
   padding: 10px 20px;
