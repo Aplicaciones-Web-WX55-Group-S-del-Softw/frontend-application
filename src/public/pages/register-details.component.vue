@@ -12,7 +12,6 @@ export default {
 <template>
   <div>
     <toolbar-component></toolbar-component>
-    <router-link to="/home" class="back-button">BACK</router-link>
 
     <div class="main-container">
       <div class="sidebar">
@@ -62,18 +61,25 @@ export default {
         </div>
       </div>
     </div>
-    <footer-component></footer-component>
+    <div class ="space">
+      <footer-component></footer-component>
+
+    </div>
   </div>
 </template>
 
 <style scoped>
+  .space{
+    margin-top: 20%;
+  }
 .main-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   gap: 20px;
-  padding: 20px;
   flex-wrap: nowrap; /* No permite que los elementos se envuelvan */
+  margin-top:10%;
+
+
 }
 
 .sidebar {
@@ -165,6 +171,7 @@ export default {
   .main-container {
     flex-direction: row;
     flex-wrap: nowrap; /* Mantener disposición en fila sin envolver */
+
   }
 
   .sidebar {
@@ -182,6 +189,12 @@ export default {
   .main-container {
     flex-direction: row;
     flex-wrap: nowrap; /* Mantener disposición en fila sin envolver */
+    padding:10px;
+    margin-top:20%;
+
+  }
+  .space{
+    margin-top: 50%;
   }
 
   .sidebar {

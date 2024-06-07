@@ -76,17 +76,22 @@ export default {
             </tbody>
           </table>
 
-          <router-link to="/home">
-            <SaveButton/>
-          </router-link>
+
         </div>
       </div>
     </div>
-    <footer-component></footer-component>
+    <div class="space">
+      <footer-component></footer-component>
+
+    </div>
   </div>
 </template>
 
 <style scoped>
+
+.space{
+  margin-top: 20%;
+}
 .main-container {
   display: flex;
   justify-content: center;
@@ -94,6 +99,8 @@ export default {
   gap: 20px;
   padding: 20px;
   flex-wrap: wrap;
+  margin-top:5%;
+
 }
 
 .sidebar {
