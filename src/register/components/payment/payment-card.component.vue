@@ -41,7 +41,7 @@ export default {
 
 </template>
 
-<style >
+<style scoped>
 
 .cards{
   margin-top: 20px;
