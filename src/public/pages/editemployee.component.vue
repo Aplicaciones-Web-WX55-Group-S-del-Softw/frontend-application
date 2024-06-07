@@ -12,68 +12,55 @@
         </ul>
       </div>
 
-      <div v-if="!isPasswordVerified">
+      <div class="row">
         <div class="input-container">
-          <label for="verifyPassword">Enter Password to Edit:</label>
-          <input v-model="enteredPassword" type="password" id="verifyPassword" placeholder="Password">
+          <label for="employeeName">Name:</label>
+          <input v-model="employeeData.name" type="text" id="employeeName" placeholder="Name" disabled>
         </div>
-        <div class="button-container">
-          <button @click="verifyPassword" class="save-button">Verify Password</button>
+
+        <div class="input-container">
+          <label for="employeeLastname">Lastname:</label>
+          <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname" disabled>
         </div>
-        <div v-if="passwordError" class="error-message">{{ passwordError }}</div>
       </div>
 
-      <div v-else>
-        <div class="row">
-          <div class="input-container">
-            <label for="employeeName">Name:</label>
-            <input v-model="employeeData.name" type="text" id="employeeName" placeholder="Name">
-          </div>
-
-          <div class="input-container">
-            <label for="employeeLastname">Lastname:</label>
-            <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-container">
-            <label for="employeeGender">Gender:</label>
-            <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender">
-          </div>
-
-          <div class="input-container">
-            <label for="employeeDNI">DNI:</label>
-            <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI">
-          </div>
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeGender">Gender:</label>
+          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender" disabled>
         </div>
 
         <div class="input-container">
-          <label for="employeeAddress">Address:</label>
-          <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address">
+          <label for="employeeDNI">DNI:</label>
+          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI" disabled>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="employeeAddress">Address:</label>
+        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address" disabled>
+      </div>
+
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeUsername">Username:</label>
+          <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
         </div>
 
-        <div class="row">
-          <div class="input-container">
-            <label for="employeeUsername">Username:</label>
-            <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
-          </div>
-
-          <div class="input-container">
-            <label for="employeePassword">Password:</label>
-            <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
-          </div>
+        <div class="input-container">
+          <label for="employeePassword">Password:</label>
+          <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
         </div>
+      </div>
 
-        <div class="input-container labor-container">
-          <label for="employeeLabor">Labor:</label>
-          <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
-        </div>
+      <div class="input-container labor-container">
+        <label for="employeeLabor">Labor:</label>
+        <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
+      </div>
 
-        <div class="button-container">
-          <button @click="saveEmployee" class="save-button">Save</button>
-          <router-link to="/listemployee" class="cancel-button">Cancel</router-link>
-        </div>
+      <div class="button-container">
+        <button @click="saveEmployee" class="save-button">Save</button>
+        <router-link to="/listemployee" class="cancel-button">Cancel</router-link>
       </div>
     </div>
   </div>
@@ -106,10 +93,6 @@ export default {
       labor: ''
     });
 
-    const enteredPassword = ref('');
-    const isPasswordVerified = ref(false);
-    const passwordError = ref('');
-
     const errors = ref([]);
 
     const loadEmployeeData = () => {
@@ -122,22 +105,8 @@ export default {
           });
     };
 
-    const verifyPassword = () => {
-      if (enteredPassword.value === employeeData.value.password) {
-        isPasswordVerified.value = true;
-        passwordError.value = '';
-      } else {
-        passwordError.value = 'Incorrect password. Please try again.';
-      }
-    };
-
     const validateData = () => {
       errors.value = [];
-      if (!employeeData.value.name) errors.value.push('Name is required.');
-      if (!employeeData.value.lastname) errors.value.push('Lastname is required.');
-      if (!employeeData.value.gender) errors.value.push('Gender is required.');
-      if (!employeeData.value.address) errors.value.push('Address is required.');
-      if (!employeeData.value.dni) errors.value.push('DNI is required.');
       if (!employeeData.value.username) errors.value.push('Username is required.');
       if (!employeeData.value.password) errors.value.push('Password is required.');
       if (!employeeData.value.labor) errors.value.push('Labor is required.');
@@ -161,11 +130,7 @@ export default {
 
     return {
       employeeData,
-      enteredPassword,
-      isPasswordVerified,
-      passwordError,
       errors,
-      verifyPassword,
       saveEmployee
     };
   }
@@ -242,6 +207,11 @@ h1 {
   transition: border-color 0.3s ease;
 }
 
+.input-container input:disabled, .input-container textarea:disabled {
+  background-color: #e0e0e0;
+  color: #757575;
+}
+
 .input-container input:focus, .input-container textarea:focus {
   border-color: #2e7d32;
 }
@@ -281,10 +251,5 @@ h1 {
 .cancel-button:hover {
   background-color: #FF0000;
   color: white;
-}
-
-.error-message {
-  color: red;
-  margin-top: 10px;
 }
 </style>
