@@ -54,7 +54,7 @@ export default {
 
 </template>
 
-<style>
+<style scoped>
 .back-button {
   display: inline-block;
   padding: 10px 20px;

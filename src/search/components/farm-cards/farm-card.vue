@@ -1,227 +1,232 @@
 <script>
-import { WeatherApi } from "../../../weather/services/weather-api.js";
-import { FarmApi } from "../../services/farm-api.js";
-
 export default {
-  name: "FarmCard",
-  data() {
-    return {
-      farms: [],
-      farmApi: new FarmApi()
-    };
-  },
-  methods: {
-    redirectToDescription(farmId) {
-      this.$router.push(`/farm/description/${farmId}`);
-    }
-  },
-  created() {
-    this.farmApi.getFarms().then(response => {
-      this.farms = response.data;
-    }).catch(error => {
-      console.error("Error fetching farms: ", error);
-    });
-  }
-};
+  name: "farm-card"
+}
+
 </script>
 
 <template>
-  <div class="container">
-    <div class="searchSection">
-      <input type="text" placeholder="Product">
-      <input type="text" placeholder="Location">
-      <button class="searchButton">Search</button>
-    </div>
-
-    <div class="farmContainer">
-      <div
-          class="farmCard"
-          v-for="farm in farms"
-          :key="farm.id"
-          @click="redirectToDescription(farm.id)"
-      >
-        <div class="farmImage">
-          <img class="farmImg" :src="farm['farm-img']" alt="Granja">
-        </div>
-        <div class="farmDetails">
-          <h1 class="farmTitle">{{ farm['farm-name'] }}</h1>
-          <div class="locationContainer">
-            <p class="additionalInfo">{{ farm.location }}</p>
-            <p class="additionalInfo">{{ farm['type-farm'] }}</p>
-            <p class="additionalInfo">{{ farm['farm-hectares'] }}</p>
-            <p class="additionalInfo">{{ farm['farm-price'] }}</p>
-          </div>
-        </div>
-        <div class="additionalDetails">
-          <p class="details">{{ farm['farm-information'] }}</p>
-        </div>
-      </div>
-    </div>
+  <div class="section-search">
+    <input type="text" placeholder="Product">
+    <input type="text" placeholder="Location">
+    <button class="choose-plan-btn">Search</button>
   </div>
+
+  <div class="card-aditional">
+    <h2>Featured farms: </h2>
+  </div>
+
+  <div class="cardF">
+
+    <pv-card class="mt-2">
+      <template #content>
+        <img class="img-farm1" src="../../../assets/img-granja1.jpg" alt="Farm">
+      </template>
+    </pv-card>
+
+    <pv-card class="mt-3">
+      <template #content>
+        <h1 class="cardF-title2">Farm Tsuneo</h1>
+        <div class="location-container">
+          <!--<img src="/../assets/location.png" alt="Location" class="location-icon">-->
+
+          <p class="additional">Asia, Lima</p>
+        </div>
+        <p class="details">Chicken</p>
+        <p class="details">50 ha</p>
+        <p class="details">$/293,000.000</p>
+      </template>
+    </pv-card>
+
+    <div class="additional-details">
+      <p class="details">20   Barns</p>
+      <p class="details">20 Corrals</p>
+      <p class="details">Water potable</p>
+    </div>
+
+  </div>
+
 </template>
+
 <style scoped>
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+
+
+.card-aditional {
+  margin-left: 200px;
 }
 
-.container {
+.section-search{
+  margin-top: 80px;
   display: flex;
-  flex-direction: column;
+  padding: 40px;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin-top:10%;
+  gap: 80px;
 }
 
-.searchSection {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 50px;
-  flex-wrap: wrap;
-  justify-content: center;
+
+.location{
+  font-size: 15px;
+  color: gray;
+
 }
 
-.searchSection input {
-  padding: 10px;
-  border: 2px solid #4CAF50;
-  border-radius: 8px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease;
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: black;
+  margin: 20px 0;
 }
 
-.searchSection input:focus {
-  border-color: #2e7d32;
+h1{
+  color: #276749;
 }
 
-.searchButton {
-  padding: 10px 20px;
-  background-color: #4CAF50;
+
+.choose-plan-btn{
+  background-color: #45BF6C;
+  border: none;
   color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 8%;
+  margin-top: 30px;
+}
+.choose-plan-btn:hover {
+  transform: scale(1.05);
+}
+
+.section-search {
+  display: flex;
+  align-items: center;
+
+}
+
+.section-search input[type="text"] {
+  padding: 10px;
+  border: 2px solid #276749;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.section-search button {
+  padding: 10px 1px;
   border: none;
   border-radius: 8px;
+  background-color: #45BF6C;
+  color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: -5px; /* Ajusta este valor según sea necesario */
 }
 
-.searchButton:hover {
-  background-color: #45a049;
+.section-search button:hover {
+  background-color: #1d4d34;
 }
 
-.searchButton:active {
-  background-color: #388e3c;
+.section-search button:focus {
+  outline: none;
 }
 
-.farmContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.farmCard {
-  flex: 1 1 calc(25% - 40px);
-  max-width: calc(25% - 40px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background-color: white;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.farmCard:hover {
-  transform: scale(1.02);
-}
-
-.farmImage {
-  width: 100%;
-  height: 150px;
-}
-
-.farmImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.farmDetails {
-  padding: 20px;
-}
-
-.farmTitle {
-  color: darkgreen;
-  font-size: 24px;
-  margin: 0 0 10px;
-}
-
-.locationContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.locationContainer p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.additionalDetails {
+.cardF{
+  margin-top: 450px;
   display: flex;
   justify-content: center;
-  font-size: 12px;
-  padding: 10px;
-  border-top: 1px solid #e0e0e0;
-  background-color: #f9f9f9;
+  margin-left:34%;
+}
+
+
+
+.cardF-title2 {
+  color: #44604D;
+  margin-top: -25px;
+  margin-left: -10px;
+  font-size: 26px;
+  margin-bottom:3px
+}
+
+.location-container {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  width: 45.92px;
+  height: 30.04px;
+  margin-right: -30px;
+  margin-left: -16px;
+}
+
+.location {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.42);
+  margin-bottom: -10px;
+  margin-left: 20px;
+  transform: translateY(-10px);
 }
 
 .details {
-  color: #807A7A;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+  color: #807A7A;
+  margin-bottom: -10px;
+  margin-left: 20px;
+  transform: translateY(-10px);
+}
+
+.additional-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: -40px;
+  transform: translateX(-300px);
+  padding:10px
+}
+
+.additional-details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: -13px;
+  border-top: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.img-farm1 {
+  width: 291px;
+  height: 210px;
+  object-fit: cover;
+  object-position: top;
+  margin-top: -32px;
+  margin-left: -15px;
+  border-radius: 10px; /* Ajusta el valor según el grado de curvatura que desees */
+
+}
+
+.mt-2{
+  margin-top: -400px;
+  width: 295px;
+  height: 280px;
+  margin-left: -200px;
+}
+
+.mt-3 p {
+  text-align: left;
+  font-size: 14px;
   margin-top: 10px;
+  margin-left:-10px
 }
 
-@media (max-width: 1200px) {
-  .farmCard {
-    flex: 1 1 calc(33.333% - 40px);
-    max-width: calc(33.333% - 40px);
-  }
-}
-
-@media (max-width: 992px) {
-  .farmCard {
-    flex: 1 1 calc(50% - 40px);
-    max-width: calc(50% - 40px);
-  }
-}
-
-@media (max-width: 768px) {
-  .farmCard {
-    flex: 1 1 calc(100% - 40px);
-    max-width: calc(100% - 40px);
-  }
-
-  .searchSection {
-    margin-top:20%;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .searchSection input,
-  .searchButton {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .searchButton {
-    align-self: center;
-    width: 100%;
-
-  }
+.mt-3 {
+  margin-top: -195px;
+  width: 295px;
+  height: 195px;
+  border: 0px solid gray; /* Elimina el borde */
+  margin-left: -294px;
 }
 </style>

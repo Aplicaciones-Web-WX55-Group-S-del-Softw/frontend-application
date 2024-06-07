@@ -1,6 +1,7 @@
 import { createApp, ref } from 'vue'
 import App from './app.vue'
 import PrimeVue from 'primevue/config'
+import 'vuetify/dist/vuetify.min.css'
 
 // PrimeVue Theme
 import 'primevue/resources/themes/md-light-indigo/theme.css';
@@ -40,9 +41,9 @@ import router from "./router/index.js";
 import i18n from "./i18n.js";
 
 const app = createApp(App)
-createApp(App).use(router).mount('#app');
 app.use(router)
     .use(PrimeVue, { ripple: true})
+
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)

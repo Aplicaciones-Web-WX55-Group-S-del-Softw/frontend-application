@@ -1,237 +1,150 @@
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import {DashboardApi} from "../../services/dashboard-analytics-api/dashboard-api.js";
-import SuccessModal from "./success-modal.vue";
-import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+<script>
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import taskService from "../../services/tasks/tasks.js";
 
-const router = useRouter();
-const selectedEmployee = ref('');
-const taskApi = new DashboardApi();
-let tasks = [];
-const employees = ref([]);
-taskApi.getTasks().then(response => {
-  console.log(response);
-  tasks = response.data;
-  employees.value = [...new Set(tasks.map(task => task.employee))];
-}).catch(error => {
-  console.error(error);
-});
-const selectedDate = ref('');
-const taskTime = ref('');
-const taskDescription = ref('');
-const showModal = ref(false);
+export default {
+  setup() {
+    const router = useRouter();
+    const task = ref({
+      employee: '',
+      date: '',
+      time: '',
+      description: '',
+      state: 'pending'
+    });
 
-const saveTask = () => {
-  const newTask = {
-    employee: selectedEmployee.value,
-    date: selectedDate.value,
-    time: taskTime.value,
-    description: taskDescription.value,
-    finished: 'Pending'
-  };
+    const onSubmit = () => {
+      taskService.addTask(task.value);
+      router.push('/tasks');
+    };
 
-  taskApi.createTask(newTask)
-      .then(() => {
-        showModal.value = true;
-        setTimeout(() => {
-          router.push('/tasks');
-        }, 1500);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-};
+    const cancel = () => {
+      router.push('/tasks');
+    };
 
-const closeModal = () => {
-  showModal.value = false;
+    return {task, onSubmit, cancel};
+  }
 };
 </script>
 
 <template>
-  <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
-  <div class="container">
-    <h1>Task</h1>
 
-    <div class="label1">Employee:</div>
-    <div class="label2">Date:</div>
-    <div class="label3">Time to complete:</div>
-    <div class="label4">Description:</div>
-    <div class="row">
-      <div class="input-container" style="margin-left: -10px;">
-        <select v-model="selectedEmployee" class="input-employee">
-          <option v-for="employee in employees" :key="employee" :value="employee">
-            {{ employee }}
-          </option>
-        </select>
+  <div class="form-container">
+    <h1>CREATE TASK</h1>
 
-      </div>
-
-      <div class="input-container ">
-        <input type="date" v-model="selectedDate">
-      </div>
+    <div class="login-box">
+      <form @submit.prevent="onSubmit">
+        <label>Employee:</label>
+        <div class="user-box">
+          <select v-model="task.employee" required>
+            <option value="Mathias Aguilar">Mathias Aguilar</option>
+            <option value="Rodrigo Kunimoto">Rodrigo Kunimoto</option>
+          </select>
+        </div>
+        <label>Date:</label>
+        <div class="user-box">
+          <input type="date" v-model="task.date" required>
+        </div>
+        <label>Time to perform:</label>
+        <div class="user-box">
+          <select v-model="task.time" required>
+            <option v-for="n in 24" :key="n" :value="n">{{n}}</option>
+          </select>
+        </div>
+        <label>Description:</label>
+        <div class="user-box">
+          <input type="text" v-model="task.description" required>
+        </div>
+        <button type="submit" class="button-save">Save</button>
+        <button type="button" @click="cancel" class="button-save">Cancel</button>
+      </form>
     </div>
-    <div class="input-container task-time-container">
-      <select v-model="taskTime">
-        <option v-for="hour in 24" :key="hour" :value="hour">
-          {{ hour }}
-        </option>
-      </select>
-    </div>
-<br>
-
-    <div class="input-container description-container">
-      <textarea v-model="taskDescription" placeholder="Task description"></textarea>
-
-
-    </div>
-
-    <div class="container-button">
-      <button @click="saveTask" class="button-link save-button">Save</button>
-      <router-link to="/tasks" class="button-link cancel-button">Cancel</router-link>
-    </div>
-    <SuccessModal :show="showModal" @close="closeModal" />
-
   </div>
-<footer-component></footer-component>
 </template>
 
-<style scoped>
 
-.container {
+<style scoped>
+.form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 50px;
-  margin-left: 80px;
+  justify-content: center;
+  z-index: 1000;
 }
 
-h1 {
-  font-size: 70px;
-  position: relative;
-  top: -30px;
-  left: -50px;
-  margin: 0;
+.form-container h1 {
+  display: block;
+  font-size: 7em;
   color: darkgreen;
+  margin-top: 20px;
 }
 
-.row {
-  display: flex;
-  margin-left: -80px;
-}
 
-.input-container {
-  width: 100%;
-  max-width: 200px;
-  height: 40px;
-  font-size: 16px;
-  margin: 20px 0;
-  padding: 5px;
-  display: flex;
-}
 
-.input-container select, .input-container input[type="date"] {
-  width: 145px;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-
-.input-container textarea {
-  min-width: 345px;
+.login-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  width: 500px;
   max-width: 100%;
-  height: 210px;
-  resize: none;
-  margin-left: -137px;
-  margin-top: -15px;
-  border: 2px solid #000;
-  border-radius: 5px;
+  margin: 3% auto;
 }
 
-.input-employee {
+
+.user-box {
   position: relative;
-  left: -40px; /* Ajusta este valor según tus necesidades */
+  margin-bottom: 30px;
+  width: 100%;
 }
 
-.task-time-container {
-  margin-left: -280px;
-}
-
-.container-button {
-  margin-top: 160px;
-}
-
-.save-button, .cancel-button {
-  background-color: #E9F3AE;
-  color: black;
+.user-box input,
+.user-box select {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
   border: none;
-  text-decoration: none;
-  font-size: 13px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  position: relative;
+  border-bottom: 1px solid #53a190;
+  outline: none;
+  background: transparent;
 }
 
-.save-button {
-  padding: 4px 15px;
-  left: -165px;
-}
-
-.cancel-button {
-  padding: 4px 15px;
-  left: -150px;
-}
-.save-button:hover {
-  background-color: #006400;
-  color: white;
-}
-
-.cancel-button:hover {
-  background-color: #FF0000;
-  color: white;
-}
-
-.label1, .label2, .label3, .label4 {
+.user-box label {
   position: absolute;
-  font-size: 15px;
-  color: black;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  pointer-events: none;
+  transition: 0.5s;
 }
 
-.label1 {
-  margin-top: 90px;
-  margin-left: -400px;
-}
-
-.label2 {
-  margin-top: 90px;
-  margin-left: -43px;
-}
-
-.label3 {
-  margin-top: 170px;
-  margin-left: -350px;
-}
-
-.label4 {
-  margin-top: 250px;
-  margin-left: -382px;
-}
-
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: darkgreen;
-  color: #fff;
+.button-save {
+  background: linear-gradient(90deg, #278f4a, #278f4a);
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 16px;
   cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  transition: background 0.5s, transform 0.3s;
+  width: 40%;
+  margin: 20px 15px;
 }
 
-.back-button:hover {
-  background-color: darkgreen;
+.button-save:hover {
+  transform: scale(1.1);
 }
+
+
+
 </style>

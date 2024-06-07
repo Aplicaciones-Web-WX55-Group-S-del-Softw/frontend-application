@@ -1,197 +1,281 @@
-<script>
-export default {
-  name: "toolbar-component",
-  data() {
-    return {
-      menuOpen: false
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.menuOpen = !this.menuOpen;
-    },
-    closeMenu(event) {
-      if (!this.$refs.menu.contains(event.target) && this.menuOpen) {
-        this.menuOpen = false;
-      }
-    }
-  },
-  mounted() {
-    document.addEventListener('click', this.closeMenu);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.closeMenu);
-  }
-}
-</script>
-
 <template>
   <header id="header">
     <div class="logo">
-      <img class="img" src="../../assets/img-logo.png" alt="FarmLogiTech Logo">
+      <a><img class="img" src="/farm-logitech-logo.png" alt="logo"></a>
       <p>FarmLogiTech</p>
     </div>
-    <nav id="menu" ref="menu">
-      <div class="hamburger" @click="toggleMenu">
-        <div :class="{ 'bar1': true, 'change': menuOpen }"></div>
-        <div :class="{ 'bar2': true, 'change': menuOpen }"></div>
-        <div :class="{ 'bar3': true, 'change': menuOpen }"></div>
-      </div>
-      <ul :class="{ open: menuOpen }">
-        <li><a href="/home">Home</a></li>
-        <li class="button-container"><button class="ad-button">Publish your add</button></li>
-        <li><a href="/monitoring">Enter</a></li>
+    <button class="hamburger" @click="toggleMenu">☰</button>
+    <nav id="menu" :class="{ active: menuActive }">
+      <!-- Toolbar for 'Business Owner' -->
+      <ul v-if="currentProfile && currentProfile.role === 'Business Owner'">
+        <li><router-link to="/home">Home</router-link></li>
+        <li><router-link to="/role/profile">Profile</router-link></li>
+        <li><a @click="logout">Log out</a></li>
+      </ul>
+      <!-- Toolbar for 'farm worker' -->
+      <ul v-if="currentProfile && currentProfile.role === 'Farm Worker'">
+        <li><router-link class="choose-plan-btn" to="/detail/monitoring" @click="scrollToTop">Detailed Monitoring</router-link></li>        <li><router-link to="/role/profile" >Profile</router-link></li>
+        <li><a @click="logout">Log out</a></li>
+      </ul>
+      <!-- Toolbar for 'farmer' -->
+      <ul v-if="currentProfile && currentProfile.role === 'Farmer'">
+        <li><router-link to="/home">Home</router-link></li>
+        <li><router-link to="/monitoring" >Monitoring</router-link></li>
+        <li><router-link class="choose-plan-btn" to="/profile/farm">Post your ad</router-link></li>
+        <li><router-link to="/role/profile" >Profile</router-link></li>
+        <li><a @click="logout">Log out</a></li>
+      </ul>
+      <!-- Toolbar for 'admin' -->
+      <ul v-if="currentProfile && currentProfile.role === 'admin'">
+        <li><router-link to="/admin">Admin</router-link></li>
+        <li><router-link to="/role/profile" >Profile</router-link></li>
+        <li><a @click="logout">Log out</a></li>
+      </ul>
+      <!-- Toolbar for 'public' -->
+      <ul v-if="!currentProfile">
+        <li><router-link to="/home">Home</router-link></li>
+        <li><router-link class="choose-plan-btn" to="/login">Post your ad</router-link></li>
+        <li><router-link to="/login">Sign in</router-link></li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+import { ref, onMounted } from 'vue';
+import profileService from "../../register/services/profile/profile.js";
+import { useRouter } from 'vue-router';
+
+export default {
+  setup() {
+    const currentProfile = ref(null);
+    const menuActive = ref(false);
+    const router = useRouter();
+
+    onMounted(async () => {
+      const profiles =  profileService.getProfiles();
+      currentProfile.value = profiles[profiles.length - 1];
+    });
+
+    const toggleMenu = () => {
+      menuActive.value = !menuActive.value;
+    };
+
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
+
+    const logout = () => {
+      localStorage.clear();
+      router.push('/home').then(() => {
+        window.location.reload();
+        alert('You have logged out');
+      });
+    };
+
+    return { currentProfile, menuActive, toggleMenu, scrollToTop, logout };
+  },
+};
+</script>
+
 <style scoped>
 #header {
-  top: 0;
-  left: 0;
   width: 100%;
+  height: 110px;
   background-color: #276749;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  font-size: 22px;
   font-family: Arial, sans-serif;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 1000;
+  gap: 8px;
+
+}
+
+#menu ul li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .img {
-  width: 60px;
-  margin-right: 10px;
+  width: 90px;
+}
+
+.specifications-list ul {
+  list-style-type: disc;
+  margin-left: 0;
+  padding-left: 10px;
 }
 
 .logo p {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
+  margin: 0;
 }
 
 #menu {
-  display: flex;
-  align-items: center;
-  position: relative;
+  font-size: 20px;
 }
 
 #menu ul {
   list-style: none;
-  display: none;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 0;
-  padding: 0;
-  background-color: #276749;
-  position: fixed;
-  top: 80px; /* Espacio debajo del header */
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: auto; /* Altura automática para que ajuste según el contenido */
-  max-height: 200px; /* Altura máxima para el menú */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
-  overflow-y: auto; /* Añadir desplazamiento si el contenido es muy grande */
-}
-
-#menu ul.open {
   display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-right: 10px;
 }
 
-#menu ul li {
-  width: 100%;
-  margin-left:10px;
-
-}
-
-#menu ul li a,
-.ad-button {
-  color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  display: block;
-
-}
-
-.ad-button {
-  background-color: #45BF6C;
+button {
+  background-color: #45a049;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px 15px;
+  text-align: center;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-  text-align: center; /* Alinea el texto al centro */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: Arial, sans-serif;
 }
 
-.ad-button:hover {
-  transform: scale(1.05);
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
 }
 
 .hamburger {
-  display: flex;
-  flex-direction: column;
+  display: none;
+  font-size: 30px;
   cursor: pointer;
+  background-color: #22503a;
+  color: white;
+}
+.choose-plan-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.3s;
 }
 
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  margin: 4px 0;
-  transition: 0.4s;
+.choose-plan-btn:hover {
+  background-color: #45a049;
 }
-
-.change.bar1 {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.change.bar2 {
-  opacity: 0;
-}
-
-.change.bar3 {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-@media (min-width: 768px) {
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
   #header {
-    flex-direction: row;
     justify-content: space-between;
+    z-index: 10; /* Asegura que esté encima de otros elementos */
+
   }
-  .logo {
-    margin-bottom: 0;
+
+  .hamburger {
+    display: block;
+    margin-right: 10px;
   }
   #menu {
-    justify-content: flex-end;
+    position: absolute;
+    top: 100px; /* Ajusta según sea necesario para la posición inicial */
+    left: 0;
+    width: 100%;
+    background: none;
+    padding: 20px 0;
+    box-sizing: border-box;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, background 0.3s ease-out;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+  }
+
+  #menu.active {
+    max-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background: #16392e;
   }
   #menu ul {
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: 0;
+    gap: 15px;
+  }
+
+  #header {
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* Inputs */
+  .section-search {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: transparent;
-    position: static;
-    box-shadow: none;
-    padding: 0;
-    height: auto;
+    flex-direction: column;
+    gap: 10px;
   }
-  #menu ul li {
-    margin: 0 10px;
-    width: auto;
+
+  .input-container {
+    width: 100%;
   }
-  #menu ul li a,
-  .ad-button {
-    padding: 10px 20px;
+
+  .input-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
   }
-  .hamburger {
-    display: none;
+
+  /* Aumentar el ancho de la tarjeta */
+  .card {
+    width: 90%;
+    margin: 0 auto;
   }
 }
+
+/* Estilos para pantallas grandes */
+@media (min-width: 768px) {
+  #menu {
+    position: static;
+    transform: translateX(0);
+    max-height: none;
+  }
+
+  #menu ul {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    gap: 80px;
+    padding: 20px;
+  }
+
+  /* Inputs */
+  .section-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .input-container {
+    flex: 1;
+  }
+
+  .input-container input {
+    width: 100%;
+    padding: 8px;
+  }
+
+  /* Aumentar el ancho de la tarjeta */
+  .card {
+    width: calc(33.33% - 40px);
+    margin: 20px;
+  }
+}
+
 </style>
