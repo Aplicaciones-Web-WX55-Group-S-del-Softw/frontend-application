@@ -1,53 +1,3 @@
-<template>
-  <div class="container">
-    <toolbar-component></toolbar-component>
-    <h1 class="title">Employee</h1> <!-- Añade esta línea -->
-    <div class="search-container">
-      <div class="searchSection">
-        <label for="employeeName">Name:</label>
-        <input v-model="searchTerm.name" type="text" id="employeeName" placeholder="Name">
-        <label for="employeeLastname">Lastname:</label>
-        <input v-model="searchTerm.lastname" type="text" id="employeeLastname" placeholder="Lastname">
-        <label for="employeeDNI">DNI:</label>
-        <input v-model="searchTerm.dni" type="text" id="employeeDNI" placeholder="DNI">
-        <button class="searchButton" @click="searchEmployee">Search</button>
-      </div>
-    </div>
-    <h2 class="addnew"><router-link to="/employee/new">ADD NEW EMPLOYEE</router-link></h2>
-  </div>
-
-  <div class="table-container">
-    <div class="background-color">
-      <table>
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Lastname</th>
-          <th>DNI</th>
-          <th>Labor</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="employee in filteredEmployees" :key="employee.id">
-          <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.lastname }}</td>
-          <td>{{ employee.dni }}</td>
-          <td>{{ employee.labor }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <button v-if="searchPerformed" class="back-button" @click="goBack">
-        <span class="arrow-icon">&larr;</span>
-      </button>
-      <p v-if="filteredEmployees.length === 0" class="no-employees-message">
-        <span class="material-icons">error</span> No employees found
-      </p>
-    </div>
-  </div>
-</template>
-
 <script>
 import { ref } from 'vue';
 import SaveButton from "../components/SaveButton.vue";
@@ -123,6 +73,58 @@ export default {
   }
 };
 </script>
+
+<template>
+  <div class="container">
+    <toolbar-component></toolbar-component>
+    <h1 class="title">Employee</h1> <!-- Añade esta línea -->
+    <div class="search-container">
+      <div class="searchSection">
+        <label for="employeeName">Name:</label>
+        <input v-model="searchTerm.name" type="text" id="employeeName" placeholder="Name">
+        <label for="employeeLastname">Lastname:</label>
+        <input v-model="searchTerm.lastname" type="text" id="employeeLastname" placeholder="Lastname">
+        <label for="employeeDNI">DNI:</label>
+        <input v-model="searchTerm.dni" type="text" id="employeeDNI" placeholder="DNI">
+        <button class="searchButton" @click="searchEmployee">Search</button>
+      </div>
+    </div>
+    <h2 class="addnew"><router-link to="/employee/new">ADD NEW EMPLOYEE</router-link></h2>
+  </div>
+
+  <div class="table-container">
+    <div class="background-color">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>DNI</th>
+          <th>Labor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="employee in filteredEmployees" :key="employee.id">
+          <td>
+            <router-link :to="`/editemployee/${employee.id}`">{{ employee.id }}</router-link>
+          </td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.lastname }}</td>
+          <td>{{ employee.dni }}</td>
+          <td>{{ employee.labor }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button v-if="searchPerformed" class="back-button" @click="goBack">
+        <span class="arrow-icon">&larr;</span>
+      </button>
+      <p v-if="filteredEmployees.length === 0" class="no-employees-message">
+        <span class="material-icons">error</span> No employees found
+      </p>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .title {

@@ -3,9 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ToolbarComponent from '../toolbar-component/toolbar-component.vue';
 import FooterComponent from '../components/footer-component.vue';
-import axios from 'axios';
-
-const router = useRouter();
+import axios from 'axios';const router = useRouter();
 const employeeData = ref({
   name: '',
   lastname: '',
@@ -226,3 +224,5 @@ h1 {
   color: white;
 }
 </style>
+
+
