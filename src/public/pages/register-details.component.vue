@@ -12,33 +12,21 @@ export default {
 <template>
   <div>
     <toolbar-component></toolbar-component>
-
+    <router-link to="/home" class="back-button">BACK</router-link>
     <div class="main-container">
       <div class="sidebar">
         <h3 class="header-style">Shed</h3>
-        <router-link to="/shed/new" class="link-style">
-          <h4>Add Sheds</h4>
-        </router-link>
-        <router-link to="/list/sheds" class="link-style">
-          <h4>List Sheds</h4>
-        </router-link>
+        <router-link to="/shed/new" class="link-style"><h4>Add Sheds</h4></router-link>
+        <router-link to="/list/sheds" class="link-style"><h4>List Sheds</h4></router-link>
+
         <h3 class="header-style">Animals</h3>
-        <router-link to="/animal/new" class="link-style">
-          <h4>Add Animals</h4>
-        </router-link>
-        <router-link to="/list/animals" class="link-style">
-          <h4>Animal Inventory</h4>
-        </router-link>
-        <router-link to="/registerfeeds" class="link-style">
-          <h4>Feeding Registry</h4>
-        </router-link>
+        <router-link to="/animal/new" class="link-style"><h4>Add Animals</h4></router-link>
+        <router-link to="/list/animals" class="link-style"><h4>Animal Inventory</h4></router-link>
+        <router-link to="/registerfeeds" class="link-style"><h4>Feeding Registry</h4></router-link>
+
         <h3 class="header-style">Crops</h3>
-        <router-link to="/register/crops" class="link-style">
-          <h4>Crop Registry</h4>
-        </router-link>
-        <router-link to="/list/crops" class="link-style">
-          <h4>Crop Inventory</h4>
-        </router-link>
+        <router-link to="/register/crops" class="link-style"><h4>Crop Registry</h4></router-link>
+        <router-link to="/list/crops" class="link-style"><h4>Crop Inventory</h4></router-link>
       </div>
       <div class="form-container">
         <div class="background-color">
@@ -61,25 +49,18 @@ export default {
         </div>
       </div>
     </div>
-    <div class ="space">
-      <footer-component></footer-component>
-
-    </div>
+    <footer-component></footer-component>
   </div>
 </template>
 
 <style scoped>
-  .space{
-    margin-top: 20%;
-  }
 .main-container {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   gap: 20px;
-  flex-wrap: nowrap; /* No permite que los elementos se envuelvan */
-  margin-top:10%;
-
-
+  padding: 20px;
+  flex-wrap: nowrap;
 }
 
 .sidebar {
@@ -165,46 +146,40 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1024px) {
   .main-container {
     flex-direction: row;
-    flex-wrap: nowrap; /* Mantener disposición en fila sin envolver */
-
+    flex-wrap: nowrap;
   }
 
   .sidebar {
-    flex: 0 0 150px; /* Reducir tamaño de la barra lateral en pantallas más pequeñas */
+    flex: 0 0 150px;
     margin-bottom: 0;
   }
 
   .form-container {
     flex: 1;
-    max-width: 600px; /* Ajustar tamaño del formulario en pantallas más pequeñas */
+    max-width: 600px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .main-container {
     flex-direction: row;
-    flex-wrap: nowrap; /* Mantener disposición en fila sin envolver */
-    padding:10px;
-    margin-top:20%;
-
-  }
-  .space{
-    margin-top: 50%;
+    flex-wrap: nowrap;
   }
 
   .sidebar {
-    flex: 0 0 120px; /* Reducir tamaño de la barra lateral en pantallas más pequeñas */
+    flex: 0 0 120px;
     margin-bottom: 0;
   }
 
   .form-container {
     flex: 1;
-    max-width: 500px; /* Ajustar tamaño del formulario en pantallas más pequeñas */
+    max-width: 500px;
   }
 }
 </style>
