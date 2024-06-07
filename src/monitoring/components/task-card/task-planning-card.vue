@@ -99,6 +99,126 @@ const closeModal = () => {
 </template>
 
 <style scoped>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left: 80px;
+}
+
+h1 {
+  font-size: 70px;
+  position: relative;
+  top: -30px;
+  left: -50px;
+  margin: 0;
+  color: darkgreen;
+}
+
+.row {
+  display: flex;
+  margin-left: -80px;
+}
+
+.input-container {
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  font-size: 16px;
+  margin: 20px 0;
+  padding: 5px;
+  display: flex;
+}
+
+.input-container select, .input-container input[type="date"] {
+  width: 145px;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.input-container textarea {
+  min-width: 345px;
+  max-width: 100%;
+  height: 210px;
+  resize: none;
+  margin-left: -137px;
+  margin-top: -15px;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.input-employee {
+  position: relative;
+  left: -40px; /* Ajusta este valor según tus necesidades */
+}
+
+.task-time-container {
+  margin-left: -280px;
+}
+
+.container-button {
+  margin-top: 160px;
+}
+
+.save-button, .cancel-button {
+  background-color: #E9F3AE;
+  color: black;
+  border: none;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.save-button {
+  padding: 4px 15px;
+  left: -165px;
+}
+
+.cancel-button {
+  padding: 4px 15px;
+  left: -150px;
+}
+.save-button:hover {
+  background-color: #006400;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #FF0000;
+  color: white;
+}
+
+.label1, .label2, .label3, .label4 {
+  position: absolute;
+  font-size: 15px;
+  color: black;
+}
+
+.label1 {
+  margin-top: 90px;
+  margin-left: -400px;
+}
+
+.label2 {
+  margin-top: 90px;
+  margin-left: -43px;
+}
+
+.label3 {
+  margin-top: 170px;
+  margin-left: -350px;
+}
+
+.label4 {
+  margin-top: 250px;
+  margin-left: -382px;
+}
+
 .back-button {
   display: inline-block;
   padding: 10px 20px;
@@ -113,143 +233,5 @@ const closeModal = () => {
 
 .back-button:hover {
   background-color: darkgreen;
-}
-.container-button{
-  margin-top: 160px;
-}
-
-.save-button, .cancel-button{
-
-  background-color: #E9F3AE;
-  color: black;
-  border: none ;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-right: 16px;
-  transition: background-color 0.3s ease;
-  position: absolute;
-
-}
-.save-button{
-  padding: 0.35% 15px;
-}
-.cancel-button{
-  font-size: 13px;
-  padding: 4px 15px;
-}
-
-
-
-h1{
-  font-size: 70px;
-  position: relative;
-  top: -30px;
-  left:-50px;
-  margin:0;
-  color:darkgreen;
-}
-
-.container {
-  margin-top:100px;
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-
-}
-.row {
-  display: flex;
-  width: 30%;
-  margin-left:-80px
-}
-
-.input-container {
-  width: 100%;
-  max-width: 200px;
-  height: 40px;
-  font-size: 16px;
-  margin: 20px 0;
-  padding: 5px;
-  display: flex;
-}
-select{
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-.task-time-container {
-  margin-right: 328px;
-}
-
-.description-container{
-  margin-top: 10px;
-  margin-right:72px;
-}
-input[type="date"], input[type="time"], select {
-  width: 100%;
-  height: 100%;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-
-textarea {
-  width: 700px;
-  height: 200px;
-  resize: none;
-  margin-left: -127px;
-  border: 2px solid #000;
-  border-radius: 5px;
-}
-
-.save-button:hover {
-  background-color: #006400;
-  color: white;
-}
-
-.cancel-button:hover {
-  background-color: #FF0000;
-  color: white;
-}
-
-.save-button {
-  left: 547px;
-}
-
-.cancel-button {
-  left: 630px;
-}
-
-
-
-.label1{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 90px;
-  margin-left: -449px;
-}
-
-.label2{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 90px;
-  margin-left: -80px;
-}
-
-.label3{
-  position:absolute;
-  font-size: 15px;
-  color: black;
-  margin-top: 170px;
-  margin-left: -397px;
-}
-
-.label4{
-  position:absolute;
-  font-size: 15px;
-  margin-top: 250px;
-  margin-left: -435px;
-  color: black;
 }
 </style>
