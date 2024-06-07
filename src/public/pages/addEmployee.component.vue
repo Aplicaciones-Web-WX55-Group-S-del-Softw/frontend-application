@@ -1,49 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import ToolbarComponent from '../toolbar-component/toolbar-component.vue';
-import FooterComponent from '../components/footer-component.vue';
-import axios from 'axios';const router = useRouter();
-const employeeData = ref({
-  name: '',
-  lastname: '',
-  gender: '',
-  address: '',
-  dni: '',
-  username: '',
-  password: '',
-  labor: ''
-});
-
-const errors = ref([]);
-
-const validateData = () => {
-  errors.value = [];
-  if (!employeeData.value.name) errors.value.push('Name is required.');
-  if (!employeeData.value.lastname) errors.value.push('Lastname is required.');
-  if (!employeeData.value.gender) errors.value.push('Gender is required.');
-  if (!employeeData.value.address) errors.value.push('Address is required.');
-  if (!employeeData.value.dni) errors.value.push('DNI is required.');
-  if (!employeeData.value.username) errors.value.push('Username is required.');
-  if (!employeeData.value.password) errors.value.push('Password is required.');
-  if (!employeeData.value.labor) errors.value.push('Labor is required.');
-  return errors.value.length === 0;
-};
-
-const saveEmployee = () => {
-  if (validateData()) {
-    axios.post('http://localhost:3000/employees', employeeData.value)
-        .then(() => {
-          console.log('Employee saved successfully.');
-          router.push('/listemployee');
-        })
-        .catch(error => {
-          console.error('Error saving employee:', error);
-        });
-  }
-};
-</script>
-
 <template>
   <toolbar-component></toolbar-component>
   <router-link to="/employees" class="back-button">BACK</router-link>
@@ -51,7 +5,7 @@ const saveEmployee = () => {
     <h1>Add New Employee</h1>
 
     <div class="form-container">
-      <div v-if="errors.length">
+      <div v-if="errors.length" class="errors">
         <b>Please correct the following error(s):</b>
         <ul>
           <li v-for="error in errors" :key="error">{{ error }}</li>
@@ -113,6 +67,54 @@ const saveEmployee = () => {
   <footer-component></footer-component>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import ToolbarComponent from '../toolbar-component/toolbar-component.vue';
+import FooterComponent from '../components/footer-component.vue';
+import axios from 'axios';
+
+const router = useRouter();
+const employeeData = ref({
+  name: '',
+  lastname: '',
+  gender: '',
+  address: '',
+  dni: '',
+  username: '',
+  password: '',
+  labor: ''
+});
+
+const errors = ref([]);
+
+const validateData = () => {
+  errors.value = [];
+  if (!employeeData.value.name) errors.value.push('Name is required.');
+  if (!employeeData.value.lastname) errors.value.push('Lastname is required.');
+  if (!employeeData.value.gender) errors.value.push('Gender is required.');
+  if (!employeeData.value.address) errors.value.push('Address is required.');
+  if (!employeeData.value.dni) errors.value.push('DNI is required.');
+  if (!employeeData.value.username) errors.value.push('Username is required.');
+  if (!employeeData.value.password) errors.value.push('Password is required.');
+  if (!employeeData.value.labor) errors.value.push('Labor is required.');
+  return errors.value.length === 0;
+};
+
+const saveEmployee = () => {
+  if (validateData()) {
+    axios.post('http://localhost:3000/employees', employeeData.value)
+        .then(() => {
+          console.log('Employee saved successfully.');
+          router.push('/listemployee');
+        })
+        .catch(error => {
+          console.error('Error saving employee:', error);
+        });
+  }
+};
+</script>
+
 <style scoped>
 .back-button {
   display: inline-block;
@@ -124,6 +126,7 @@ const saveEmployee = () => {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s;
+  margin: 20px;
 }
 
 .back-button:hover {
@@ -131,17 +134,19 @@ const saveEmployee = () => {
 }
 
 .container {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 32px;
   color: darkgreen;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .form-container {
@@ -149,21 +154,27 @@ h1 {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 60%;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.errors {
+  color: red;
+  margin-bottom: 20px;
 }
 
 .row {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .input-container {
-  width: 48%;
-  margin: 10px 0;
+  flex: 1;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
 }
@@ -200,6 +211,7 @@ h1 {
 .button-container {
   display: flex;
   gap: 10px;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -223,6 +235,28 @@ h1 {
   background-color: #FF0000;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 30px;
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+}
 </style>
-
-

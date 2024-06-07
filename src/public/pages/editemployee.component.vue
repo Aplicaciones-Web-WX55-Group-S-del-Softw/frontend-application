@@ -24,39 +24,39 @@
         </div>
       </div>
 
-        <div class="row">
-          <div class="input-container">
-            <label for="employeeGender">Gender:</label>
-            <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender">
-          </div>
-
-          <div class="input-container">
-            <label for="employeeDNI">DNI:</label>
-            <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI">
-          </div>
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeGender">Gender:</label>
+          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender">
         </div>
 
         <div class="input-container">
-          <label for="employeeAddress">Address:</label>
-          <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address">
+          <label for="employeeDNI">DNI:</label>
+          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI">
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="employeeAddress">Address:</label>
+        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address">
+      </div>
+
+      <div class="row">
+        <div class="input-container">
+          <label for="employeeUsername">Username:</label>
+          <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
         </div>
 
-        <div class="row">
-          <div class="input-container">
-            <label for="employeeUsername">Username:</label>
-            <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
-          </div>
-
-          <div class="input-container">
-            <label for="employeePassword">Password:</label>
-            <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
-          </div>
+        <div class="input-container">
+          <label for="employeePassword">Password:</label>
+          <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
         </div>
+      </div>
 
-        <div class="input-container labor-container">
-          <label for="employeeLabor">Labor:</label>
-          <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
-        </div>
+      <div class="input-container labor-container">
+        <label for="employeeLabor">Labor:</label>
+        <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
+      </div>
 
       <div class="button-container">
         <button @click="saveEmployee" class="save-button">Save</button>
@@ -104,8 +104,6 @@ export default {
             console.error('Error loading employee data:', error);
           });
     };
-
-
 
     const validateData = () => {
       errors.value = [];
@@ -191,6 +189,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .input-container {
@@ -259,5 +258,21 @@ h1 {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .input-container {
+    width: 100%;
+  }
+  .button-container {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 </style>

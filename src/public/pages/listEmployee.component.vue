@@ -1,3 +1,57 @@
+<template>
+  <toolbar-component></toolbar-component>
+  <div class="container">
+    <h1 class="title">Employee</h1>
+
+
+    <div class="search-container">
+      <div class="searchSection">
+        <label for="employeeName">Name:</label>
+        <input v-model="searchTerm.name" type="text" id="employeeName" placeholder="Name">
+        <label for="employeeLastname">Lastname:</label>
+        <input v-model="searchTerm.lastname" type="text" id="employeeLastname" placeholder="Lastname">
+        <label for="employeeDNI">DNI:</label>
+        <input v-model="searchTerm.dni" type="text" id="employeeDNI" placeholder="DNI">
+        <button class="searchButton" @click="searchEmployee">Search</button>
+      </div>
+    </div>
+    <h2 class="addnew"><router-link to="/employee/new" class="addnew-link">ADD NEW EMPLOYEE</router-link></h2>
+  </div>
+
+  <div class="table-container">
+    <div class="background-color">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>DNI</th>
+          <th>Labor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="employee in filteredEmployees" :key="employee.id">
+          <td>
+            <router-link :to="`/editemployee/${employee.id}`">{{ employee.id }}</router-link>
+          </td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.lastname }}</td>
+          <td>{{ employee.dni }}</td>
+          <td>{{ employee.labor }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button v-if="searchPerformed" class="back-button" @click="goBack">
+        <span class="arrow-icon">&larr;</span>
+      </button>
+      <p v-if="filteredEmployees.length === 0" class="no-employees-message">
+        <span class="material-icons">error</span> No employees found
+      </p>
+    </div>
+  </div>
+</template>
+
 <script>
 import { ref } from 'vue';
 import SaveButton from "../components/SaveButton.vue";
@@ -74,71 +128,22 @@ export default {
 };
 </script>
 
-<template>
-  <div class="container">
-    <toolbar-component></toolbar-component>
-    <h1 class="title">Employee</h1> <!-- Añade esta línea -->
-    <div class="search-container">
-      <div class="searchSection">
-        <label for="employeeName">Name:</label>
-        <input v-model="searchTerm.name" type="text" id="employeeName" placeholder="Name">
-        <label for="employeeLastname">Lastname:</label>
-        <input v-model="searchTerm.lastname" type="text" id="employeeLastname" placeholder="Lastname">
-        <label for="employeeDNI">DNI:</label>
-        <input v-model="searchTerm.dni" type="text" id="employeeDNI" placeholder="DNI">
-        <button class="searchButton" @click="searchEmployee">Search</button>
-      </div>
-    </div>
-    <h2 class="addnew"><router-link to="/employee/new">ADD NEW EMPLOYEE</router-link></h2>
-  </div>
-
-  <div class="table-container">
-    <div class="background-color">
-      <table>
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Lastname</th>
-          <th>DNI</th>
-          <th>Labor</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="employee in filteredEmployees" :key="employee.id">
-          <td>
-            <router-link :to="`/editemployee/${employee.id}`">{{ employee.id }}</router-link>
-          </td>
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.lastname }}</td>
-          <td>{{ employee.dni }}</td>
-          <td>{{ employee.labor }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <button v-if="searchPerformed" class="back-button" @click="goBack">
-        <span class="arrow-icon">&larr;</span>
-      </button>
-      <p v-if="filteredEmployees.length === 0" class="no-employees-message">
-        <span class="material-icons">error</span> No employees found
-      </p>
-    </div>
-  </div>
-</template>
-
 <style scoped>
 .title {
   color: green;
   font-size: 50px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin-top: 7%;
+  margin-top: 70px;
+
 }
 
 .search-container {
@@ -242,51 +247,42 @@ th {
 }
 
 h2.addnew {
-  font-size: 15px;
-  text-decoration: underline;
-
-  color: darkgreen !important;
-  margin-top: -1%;
-  margin-left:60%;
-  margin-bottom:-1%;
+  font-size: 20px;
   text-align: center;
-}
-
-.title-color {
-  color: darkgreen !important;
-  text-align: center;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.employee-count {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 18px;
+.addnew-link {
+  color: darkgreen;
+  text-decoration: none;
 }
 
-.dot-wave {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+.addnew-link:hover {
+  text-decoration: underline;
 }
 
-.dot-wave__dot {
-  width: 10px;
-  height: 10px;
-  background-color: #333;
-  border-radius: 50%;
-  margin: 5px;
-  animation: wave 1.2s infinite ease-in-out;
-}
-
-@keyframes wave {
-  0%, 60%, 100% {
-    transform: initial;
+@media (max-width: 768px) {
+  .container {
+    margin-top: 20%;
   }
-  30% {
-    transform: translateY(-10px);
+
+  .search-container, .table-container {
+    width: 100%;
+  }
+
+  .searchSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .addnew {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 40px;
   }
 }
-
 </style>
