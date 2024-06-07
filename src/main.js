@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, ref } from 'vue'
 import App from './app.vue'
 import PrimeVue from 'primevue/config'
 
@@ -37,13 +37,16 @@ import Toast            from "primevue/toast";
 
 // Router
 import router from "./router/index.js";
+import i18n from "./i18n.js";
 
-createApp(App)
-    .use(router)
+const app = createApp(App)
+createApp(App).use(router).mount('#app');
+app.use(router)
     .use(PrimeVue, { ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('Toast', Toast)
     .component('pv-button', Button)
     .component('pv-card', Card)
     .component('pv-column', Column)
@@ -65,6 +68,13 @@ createApp(App)
     .component('pv-tag', Tag)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
-    .component('pv-toast', Toast)
-    .component('pv-toast', Toast)
-    .mount('#app')
+    .component('pv-toast', Toast);
+app.config.globalProperties.$tasks = ref([]);
+
+//Add i18n Plugin
+
+app.use(i18n);
+
+
+
+app.mount('#app');
