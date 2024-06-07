@@ -130,11 +130,9 @@ export default {
 
 <style scoped>
 .title {
-  color: green;
-  font-size: 50px;
-  text-align: center;
-  margin-bottom: 1%;
-  margin-top: 1%;
+  font-size: 40px;
+  color: darkgreen;
+  margin-bottom: 20px;
 }
 
 .container {
