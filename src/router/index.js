@@ -16,7 +16,14 @@ import detailedMonitoringComponent from "../public/pages/detailed-monitoring.com
 import taskTableCard from "../monitoring/components/task-card/task-table-card.vue";
 import taskDetailsCard from "../monitoring/components/task-card/task-details-card.vue";
 import SubscriptionsCardComponent from "../register/components/subscription/subscriptions-card.component.vue";
+import LoginCard from "../register/components/login-card/login-card.vue";
 import PaymentSubscription from "../register/pages/payment-subscription/payment-subscription.vue";
+import CreateProfile from "../register/components/create-profile/create-profile.component.vue";
+import RoleProfileComponent from "../register/components/role-profile/role-profile.component.vue";
+import profileFarm from "../profile-farm/components/profile-farm/profile-farm.vue";
+import FarmDescription from "../profile-farm/components/farm-description/farm-description.vue";
+
+
 const router = createRouter({
     history: createWebHistory(),
     routes:[
@@ -35,7 +42,13 @@ const router = createRouter({
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
         {path:'/tasks/:id/details',component:taskDetailsCard},
         {path:'/subscriptions',component:SubscriptionsCardComponent},
+        {path:'/login',component:LoginCard},
         {path:'/payment/subscription',component:PaymentSubscription},
+        {path:'/create/profile',component:CreateProfile},
+        {path:'/role/profile',component:RoleProfileComponent},
+        {path:'/profile/farm',component:profileFarm},
+        {path:'/farm/description/:id',component:FarmDescription},
+
     ]
 });
 
