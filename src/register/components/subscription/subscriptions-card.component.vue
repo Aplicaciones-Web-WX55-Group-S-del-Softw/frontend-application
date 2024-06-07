@@ -43,7 +43,7 @@ export default {
       <template #content>
         <h1 class="title-card">3 months</h1>
         <p class="sub-header">with a single payment of</p>
-        <p class="price">$130 </p>
+        <p class="price">$130<span class="mes">/month</span> </p>
         <router-link v-slot="{ navigate, href }" :to="'/payment/subscription'" custom>
           <button class="choose-plan-btn" @click="showCard130(navigate)">Choose Plan</button>
         </router-link>
@@ -59,27 +59,30 @@ export default {
   <image-card/>
 </template>
 
-<style>
+<style scoped>
 .cardsx{
-  display: flex; /* Utiliza flexbox */
-  justify-content: center; /* Centra horizontalmente el contenido */
-
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  line-height: 1.8;
 }
 .benefits{
   text-align: left;
-  margin-left: -20px;
+  margin-left: 50px;
 }
 .choose-plan-btn{
   margin-top: -10px;
-  background-color: #4CAF50; /* Color de fondo */
-  border: none; /* Sin borde */
-  color: white; /* Color del texto */
-  padding: 10px 20px; /* Espacio alrededor del texto */
-  text-align: center; /* Centrar texto horizontalmente */
-  font-size: 16px; /* Tamaño de fuente */
-  cursor: pointer; /* Cambiar cursor al pasar por encima */
-  border-radius: 5px; /* Bordes redondeados */
-  width: 80%;
+  margin-left:60px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 50%;
+
 }
 .choose-plan-btn:hover {
   transform: scale(1.05);
@@ -99,24 +102,22 @@ export default {
 
 .title-card{
   color: darkgreen !important;
-  margin-top: -10px;
+  max-width:200px;
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
   text-align: left;
 
 
 }
 .mt-2{
-  margin-top: 70px;
-  width: 300px;
+  line-height: 2.3;
+  width: 320px;
   height: 380px;
   border-radius: 10px;
   border: 2px solid #4CAF50;
-  margin-left: 20px;
-
 }
 .mt-1{
   margin-top: 50px;
-  width: 300px;
+  width: 350px;
   height: 480px;
   border-radius: 10px;
   border: 2px solid #4CAF50;
@@ -142,6 +143,7 @@ export default {
   font-size: 15px; /* Ajusta el tamaño del texto */
   font-weight: normal;
 }
+
 </style>
 
 
