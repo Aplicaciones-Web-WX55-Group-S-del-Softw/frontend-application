@@ -141,12 +141,11 @@ import profileService from "../../services/profile/profile.js";
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
   components: {ToolbarComponent, FooterComponent},
   setup() {
     const router = useRouter();
-
     const isActive = ref(false);
     const isForgotPasswordActive = ref(false);
     const register = ref({
@@ -204,8 +203,8 @@ export default {
 .bodyLogin {
   position:relative;
   left: 0;
+  top:200px;
   width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
