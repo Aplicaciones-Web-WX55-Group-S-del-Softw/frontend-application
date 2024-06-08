@@ -19,6 +19,7 @@ export default {
 }
 </script>
 <template>
+  <div class="container">
   <h1 class="text-center">Choose how long you want to advertise your farm</h1>
   <h2 class="sub-title">Choose a plan</h2>
   <div class="cardsx">
@@ -56,33 +57,34 @@ export default {
       </template>
     </pv-card>
   </div>
+  </div>
   <image-card/>
 </template>
 
 <style scoped>
+.container{
+  margin:0;
+}
 .cardsx{
   display: flex;
   justify-content: center;
   gap: 50px;
-  line-height: 1.8;
 }
 .benefits{
   text-align: left;
-  margin-left: 50px;
+  margin-left: -30px;
+  line-height: 1.7;
 }
 .choose-plan-btn{
-  margin-top: -10px;
-  margin-left:60px;
+  margin-top: -180px;
   background-color: #4CAF50;
   border: none;
   color: white;
-  padding: 7px 15px;
+  padding: 15px 55px;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  width: 50%;
-
 }
 .choose-plan-btn:hover {
   transform: scale(1.05);
@@ -96,54 +98,93 @@ export default {
   margin-bottom:0px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
 }
 .sub-title{
-  margin-top: 50px; /* Ajusta el margen inferior para separar el título del contenedor de tarjetas */
+  font-size: 30px; /* Ajusta el tamaño del texto */
   text-align: center; /* Centra el texto horizontalmente */
 }
 
 .title-card{
   color: darkgreen !important;
-  max-width:200px;
+  max-width:500px;
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
   text-align: left;
-
-
+  margin:0;
 }
 .mt-2{
-  line-height: 2.3;
-  width: 320px;
-  height: 380px;
+  margin-top: 80px;
+  width: 350px;
+  height: 420px;
   border-radius: 10px;
-  border: 2px solid #4CAF50;
+  border: 3px solid #4CAF50;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.3);
 }
 .mt-1{
   margin-top: 50px;
-  width: 350px;
-  height: 480px;
+  width: 380px;
+  height: 500px;
   border-radius: 10px;
-  border: 2px solid #4CAF50;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #4CAF50;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.3);
   margin-left: 20px;
 }
 .sub-header{
   color: gray !important;
   font-size: 20px; /* Ajusta el tamaño del texto */
-  margin-top: -10px;
+  margin-top: 20px;
 
 
 }
 .price {
   color: black !important; /* Cambia el color del texto a negro */
-  font-size: 35px; /* Ajusta el tamaño del texto */
+  font-size: 49px; /* Ajusta el tamaño del texto */
   font-weight: bold; /* Ajusta el peso de la fuente a negrita */
-  margin-top: -10px;
+  margin-top: 20px;
 
 }
 .mes{
   color: gray ;
-  font-size: 15px; /* Ajusta el tamaño del texto */
+  font-size: 18px; /* Ajusta el tamaño del texto */
   font-weight: normal;
 }
+@media (min-width: 1024px) {
+  .cardsx {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
 
+  .mt-1, .mt-2 {
+    width: 380px;
+    height: 500px;
+  }
+}
+
+/* Styles for medium screens */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cardsx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mt-1, .mt-2 {
+    width: 80%;
+    height: auto;
+  }
+}
+
+/* Styles for small screens */
+@media (max-width: 767px) {
+  .cardsx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mt-1, .mt-2 {
+    width: 60%;
+    height: auto;
+  }
+}
 </style>
 
 
