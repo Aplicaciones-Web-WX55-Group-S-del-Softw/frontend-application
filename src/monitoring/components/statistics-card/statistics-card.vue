@@ -1,6 +1,6 @@
 <script>
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 
 export default {
   name: "statistics",
@@ -39,16 +39,13 @@ export default {
       </template>
     </pv-card>
   </div>
-  <div class="space">
+
     <footer-component></footer-component>
 
-  </div>
+
 </template>
 
-<style>
-.space{
-  margin-top: 20%;
-}
+<style scoped>
 .back-button {
   display: inline-block;
   padding: 10px 20px;
