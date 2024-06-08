@@ -1,7 +1,7 @@
 <script>
 import { ProductionApi } from "../../services/production-api/production-api.js";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
   components: {FooterComponent, ToolbarComponent},
   data() {
