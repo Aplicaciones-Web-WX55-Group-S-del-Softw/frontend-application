@@ -85,7 +85,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top:40%;
+  margin-top:7%;
 }
 
 .left-section, .right-section {
@@ -95,7 +95,7 @@ export default {
 }
 
 .title {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   margin-bottom: 1em;
   text-align: center;
@@ -103,13 +103,13 @@ export default {
 
 .star-rating-container {
   text-align: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 .star {
   cursor: pointer;
   color: grey;
-  font-size: 2em;
+  font-size: 5em;
   transition: color 0.3s ease;
 }
 
@@ -119,30 +119,33 @@ export default {
 
 .rating-text {
   text-align: center;
-  font-size: 1.2em;
+  font-size: 2em;
   margin-bottom: 1em;
 }
 
 .star-count-container {
-  width: 100%;
-  margin-left: 2em; /* Espacio adicional entre las secciones */
+
+  margin-left: 6em; /* Espacio adicional entre las secciones */
 }
 
 .star-row {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.5em;
-  margin-top: 0.4em;
+  gap: 1em;
+  margin-top: 1em;
 }
 
 .star-text {
+  font-size:1.5em;
+
   flex-shrink: 0;
   width: 100px;
 }
 
 .progress-bar {
-  width: 185px;
+
+  width: 450px;
   height: 20px;
   background-color: #e0e0e0;
   border-radius: 5px;
@@ -164,7 +167,7 @@ export default {
     flex-direction: column;
   }
   .star-count-container {
-    margin-left: 0; /* Restablecer el margen para pantallas más pequeñas */
+    margin-left: 0;
   }
 }
 </style>
