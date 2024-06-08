@@ -2,8 +2,10 @@
 import {ref} from 'vue';
 import {useRouter} from 'vue-router';
 import taskService from "../../services/tasks/tasks.js";
-
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
+  components: {FooterComponent, ToolbarComponent},
   setup() {
     const router = useRouter();
     const task = ref({
@@ -29,7 +31,7 @@ export default {
 </script>
 
 <template>
-
+<toolbar-component/>
   <div class="form-container">
     <h1>CREATE TASK</h1>
 
@@ -61,12 +63,16 @@ export default {
       </form>
     </div>
   </div>
+<footer-component/>
 </template>
 
 
 <style scoped>
+body{
+  min-height: 35.5vh;
+}
 .form-container {
-  position: fixed;
+
   top: 0;
   left: 0;
   width: 100%;
@@ -75,7 +81,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
 }
 
 .form-container h1 {
@@ -145,6 +150,20 @@ export default {
   transform: scale(1.1);
 }
 
+@media (max-width: 600px) {
+  body{
+    min-height: 45.5vh;
+  }
+  .login-box {
+    width: 90%;
+  }
+  .form-container h1 {
+    font-size: 5em;
+  }
+  .form-container {
 
-
+    margin-top: 200px;
+    left: 0;
+  }
+}
 </style>
