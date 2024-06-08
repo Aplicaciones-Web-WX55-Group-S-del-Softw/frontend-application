@@ -34,6 +34,7 @@ import FarmDescription from "../profile-farm/components/farm-description/farm-de
 const router = createRouter({
     history: createWebHistory(),
     routes:[
+        {path:'/', redirect: '/home'}, // Redirige a '/home' cuando la ruta es '/'
         {path:'/home',component:HomeComponent},
         {path:'/monitoring',component:MonitoringCard},
         {path:'/tasks',component:TaskTableCard},
