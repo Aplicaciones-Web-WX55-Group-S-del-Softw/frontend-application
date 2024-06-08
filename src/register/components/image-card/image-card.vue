@@ -35,12 +35,14 @@ export default {
 .image-cards-container {
   display: flex;
   justify-content: center; /* Centra la imagen horizontalmente */
+  flex-wrap: wrap;
 }
 
 .image-card {
   height: 80px; /* Altura de cada tarjeta de imagen */
   margin: 60px; /* Espaciado entre las tarjetas */
   padding: 5px; /* Espaciado interno de la tarjeta */
+  flex: 0 0 200px;
 }
 
 .image-card img {
@@ -58,7 +60,25 @@ h1{
   font-weight: normal; /* Ajusta el peso de la fuente a negrita */
   text-align: center; /* Centra el texto horizontalmente */
 }
+@media (min-width: 1024px) {
+  .image-card {
+    flex: 0 0 200px; /* Images will not go smaller than 200px */
+  }
+}
 
+/* Styles for medium screens */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .image-card {
+    flex: 0 0 150px; /* Images will not go smaller than 150px */
+  }
+}
+
+/* Styles for small screens */
+@media (max-width: 767px) {
+  .image-card {
+    flex: 0 0 100px; /* Images will not go smaller than 100px */
+  }
+}
 </style>
 
 
