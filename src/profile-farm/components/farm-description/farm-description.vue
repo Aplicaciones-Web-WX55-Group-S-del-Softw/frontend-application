@@ -1,6 +1,6 @@
 <template>
 <toolbar-component/>
-  <button @click="goBackHome">Back to Home</button>
+
 <div v-if="!currentProfile || !currentProfile.role">
     <h2 class="title-description">About farm & Description</h2>
     <div class="container-app">
@@ -191,7 +191,7 @@ import Profile from "../../../register/services/profile/profile.js";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
 import ContactCard from "../contact-card/contact-card.vue";
 import StarRating from "../star-rating/star-rating.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
   name: "farm-description",
   components: {
@@ -220,18 +220,15 @@ export default {
       currentProfile.value = profiles[profiles.length - 1];
     });
 
-    const goBackHome = () => {
-      router.push('/home');
-    };
 
-    return { farm, currentProfile, goBackHome };
+    return { farm, currentProfile };
   },
 };
 </script>
 
 <style scoped>
 body {
-  background-color: #f0f0f0;
+
   margin: 0;
   font-family: Arial, sans-serif;
 }

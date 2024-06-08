@@ -5,6 +5,7 @@ import farmImage3 from "../../assets/farm-3.png";
 import farmImage4 from "../../assets/farm-4.png";
 import farmImage5 from "../../assets/farm-5.png";
 
+
 const farms = ref([
     {
         id: 'farm1',
@@ -87,17 +88,21 @@ const farms = ref([
         certifications: 'Pig farming certification'
     }
 ]);
+const userFarms = ref([]); // Added to store the user's farms
 
 
 const addFarm = (farm) => {
-    const id = `farm${farms.value.length + 1}`;
+    const id = `farm${farms.value.length + userFarms.value.length + 1}`;
     farms.value.push({ ...farm, id });
-
+    userFarms.value.push({ ...farm, id });
 };
-
 const getFarms = () => {
     return farms.value;
 };
+const getUserFarms = () => {
+    return userFarms.value;
+};
+
 const getFarmById = (id) => {
     const farm = farms.value.find(farm => farm.id === id);
     console.log('getFarmById called, found farm:', farm); // confirmation
@@ -107,4 +112,5 @@ export default {
     addFarm,
     getFarms,
     getFarmById,
+    getUserFarms,
 };
