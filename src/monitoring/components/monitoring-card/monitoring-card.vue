@@ -1,6 +1,6 @@
 <script>
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 
 export default {
   name: "monitoring-card",
@@ -12,9 +12,7 @@ export default {
   <toolbar-component></toolbar-component>
 
   <div class ="monitoring_containerX">
-    <router-link to="/home" class="back-button">BACK</router-link>
     <div class="monitoring_center-container">
-
       <div class="monitoring_monitoring-cards-container">
         <div class="monitoring_monitoring-card">
           <div class = "monitoring_task-container">
@@ -26,7 +24,7 @@ export default {
         </div>
         <div class="monitoring_monitoring-card">
           <div class = "monitoring_employee-container">
-            <router-link to="/listemployee">
+            <router-link to="/list/employee">
               <img class="monitoring_employee-img" src="../../../assets/employee.png" alt="empleados">
             </router-link>
             <h2>Employees</h2>
@@ -35,7 +33,7 @@ export default {
 
         <div class="monitoring_monitoring-card">
           <div class="monitoring_statistics-container">
-            <router-link to="/statistics">
+            <router-link to="/financial/statistics">
               <img class="monitoring_statistics-img" src="../../../assets/statistics.png" alt="Estadísticas">
             </router-link>
             <h2>Statistics</h2>
@@ -72,23 +70,10 @@ export default {
 
 
 <style scoped>
-.monitoring_back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: darkgreen;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s;
+body{
+  min-height: 53.2vh;
+
 }
-
-.monitoring_back-button:hover {
-  background-color: darkgreen;
-}
-
-
 .monitoring_center-container {
   display: flex;
   flex-direction: column;
@@ -100,14 +85,14 @@ export default {
 .monitoring_monitoring-cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+
   justify-items: center;
 
 }
 .monitoring_emergency-cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
+
   justify-items: center;
   margin-top: 100px;
 
@@ -116,12 +101,18 @@ export default {
 @media (max-width: 600px) {
   .monitoring_monitoring-cards-container {
     grid-template-columns: 1fr;
-    margin-left: 70px;
+    margin-left: 10px;
+    gap:100px;
   }
 
   .monitoring_emergency-cards-container {
     grid-template-columns: 1fr;
-    margin-left: 70px;
+    margin-left: 10px;
+    gap:100px;
+  }
+  body{
+    min-height: 34.3vh;
+
   }
 }
 
