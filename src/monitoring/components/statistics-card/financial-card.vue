@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/components/footer-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 
 const selectedType = ref('Income');
 const selectedCategory = ref('');
