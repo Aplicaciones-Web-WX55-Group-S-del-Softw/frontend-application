@@ -67,8 +67,9 @@ export default {
 </template>
 
 <style scoped>
+
 .div-contact {
-  margin-top:50px;
+  margin-top:10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +77,8 @@ export default {
 }
 
 .rectangle {
-  width: 360px;
+  width: 550px;
+  height:800px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -86,7 +88,7 @@ export default {
   border-radius: 10px; /* Opcional: para redondear las esquinas del borde */
 }
 .cardC-title {
-  font-size: 1.6em;
+  font-size: 1.9em;
   font-weight: bold;
   text-align: center;
 }
@@ -98,23 +100,32 @@ export default {
 .input-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 25px;
+  padding: 10px 10px;
   width: 100%;
-  margin-top: 15px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  width: 48%;
-}
 
+}
+.input-group input, .input-group textarea {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  resize: vertical;
+}
 .input-group input {
   width: 100%;
 }
 
 .input-group label {
-  font-size: 0.9em;
+  font-size: 1.2em;
 }
 
 .form-container {
@@ -137,7 +148,7 @@ export default {
   box-shadow: 0px 0px 2px 2px #35844E;
   border-radius: 10px;
   font-size: 1em;
-  width: 90px;
+  width: 120px;
   height: 45px;
   color: #FFFFFF;
   background-color: #35844E;
@@ -157,7 +168,7 @@ export default {
 }
 
 .whatsapp-image {
-  height: 43px;
+  height: 60px;
   border-radius: 5px;
 }
 
@@ -181,7 +192,7 @@ export default {
 }
 
 .small-text {
-  font-size: 0.8em;
+  font-size: 1.2em;
   margin-bottom: 10px;
 }
 </style>
