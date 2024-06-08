@@ -2,7 +2,7 @@
 import axios from 'axios';
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../components/footer-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "list-shed",
@@ -27,7 +27,7 @@ export default {
 <template>
   <div>
     <toolbar-component></toolbar-component>
-    <router-link to="/home" class="back-button">BACK</router-link>
+
     <div class="main-container">
       <div class="sidebar">
         <h3 class="header-style">Shed</h3>
@@ -37,7 +37,7 @@ export default {
         <h3 class="header-style">Animals</h3>
         <router-link to="/animal/new" class="link-style"><h4>Add Animals</h4></router-link>
         <router-link to="/list/animals" class="link-style"><h4>Animal Inventory</h4></router-link>
-        <router-link to="/registerfeeds" class="link-style"><h4>Feeding Registry</h4></router-link>
+        <router-link to="/register/feeds" class="link-style"><h4>Feeding Registry</h4></router-link>
 
         <h3 class="header-style">Crops</h3>
         <router-link to="/register/crops" class="link-style"><h4>Crop Registry</h4></router-link>
@@ -74,12 +74,16 @@ export default {
 </template>
 
 <style scoped>
+body{
+  min-height:48.1vh;
+}
 .main-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  margin-top:150px;
   flex-wrap: nowrap;
 }
 
