@@ -1,23 +1,30 @@
 <script>
 import { ref, onMounted, computed, watch } from 'vue';
 import farmService from '../../profile-farm/services/farm.js';
+import profileService from "../../register/services/profile/profile.js";
+import FooterComponent from "../footer-component/footer-component.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 import { useRouter } from 'vue-router';
 
 export default {
-  components: { ToolbarComponent },
+  components: { ToolbarComponent, FooterComponent },
   setup() {
     const router = useRouter();
-    const { getFarms } = farmService;
+    const { getFarms, getUserFarms } = farmService; // Add getUserFarms here
 
     const farms = ref([]);
+    const userFarms = ref([]);
     const originalFarms = ref([]);
     const selectedProduct = ref('all');
     const selectedUbication = ref('all');
+    const currentProfile = ref(null);
 
     onMounted(async () => {
       originalFarms.value = await getFarms();
       farms.value = [...originalFarms.value];
+      userFarms.value = getUserFarms(); // Call getUserFarms here
+      const profiles =  profileService.getProfiles();
+      currentProfile.value = profiles[profiles.length - 1];
     });
 
     const uniqueProducts = computed(() => {
@@ -46,8 +53,18 @@ export default {
     const navigateToDescriptions = (id) => {
       router.push({ path: `/farm/description/${id}` });
     };
+    const ID = (id) => {
+      if ((id === 'farm3' || id === 'farm4' || id === 'farm5')) { // Modificado para verificar el rol del usuario
+        alert('If you want to enjoy all the content, you need to register or log in');
+        router.push('/login');
+      } else if (id) {
+        router.push({ path: `/farm/description/${id}` });
+      } else {
+        console.error('No farm ID was provided');
+      }
+    };
 
-    return { farms, selectedProduct, selectedUbication, uniqueProducts, uniqueUbications, navigateToDescriptions };
+    return { farms, userFarms, selectedProduct, selectedUbication, uniqueProducts, uniqueUbications, navigateToDescriptions, currentProfile,ID };
   },
 };
 </script>
@@ -77,7 +94,48 @@ export default {
       </div>
     </div>
 
-    <div v-if="!userRole">
+    <div  v-if="!currentProfile">
+      <div class="container" v-if="farms.length >= 0">
+        <h1>Featured Farms:</h1>
+        <div class="farms-container">
+          <div class="card" v-for="farm in farms" :key="farm.id" @click="ID(farm.id)">
+            <div class="card-details">
+              <div class="image-section">
+                <img :src="farm.images[0]" alt="Farm image" class="farm-image">
+              </div>
+              <hr>
+              <div class="info-section">
+                <h2 class="text-title">Farm {{ farm.name }}</h2>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
+                  {{ farm.ubication }}, Lima
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
+                  {{ farm.product }}
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
+                  {{ farm.totalSurface }} ha
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
+                  $ {{ farm.price }}
+                </p>
+                <hr>
+                <ul class="highlight-list">
+                  <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
+                  <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
+                  <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="currentProfile && currentProfile.role === 'Business Owner'">
       <div class="container" v-if="farms.length >= 0">
         <h1>Featured Farms:</h1>
         <div class="farms-container">
@@ -118,50 +176,9 @@ export default {
       </div>
     </div>
 
-    <div v-if="userRole === 'Business Owner'">
+    <div v-if="currentProfile && currentProfile.role === 'Farmer'">
       <div class="container" v-if="farms.length >= 0">
-        <h1>Featured Farms:</h1>
-        <div class="farms-container">
-          <div class="card" v-for="farm in farms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
-            <div class="card-details">
-              <div class="image-section">
-                <img :src="farm.images[0]" alt="Farm image" class="farm-image">
-              </div>
-              <hr>
-              <div class="info-section">
-                <h2 class="text-title">Farm {{ farm.name }}</h2>
-                <p class="text-body">
-                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
-                  {{ farm.ubication }}, Lima
-                </p>
-                <p class="text-body">
-                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
-                  {{ farm.product }}
-                </p>
-                <p class="text-body">
-                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
-                  {{ farm.totalSurface }} ha
-                </p>
-                <p class="text-body">
-                  <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
-                  $ {{ farm.price }}
-                </p>
-                <hr>
-                <ul class="highlight-list">
-                  <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
-                  <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
-                  <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <div v-if="userRole === 'Farmer'">
-        <div class="container" v-if="farms.length >= 0">
-          <h1>Featured Farms:</h1>
+      <h1>Featured Farms:</h1>
           <div class="farms-container">
             <div class="card" v-for="farm in farms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
               <div class="card-details">
@@ -239,6 +256,7 @@ export default {
         </div>
       </div>
     </div>
+  <footer-component/>
 </template>
 
 <style scoped>
@@ -253,7 +271,7 @@ input::placeholder {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 148vh;
 }
 
 .filter-container {
@@ -347,6 +365,9 @@ body {
 
 /* Media query for small screens */
 @media (max-width: 768px) {
+  body{
+    min-height:50vh;
+  }
   .card {
     width: 80%;
     margin: 10px auto;
