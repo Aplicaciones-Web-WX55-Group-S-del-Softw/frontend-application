@@ -1,28 +1,32 @@
-<script setup>
+<script >
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import profileService from '../../../register/services/profile/profile.js';
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 
-const router = useRouter();
+export default {
+  components: {ToolbarComponent, FooterComponent},
 
-const profile = ref({
-  firstName: 'Mathias',
-  lastName: 'Aguilar',
-  direction: 'Los Olivos, Villa sol',
-  phone: '98758748',
-  gender: '',
-  dobDay: '16',
-  dobMonth: '1',
-  dobYear: '2005',
-  documentNumber: '78985898',
-  documentType: 'DNI',
-  role: '',
-});
+  setup() {
+    const router = useRouter();
 
+    const profile = ref({
+      firstName: 'Mathias',
+      lastName: 'Aguilar',
+      direction: 'Los Olivos, Villa sol',
+      phone: '98758748',
+      gender: '',
+      dobDay: '16',
+      dobMonth: '1',
+      dobYear: '2005',
+      documentNumber: '78985898',
+      documentType: 'DNI',
+      role: '',
+    });
 
-const save = () => {
-    profileService.addProfile(profile.value);
-
+    const save = () => {
+      profileService.addProfile(profile.value);
 
       if (profile.value.role === 'Farmer') {
         router.push('/subscriptions');
@@ -43,12 +47,20 @@ const save = () => {
         documentType: '',
         role: '',
       };
+    };
+
+    // Devuelve los datos y métodos que quieras utilizar en tu plantilla
+    return {
+      profile,
+      save
+    };
+  }
 };
 </script>
 
 <template>
 
-
+<toolbar-component/>
   <div class="login-box">
     <div class="title-button">
       <button class="back-button-arrow" @click="$router.push('/home')">
@@ -136,12 +148,13 @@ const save = () => {
       </button>
     </form>
   </div>
+  <footer-component/>
 </template>
 
 <style scoped>
-
-
-
+body{
+  min-height:40vh;
+}
 .login-box {
   background: #fff;
   padding: 40px;
@@ -149,7 +162,7 @@ const save = () => {
   box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.5);
   width: 450px;
   max-width: 100%;
-  margin: 5% auto;
+  margin: 4% auto;
 }
 
 .title-button{
@@ -255,4 +268,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
+@media (max-width: 768px) {
+  .login-box {
+    margin: 15% auto;
+  }
+  body {
+    min-height: 33.4vh;
+  }
+}
 </style>
