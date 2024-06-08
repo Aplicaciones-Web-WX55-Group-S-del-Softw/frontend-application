@@ -1,6 +1,6 @@
 <script>
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../components/footer-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "monitoring-card",
@@ -9,8 +9,6 @@ export default {
 </script>
 <template>
   <toolbar-component></toolbar-component>
-
-  <router-link to="/home" class="back-button">BACK</router-link>
 
   <div class ="container">
     <div class="center-container">
@@ -58,17 +56,19 @@ export default {
     </div>
 
   </div>
-
   <footer-component></footer-component>
 </template>
 
 
-<style >
+<style scoped>
+body{
+  min-height:57.7vh;
+}
 .center-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 230px;
   margin-bottom: 60px;
   margin-left:-50px;
 
@@ -77,20 +77,20 @@ export default {
 .monitoring-cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
+
   justify-items: center;
 
 }
 .emergency-cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
+
   justify-items: center;
   margin-top: 100px;
 
 }
 .monitoring-card {
-  height: 100px;
+  height: 120px;
   margin: 10px;
   padding: 5px;
   display: flex;
