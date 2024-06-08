@@ -2,9 +2,10 @@
 import { ref, onMounted } from 'vue';
 import profileService from "../../services/profile/profile.js";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
   name: "role-profile",
-  components: {ToolbarComponent},
+  components: {ToolbarComponent, FooterComponent},
 
   setup() {
     const currentProfile = ref({});
@@ -47,16 +48,18 @@ export default {
       </div>
     </div>
   </div>
+  <footer-component/>
 </template>
 
 <style scoped>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-
-
+body{
+  min-height: 40vh;
+}
 .profile-card {
   position: relative;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   max-width: 800px;
   padding: 20px;
   display: flex;
@@ -83,7 +86,7 @@ export default {
 .profile-info-card {
   margin-top: 50px;
   position: relative;
-  width: 60%;
+  width: 75%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -136,21 +139,24 @@ export default {
 }
 
 @media (max-width: 600px) {
+  body{
+    min-height: 51vh;
+  }
   .profile-card{
-    margin-left: 40px;
+    top:60px;
+    right: 5px;
+    width:90%;
   }
   .profile-info-card {
     width: 90%;
     padding: 20px;
     line-height: 10px;
-    min-height: 70vh;
   }
 
   .profile-image-container {
     width: 120px;
     height: 120px;
     margin-top: -60px;
-
   }
 
 
