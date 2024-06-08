@@ -1,7 +1,7 @@
 <script>
 import {WeatherApi} from "../services/weather-api.js";
 import ToolbarComponent from "../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../public/components/footer-component.vue";
+import FooterComponent from "../../public/footer-component/footer-component.vue";
 
 
 export default {
@@ -36,7 +36,7 @@ export default {
   created() {
     this.weatherApi.getWeathers().then(response => {
       this.weathers = response.data;
-      this.shuffleWeathers(); // Mezcla los datos de forma aleatoria
+      this.shuffleWeathers();
     }).catch(error => {
       console.error(error);
     });
@@ -44,7 +44,6 @@ export default {
 };
 </script><template>
   <toolbar-component></toolbar-component>
-  <router-link to="/home" class="back-button">BACK</router-link>
 
   <h1 class="title-h1">WEATHER</h1>
   <div class="weather-cards">
@@ -64,6 +63,9 @@ export default {
 </template>
 
 <style scoped>
+body{
+  min-height:61.5vh;
+}
 .weather-cards {
   display: flex;
   justify-content: center;
