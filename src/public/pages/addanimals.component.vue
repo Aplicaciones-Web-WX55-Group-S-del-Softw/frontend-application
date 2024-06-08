@@ -1,7 +1,7 @@
 <script>
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../components/footer-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "register-details",
@@ -12,7 +12,6 @@ export default {
 <template>
   <div>
     <toolbar-component></toolbar-component>
-    <router-link to="/home" class="back-button">BACK</router-link>
     <div class="main-container">
       <div class="sidebar">
         <h3 class="header-style">Shed</h3>
@@ -21,25 +20,25 @@ export default {
         <h3 class="header-style">Animals</h3>
         <router-link to="/animal/new" class="link-style"><h4>Add Animals</h4></router-link>
         <router-link to="/list/animals" class="link-style"><h4>Animal Inventory</h4></router-link>
-        <router-link to="/registerfeeds" class="link-style"><h4>Feeding Registry</h4></router-link>
+        <router-link to="/register/feeds" class="link-style"><h4>Feeding Registry</h4></router-link>
         <h3 class="header-style">Crops</h3>
         <router-link to="/register/crops" class="link-style"><h4>Crop Registry</h4></router-link>
         <router-link to="/list/crops" class="link-style"><h4>Crop Inventory</h4></router-link>
       </div>
       <div class="form-container">
         <div class="background-color">
-          <h1 class="title-color">Agregar Animales</h1>
+          <h1 class="title-color">Add Animals</h1>
           <div class="inputs-container">
-            <label for="shed">Galpón:</label>
+            <label for="shed">Shed:</label>
             <input type="text" id="shed" name="shed"><br>
-            <label for="age">Edad:</label>
+            <label for="age">Age:</label>
             <input type="number" id="age" name="age"><br>
-            <label for="location">Ubicación:</label>
+            <label for="location">Location:</label>
             <input type="text" id="location" name="location"><br>
-            <label for="health-status">Estado de Salud:</label>
+            <label for="health-status">Health Status:</label>
             <select id="health-status" name="health-status">
-              <option value="saludable">Saludable</option>
-              <option value="enfermo">Enfermo</option>
+              <option value="saludable">Healthy</option>
+              <option value="enfermo">Sick</option>
             </select><br>
 
             <router-link to="/home" class="save-button-link">
@@ -54,12 +53,16 @@ export default {
 </template>
 
 <style scoped>
+body{
+  min-height:48.1vh;
+}
 .main-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  margin-top:150px;
   flex-wrap: nowrap;
 }
 
