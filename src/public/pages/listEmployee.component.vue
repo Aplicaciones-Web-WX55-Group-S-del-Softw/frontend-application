@@ -2,8 +2,6 @@
   <toolbar-component></toolbar-component>
   <div class="container">
     <h1 class="title">Employee</h1>
-
-
     <div class="search-container">
       <div class="searchSection">
         <label for="employeeName">Name:</label>
@@ -33,7 +31,7 @@
         <tbody>
         <tr v-for="employee in filteredEmployees" :key="employee.id">
           <td>
-            <router-link :to="`/editemployee/${employee.id}`">{{ employee.id }}</router-link>
+            <router-link :to="`/edit/employee/${employee.id}`">{{ employee.id }}</router-link>
           </td>
           <td>{{ employee.name }}</td>
           <td>{{ employee.lastname }}</td>
@@ -56,7 +54,7 @@
 import { ref } from 'vue';
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../components/footer-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
 import axios from "axios";
 
 export default {
@@ -221,23 +219,19 @@ th {
   margin-top: 20px;
   text-align: center;
 }
+.searchButton{
+  background-color: #145214;
 
-.back-button {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: darkgreen;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 7px;
+  padding: 13px 25px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.back-button:hover {
-  background-color: #145214;
+.searchButton:hover {
+  background-color: #307234;
 }
 
 .arrow-icon {
