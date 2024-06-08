@@ -1,6 +1,6 @@
 <template>
   <toolbar-component></toolbar-component>
-  <router-link to="/employees" class="back-button">BACK</router-link>
+
   <div class="container">
     <h1>Edit Employee</h1>
 
@@ -60,7 +60,7 @@
 
       <div class="button-container">
         <button @click="saveEmployee" class="save-button">Save</button>
-        <router-link to="/listemployee" class="cancel-button">Cancel</router-link>
+        <router-link to="/list/employee" class="cancel-button">Cancel</router-link>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import ToolbarComponent from '../toolbar-component/toolbar-component.vue';
-import FooterComponent from '../components/footer-component.vue';
+import FooterComponent from '../footer-component/footer-component.vue';
 import axios from 'axios';
 
 export default {
