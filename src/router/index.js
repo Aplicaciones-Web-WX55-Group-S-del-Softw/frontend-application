@@ -13,10 +13,8 @@ import statisticsCard from "../monitoring/components/statistics-card/statistics-
 import finishedTaskCard from "../monitoring/components/statistics-card/finished-task-card.vue";
 import FinancialCard from "../monitoring/components/statistics-card/financial-card.vue";
 import detailedMonitoringComponent from "../public/pages/detailed-monitoring.component.vue";
-import taskTableCard from "../monitoring/components/task-card/task-table-card.vue";
 import taskDetailsCard from "../monitoring/components/task-card/task-details-card.vue";
 import weatherCard from "../weather/components/weather-card.vue";
-import contactPage from "../social-interaction/pages/contact-page.vue";
 import listshedComponent from "../public/pages/listshed.component.vue";
 import emergencyComponent from "../monitoring/components/emergency-card/emergency.component.vue";
 import ProductionCard from "../monitoring/components/statistics-card/production-card.vue";
@@ -51,14 +49,13 @@ const router = createRouter({
         {path:'/detail/monitoring',component:detailedMonitoringComponent},
         {path:'/tasks/:id/details',component:taskDetailsCard},
         {path:'/weather',component:weatherCard},
-        {path:'/farm/description/:id',component:contactPage},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
-        {path:'/listemployee', component: ListEmployee},
-        {path:'/registerfeeds',component:RegisterFeeds},
+        {path:'/list/employee', component: ListEmployee},
+        {path:'/register/feeds',component:RegisterFeeds},
         { path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
         {path:'/employee/new', component: AddEmployee},
-        {path:'/editemployee/:id', component: editemployee},
+        {path:'/edit/employee/:id', component: editemployee},
 
         {path:'/subscriptions',component:SubscriptionsCardComponent},
         {path:'/login',component:LoginCard},
