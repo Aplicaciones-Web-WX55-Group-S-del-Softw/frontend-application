@@ -2,8 +2,10 @@
 import { ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import farmService from '../../services/farm.js';
-
+import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 export default {
+  components: { FooterComponent, ToolbarComponent },
   setup() {
     const router = useRouter();
     const farm = ref({
@@ -116,6 +118,7 @@ export default {
 </script>
 
 <template>
+  <toolbar-component/>
   <div class="body-container">
     <div class="container">
       <h1>CREATE FARM</h1>
@@ -278,22 +281,23 @@ export default {
       </div>
     </div>
   </div>
+  <footer-component/>
 </template>
 
 <style scoped>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
 body {
-  background-color: #f0f0f0;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   margin: 0;
 }
 
 .body-container {
-  margin-top: 20px;
+  margin-top: 200px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -398,7 +402,8 @@ textarea {
   gap: 10px;
   cursor: pointer;
   transition: all 0.3s;
-  margin-top: 30px;
+  margin-top: 25px;
+  margin-left:180px;
 }
 
 .folderContainer {
