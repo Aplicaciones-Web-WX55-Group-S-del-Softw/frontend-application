@@ -1,3 +1,40 @@
+<script>
+import { ref, onMounted } from 'vue';
+import profileService from "../../register/services/profile/profile.js";
+import { useRouter } from 'vue-router';
+
+export default {
+  setup() {
+    const currentProfile = ref(null);
+    const menuActive = ref(false);
+    const router = useRouter();
+
+    onMounted(async () => {
+      const profiles =  profileService.getProfiles();
+      currentProfile.value = profiles[profiles.length - 1];
+    });
+
+    const toggleMenu = () => {
+      menuActive.value = !menuActive.value;
+    };
+
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
+
+    const logout = () => {
+      localStorage.clear();
+      router.push('/home').then(() => {
+        window.location.reload();
+        alert('You have logged out');
+      });
+    };
+
+    return { currentProfile, menuActive, toggleMenu, scrollToTop, logout };
+  },
+};
+</script>
+
 <template>
   <header id="header">
     <div class="logo">
@@ -41,44 +78,10 @@
   </header>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue';
-import profileService from "../../register/services/profile/profile.js";
-import { useRouter } from 'vue-router';
 
-export default {
-  setup() {
-    const currentProfile = ref(null);
-    const menuActive = ref(false);
-    const router = useRouter();
-
-    onMounted(async () => {
-      const profiles =  profileService.getProfiles();
-      currentProfile.value = profiles[profiles.length - 1];
-    });
-
-    const toggleMenu = () => {
-      menuActive.value = !menuActive.value;
-    };
-
-    const scrollToTop = () => {
-      window.scrollTo(0, 0);
-    };
-
-    const logout = () => {
-      localStorage.clear();
-      router.push('/home').then(() => {
-        window.location.reload();
-        alert('You have logged out');
-      });
-    };
-
-    return { currentProfile, menuActive, toggleMenu, scrollToTop, logout };
-  },
-};
-</script>
 
 <style scoped>
+
 #header {
   width: 100%;
   height: 110px;
@@ -87,11 +90,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 10px;
   font-size: 22px;
   font-family: Arial, sans-serif;
-  gap: 8px;
-
 }
 
 #menu ul li a {
