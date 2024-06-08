@@ -1,13 +1,13 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import axios  from 'axios';
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
+import FooterComponent from "../../../public/footer-component/footer-component.vue";
 import { EmergencyApi } from './emergency-api.js';
 
 export default {
   name: "emergency",
-  components: {ToolbarComponent},
+  components: {ToolbarComponent, FooterComponent},
 
   setup() {
     const router = useRouter();
@@ -122,6 +122,7 @@ export default {
     </table>
 
   </div>
+  <footer-component/>
 </template>
 
 <style scoped>
@@ -129,7 +130,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 155px;
+  min-height:150vh;
+ margin-top:100px;
 }
 
 h1, h2 {
