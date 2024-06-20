@@ -19,8 +19,8 @@ import listshedComponent from "../public/pages/listshed.component.vue";
 import emergencyComponent from "../monitoring/components/emergency-card/emergency.component.vue";
 import ProductionCard from "../monitoring/components/statistics-card/production-card.vue";
 import RegisterFeeds from "../public/pages/register-feeds.vue";
-import ListEmployee from "../public/pages/listEmployee.component.vue";
-import AddEmployee  from "../public/pages/addEmployee.component.vue";
+import ListEmployee from "../monitoring/components/employee/list-employee.vue";
+import AddEmployee from "../monitoring/components/add-employee/add-employee.vue";
 import editemployee from "../public/pages/editemployee.component.vue";
 import SubscriptionsCardComponent from "../register/components/subscription/subscriptions-card.component.vue";
 import LoginCard from "../register/components/login-card/login-card.vue";
@@ -29,11 +29,12 @@ import CreateProfile from "../register/components/create-profile/create-profile.
 import RoleProfileComponent from "../register/components/role-profile/role-profile.component.vue";
 import profileFarm from "../profile-farm/components/profile-farm/profile-farm.vue";
 import FarmDescription from "../profile-farm/components/farm-description/farm-description.vue";
-
+import EditFarm from "../profile-farm/components/edit-farm/edit-farm.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes:[
+        {path:'/', redirect: '/home'},
         {path:'/home',component:HomeComponent},
         {path:'/monitoring',component:MonitoringCard},
         {path:'/tasks',component:TaskTableCard},
@@ -51,10 +52,10 @@ const router = createRouter({
         {path:'/weather',component:weatherCard},
         {path:'/list/sheds',component:listshedComponent},
         {path:'/emergency/new',component:emergencyComponent},
-        {path:'/list/employee', component: ListEmployee},
+        {path:'/employees',component:ListEmployee},
         {path:'/register/feeds',component:RegisterFeeds},
-        { path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
-        {path:'/employee/new', component: AddEmployee},
+        {path: '/production/statistics', component: ProductionCard, meta: { title: 'Production Statistics' }},
+        {path:'/add/employees',component:AddEmployee},
         {path:'/edit/employee/:id', component: editemployee},
 
         {path:'/subscriptions',component:SubscriptionsCardComponent},
@@ -64,6 +65,7 @@ const router = createRouter({
         {path:'/role/profile',component:RoleProfileComponent},
         {path:'/profile/farm',component:profileFarm},
         {path:'/farm/description/:id',component:FarmDescription},
+        {path:'/edit/farm/:id',component:EditFarm}
 
     ]
 });

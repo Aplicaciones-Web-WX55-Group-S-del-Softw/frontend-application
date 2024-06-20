@@ -91,10 +91,17 @@ const farms = ref([
 const userFarms = ref([]); // Added to store the user's farms
 
 
-const addFarm = (farm) => {
+const addFarm = (farm, userId) => {
+    const userFarm = userFarms.value.find(f => f.userId === userId);
+    if (userFarm) {
+        alert('You have already created a farm. You cannot create another one.');
+        return;
+    }
+
     const id = `farm${farms.value.length + userFarms.value.length + 1}`;
-    farms.value.push({ ...farm, id });
-    userFarms.value.push({ ...farm, id });
+    const newFarm = { ...farm, id, userId };
+    farms.value.push(newFarm);
+    userFarms.value.push({ ...newFarm });
 };
 const getFarms = () => {
     return farms.value;
@@ -105,12 +112,33 @@ const getUserFarms = () => {
 
 const getFarmById = (id) => {
     const farm = farms.value.find(farm => farm.id === id);
-    console.log('getFarmById called, found farm:', farm); // confirmation
+    console.log('getFarmById called, found farm:', farm);
     return farm;
 };
+const updateFarm = (updatedFarm) => {
+    let index = farms.value.findIndex(f => f.id === updatedFarm.id);
+    if (index !== -1) {
+        farms.value[index] = { ...updatedFarm };
+        if (updatedFarm.images) {
+            farms.value[index].images = updatedFarm.images.slice();
+        }
+    }
+
+    index = userFarms.value.findIndex(f => f.id === updatedFarm.id);
+    if (index !== -1) {
+        userFarms.value[index] = { ...updatedFarm };
+        if (updatedFarm.images) {
+            userFarms.value[index].images = updatedFarm.images.slice();
+        }
+    }
+
+    return Promise.resolve({ ...updatedFarm });
+};
+
 export default {
     addFarm,
+    getUserFarms,
     getFarms,
     getFarmById,
-    getUserFarms,
+    updateFarm,
 };

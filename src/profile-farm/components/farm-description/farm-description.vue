@@ -135,6 +135,9 @@
                 </div>
               </div>
               <div class="info-section">
+                <div class="edit-icon-container" v-if="currentProfile && currentProfile.role === 'Farmer' && farm.id === 'farm6'">
+                  <i class="fas fa-edit" @click="editFarm"></i>
+                </div>
                 <h2>Farm {{ farm.name }}</h2>
                 <p>
                   <img width="20" height="20" src="../../../assets/map-marker-icon.png" alt="Ubication"/>
@@ -209,7 +212,7 @@ export default {
     onMounted(async () => {
       const id = route.params.id;
       if (id) {
-        farm.value = farmService.getFarmById(id);
+        farm.value = await farmService.getFarmById(id);
         console.log(farm.value);
       } else {
         console.error('No se proporcionó un ID de granja');
@@ -220,8 +223,11 @@ export default {
       currentProfile.value = profiles[profiles.length - 1];
     });
 
+    const editFarm = () => {
+      router.push({ path: `/edit/farm/${farm.value.id}` });
+    };
 
-    return { farm, currentProfile };
+    return { farm, currentProfile, editFarm };
   },
 };
 </script>
@@ -339,6 +345,23 @@ hr{
   height: 3px;
   background: #003f17;
   margin: 20px 0;
+}
+.edit-icon-container {
+  position: relative;
+}
+
+.fas.fa-edit {
+  position: absolute;
+  top: 14px;
+  right: -30px;
+  color: #276749;
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.fas.fa-edit:hover {
+  transform: scale(1.2);
 }
 @media screen and (max-width: 768px) {
   .full-page-app {

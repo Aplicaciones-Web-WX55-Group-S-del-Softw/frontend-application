@@ -135,7 +135,9 @@ export default {
   gap: 20px;
   margin-right: 10px;
 }
-
+#menu ul li a {
+  cursor: pointer;
+}
 button {
   background-color: #45a049;
   font-weight: bold;
