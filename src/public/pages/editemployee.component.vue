@@ -20,7 +20,7 @@
 
         <div class="input-container">
           <label for="employeeLastname">Lastname:</label>
-          <input v-model="employeeData.lastname" type="text" id="employeeLastname" placeholder="Lastname" readonly class="readonly-input">
+          <input v-model="employeeData.lastname"  type="text" id="employeeLastname" placeholder="Lastname" readonly class="readonly-input">
         </div>
       </div>
 
