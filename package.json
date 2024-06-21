@@ -16,6 +16,7 @@
     "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "json-server": "^1.0.0-alpha.23",
+    "pinia": "^2.1.7",
     "primevue": "^3.52.0",
     "rxjs": "^7.8.1",
     "vue": "^3.4.21",

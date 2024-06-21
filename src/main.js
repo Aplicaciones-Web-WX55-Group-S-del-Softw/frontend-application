@@ -38,11 +38,14 @@ import Toast            from "primevue/toast";
 // Router
 import router from "./router/index.js";
 import i18n from "./i18n.js";
+import {createPinia} from "pinia";
+
+const pinia = createPinia();
 
 const app = createApp(App)
 app.use(router)
     .use(PrimeVue, { ripple: true})
-
+    .use(pinia)
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)

@@ -30,12 +30,18 @@ import RoleProfileComponent from "../register/components/role-profile/role-profi
 import profileFarm from "../profile-farm/components/profile-farm/profile-farm.vue";
 import FarmDescription from "../profile-farm/components/farm-description/farm-description.vue";
 import EditFarm from "../profile-farm/components/edit-farm/edit-farm.vue";
+import SignInComponent from "../register/pages/sign-in.component.vue";
+import SignUpComponent from "../register/pages/sign-up.component.vue";
+import {authenticationGuard} from "../register/services/authentication.guard.js";
+
 
 const router = createRouter({
     history: createWebHistory(),
     routes:[
         {path:'/', redirect: '/home'},
-        {path:'/home',component:HomeComponent},
+        {path:'/home', name:'home', component:HomeComponent},
+        {path:'/sign-in', name:'sign-in', component: SignInComponent, meta: {title: 'Sign In'}},
+        {path:'/sign-up', name:'sign-up', component: SignUpComponent, meta: {title: 'Sign Up'}},
         {path:'/monitoring',component:MonitoringCard},
         {path:'/tasks',component:TaskTableCard},
         {path:'/statistics', component:statisticsCard},
@@ -68,6 +74,12 @@ const router = createRouter({
         {path:'/edit/farm/:id',component:EditFarm}
 
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    let baseTitle = 'Farm Management System';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    next();
 });
 
 export default router;
