@@ -39,8 +39,7 @@ export default {
       <div class="field mt-5">
         <pv-float-label>
           <label for="password">Password</label>
-          <pv-input-text id="password" v-model="password" :class="{ 'p-invalid': !password }" required type="password"/>
-          <small v-if="!password" class="p-invalid">Password is required</small>
+          <pv-input-text id="password" v-model="password" :class="{ 'p-invalid': !password }" required type="password" autocomplete="current-password"/>          <small v-if="!password" class="p-invalid">Password is required</small>
         </pv-float-label>
       </div>
       <div class="field mt-5">

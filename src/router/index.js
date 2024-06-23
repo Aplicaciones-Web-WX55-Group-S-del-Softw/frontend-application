@@ -77,8 +77,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    let baseTitle = 'Farm Management System';
-    document.title = `${baseTitle} | ${to.meta['title']}`;
+    let baseTitle = 'FarmLogiTech';
+    document.title = `${baseTitle} `;
     next();
 });
 
