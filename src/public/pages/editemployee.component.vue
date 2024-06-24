@@ -19,43 +19,33 @@
         </div>
 
         <div class="input-container">
-          <label for="employeeLastname">Lastname:</label>
-          <input v-model="employeeData.lastname"  type="text" id="employeeLastname" placeholder="Lastname" readonly class="readonly-input">
+          <label for="phone">phone:</label>
+          <input v-model="employeeData.phone"  type="text" id="phone" placeholder="phone" readonly class="readonly-input">
         </div>
       </div>
+
+        <div class="input-container">
+          <label for="farmId">farmId:</label>
+          <input v-model="employeeData.farmId" type="text" id="farmId" placeholder="farmId" readonly class="readonly-input">
+        </div>
+      </div>
+
 
       <div class="row">
         <div class="input-container">
-          <label for="employeeGender">Gender:</label>
-          <input v-model="employeeData.gender" type="text" id="employeeGender" placeholder="Gender" readonly class="readonly-input">
+          <label for="username">Username:</label>
+          <input v-model="employeeData.username" type="text" id="username" placeholder="username">
         </div>
 
         <div class="input-container">
-          <label for="employeeDNI">DNI:</label>
-          <input v-model="employeeData.dni" type="text" id="employeeDNI" placeholder="DNI" readonly class="readonly-input">
-        </div>
-      </div>
-
-      <div class="input-container">
-        <label for="employeeAddress">Address:</label>
-        <input v-model="employeeData.address" type="text" id="employeeAddress" placeholder="Address" readonly class="readonly-input">
-      </div>
-
-      <div class="row">
-        <div class="input-container">
-          <label for="employeeUsername">Username:</label>
-          <input v-model="employeeData.username" type="text" id="employeeUsername" placeholder="Username">
-        </div>
-
-        <div class="input-container">
-          <label for="employeePassword">Password:</label>
-          <input v-model="employeeData.password" type="password" id="employeePassword" placeholder="Password">
+          <label for="password">password:</label>
+          <input v-model="employeeData.password" type="password" id="password" placeholder="Password">
         </div>
       </div>
 
       <div class="input-container labor-container">
-        <label for="employeeLabor">Labor:</label>
-        <textarea v-model="employeeData.labor" id="employeeLabor" placeholder="Labor"></textarea>
+        <label for="position">Labor:</label>
+        <textarea v-model="employeeData.position" id="position" placeholder="position"></textarea>
       </div>
 
       <div class="button-container">
@@ -63,9 +53,10 @@
         <router-link to="/list/employee" class="cancel-button">Cancel</router-link>
       </div>
     </div>
-  </div>
   <footer-component></footer-component>
 </template>
+
+
 
 <script>
 import { ref, onMounted } from 'vue';
@@ -77,58 +68,53 @@ import axios from 'axios';
 export default {
   name: "edit-employee",
   components: { FooterComponent, ToolbarComponent },
+
   setup() {
     const router = useRouter();
     const route = useRoute();
-    const employeeId = route.params.id;
+    const employeeId = ref(route.params.id);
 
     const employeeData = ref({
       name: '',
-      lastname: '',
-      gender: '',
-      address: '',
-      dni: '',
+      phone: '',
+      farmId: '',
       username: '',
       password: '',
-      labor: ''
+      position: ''
     });
 
     const errors = ref([]);
 
-    const loadEmployeeData = () => {
-      axios.get(`http://localhost:3000/employees/${employeeId}`)
-          .then(response => {
-            employeeData.value = response.data;
-          })
-          .catch(error => {
-            console.error('Error loading employee data:', error);
-          });
+    const loadEmployeeData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5077/api/v1/employee/${employeeId.value}`);
+        employeeData.value = response.data;
+      } catch (error) {
+        console.error('Error loading employee data:', error);
+      }
     };
 
     const validateData = () => {
       errors.value = [];
       if (!employeeData.value.name) errors.value.push('Name is required.');
-      if (!employeeData.value.lastname) errors.value.push('Lastname is required.');
-      if (!employeeData.value.gender) errors.value.push('Gender is required.');
-      if (!employeeData.value.address) errors.value.push('Address is required.');
-      if (!employeeData.value.dni) errors.value.push('DNI is required.');
+      if (!employeeData.value.phone) errors.value.push('phone is required.');
+      if (!employeeData.value.farmId) errors.value.push('farmId is required.');
       if (!employeeData.value.username) errors.value.push('Username is required.');
       if (!employeeData.value.password) errors.value.push('Password is required.');
-      if (!employeeData.value.labor) errors.value.push('Labor is required.');
+      if (!employeeData.value.position) errors.value.push('Labor is required.');
       return errors.value.length === 0;
     };
 
-    const saveEmployee = () => {
+    const saveEmployee = async () => {
       if (validateData()) {
-        axios.put(`http://localhost:3000/employees/${employeeId}`, employeeData.value)
-            .then(() => {
-              console.log('Employee updated successfully.');
-              router.push('/listemployee');
-            })
-            .catch(error => {
-              console.error('Error updating employee:', error);
-              errors.value.push('Error updating employee: ' + error.message);
-            });
+        try {
+          await axios.put(`http://localhost:5077/api/v1/employee/${employeeId.value}`, employeeData.value);
+          console.log('Employee updated successfully.');
+          router.push('/list/employee');
+        } catch (error) {
+          console.error('Error updating employee:', error);
+          errors.value.push('Error updating employee: ' + error.message);
+        }
       }
     };
 
@@ -142,6 +128,9 @@ export default {
   }
 };
 </script>
+
+
+
 
 <style scoped>
 .back-button {
@@ -279,3 +268,5 @@ h1 {
   }
 }
 </style>
+<script setup lang="ts">
+</script>

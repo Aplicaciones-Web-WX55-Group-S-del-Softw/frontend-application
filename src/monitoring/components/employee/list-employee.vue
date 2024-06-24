@@ -1,6 +1,6 @@
 <script>
+import axios from 'axios';
 import { ref, onMounted } from 'vue';
-import EmployeeService from "../../services/employee/employee.js";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
 import FooterComponent from "../../../public/footer-component/footer-component.vue";
 
@@ -9,59 +9,73 @@ export default {
     ToolbarComponent,
     FooterComponent
   },
-  data() {
-    return {
-      employees: [
-        { id: '1', name: 'John Doe', email: 'john.doe@example.com', password: 'Farm Manager', phone: '123-456-7890', position:  'Farm Manager'},
-        { id: '2', name: 'Jane Smith', email: 'jane.smith@example.com', password: 'Animal Nutritionist', phone: '234-567-8901', position: 'Animal Nutritionist' },
-        { id: '3', name: 'Bob Johnson', email: 'bob.johnson@example.com', password: 'Veterinary Nurse', phone: '345-678-9012' ,position: 'Animal Nutritionist'},
-        { id: '4', name: 'Alice Williams', email: 'alice.williams@example.com', password: 'Agricultural Engineer', phone: '456-789-0123',position: 'Animal Nutritionist' },
-        { id: '5', name: 'Charlie Brown', email: 'charlie.brown@example.com', password: 'Field Worker', phone: '567-890-1234',position: 'Animal Nutritionist' },
-        { id: '6', name: 'Emily Davis', email: 'emily.davis@example.com', password: 'Tractor Operator', phone: '678-901-2345',position: 'Animal Nutritionist' },
-        { id: '7', name: 'Frank Miller', email: 'frank.miller@example.com', password: 'Harvest Supervisor', phone: '789-012-3456',position: 'Animal Nutritionist' },
-        { id: '8', name: 'Grace Lee', email: 'grace.lee@example.com', password: 'Quality Assurance', phone: '890-123-4567',position: 'Animal Nutritionist' }
-      ],
-      filteredEmployees: [],
-      searchTerm: '',
-      isLoading: false,
-      previousEmployees: [],
-      searchPerformed: false
+  setup() {
+    const farmid = ref('');
+    const employees = ref([]);
+    const filteredEmployees = ref([]);
+    const searchTerm = ref('');
+    const isLoading = ref(false);
+    const previousEmployees = ref([]);
+    const searchPerformed = ref(false);
+
+    const getEmployees = async () => {
+      if (!farmid.value) return;
+      isLoading.value = true;
+      try {
+        const response = await axios.get(`http://localhost:5077/api/v1/employee/all/${farmid.value}`);
+        employees.value = response.data;
+        filteredEmployees.value = employees.value;
+        isLoading.value = false;
+      } catch (error) {
+        console.error('Error fetching employees:', error);
+        isLoading.value = false;
+      }
     };
-  },
-  mounted() {
-    this.getEmployees();
-  },
-  methods: {
-    getEmployees() {
-      this.employees = [...this.employees, ...EmployeeService.getEmployees()];
-      this.filteredEmployees = this.employees;
-    },
-    searchEmployee() {
-      this.previousEmployees = [...this.filteredEmployees];
-      this.isLoading = true;
-      this.searchPerformed = true;
+
+    const searchEmployee = () => {
+      previousEmployees.value = [...filteredEmployees.value];
+      isLoading.value = true;
+      searchPerformed.value = true;
       setTimeout(() => {
-        if (this.searchTerm) {
-          this.filteredEmployees = this.employees.filter(employee =>
-              employee.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        if (searchTerm.value) {
+          filteredEmployees.value = employees.value.filter(employee =>
+              employee.name.toLowerCase().includes(searchTerm.value.toLowerCase())
           );
         } else {
-          this.filteredEmployees = this.employees;
+          filteredEmployees.value = employees.value;
         }
-        this.isLoading = false;
+        isLoading.value = false;
       }, 3000);
-    },
-    clearSearch() {
-      this.searchTerm = '';
-      this.searchPerformed = false;
-    },
-    goBack() {
-      this.filteredEmployees = this.previousEmployees;
-      this.searchPerformed = false;
-    }
+    };
+
+    const clearSearch = () => {
+      searchTerm.value = '';
+      searchPerformed.value = false;
+    };
+
+    const goBack = () => {
+      filteredEmployees.value = previousEmployees.value;
+      searchPerformed.value = false;
+    };
+
+    return {
+      farmid,
+      employees,
+      filteredEmployees,
+      searchTerm,
+      isLoading,
+      previousEmployees,
+      searchPerformed,
+      getEmployees,
+      searchEmployee,
+      clearSearch,
+      goBack
+    };
   }
 };
 </script>
+
+
 <template>
   <toolbar-component/>
   <div class="header">
@@ -75,9 +89,9 @@ export default {
         </button>
       </div>
       <button class="addBtn" @click="$router.push('/add/employees')">
-  <span class="IconContainer">
-    <i class="material-icons">group</i>
-  </span>
+        <span class="IconContainer">
+          <i class="material-icons">group</i>
+        </span>
         <p class="text">Add Employee</p>
       </button>
       <p v-if="filteredEmployees.length > 0" class="employee-count">
@@ -85,6 +99,10 @@ export default {
         Total Employees: {{filteredEmployees.length}}
       </p>
     </div>
+  </div>
+  <div class="farmid-container">
+    <label for="farmid">Enter Farm ID:</label>
+    <input v-model="farmid" id="farmid" placeholder="Farm ID" @change="getEmployees" />
   </div>
   <div v-if="isLoading" class="dot-wave">
     <div class="dot-wave__dot"></div>
@@ -100,7 +118,7 @@ export default {
       </div>
       <div class="employee-card-content">
         <p>ID: {{employee.id}}</p>
-        <p>Email: {{employee.email}}</p>
+        <p>Email: {{employee.username}}</p>
         <p>Password: {{employee.password}}</p>
       </div>
     </div>
@@ -112,6 +130,8 @@ export default {
     </p>
   </div>
 </template>
+
+
 
 <style scoped>
 .header {

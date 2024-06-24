@@ -1,29 +1,37 @@
 <script>
 import { ref, onMounted } from 'vue';
-import profileService from "../../services/profile/profile.js";
-import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
-import FooterComponent from "../../../public/footer-component/footer-component.vue";
+import { useRoute } from 'vue-router';
+import axios from 'axios';
+import ToolbarComponent from '../../../public/toolbar-component/toolbar-component.vue';
+import FooterComponent from '../../../public/footer-component/footer-component.vue';
+
 export default {
   name: "role-profile",
-  components: {ToolbarComponent, FooterComponent},
+  components: { ToolbarComponent, FooterComponent },
 
   setup() {
+    const route = useRoute();
     const currentProfile = ref({});
     const register = ref({});
 
-
     onMounted(async () => {
-      const registers =  profileService.getRegisters();
-      register.value = registers[registers.length - 1];
-
-      const profiles =  profileService.getProfiles();
-      currentProfile.value = profiles[profiles.length - 1];
+      const id = route.params.id; // Obtener el ID desde los parámetros de la ruta
+      try {
+        const profileResponse = await axios.get(`http://localhost:5077/api/v1/profile/${id}`);
+        const registerResponse = await axios.get('http://localhost:5077/api/v1/register');
+        currentProfile.value = profileResponse.data;
+        register.value = registerResponse.data;
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+      }
     });
 
-    return { currentProfile, register};
+    return { currentProfile, register };
   },
 };
 </script>
+
+
 
 <template>
   <toolbar-component></toolbar-component>
@@ -34,22 +42,21 @@ export default {
         <img v-else src="../../../assets/bussiness-owner.png" alt="Profile Image">
       </div>
       <div class="profile-name">
-        <h1>{{ currentProfile.firstName }} {{ currentProfile.lastName }}</h1>
+        <h1>{{ currentProfile.name }}</h1>
       </div>
-      <h2>{{currentProfile.role}}</h2>
+      <h2>{{ currentProfile.role }}</h2>
       <div class="profile-info">
         <p><i class="fas fa-map-marker-alt"></i> {{ currentProfile.direction }}</p>
-        <p><i class="fas fa-phone"></i> {{ currentProfile.phone }}</p>
-        <p><i class="fas fa-venus-mars"></i> {{ currentProfile.gender }}</p>
-        <p><i class="fas fa-birthday-cake"></i> {{ currentProfile.dobDay }}/{{ currentProfile.dobMonth }}/{{ currentProfile.dobYear }}</p>
-        <p><i class="fas fa-id-card"></i> {{ currentProfile.documentNumber }}</p>
-        <p><i class="fas fa-id-badge"></i> {{ currentProfile.documentType }}</p>
         <p><i class="fas fa-envelope"></i> {{ register.email }}</p>
+        <p><i class="fas fa-id-badge"></i> {{ currentProfile.documentType }}</p>
+        <p><i class="fas fa-id-card"></i> {{ currentProfile.documentNumber }}</p>
       </div>
     </div>
   </div>
   <footer-component/>
 </template>
+
+
 
 <style scoped>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
@@ -124,7 +131,7 @@ body{
   width: 60%;
   line-height:30px;
   display: flex;
-  flex-direction:  column;
+  flex-direction: column;
   justify-content: flex-start;
 }
 
@@ -134,8 +141,9 @@ body{
   font-size: 1.2em;
   margin-right: 10px;
 }
-.profile-name h1{
-  font-weight:bold;
+
+.profile-name h1 {
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
@@ -158,9 +166,6 @@ body{
     height: 120px;
     margin-top: -60px;
   }
-
-
 }
-
-
 </style>
+

@@ -8,8 +8,8 @@
           <input v-model="employee.name" placeholder=" " required class="input">
         </label>
         <label class="floating-label">
-          <p>Email</p>
-          <input v-model="employee.email" placeholder=" " required type="email" class="input">
+          <p>Username</p>
+          <input v-model="employee.username" placeholder=" " required type="text" class="input">
         </label>
         <label class="floating-label">
           <p>Phone</p>
@@ -17,21 +17,22 @@
         </label>
         <label class="floating-label">
           <p>Password</p>
-          <input v-model="employee.password" required class="input">
+          <input v-model="employee.password" placeholder=" " required type="password" class="input">
         </label>
         <label class="floating-label">
           <p>Position</p>
-          <input v-model="employee.position" required class="input">
+          <input v-model="employee.position" placeholder=" " required class="input">
         </label>
       </div>
       <button type="submit" class="submit">Save</button>
-      <button class="cancel-button" @click="goBack">Cancelar</button>
+      <button type="button" class="cancel-button" @click="goBack">Cancel</button>
     </form>
   </div>
 </template>
 
+
 <script>
-import EmployeeService from "../../services/employee/employee.js";
+import axios from 'axios';
 
 export default {
   data() {
@@ -39,7 +40,7 @@ export default {
       employee: {
         id: '',
         name: '',
-        email: '',
+        username: '',
         password: '',
         phone: '',
         position: '',
@@ -47,17 +48,14 @@ export default {
     };
   },
   methods: {
-    saveEmployee() {
-      EmployeeService.addEmployee(this.employee);
-      this.employee = {
-        id: '',
-        name: '',
-        email: '',
-        password: '',
-        phone: '',
-        position: '',
-      };
-      this.$router.push('/employees');
+    async saveEmployee() {
+      try {
+        const response = await axios.post('http://localhost:5077/api/v1/employee', this.employee);
+        console.log(response.data);
+        this.$router.push('/employees');
+      } catch (error) {
+        console.error('Error saving employee:', error);
+      }
     },
     goBack() {
       this.$router.push('/employees');
@@ -65,6 +63,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .add-employee-container {
