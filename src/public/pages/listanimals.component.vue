@@ -1,30 +1,3 @@
-<script>
-import axios from 'axios';
-import SaveButton from "../components/SaveButton.vue";
-import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../footer-component/footer-component.vue";
-
-export default {
-  name: "list-animal",
-  components: { FooterComponent, ToolbarComponent, SaveButton },
-  data() {
-    return {
-      animals: []
-    }
-  },
-  created() {
-    axios.get('../server/db.json')
-        .then(response => {
-          this.animals = response.data.animals;
-          console.log(this.animals);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-  }
-}
-</script>
-
 <template>
   <div>
     <toolbar-component></toolbar-component>
@@ -61,7 +34,7 @@ export default {
               <td>{{ animal.id }}</td>
               <td>{{ animal.age }}</td>
               <td>{{ animal.location }}</td>
-              <td>{{ animal.health_state }}</td>
+              <td>{{ animal.healthState }}</td> <!-- Ajustar propiedad -->
             </tr>
             </tbody>
           </table>
@@ -75,6 +48,40 @@ export default {
     <footer-component></footer-component>
   </div>
 </template>
+
+
+
+<script>
+import axios from 'axios';
+import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
+
+export default {
+  name: "list-animal",
+  components: { FooterComponent, ToolbarComponent, SaveButton },
+  data() {
+    return {
+      animals: []
+    };
+  },
+  created() {
+    this.fetchAnimals();
+  },
+  methods: {
+    async fetchAnimals() {
+      try {
+        const response = await axios.get('http://localhost:5077/api/v1/animal/all');
+        console.log('Datos recibidos:', response.data); // Verificar datos recibidos
+        this.animals = response.data; // Asignar datos correctamente
+      } catch (error) {
+        console.error('Error fetching animals:', error);
+      }
+    }
+  }
+};
+</script>
+
 
 <style scoped>
 body{

@@ -6,23 +6,29 @@ import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "list-shed",
-  components: {FooterComponent, ToolbarComponent, SaveButton},
+  components: { FooterComponent, ToolbarComponent, SaveButton },
   data() {
     return {
       sheds: []
-    }
+    };
   },
   created() {
-    axios.get('../server/db.json')
-        .then(response => {
-          this.sheds = response.data.sheds;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    this.fetchSheds();
+  },
+  methods: {
+    async fetchSheds() {
+      try {
+        const response = await axios.get('http://localhost:5077/api/v1/shed/all');
+        console.log('Datos recibidos:', response.data); // Verificar datos recibidos
+        this.sheds = response.data; // Asignar datos correctamente
+      } catch (error) {
+        console.error('Error fetching animals:', error);
+      }
+    }
   }
-}
+};
 </script>
+
 
 <template>
   <div>
@@ -50,15 +56,15 @@ export default {
             <thead>
             <tr>
               <th>ID</th>
-              <th>Type</th>
-              <th>Species</th>
+              <th>Location</th>
+              <th>Types</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="shed in sheds" :key="shed.id">
               <td>{{ shed.id }}</td>
+              <td>{{ shed.location }}</td>
               <td>{{ shed.type }}</td>
-              <td>{{ shed.species }}</td>
             </tr>
             </tbody>
           </table>

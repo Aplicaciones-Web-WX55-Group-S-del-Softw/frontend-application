@@ -1,13 +1,34 @@
 <script>
+import axios from 'axios';
 import SaveButton from "../components/SaveButton.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "register-details",
-  components: {FooterComponent, ToolbarComponent, SaveButton}
-}
+  components: { FooterComponent, ToolbarComponent, SaveButton },
+  data() {
+    return {
+      shed: {
+        type: '', // Valor predeterminado
+        location: ''
+      }
+    };
+  },
+  methods: {
+    async saveShed() {
+      try {
+        const response = await axios.post('http://localhost:5077/api/v1/shed', this.shed);
+        console.log(response.data);
+        this.$router.push('/home');
+      } catch (error) {
+        console.error('Error saving shed:', error);
+      }
+    }
+  }
+};
 </script>
+
 
 <template>
   <div>
@@ -34,17 +55,12 @@ export default {
           <div class="inputs-container">
 
             <label for="type">Shed Type:</label>
-            <select id="type" name="type">
-              <option value="Animals">Animals</option>
-              <option value="Crops">Crops</option>
-            </select><br>
+            <input type= text id="type" name="type" v-model="shed.type">
 
-            <label for="specie">Specie:</label>
-            <input type="text" id="specie" name="specie"><br>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" v-model="shed.location"><br>
 
-            <router-link to="/home" class="save-button-link">
-              <button class="button">Save</button>
-            </router-link>
+            <button class="button" @click="saveShed">Save</button>
           </div>
         </div>
       </div>
@@ -52,6 +68,7 @@ export default {
     <footer-component></footer-component>
   </div>
 </template>
+
 
 <style scoped>
 body{

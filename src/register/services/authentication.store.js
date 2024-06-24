@@ -13,6 +13,7 @@ export const useAuthenticationStore = defineStore({
         currentUserId: (state) => state['userId'],
         currentUsername: (state) => state['username'],
         currentToken: () => localStorage.getItem('token')
+        //TODO y role?
     },
     actions: {
         async signIn(signInRequest, router) {
@@ -24,6 +25,7 @@ export const useAuthenticationStore = defineStore({
                     this.username = signInResponse.username;
                     localStorage.setItem('token', signInResponse.token);
                     console.log(signInResponse);
+                    //TODO aqui va el role verdad?
                     router.push({name: 'home'});
                 })
                 .catch(error => {
@@ -39,6 +41,7 @@ export const useAuthenticationStore = defineStore({
                     this.signedIn = false;
                     this.userId = 0;
                     this.username = '';
+                    //TODO aqui va el role verdad?
                     localStorage.removeItem('token');
                     router.push({name: 'sign-in'});
                 })

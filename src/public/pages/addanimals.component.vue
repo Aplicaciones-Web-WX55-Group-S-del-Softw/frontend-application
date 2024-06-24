@@ -1,14 +1,3 @@
-<script>
-import SaveButton from "../components/SaveButton.vue";
-import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
-import FooterComponent from "../footer-component/footer-component.vue";
-
-export default {
-  name: "register-details",
-  components: { FooterComponent, ToolbarComponent, SaveButton }
-}
-</script>
-
 <template>
   <div>
     <toolbar-component></toolbar-component>
@@ -29,21 +18,18 @@ export default {
         <div class="background-color">
           <h1 class="title-color">Add Animals</h1>
           <div class="inputs-container">
-            <label for="shed">Shed:</label>
-            <input type="text" id="shed" name="shed"><br>
+            <label for="shed">Name:</label>
+            <input type="text" id="name" name="name" v-model="animal.name"><br>
+            <label for="shedId">Shed:</label>
+            <input type="text" id="shedId" name="shedId" v-model="animal.shedId"><br>
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age"><br>
+            <input type="number" id="age" name="age" v-model="animal.age"><br>
             <label for="location">Location:</label>
-            <input type="text" id="location" name="location"><br>
-            <label for="health-status">Health Status:</label>
-            <select id="health-status" name="health-status">
-              <option value="saludable">Healthy</option>
-              <option value="enfermo">Sick</option>
-            </select><br>
+            <input type="text" id="location" name="location" v-model="animal.location"><br>
+            <label for="healthState">Health Status:</label>
+            <input id="healthState" name="healthState" v-model="animal.healthState">
 
-            <router-link to="/home" class="save-button-link">
-              <button class="button">Save</button>
-            </router-link>
+            <button class="button" @click="saveAnimal">Save</button>
           </div>
         </div>
       </div>
@@ -52,9 +38,42 @@ export default {
   </div>
 </template>
 
+<script>
+import axios from 'axios';
+import SaveButton from "../components/SaveButton.vue";
+import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
+import FooterComponent from "../footer-component/footer-component.vue";
+
+export default {
+  name: "register-details",
+  components: { FooterComponent, ToolbarComponent, SaveButton },
+  data() {
+    return {
+      animal: {
+        shed: '',
+        age: null,
+        location: '',
+        healthStatus: 'saludable'
+      }
+    }
+  },
+  methods: {
+    async saveAnimal() {
+      try {
+        const response = await axios.post('http://localhost:5077/api/v1/animal', this.animal);
+        console.log(response.data);
+        this.$router.push('/home');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+}
+</script>
+
 <style scoped>
-body{
-  min-height:48.1vh;
+body {
+  min-height: 48.1vh;
 }
 .main-container {
   display: flex;
@@ -62,7 +81,7 @@ body{
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
-  margin-top:150px;
+  margin-top: 150px;
   flex-wrap: nowrap;
 }
 
@@ -185,5 +204,4 @@ body{
     max-width: 500px;
   }
 }
-
 </style>

@@ -2,11 +2,10 @@
   <toolbar-component></toolbar-component>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <div class="bodyLogin">
-
     <div class="container" :class="{'active': isActive, 'forgot-password-active': isForgotPasswordActive}">
 
       <div class="form-container sign-up">
-        <form>
+        <form @submit.prevent="onSignUp">
           <img src="/farm-logitech-logo.png">
           <h1>Create Account</h1>
           <div class="wrapper">
@@ -21,10 +20,10 @@
             </div>
           </div>
           <span>or use your email for registration</span>
-          <input type="email" placeholder="Email" required v-model="register.email">
-          <input type="password" placeholder="Password" required>
-
-          <button class="button" type="button" @click="save">
+          <input type="text" placeholder="Username" required v-model="username">
+          <input type="password" placeholder="Password" required v-model="password">
+          <input type="number" placeholder="Role" required v-model="role">
+          <button class="button" type="submit">
             Sign Up
             <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
               <path
@@ -38,7 +37,7 @@
       </div>
 
       <div class="form-container sign-in">
-        <form>
+        <form @submit.prevent="onSignIn">
           <img src="/farm-logitech-logo.png">
           <h1>Sign In</h1>
           <div class="wrapper">
@@ -53,10 +52,11 @@
             </div>
           </div>
           <span>or use your email password</span>
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Password" required>
+          <input type="text" placeholder="Username" required v-model="username">
+          <input type="password" placeholder="Password" required v-model="password">
+          <input type="number" placeholder="Role" required v-model="role">
           <a @click="toggleForgotPassword">Forgot Password?</a>
-          <router-link class="button" to="/home">
+          <button class="button" type="submit">
             Sign In
             <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
               <path
@@ -65,12 +65,12 @@
                   fill-rule="evenodd"
               ></path>
             </svg>
-          </router-link>
+          </button>
         </form>
       </div>
 
       <div class="form-container forgot-password forgot-password-container">
-        <form >
+        <form>
           <img src="/farm-logitech-logo.png">
           <h1>Forgot Password</h1>
           <input type="email" placeholder="Email" required>
@@ -97,7 +97,6 @@
         </form>
       </div>
 
-      <!-- Toggle Container -->
       <div class="toggle-container">
         <div class="toggle">
           <div class="toggle-panel toggle-left">
@@ -119,7 +118,6 @@
             <h1>Hello, Farmer!</h1>
             <p>Register with your personal details to use all of site features</p>
             <button class="button" type="button" @click="toggleActive()">
-              Sign Up
               <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
                 <path
                     clip-rule="evenodd"
@@ -127,65 +125,112 @@
                     fill-rule="evenodd"
                 ></path>
               </svg>
+              Sign Up
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <footer-component></footer-component>
 </template>
 
 <script>
 import profileService from "../../services/profile/profile.js";
-import {ref} from "vue";
-import {useRouter} from "vue-router";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import ToolbarComponent from "../../../public/toolbar-component/toolbar-component.vue";
 import FooterComponent from "../../../public/footer-component/footer-component.vue";
+
 export default {
-  components: {ToolbarComponent, FooterComponent},
-  setup() {
-    const router = useRouter();
-    const isActive = ref(false);
-    const isForgotPasswordActive = ref(false);
-    const register = ref({
-      email: '',
-      password: ''
-    });
-
-    const toggleActive = () => {
-      isActive.value = !isActive.value;
-    };
-
-    const toggleForgotPassword = () => {
-      isActive.value = false;
-      isForgotPasswordActive.value = !isForgotPasswordActive.value;
-    };
-
-    const backToSignIn = () => {
-      isForgotPasswordActive.value = false;
-      isActive.value = false;
-    };
-
-    const save = async () => {
-      await profileService.addRegister(register.value);
-      await router.push('/create/profile');
-      register.value = {
-        email: '',
-        password: ''
-      };
-    };
-
+  components: { ToolbarComponent, FooterComponent },
+  data() {
     return {
-      isActive,
-      isForgotPasswordActive,
-      register,
-      toggleActive,
-      toggleForgotPassword,
-      backToSignIn,
-      save
+      isActive: false,
+      isForgotPasswordActive: false,
+      username: '',
+      password: '',
+      role: null,
     };
-  }
+  },
+  methods: {
+    toggleActive() {
+      this.isActive = !this.isActive;
+    },
+    toggleForgotPassword() {
+      this.isForgotPasswordActive = !this.isForgotPasswordActive;
+    },
+    backToSignIn() {
+      this.isForgotPasswordActive = false;
+    },
+    onSignUp() {
+      const user = {
+        username: this.username,
+        password: this.password,
+        role: this.role,
+      };
+
+      this.registerUser(user)
+          .then(response => {
+            console.log('User registered:', response);
+            this.$router.push('/home');
+          })
+          .catch(error => {
+            console.error('Registration error:', error);
+          });
+    },
+    onSignIn() {
+      const user = {
+        username: this.username,
+        password: this.password,
+        role: this.role,
+      };
+
+      this.loginUser(user)
+          .then(response => {
+            console.log('User logged in:', response);
+            this.$router.push('/home');
+          })
+          .catch(error => {
+            console.error('Login error:', error);
+          });
+    },
+    async registerUser(user) {
+      try {
+        const response = await fetch('http://localhost:5077/api/v1/authentication/sign-up', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        });
+        if (!response.ok) {
+          throw new Error('Error en el registro');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error en la solicitud de registro:', error);
+        throw error;
+      }
+    },
+    async loginUser(user) {
+      try {
+        const response = await fetch('http://localhost:5077/api/v1/authentication/sign-in', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        });
+        if (!response.ok) {
+          throw new Error('Error en el inicio de sesión');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error en la solicitud de inicio de sesión:', error);
+        throw error;
+      }
+    },
+  },
 };
 </script>
 

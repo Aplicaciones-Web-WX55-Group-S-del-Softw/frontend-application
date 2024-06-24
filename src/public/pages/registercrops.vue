@@ -6,23 +6,31 @@ import FooterComponent from "../footer-component/footer-component.vue";
 
 export default {
   name: "register-crops",
-  components: {FooterComponent, ToolbarComponent, SaveButton},
+  components: { FooterComponent, ToolbarComponent, SaveButton },
   data() {
     return {
-      crops: []
-    }
+      crop: {
+        shedId: '',
+        type: '',
+        plantingDate: '',
+        quantity:''
+      }
+    };
   },
-  created() {
-    axios.get('../server/db.json')
-        .then(response => {
-          this.crops = response.data.crops;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+  methods: {
+    async saveCrop() {
+      try {
+        const response = await axios.post('http://localhost:5077/api/v1/crop', this.crop);
+        console.log(response.data);
+        this.$router.push('/home');
+      } catch (error) {
+        console.error('Error saving crop:', error);
+      }
+    }
   }
-}
+};
 </script>
+
 
 <template>
   <div>
@@ -47,24 +55,26 @@ export default {
         <div class="background-color">
           <h1 class="title-color">Crop Registry</h1>
           <div class="inputs-container">
-            <label for="shed">Shed:</label>
-            <input type="text" id="shed" name="shed"><br>
+            <label for="shedId">Shed:</label>
+            <input type="text" id="shedId" name="shedId" v-model="crop.shedId"><br>
 
             <label for="type">Type of Crop:</label>
-            <input type="text" id="type" name="type"><br>
+            <input type="text" id="type" name="type" v-model="crop.type"><br>
 
-            <label for="planting-date">Planting Date:</label>
-            <input type="date" id="planting-date" name="planting-date"><br>
+            <label for="plantingDate">Planting Date:</label>
+            <input type="text" id="plantingDate" name="plantingDate" v-model="crop.plantingDate"><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="text" id="quantity" name="quantity" v-model="crop.quantity"><br>
           </div>
-          <router-link to="/home" class="save-button-link">
-            <button class="button">Save</button>
-          </router-link>
+          <button class="button" @click="saveCrop">Save</button>
         </div>
       </div>
     </div>
     <footer-component></footer-component>
   </div>
 </template>
+
 
 <style scoped>
 body{

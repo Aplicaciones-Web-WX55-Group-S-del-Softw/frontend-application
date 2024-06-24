@@ -10,16 +10,17 @@ export default {
     return {
       username: '',
       password: ''
+      //todo role o no?
     }
   },
   methods: {
     onSignIn() {
       let authenticationStore = useAuthenticationStore();
-      let signInRequest = new SignInRequest(this.username, this.password);
+      let signInRequest = new SignInRequest(this.username, this.password); //todo role o no
       authenticationStore.signIn(signInRequest, this.$router);
     }
   }
-}
+}//todo role o no? en template abajo
 </script>
 
 <template>

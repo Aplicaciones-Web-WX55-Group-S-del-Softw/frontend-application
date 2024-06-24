@@ -10,19 +10,25 @@ export default {
   data() {
     return {
       crops: []
-    }
+    };
   },
   created() {
-    axios.get('../server/db.json')
-        .then(response => {
-          this.crops = response.data.crops;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    this.fetchCrops();
+  },
+  methods: {
+    async fetchCrops() {
+      try {
+        const response = await axios.get('http://localhost:5077/api/v1/crop/all');
+        console.log('Datos recibidos:', response.data); // Verificar datos recibidos
+        this.crops = response.data; // Asignar datos correctamente
+      } catch (error) {
+        console.error('Error fetching crops:', error);
+      }
+    }
   }
-}
+};
 </script>
+
 
 <template>
   <div>
@@ -45,10 +51,6 @@ export default {
       <div class="content-container">
         <div class="background-color">
           <h1 class="title-color">List of Crops</h1>
-          <div class="inputs-container">
-            <label for="shed">Shed:</label>
-            <input type="text" id="shed" name="shed"><br>
-          </div>
           <table>
             <thead>
             <tr>
@@ -61,7 +63,7 @@ export default {
             <tr v-for="crop in crops" :key="crop.id">
               <td>{{ crop.id }}</td>
               <td>{{ crop.type }}</td>
-              <td>{{ crop.planting_date }}</td>
+              <td>{{ crop.plantingDate }}</td>
             </tr>
             </tbody>
           </table>
@@ -74,6 +76,7 @@ export default {
     <footer-component></footer-component>
   </div>
 </template>
+
 
 <style scoped>
 body{
