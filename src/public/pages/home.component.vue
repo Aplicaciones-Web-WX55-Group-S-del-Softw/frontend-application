@@ -7,11 +7,6 @@ import { useRouter } from 'vue-router';
 
 export default {
   components: { ToolbarComponent, FooterComponent },
-  data(){
-    return {
-      farms: []
-    };
-  },
   setup() {
     const router = useRouter();
 
@@ -22,18 +17,19 @@ export default {
     const selectedUbication = ref('all');
     const currentProfile = ref(null);
 
+
     onMounted(async () => {
       try {
         const farmResponse = await axios.get('http://localhost:5077/api/v1/farm/farm/all');
         console.log('Datos recibidos:', farmResponse.data); // Verificar datos recibidos
-        this.farms = response.data;
+        farms.value = farmResponse.data;
       } catch (error) {
         console.error('Error loading data:', error);
       }
     });
 
     const uniqueProducts = computed(() => {
-      const products = originalFarms.value.map(farm => farm.product);
+      const products = originalFarms.value.map(farms => farm.product);
       return [...new Set(products)];
     });
 
@@ -70,7 +66,7 @@ export default {
       }
     };
 
-    return { farms, userFarms, selectedProduct, selectedUbication, uniqueProducts, uniqueUbications, navigateToDescriptions, currentProfile, ID };
+    return { farms };
   }
 };
 </script>
