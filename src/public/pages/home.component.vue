@@ -1,16 +1,19 @@
 <script>
 import { ref, onMounted, computed, watch } from 'vue';
-import farmService from '../../profile-farm/services/farm.js';
-import profileService from "../../register/services/profile/profile.js";
+import axios from 'axios';
 import FooterComponent from "../footer-component/footer-component.vue";
 import ToolbarComponent from "../toolbar-component/toolbar-component.vue";
 import { useRouter } from 'vue-router';
 
 export default {
   components: { ToolbarComponent, FooterComponent },
+  data(){
+    return {
+      farms: []
+    };
+  },
   setup() {
     const router = useRouter();
-    const { getFarms, getUserFarms } = farmService; // Add getUserFarms here
 
     const farms = ref([]);
     const userFarms = ref([]);
@@ -20,11 +23,13 @@ export default {
     const currentProfile = ref(null);
 
     onMounted(async () => {
-      originalFarms.value = await getFarms();
-      farms.value = [...originalFarms.value];
-      userFarms.value = getUserFarms(); // Call getUserFarms here
-      const profiles =  profileService.getProfiles();
-      currentProfile.value = profiles[profiles.length - 1];
+      try {
+        const farmResponse = await axios.get('http://localhost:5077/api/v1/farm/farm/all');
+        console.log('Datos recibidos:', farmResponse.data); // Verificar datos recibidos
+        this.farms = response.data;
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
     });
 
     const uniqueProducts = computed(() => {
@@ -33,7 +38,7 @@ export default {
     });
 
     const uniqueUbications = computed(() => {
-      const ubications = originalFarms.value.map(farm => farm.ubication);
+      const ubications = originalFarms.value.map(farm => farm.location);
       return [...new Set(ubications)];
     });
 
@@ -43,7 +48,7 @@ export default {
       } else {
         farms.value = originalFarms.value.filter(farm => {
           return (selectedProduct.value !== 'all' ? farm.product === selectedProduct.value : true) &&
-              (selectedUbication.value !== 'all' ? farm.ubication === selectedUbication.value : true);
+              (selectedUbication.value !== 'all' ? farm.location === selectedUbication.value : true);
         });
       }
     };
@@ -53,8 +58,9 @@ export default {
     const navigateToDescriptions = (id) => {
       router.push({ path: `/farm/description/${id}` });
     };
+
     const ID = (id) => {
-      if ((id === 'farm3' || id === 'farm4' || id === 'farm5')) { // Modificado para verificar el rol del usuario
+      if (['farm3', 'farm4', 'farm5'].includes(id)) { // Modificado para verificar el rol del usuario
         alert('If you want to enjoy all the content, you need to register or log in');
         router.push('/login');
       } else if (id) {
@@ -64,13 +70,13 @@ export default {
       }
     };
 
-    return { farms, userFarms, selectedProduct, selectedUbication, uniqueProducts, uniqueUbications, navigateToDescriptions, currentProfile,ID };
-  },
+    return { farms, userFarms, selectedProduct, selectedUbication, uniqueProducts, uniqueUbications, navigateToDescriptions, currentProfile, ID };
+  }
 };
 </script>
 
-<template>
 
+<template>
   <toolbar-component/>
   <div class="main-container">
     <div class="section-search">
@@ -94,39 +100,37 @@ export default {
       </div>
     </div>
 
-    <div  v-if="!currentProfile">
+    <div v-if="!currentProfile">
       <div class="container" v-if="farms.length >= 0">
         <h1>Featured Farms:</h1>
         <div class="farms-container">
           <div class="card" v-for="farm in farms" :key="farm.id" @click="ID(farm.id)">
             <div class="card-details">
               <div class="image-section">
-                <img :src="farm.images[0]" alt="Farm image" class="farm-image">
+                <img :src="farm.image" alt="Farm image" class="farm-image">
               </div>
               <hr>
               <div class="info-section">
-                <h2 class="text-title">Farm {{ farm.name }}</h2>
+                <h2 class="text-title">Farm {{ farm.farmName }}</h2>
                 <p class="text-body">
-                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
-                  {{ farm.ubication }}, Lima
+                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="location"/>
+                  {{ farm.location }}, Lima
                 </p>
                 <p class="text-body">
-                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
+                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="product"/>
                   {{ farm.product }}
                 </p>
                 <p class="text-body">
-                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
-                  {{ farm.totalSurface }} ha
+                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="surface"/>
+                  {{ farm.surface }}
                 </p>
                 <p class="text-body">
-                  <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
+                  <img width="20" height="20" src="../../assets/price-icon.png" alt="price"/>
                   $ {{ farm.price }}
                 </p>
                 <hr>
-                <ul class="highlight-list">
-                  <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
-                  <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
-                  <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
+                <ul class="highlight">
+                  <li v-if="farm.highlight1"></li>
                 </ul>
               </div>
             </div>
@@ -142,6 +146,84 @@ export default {
           <div class="card" v-for="farm in farms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
             <div class="card-details">
               <div class="image-section">
+                <img :src="farm.image" alt="Farm image" class="farm-image">
+              </div>
+              <hr>
+              <div class="info-section">
+                <h2 class="text-title">Farm {{ farm.farmName }}</h2>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="location"/>
+                  {{ farm.location }}, Lima
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="product"/>
+                  {{ farm.product }}
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="surface"/>
+                  {{ farm.surface }} ha
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/price-icon.png" alt="price"/>
+                  $ {{ farm.price }}
+                </p>
+                <hr>
+                <ul class="highlight">
+                  <li v-if="farm.highlight"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="currentProfile && currentProfile.role === 'Farmer'">
+      <div class="container" v-if="farms.length >= 0">
+        <h1>Featured Farms:</h1>
+        <div class="farms-container">
+          <div class="card" v-for="farm in farms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
+            <div class="card-details">
+              <div class="image-section">
+                <img :src="farm.images[0]" alt="Farm image" class="farm-image">
+              </div>
+              <hr>
+              <div class="info-section">
+                <h2 class="text-title">Farm {{ farm.farmName }}</h2>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
+                  {{ farm.location }}, Lima
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
+                  {{ farm.product }}
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
+                  {{ farm.surface }} ha
+                </p>
+                <p class="text-body">
+                  <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
+                  $ {{ farm.price }}
+                </p>
+                <hr>
+                <ul class="highlight-list">
+                  <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
+                  <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
+                  <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" v-if="farms.length >= 0">
+        <h2>Your Farms:</h2>
+        <div class="farms-container">
+          <div class="card" v-for="farm in userFarms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
+            <div class="card-details">
+              <div class="image-section">
                 <img :src="farm.images[0]" alt="Farm image" class="farm-image">
               </div>
               <hr>
@@ -175,89 +257,10 @@ export default {
         </div>
       </div>
     </div>
-
-    <div v-if="currentProfile && currentProfile.role === 'Farmer'">
-      <div class="container" v-if="farms.length >= 0">
-      <h1>Featured Farms:</h1>
-          <div class="farms-container">
-            <div class="card" v-for="farm in farms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
-              <div class="card-details">
-                <div class="image-section">
-                  <img :src="farm.images[0]" alt="Farm image" class="farm-image">
-                </div>
-                <hr>
-                <div class="info-section">
-                  <h2 class="text-title">Farm {{ farm.name }}</h2>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
-                    {{ farm.ubication }}, Lima
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
-                    {{ farm.product }}
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
-                    {{ farm.totalSurface }} ha
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
-                    $ {{ farm.price }}
-                  </p>
-                  <hr>
-                  <ul class="highlight-list">
-                    <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
-                    <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
-                    <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container" v-if="farms.length >= 0">
-          <h2>Your Farms:</h2>
-          <div class="farms-container">
-            <div class="card" v-for="farm in userFarms" :key="farm.id" @click="navigateToDescriptions(farm.id)">
-              <div class="card-details">
-                <div class="image-section">
-                  <img :src="farm.images[0]" alt="Farm image" class="farm-image">
-                </div>
-                <hr>
-                <div class="info-section">
-                  <h2 class="text-title">Farm {{ farm.name }}</h2>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/map-marker-icon.png" alt="Ubication"/>
-                    {{ farm.ubication }}, Lima
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/chicken-icon.png" alt="Product"/>
-                    {{ farm.product }}
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/surface-icon.png" alt="Surface"/>
-                    {{ farm.totalSurface }} ha
-                  </p>
-                  <p class="text-body">
-                    <img width="20" height="20" src="../../assets/price-icon.png" alt="Price"/>
-                    $ {{ farm.price }}
-                  </p>
-                  <hr>
-                  <ul class="highlight-list">
-                    <li v-if="farm.highlight1">{{ farm.highlight1 }}</li>
-                    <li v-if="farm.highlight2">{{ farm.highlight2 }}</li>
-                    <li v-if="farm.highlight3">{{ farm.highlight3 }}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
   <footer-component/>
 </template>
+
 
 <style scoped>
 .main-container {
